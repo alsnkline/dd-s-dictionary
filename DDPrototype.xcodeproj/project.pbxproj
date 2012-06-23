@@ -16,6 +16,12 @@
 		B178607515962B3D0047D631 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B178607315962B3D0047D631 /* MainStoryboard_iPhone.storyboard */; };
 		B178607815962B3D0047D631 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B178607615962B3D0047D631 /* MainStoryboard_iPad.storyboard */; };
 		B178607B15962B3D0047D631 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B178607A15962B3D0047D631 /* ViewController.m */; };
+		B178608615962BF80047D631 /* ADDWord.m in Sources */ = {isa = PBXBuildFile; fileRef = B178608515962BF80047D631 /* ADDWord.m */; };
+		B1786094159638990047D631 /* Dictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1786092159638990047D631 /* Dictionary.xcdatamodeld */; };
+		B178609A15963AB40047D631 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B178609915963AB40047D631 /* Word.m */; };
+		B17860A015963AD80047D631 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B178609F15963AD80047D631 /* Pronunciation.m */; };
+		B17860A315963B690047D631 /* Word+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B17860A215963B690047D631 /* Word+Create.m */; };
+		B17860A615963BB50047D631 /* Pronunciation+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B17860A515963BB50047D631 /* Pronunciation+Create.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +29,27 @@
 		B178606115962B3D0047D631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B178606315962B3D0047D631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B178606515962B3D0047D631 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B178606915962B3D0047D631 /* DDPrototype-Info.plist */ = {isa = PBXFileReference; path = "DDPrototype-Info.plist"; sourceTree = "<group>"; };
+		B178606915962B3D0047D631 /* DDPrototype-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DDPrototype-Info.plist"; sourceTree = "<group>"; };
 		B178606B15962B3D0047D631 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B178606D15962B3D0047D631 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B178606F15962B3D0047D631 /* DDPrototype-Prefix.pch */ = {isa = PBXFileReference; path = "DDPrototype-Prefix.pch"; sourceTree = "<group>"; };
-		B178607015962B3D0047D631 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		B178606F15962B3D0047D631 /* DDPrototype-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DDPrototype-Prefix.pch"; sourceTree = "<group>"; };
+		B178607015962B3D0047D631 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B178607115962B3D0047D631 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B178607415962B3D0047D631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		B178607715962B3D0047D631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		B178607915962B3D0047D631 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		B178607915962B3D0047D631 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B178607A15962B3D0047D631 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B178608415962BF80047D631 /* ADDWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADDWord.h; sourceTree = "<group>"; };
+		B178608515962BF80047D631 /* ADDWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADDWord.m; sourceTree = "<group>"; };
+		B1786093159638990047D631 /* Dictionary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dictionary.xcdatamodel; sourceTree = "<group>"; };
+		B178609815963AB40047D631 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		B178609915963AB40047D631 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		B178609E15963AD80047D631 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
+		B178609F15963AD80047D631 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
+		B17860A115963B690047D631 /* Word+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Word+Create.h"; sourceTree = "<group>"; };
+		B17860A215963B690047D631 /* Word+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Word+Create.m"; sourceTree = "<group>"; };
+		B17860A415963BB50047D631 /* Pronunciation+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pronunciation+Create.h"; sourceTree = "<group>"; };
+		B17860A515963BB50047D631 /* Pronunciation+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pronunciation+Create.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +96,11 @@
 		B178606715962B3D0047D631 /* DDPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				B178607015962B3D0047D631 /* AppDelegate.h */,
-				B178607115962B3D0047D631 /* AppDelegate.m */,
 				B178607315962B3D0047D631 /* MainStoryboard_iPhone.storyboard */,
 				B178607615962B3D0047D631 /* MainStoryboard_iPad.storyboard */,
+				B178608B159638050047D631 /* Database */,
+				B178608415962BF80047D631 /* ADDWord.h */,
+				B178608515962BF80047D631 /* ADDWord.m */,
 				B178607915962B3D0047D631 /* ViewController.h */,
 				B178607A15962B3D0047D631 /* ViewController.m */,
 				B178606815962B3D0047D631 /* Supporting Files */,
@@ -93,12 +111,30 @@
 		B178606815962B3D0047D631 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B178607015962B3D0047D631 /* AppDelegate.h */,
+				B178607115962B3D0047D631 /* AppDelegate.m */,
 				B178606915962B3D0047D631 /* DDPrototype-Info.plist */,
 				B178606A15962B3D0047D631 /* InfoPlist.strings */,
 				B178606D15962B3D0047D631 /* main.m */,
 				B178606F15962B3D0047D631 /* DDPrototype-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B178608B159638050047D631 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
+				B178609815963AB40047D631 /* Word.h */,
+				B178609915963AB40047D631 /* Word.m */,
+				B17860A115963B690047D631 /* Word+Create.h */,
+				B17860A215963B690047D631 /* Word+Create.m */,
+				B178609E15963AD80047D631 /* Pronunciation.h */,
+				B178609F15963AD80047D631 /* Pronunciation.m */,
+				B17860A415963BB50047D631 /* Pronunciation+Create.h */,
+				B17860A515963BB50047D631 /* Pronunciation+Create.m */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +203,12 @@
 				B178606E15962B3D0047D631 /* main.m in Sources */,
 				B178607215962B3D0047D631 /* AppDelegate.m in Sources */,
 				B178607B15962B3D0047D631 /* ViewController.m in Sources */,
+				B178608615962BF80047D631 /* ADDWord.m in Sources */,
+				B1786094159638990047D631 /* Dictionary.xcdatamodeld in Sources */,
+				B178609A15963AB40047D631 /* Word.m in Sources */,
+				B17860A015963AD80047D631 /* Pronunciation.m in Sources */,
+				B17860A315963B690047D631 /* Word+Create.m in Sources */,
+				B17860A615963BB50047D631 /* Pronunciation+Create.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +332,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B1786092159638990047D631 /* Dictionary.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B1786093159638990047D631 /* Dictionary.xcdatamodel */,
+			);
+			currentVersion = B1786093159638990047D631 /* Dictionary.xcdatamodel */;
+			path = Dictionary.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B178605415962B3D0047D631 /* Project object */;
 }
