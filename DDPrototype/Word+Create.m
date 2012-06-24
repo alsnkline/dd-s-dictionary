@@ -29,6 +29,7 @@
         word = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:context];
         //                [word setValue:string forKey:@"Word"]; //only if you don't use the subclass
         word.spelling = string;
+        
         // have to set a pronunciation
 //        NSSet *pronuns = [NSSet setWithObject: "create data from sound file"
         // use create catagory also.
