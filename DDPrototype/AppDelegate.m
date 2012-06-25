@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DictionaryHelper.h"
 
 @implementation AppDelegate
 
@@ -15,6 +16,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
+    //Get scource file for words to populate dictionary - TBD
+    
+    //Get dictionary UImanagedDocument
+//    [DictionaryHelper getDefaultDictionaryUsingBlock:^ (UIManagedDocument *dictionaryDatabase) {
+//        NSLog(@"Got dictionary %@", [dictionaryDatabase.fileURL lastPathComponent]);
+        //process file to populate dictionary - TBD 
+//    }];
     return YES;
 }
 							

@@ -7,6 +7,7 @@
 //
 
 #import "DisplayWordViewController.h"
+#import "DictionaryHelper.h"
 
 @interface DisplayWordViewController ()
 
@@ -78,7 +79,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	// Do any additional setup after loading the view. 
 }
 
 - (void)viewDidUnload
@@ -93,5 +94,6 @@
 {
     return YES;
 }
+
 
 @end

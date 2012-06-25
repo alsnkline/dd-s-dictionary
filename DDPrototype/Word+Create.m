@@ -39,6 +39,7 @@
     } else {
         word = [matches lastObject];
     }
+    NSLog(@"Word in dictionary %@", word);
     return word;
 }
 

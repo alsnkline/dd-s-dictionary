@@ -10,4 +10,7 @@
 
 @interface Word (Create)
 
++ (Word *)wordFromString:(NSString *)string
+  inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

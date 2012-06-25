@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
+#import "DictionaryHelper.h"
 
-@interface DictionaryTableViewController : UITableViewController
+@interface DictionaryTableViewController : CoreDataTableViewController <ActiveDictionaryFollower>
+
+//use activeDictionary for model for this MVC
 
 @end
