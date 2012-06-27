@@ -8,6 +8,7 @@
 
 #import "DisplayWordViewController.h"
 #import "DictionaryHelper.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface DisplayWordViewController ()
 
@@ -44,7 +45,8 @@
    shouldHideViewController:(UIViewController *)vc 
               inOrientation:(UIInterfaceOrientation)orientation
 {
-    return UIInterfaceOrientationIsPortrait(orientation);
+//    return UIInterfaceOrientationIsPortrait(orientation);
+    return NO;
 }
 
 - (void)splitViewController:(UISplitViewController *)svc 
@@ -72,8 +74,28 @@
     return self;
 }
 - (IBAction)listenToWord:(id)sender 
-{
+{   
+//    NSBundle *mainBundle = [NSBundle mainBundle];
+//    NSLog(@"mainbundle = %@", mainBundle);
+//    NSArray *allBundles = [NSBundle allBundles];
+//    NSLog(@"All bundles = %@", allBundles);
     
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"could" ofType:@"wav"];
+//    NSLog(@"path = %@", path);
+//    NSURL *pathURL = [NSURL fileURLWithPath:path];
+    
+    NSURL *wordSoundURL = [[NSBundle mainBundle] URLForResource:self.spelling.text withExtension:@"wav"];
+    NSLog(@"wordSoundURL = %@",wordSoundURL);
+    
+    NSArray *wavFileArray = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"wav" subdirectory:@""];
+    NSLog(@"wavFileArray = %@", wavFileArray);
+    
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef) wordSoundURL, &soundID);
+    
+    AudioServicesPlaySystemSound(soundID);
+
 }
 
 - (void)viewDidLoad

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
+		B150AEB7159A7B58007A1129 /* could.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEB6159A7B58007A1129 /* could.wav */; };
+		B150AEBF159A830D007A1129 /* should.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEBE159A830D007A1129 /* should.wav */; };
+		B150AEC1159A8319007A1129 /* would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEC0159A8319007A1129 /* would.wav */; };
 		B178606215962B3D0047D631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606115962B3D0047D631 /* UIKit.framework */; };
 		B178606415962B3D0047D631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606315962B3D0047D631 /* Foundation.framework */; };
 		B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606515962B3D0047D631 /* CoreGraphics.framework */; };
@@ -29,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B150AEB6159A7B58007A1129 /* could.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = could.wav; sourceTree = "<group>"; };
+		B150AEBE159A830D007A1129 /* should.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = should.wav; sourceTree = "<group>"; };
+		B150AEC0159A8319007A1129 /* would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = would.wav; sourceTree = "<group>"; };
 		B178605D15962B3D0047D631 /* DDPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B178606115962B3D0047D631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B178606315962B3D0047D631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */,
 				B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */,
 				B178606215962B3D0047D631 /* UIKit.framework in Frameworks */,
 				B178606415962B3D0047D631 /* Foundation.framework in Frameworks */,
@@ -77,9 +86,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B150AEB8159A8277007A1129 /* FirstGradeDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				B150AEB9159A8291007A1129 /* Sounds */,
+			);
+			name = FirstGradeDictionary;
+			sourceTree = "<group>";
+		};
+		B150AEB9159A8291007A1129 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B150AEBE159A830D007A1129 /* should.wav */,
+				B150AEC0159A8319007A1129 /* would.wav */,
+				B150AEB6159A7B58007A1129 /* could.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B150AEB3159A6771007A1129 /* AudioToolbox.framework */,
 				B1B6DA171596C6A8001781C9 /* CoreData.framework */,
 				B178606715962B3D0047D631 /* DDPrototype */,
 				B178606015962B3D0047D631 /* Frameworks */,
@@ -120,6 +148,7 @@
 				B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */,
 				B17CE6BE15980481005A12D3 /* DictionaryHelper.h */,
 				B17CE6BF15980481005A12D3 /* DictionaryHelper.m */,
+				B150AEB8159A8277007A1129 /* FirstGradeDictionary */,
 				B178606815962B3D0047D631 /* Supporting Files */,
 			);
 			path = DDPrototype;
@@ -208,6 +237,9 @@
 				B178607515962B3D0047D631 /* MainStoryboard_iPhone.storyboard in Resources */,
 				B178607815962B3D0047D631 /* MainStoryboard_iPad.storyboard in Resources */,
 				B17CE6BA15980041005A12D3 /* resources.bundle in Resources */,
+				B150AEB7159A7B58007A1129 /* could.wav in Resources */,
+				B150AEBF159A830D007A1129 /* should.wav in Resources */,
+				B150AEC1159A8319007A1129 /* would.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
