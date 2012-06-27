@@ -30,7 +30,7 @@
         //                [word setValue:string forKey:@"Word"]; //only if you don't use the subclass
         word.spelling = string;
         
-        // have to set a pronunciation
+        // have to set pronunciations
 //        NSSet *pronuns = [NSSet setWithObject: "create data from sound file"
         // use create catagory also.
         //word.pronunciations = pronuns;

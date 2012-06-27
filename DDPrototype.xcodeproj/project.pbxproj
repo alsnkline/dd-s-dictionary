@@ -20,10 +20,26 @@
 		B178607515962B3D0047D631 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B178607315962B3D0047D631 /* MainStoryboard_iPhone.storyboard */; };
 		B178607815962B3D0047D631 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B178607615962B3D0047D631 /* MainStoryboard_iPad.storyboard */; };
 		B1786094159638990047D631 /* Dictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1786092159638990047D631 /* Dictionary.xcdatamodeld */; };
-		B178609A15963AB40047D631 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B178609915963AB40047D631 /* Word.m */; };
-		B17860A015963AD80047D631 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B178609F15963AD80047D631 /* Pronunciation.m */; };
 		B17860A315963B690047D631 /* Word+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B17860A215963B690047D631 /* Word+Create.m */; };
 		B17860A615963BB50047D631 /* Pronunciation+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B17860A515963BB50047D631 /* Pronunciation+Create.m */; };
+		B178611A159BAC99004A79E5 /* PhonemeSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786119159BAC99004A79E5 /* PhonemeSpelling.m */; };
+		B178611D159BAC99004A79E5 /* Phoneme.m in Sources */ = {isa = PBXBuildFile; fileRef = B178611C159BAC99004A79E5 /* Phoneme.m */; };
+		B1786120159BAC99004A79E5 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B178611F159BAC99004A79E5 /* Word.m */; };
+		B1786123159BAC99004A79E5 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786122159BAC99004A79E5 /* Pronunciation.m */; };
+		B1786131159BCCCD004A79E5 /* a-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786125159BCCCD004A79E5 /* a-cat.wav */; };
+		B1786132159BCCCD004A79E5 /* aa-rate.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786126159BCCCD004A79E5 /* aa-rate.wav */; };
+		B1786133159BCCCD004A79E5 /* c-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786127159BCCCD004A79E5 /* c-cat.wav */; };
+		B1786134159BCCCD004A79E5 /* c-could.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786128159BCCCD004A79E5 /* c-could.wav */; };
+		B1786135159BCCCD004A79E5 /* d-could.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786129159BCCCD004A79E5 /* d-could.wav */; };
+		B1786136159BCCCD004A79E5 /* d-would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612A159BCCCD004A79E5 /* d-would.wav */; };
+		B1786137159BCCCD004A79E5 /* ou-could.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612B159BCCCD004A79E5 /* ou-could.wav */; };
+		B1786138159BCCCD004A79E5 /* ou-would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612C159BCCCD004A79E5 /* ou-would.wav */; };
+		B1786139159BCCCD004A79E5 /* r-rate.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612D159BCCCD004A79E5 /* r-rate.wav */; };
+		B178613A159BCCCD004A79E5 /* sh-should.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612E159BCCCD004A79E5 /* sh-should.wav */; };
+		B178613B159BCCCD004A79E5 /* t-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612F159BCCCD004A79E5 /* t-cat.wav */; };
+		B178613C159BCCCD004A79E5 /* w-would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786130159BCCCD004A79E5 /* w-would.wav */; };
+		B178613F159BCCE2004A79E5 /* cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178613D159BCCE2004A79E5 /* cat.wav */; };
+		B1786140159BCCE2004A79E5 /* rate.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178613E159BCCE2004A79E5 /* rate.wav */; };
 		B17AAB7B1596B87F009A5C1D /* DictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */; };
 		B17CE6BA15980041005A12D3 /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B17CE6B915980041005A12D3 /* resources.bundle */; };
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
@@ -50,14 +66,32 @@
 		B178607415962B3D0047D631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		B178607715962B3D0047D631 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		B1786093159638990047D631 /* Dictionary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dictionary.xcdatamodel; sourceTree = "<group>"; };
-		B178609815963AB40047D631 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		B178609915963AB40047D631 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
-		B178609E15963AD80047D631 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
-		B178609F15963AD80047D631 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
 		B17860A115963B690047D631 /* Word+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Word+Create.h"; sourceTree = "<group>"; };
 		B17860A215963B690047D631 /* Word+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Word+Create.m"; sourceTree = "<group>"; };
 		B17860A415963BB50047D631 /* Pronunciation+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pronunciation+Create.h"; sourceTree = "<group>"; };
 		B17860A515963BB50047D631 /* Pronunciation+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pronunciation+Create.m"; sourceTree = "<group>"; };
+		B1786118159BAC99004A79E5 /* PhonemeSpelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhonemeSpelling.h; sourceTree = "<group>"; };
+		B1786119159BAC99004A79E5 /* PhonemeSpelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhonemeSpelling.m; sourceTree = "<group>"; };
+		B178611B159BAC99004A79E5 /* Phoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phoneme.h; sourceTree = "<group>"; };
+		B178611C159BAC99004A79E5 /* Phoneme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phoneme.m; sourceTree = "<group>"; };
+		B178611E159BAC99004A79E5 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		B178611F159BAC99004A79E5 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		B1786121159BAC99004A79E5 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
+		B1786122159BAC99004A79E5 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
+		B1786125159BCCCD004A79E5 /* a-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "a-cat.wav"; sourceTree = "<group>"; };
+		B1786126159BCCCD004A79E5 /* aa-rate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "aa-rate.wav"; sourceTree = "<group>"; };
+		B1786127159BCCCD004A79E5 /* c-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "c-cat.wav"; sourceTree = "<group>"; };
+		B1786128159BCCCD004A79E5 /* c-could.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "c-could.wav"; sourceTree = "<group>"; };
+		B1786129159BCCCD004A79E5 /* d-could.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "d-could.wav"; sourceTree = "<group>"; };
+		B178612A159BCCCD004A79E5 /* d-would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "d-would.wav"; sourceTree = "<group>"; };
+		B178612B159BCCCD004A79E5 /* ou-could.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "ou-could.wav"; sourceTree = "<group>"; };
+		B178612C159BCCCD004A79E5 /* ou-would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "ou-would.wav"; sourceTree = "<group>"; };
+		B178612D159BCCCD004A79E5 /* r-rate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "r-rate.wav"; sourceTree = "<group>"; };
+		B178612E159BCCCD004A79E5 /* sh-should.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sh-should.wav"; sourceTree = "<group>"; };
+		B178612F159BCCCD004A79E5 /* t-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "t-cat.wav"; sourceTree = "<group>"; };
+		B1786130159BCCCD004A79E5 /* w-would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "w-would.wav"; sourceTree = "<group>"; };
+		B178613D159BCCE2004A79E5 /* cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cat.wav; sourceTree = "<group>"; };
+		B178613E159BCCE2004A79E5 /* rate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rate.wav; sourceTree = "<group>"; };
 		B17AAB791596B87F009A5C1D /* DictionaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryTableViewController.h; sourceTree = "<group>"; };
 		B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryTableViewController.m; sourceTree = "<group>"; };
 		B17CE6B915980041005A12D3 /* resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resources.bundle; sourceTree = "<group>"; };
@@ -89,19 +123,22 @@
 		B150AEB8159A8277007A1129 /* FirstGradeDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				B150AEB9159A8291007A1129 /* Sounds */,
+				B1786124159BCC9F004A79E5 /* PhonemeWav */,
+				B150AEB9159A8291007A1129 /* WordWav */,
 			);
 			name = FirstGradeDictionary;
 			sourceTree = "<group>";
 		};
-		B150AEB9159A8291007A1129 /* Sounds */ = {
+		B150AEB9159A8291007A1129 /* WordWav */ = {
 			isa = PBXGroup;
 			children = (
+				B178613D159BCCE2004A79E5 /* cat.wav */,
+				B178613E159BCCE2004A79E5 /* rate.wav */,
 				B150AEBE159A830D007A1129 /* should.wav */,
 				B150AEC0159A8319007A1129 /* would.wav */,
 				B150AEB6159A7B58007A1129 /* could.wav */,
 			);
-			name = Sounds;
+			name = WordWav;
 			sourceTree = "<group>";
 		};
 		B178605215962B3D0047D631 = {
@@ -171,16 +208,39 @@
 			isa = PBXGroup;
 			children = (
 				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
-				B178609815963AB40047D631 /* Word.h */,
-				B178609915963AB40047D631 /* Word.m */,
+				B178611E159BAC99004A79E5 /* Word.h */,
+				B178611F159BAC99004A79E5 /* Word.m */,
+				B1786121159BAC99004A79E5 /* Pronunciation.h */,
+				B1786122159BAC99004A79E5 /* Pronunciation.m */,
+				B178611B159BAC99004A79E5 /* Phoneme.h */,
+				B178611C159BAC99004A79E5 /* Phoneme.m */,
+				B1786118159BAC99004A79E5 /* PhonemeSpelling.h */,
+				B1786119159BAC99004A79E5 /* PhonemeSpelling.m */,
 				B17860A115963B690047D631 /* Word+Create.h */,
 				B17860A215963B690047D631 /* Word+Create.m */,
-				B178609E15963AD80047D631 /* Pronunciation.h */,
-				B178609F15963AD80047D631 /* Pronunciation.m */,
 				B17860A415963BB50047D631 /* Pronunciation+Create.h */,
 				B17860A515963BB50047D631 /* Pronunciation+Create.m */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		B1786124159BCC9F004A79E5 /* PhonemeWav */ = {
+			isa = PBXGroup;
+			children = (
+				B1786125159BCCCD004A79E5 /* a-cat.wav */,
+				B1786126159BCCCD004A79E5 /* aa-rate.wav */,
+				B1786127159BCCCD004A79E5 /* c-cat.wav */,
+				B1786128159BCCCD004A79E5 /* c-could.wav */,
+				B1786129159BCCCD004A79E5 /* d-could.wav */,
+				B178612A159BCCCD004A79E5 /* d-would.wav */,
+				B178612B159BCCCD004A79E5 /* ou-could.wav */,
+				B178612C159BCCCD004A79E5 /* ou-would.wav */,
+				B178612D159BCCCD004A79E5 /* r-rate.wav */,
+				B178612E159BCCCD004A79E5 /* sh-should.wav */,
+				B178612F159BCCCD004A79E5 /* t-cat.wav */,
+				B1786130159BCCCD004A79E5 /* w-would.wav */,
+			);
+			name = PhonemeWav;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +300,20 @@
 				B150AEB7159A7B58007A1129 /* could.wav in Resources */,
 				B150AEBF159A830D007A1129 /* should.wav in Resources */,
 				B150AEC1159A8319007A1129 /* would.wav in Resources */,
+				B1786131159BCCCD004A79E5 /* a-cat.wav in Resources */,
+				B1786132159BCCCD004A79E5 /* aa-rate.wav in Resources */,
+				B1786133159BCCCD004A79E5 /* c-cat.wav in Resources */,
+				B1786134159BCCCD004A79E5 /* c-could.wav in Resources */,
+				B1786135159BCCCD004A79E5 /* d-could.wav in Resources */,
+				B1786136159BCCCD004A79E5 /* d-would.wav in Resources */,
+				B1786137159BCCCD004A79E5 /* ou-could.wav in Resources */,
+				B1786138159BCCCD004A79E5 /* ou-would.wav in Resources */,
+				B1786139159BCCCD004A79E5 /* r-rate.wav in Resources */,
+				B178613A159BCCCD004A79E5 /* sh-should.wav in Resources */,
+				B178613B159BCCCD004A79E5 /* t-cat.wav in Resources */,
+				B178613C159BCCCD004A79E5 /* w-would.wav in Resources */,
+				B178613F159BCCE2004A79E5 /* cat.wav in Resources */,
+				B1786140159BCCE2004A79E5 /* rate.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,13 +328,15 @@
 				B178606E15962B3D0047D631 /* main.m in Sources */,
 				B178607215962B3D0047D631 /* AppDelegate.m in Sources */,
 				B1786094159638990047D631 /* Dictionary.xcdatamodeld in Sources */,
-				B178609A15963AB40047D631 /* Word.m in Sources */,
-				B17860A015963AD80047D631 /* Pronunciation.m in Sources */,
 				B17860A315963B690047D631 /* Word+Create.m in Sources */,
 				B17860A615963BB50047D631 /* Pronunciation+Create.m in Sources */,
 				B17AAB7B1596B87F009A5C1D /* DictionaryTableViewController.m in Sources */,
 				B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */,
 				B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */,
+				B178611A159BAC99004A79E5 /* PhonemeSpelling.m in Sources */,
+				B178611D159BAC99004A79E5 /* Phoneme.m in Sources */,
+				B1786120159BAC99004A79E5 /* Word.m in Sources */,
+				B1786123159BAC99004A79E5 /* Pronunciation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

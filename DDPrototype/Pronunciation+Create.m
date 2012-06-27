@@ -10,4 +10,35 @@
 
 @implementation Pronunciation (Create)
 
++ (Pronunciation *)pronunciationWithFileLocation:(NSString *)fileLocation 
+                              andUnique:(NSString *)unique 
+                 inManagedObjectContext:(NSManagedObjectContext *)context
+{
+    Pronunciation *pronunciation = nil;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Pronunciation"];
+    request.predicate = [NSPredicate predicateWithFormat:@"unique = %@", unique];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"unique" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || ([matches count] > 1)) {
+        //handle error
+    } else if ([matches count] == 0) {
+        pronunciation = [NSEntityDescription insertNewObjectForEntityForName:@"Pronunciation" inManagedObjectContext:context];
+        //                [pronunciation setValue:string forKey:@"Pronunciation"]; //only if you don't use the subclass
+        pronunciation.unique = unique;
+        pronunciation.fileLocation = fileLocation;
+        
+        //have to add phonemes and correct phonemeSpelling for this pronunciation
+        
+    } else {
+        pronunciation = [matches lastObject];
+    }
+    NSLog(@"Pronunciation in dictionary %@", pronunciation);
+    return pronunciation;
+}
+
 @end

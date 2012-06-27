@@ -102,6 +102,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view. 
+    
+    //bundle image access test - note device is case sensitive
+//    NSString *imgName = @"resources.bundle/Images/1340506912_sound_high.png";
+//    UIImage *myImage = [UIImage imageNamed:imgName];
+//    UIImageView *newImageView = [[UIImageView alloc] initWithImage:myImage];
+//    [self.view addSubview:newImageView];
+    
 }
 
 - (void)viewDidUnload

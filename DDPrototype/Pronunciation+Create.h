@@ -10,4 +10,8 @@
 
 @interface Pronunciation (Create)
 
++ (Pronunciation *)pronunciationWithFileLocation:(NSString *)fileLocation 
+                                       andUnique:(NSString *)unique 
+                          inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
