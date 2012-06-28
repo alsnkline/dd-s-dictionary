@@ -88,7 +88,7 @@
     NSURL *wordSoundURL = [[NSBundle mainBundle] URLForResource:self.spelling.text withExtension:@"wav"];
     NSLog(@"wordSoundURL = %@",wordSoundURL);
     
-    NSArray *wavFileArray = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"wav" subdirectory:@""];
+    NSArray *wavFileArray = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"wav" subdirectory:@"TestDictionary1/"];
     NSLog(@"wavFileArray = %@", wavFileArray);
     
     SystemSoundID soundID;

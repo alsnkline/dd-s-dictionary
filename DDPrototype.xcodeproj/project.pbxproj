@@ -11,6 +11,9 @@
 		B150AEB7159A7B58007A1129 /* could.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEB6159A7B58007A1129 /* could.wav */; };
 		B150AEBF159A830D007A1129 /* should.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEBE159A830D007A1129 /* should.wav */; };
 		B150AEC1159A8319007A1129 /* would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEC0159A8319007A1129 /* would.wav */; };
+		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */ = {isa = PBXBuildFile; fileRef = B178056A159CF8A70013AD65 /* TestDictionary1.xml */; };
+		B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */; };
 		B178606215962B3D0047D631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606115962B3D0047D631 /* UIKit.framework */; };
 		B178606415962B3D0047D631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606315962B3D0047D631 /* Foundation.framework */; };
 		B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606515962B3D0047D631 /* CoreGraphics.framework */; };
@@ -53,6 +56,9 @@
 		B150AEB6159A7B58007A1129 /* could.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = could.wav; sourceTree = "<group>"; };
 		B150AEBE159A830D007A1129 /* should.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = should.wav; sourceTree = "<group>"; };
 		B150AEC0159A8319007A1129 /* would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = would.wav; sourceTree = "<group>"; };
+		B178056A159CF8A70013AD65 /* TestDictionary1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestDictionary1.xml; sourceTree = "<group>"; };
+		B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNodeHelper.h; sourceTree = "<group>"; };
+		B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNodeHelper.m; sourceTree = "<group>"; };
 		B178605D15962B3D0047D631 /* DDPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B178606115962B3D0047D631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B178606315962B3D0047D631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,6 +98,8 @@
 		B1786130159BCCCD004A79E5 /* w-would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "w-would.wav"; sourceTree = "<group>"; };
 		B178613D159BCCE2004A79E5 /* cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cat.wav; sourceTree = "<group>"; };
 		B178613E159BCCE2004A79E5 /* rate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rate.wav; sourceTree = "<group>"; };
+		B1786142159BD6E3004A79E5 /* GDataXMLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		B1786143159BD6E3004A79E5 /* GDataXMLNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		B17AAB791596B87F009A5C1D /* DictionaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryTableViewController.h; sourceTree = "<group>"; };
 		B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryTableViewController.m; sourceTree = "<group>"; };
 		B17CE6B915980041005A12D3 /* resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resources.bundle; sourceTree = "<group>"; };
@@ -120,25 +128,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B150AEB8159A8277007A1129 /* FirstGradeDictionary */ = {
+		B150AEB8159A8277007A1129 /* Phonemes */ = {
 			isa = PBXGroup;
 			children = (
-				B1786124159BCC9F004A79E5 /* PhonemeWav */,
-				B150AEB9159A8291007A1129 /* WordWav */,
+				B1786125159BCCCD004A79E5 /* a-cat.wav */,
+				B1786126159BCCCD004A79E5 /* aa-rate.wav */,
+				B1786127159BCCCD004A79E5 /* c-cat.wav */,
+				B1786128159BCCCD004A79E5 /* c-could.wav */,
+				B1786129159BCCCD004A79E5 /* d-could.wav */,
+				B178612A159BCCCD004A79E5 /* d-would.wav */,
+				B178612B159BCCCD004A79E5 /* ou-could.wav */,
+				B178612C159BCCCD004A79E5 /* ou-would.wav */,
+				B178612D159BCCCD004A79E5 /* r-rate.wav */,
+				B178612E159BCCCD004A79E5 /* sh-should.wav */,
+				B178612F159BCCCD004A79E5 /* t-cat.wav */,
+				B1786130159BCCCD004A79E5 /* w-would.wav */,
 			);
-			name = FirstGradeDictionary;
+			name = Phonemes;
 			sourceTree = "<group>";
 		};
-		B150AEB9159A8291007A1129 /* WordWav */ = {
+		B150AEB9159A8291007A1129 /* TestDictionary1 */ = {
 			isa = PBXGroup;
 			children = (
+				B178056A159CF8A70013AD65 /* TestDictionary1.xml */,
 				B178613D159BCCE2004A79E5 /* cat.wav */,
 				B178613E159BCCE2004A79E5 /* rate.wav */,
 				B150AEBE159A830D007A1129 /* should.wav */,
 				B150AEC0159A8319007A1129 /* would.wav */,
 				B150AEB6159A7B58007A1129 /* could.wav */,
 			);
-			name = WordWav;
+			name = TestDictionary1;
 			sourceTree = "<group>";
 		};
 		B178605215962B3D0047D631 = {
@@ -185,7 +204,12 @@
 				B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */,
 				B17CE6BE15980481005A12D3 /* DictionaryHelper.h */,
 				B17CE6BF15980481005A12D3 /* DictionaryHelper.m */,
-				B150AEB8159A8277007A1129 /* FirstGradeDictionary */,
+				B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */,
+				B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */,
+				B1786142159BD6E3004A79E5 /* GDataXMLNode.h */,
+				B1786143159BD6E3004A79E5 /* GDataXMLNode.m */,
+				B150AEB8159A8277007A1129 /* Phonemes */,
+				B150AEB9159A8291007A1129 /* TestDictionary1 */,
 				B178606815962B3D0047D631 /* Supporting Files */,
 			);
 			path = DDPrototype;
@@ -222,25 +246,6 @@
 				B17860A515963BB50047D631 /* Pronunciation+Create.m */,
 			);
 			name = Database;
-			sourceTree = "<group>";
-		};
-		B1786124159BCC9F004A79E5 /* PhonemeWav */ = {
-			isa = PBXGroup;
-			children = (
-				B1786125159BCCCD004A79E5 /* a-cat.wav */,
-				B1786126159BCCCD004A79E5 /* aa-rate.wav */,
-				B1786127159BCCCD004A79E5 /* c-cat.wav */,
-				B1786128159BCCCD004A79E5 /* c-could.wav */,
-				B1786129159BCCCD004A79E5 /* d-could.wav */,
-				B178612A159BCCCD004A79E5 /* d-would.wav */,
-				B178612B159BCCCD004A79E5 /* ou-could.wav */,
-				B178612C159BCCCD004A79E5 /* ou-would.wav */,
-				B178612D159BCCCD004A79E5 /* r-rate.wav */,
-				B178612E159BCCCD004A79E5 /* sh-should.wav */,
-				B178612F159BCCCD004A79E5 /* t-cat.wav */,
-				B1786130159BCCCD004A79E5 /* w-would.wav */,
-			);
-			name = PhonemeWav;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +319,7 @@
 				B178613C159BCCCD004A79E5 /* w-would.wav in Resources */,
 				B178613F159BCCE2004A79E5 /* cat.wav in Resources */,
 				B1786140159BCCE2004A79E5 /* rate.wav in Resources */,
+				B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */,
 				B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */,
 				B178606E15962B3D0047D631 /* main.m in Sources */,
 				B178607215962B3D0047D631 /* AppDelegate.m in Sources */,
@@ -337,6 +344,7 @@
 				B178611D159BAC99004A79E5 /* Phoneme.m in Sources */,
 				B1786120159BAC99004A79E5 /* Word.m in Sources */,
 				B1786123159BAC99004A79E5 /* Pronunciation.m in Sources */,
+				B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +398,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -409,8 +419,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

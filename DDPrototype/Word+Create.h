@@ -8,9 +8,13 @@
 
 #import "Word.h"
 
+@class GDataXMLElement;
+
 @interface Word (Create)
 
 + (Word *)wordFromString:(NSString *)string
   inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Word *)wordFromGDataXMLElement:(GDataXMLElement *)wordXML 
+        inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

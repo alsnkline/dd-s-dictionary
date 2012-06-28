@@ -8,6 +8,7 @@
 
 #import "DictionaryHelper.h"
 #import "Word+Create.h"
+#import "GDataXMLNode.h"
 
 @implementation DictionaryHelper
 
@@ -46,7 +47,7 @@
             if (success){
                 completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc created");
-                [DictionaryHelper populateInitialDataInToNewDictionary:dictionaryDatabase];
+            //    [DictionaryHelper populateInitialDataInToNewDictionary:dictionaryDatabase];
             } else {
                 NSLog(@"failed to saveForCreating %@", [dictionaryDatabase.fileURL lastPathComponent]);
             }
@@ -91,7 +92,8 @@
     } else if ([rootViewController isKindOfClass:[UINavigationController class]]){
         //for iphone 
     }
-}
+    NSLog(@"Passed activeDictionary rootVC's vc's %@", activeDictionary.fileURL.lastPathComponent);
+    }
 
 + (void)deleteDictionary:(NSString *)dictionaryName
 {
