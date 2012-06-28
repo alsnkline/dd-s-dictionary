@@ -9,6 +9,7 @@
 #import "Word+Create.h"
 #import "GDataXMLNode.h"
 #import "GDataXMLNodeHelper.h"
+#import "Pronunciation+Create.h"
 
 @implementation Word (Create)
 
@@ -44,7 +45,8 @@
         inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Word *word = nil;
-    NSString *spelling = [GDataXMLNodeHelper spellingFromGDataXMLWordElement:wordXML];
+//    NSString *spelling = [GDataXMLNodeHelper spellingFromGDataXMLWordElement:wordXML];
+    NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     request.predicate = [NSPredicate predicateWithFormat:@"spelling = %@",spelling];
@@ -61,7 +63,11 @@
         //                [word setValue:string forKey:@"Word"]; //only if you don't use the subclass
         word.spelling = spelling;
         
-        // need to set the rest of the data model for each pronunciations in the word and for their phonemes.
+        // set all pronunciations in the word.
+        NSArray *pronunciations = [wordXML elementsForName:@"pronunciation"];
+        for (GDataXMLElement *pronunciation in pronunciations) {
+            [Pronunciation pronunciationFromGDataXMLElement:pronunciation inManagedObjectContext:context];
+        };
         
     } else {
         word = [matches lastObject];

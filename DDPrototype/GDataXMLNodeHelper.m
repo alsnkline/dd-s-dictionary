@@ -32,18 +32,45 @@
     }
 }
 
-+ (NSString *) spellingFromGDataXMLWordElement:(GDataXMLElement *)word
++ (NSString *) singleSubElementForName:(NSString *)subElementName 
+                   FromGDataXMLElement:(GDataXMLElement *)element
 {
-    NSArray *spellings = [word elementsForName:@"spelling"];
-    if ([spellings count] == 1) {
-        GDataXMLElement *spellingXML = [spellings lastObject];
-        NSString *spelling = spellingXML.stringValue;
-        return spelling;
+    NSArray *subElements = [element elementsForName:subElementName];
+    if ([subElements count] == 1) {
+        GDataXMLElement *subElementXML = [subElements lastObject];
+        NSString *singleSubElement = subElementXML.stringValue;
+        return singleSubElement;
     } else {
-        NSLog(@"error getting spelling");
+        NSLog(@"error getting %@ from %@", subElementName, element);
         return nil;
     }
 }
+
+//+ (NSString *) spellingFromGDataXMLWordElement:(GDataXMLElement *)word
+//{
+//    NSArray *spellings = [word elementsForName:@"spelling"];
+//    if ([spellings count] == 1) {
+//        GDataXMLElement *spellingXML = [spellings lastObject];
+//        NSString *spelling = spellingXML.stringValue;
+//        return spelling;
+//    } else {
+//        NSLog(@"error getting spelling");
+//        return nil;
+//    }
+//}
+//
+//+ (NSString *) uniqueFromGDataXMLWordElement:(GDataXMLElement *)pronunciation
+//{
+//    NSArray *uniques = [pronunciation elementsForName:@"unique"];
+//    if ([uniques count] == 1) {
+//        GDataXMLElement *uniqueXML = [uniques lastObject];
+//        NSString *unique = uniqueXML.stringValue;
+//        return unique;
+//    } else {
+//        NSLog(@"error getting unique");
+//        return nil;
+//    }
+//}
 
 + (GDataXMLDocument *) loadDictionaryFromXML
 {

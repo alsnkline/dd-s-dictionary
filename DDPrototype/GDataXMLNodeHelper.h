@@ -15,7 +15,8 @@
 
 + (GDataXMLDocument *) loadDictionaryFromXML;
 + (NSString *) dictionaryNameFromDoc:(GDataXMLDocument *)doc;
-+ (NSString *) spellingFromGDataXMLWordElement:(GDataXMLElement *)word;
++ (NSString *) singleSubElementForName:(NSString *)subElementName 
+                   FromGDataXMLElement:(GDataXMLElement *)element;
 + (void) processXMLfile:(GDataXMLDocument *)doc 
  intoManagedObjectContext:(NSManagedObjectContext *)context;
 

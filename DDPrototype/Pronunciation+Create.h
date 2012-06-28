@@ -8,10 +8,14 @@
 
 #import "Pronunciation.h"
 
+@class GDataXMLElement;
+
 @interface Pronunciation (Create)
 
 + (Pronunciation *)pronunciationWithFileLocation:(NSString *)fileLocation 
                                        andUnique:(NSString *)unique 
                           inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Pronunciation *)pronunciationFromGDataXMLElement:(GDataXMLElement *)pronunciationXML 
+                             inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
