@@ -2,7 +2,7 @@
 //  Word.h
 //  DDPrototype
 //
-//  Created by Alison Kline on 6/27/12.
+//  Created by Alison Kline on 6/28/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Word : NSManagedObject
 
 @property (nonatomic, retain) NSString * spelling;
+@property (nonatomic, retain) NSString * tableSection;
 @property (nonatomic, retain) NSSet *pronunciations;
 @end
 

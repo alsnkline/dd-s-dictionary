@@ -14,6 +14,7 @@
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */ = {isa = PBXBuildFile; fileRef = B178056A159CF8A70013AD65 /* TestDictionary1.xml */; };
 		B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */; };
+		B1780575159D1F430013AD65 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B1780574159D1F430013AD65 /* Word.m */; };
 		B178606215962B3D0047D631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606115962B3D0047D631 /* UIKit.framework */; };
 		B178606415962B3D0047D631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606315962B3D0047D631 /* Foundation.framework */; };
 		B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606515962B3D0047D631 /* CoreGraphics.framework */; };
@@ -27,7 +28,6 @@
 		B17860A615963BB50047D631 /* Pronunciation+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B17860A515963BB50047D631 /* Pronunciation+Create.m */; };
 		B178611A159BAC99004A79E5 /* PhonemeSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786119159BAC99004A79E5 /* PhonemeSpelling.m */; };
 		B178611D159BAC99004A79E5 /* Phoneme.m in Sources */ = {isa = PBXBuildFile; fileRef = B178611C159BAC99004A79E5 /* Phoneme.m */; };
-		B1786120159BAC99004A79E5 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B178611F159BAC99004A79E5 /* Word.m */; };
 		B1786123159BAC99004A79E5 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786122159BAC99004A79E5 /* Pronunciation.m */; };
 		B1786131159BCCCD004A79E5 /* a-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786125159BCCCD004A79E5 /* a-cat.wav */; };
 		B1786132159BCCCD004A79E5 /* aa-rate.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786126159BCCCD004A79E5 /* aa-rate.wav */; };
@@ -59,6 +59,8 @@
 		B178056A159CF8A70013AD65 /* TestDictionary1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestDictionary1.xml; sourceTree = "<group>"; };
 		B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNodeHelper.h; sourceTree = "<group>"; };
 		B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNodeHelper.m; sourceTree = "<group>"; };
+		B1780573159D1F430013AD65 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		B1780574159D1F430013AD65 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B178605D15962B3D0047D631 /* DDPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B178606115962B3D0047D631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B178606315962B3D0047D631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,8 +82,6 @@
 		B1786119159BAC99004A79E5 /* PhonemeSpelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhonemeSpelling.m; sourceTree = "<group>"; };
 		B178611B159BAC99004A79E5 /* Phoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phoneme.h; sourceTree = "<group>"; };
 		B178611C159BAC99004A79E5 /* Phoneme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phoneme.m; sourceTree = "<group>"; };
-		B178611E159BAC99004A79E5 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		B178611F159BAC99004A79E5 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B1786121159BAC99004A79E5 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
 		B1786122159BAC99004A79E5 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
 		B1786125159BCCCD004A79E5 /* a-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "a-cat.wav"; sourceTree = "<group>"; };
@@ -232,8 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
-				B178611E159BAC99004A79E5 /* Word.h */,
-				B178611F159BAC99004A79E5 /* Word.m */,
+				B1780573159D1F430013AD65 /* Word.h */,
+				B1780574159D1F430013AD65 /* Word.m */,
 				B1786121159BAC99004A79E5 /* Pronunciation.h */,
 				B1786122159BAC99004A79E5 /* Pronunciation.m */,
 				B178611B159BAC99004A79E5 /* Phoneme.h */,
@@ -342,9 +342,9 @@
 				B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */,
 				B178611A159BAC99004A79E5 /* PhonemeSpelling.m in Sources */,
 				B178611D159BAC99004A79E5 /* Phoneme.m in Sources */,
-				B1786120159BAC99004A79E5 /* Word.m in Sources */,
 				B1786123159BAC99004A79E5 /* Pronunciation.m in Sources */,
 				B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */,
+				B1780575159D1F430013AD65 /* Word.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

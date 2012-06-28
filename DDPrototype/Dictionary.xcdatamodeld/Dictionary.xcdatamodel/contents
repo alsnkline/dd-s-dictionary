@@ -21,12 +21,13 @@
     </entity>
     <entity name="Word" representedClassName="Word" syncable="YES">
         <attribute name="spelling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tableSection" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="pronunciations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="spelling" inverseEntity="Pronunciation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Pronunciation" positionX="394" positionY="285" width="128" height="120"/>
-        <element name="Word" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Phoneme" positionX="567" positionY="375" width="128" height="120"/>
         <element name="PhonemeSpelling" positionX="745" positionY="510" width="128" height="90"/>
+        <element name="Pronunciation" positionX="394" positionY="285" width="128" height="120"/>
+        <element name="Word" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  Word.m
 //  DDPrototype
 //
-//  Created by Alison Kline on 6/27/12.
+//  Created by Alison Kline on 6/28/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 @implementation Word
 
 @dynamic spelling;
+@dynamic tableSection;
 @dynamic pronunciations;
 
 @end

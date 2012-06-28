@@ -82,7 +82,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+	
+    if ([self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index])
+    {
+        return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+    } else {
+        return nil;
+    }
+    
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView

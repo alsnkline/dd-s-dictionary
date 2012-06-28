@@ -62,6 +62,7 @@
         word = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:context];
         //                [word setValue:string forKey:@"Word"]; //only if you don't use the subclass
         word.spelling = spelling;
+        word.tableSection = [[spelling substringWithRange:NSRangeFromString(@"0 1")] uppercaseString];
         
         // set all pronunciations in the word.
         NSArray *pronunciations = [wordXML elementsForName:@"pronunciation"];

@@ -37,7 +37,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request 
                                                                         managedObjectContext:self.activeDictionary.managedObjectContext 
-                                                                          sectionNameKeyPath:nil 
+                                                                          sectionNameKeyPath:@"tableSection" 
                                                                                    cacheName:nil];
 }
 
@@ -77,31 +77,15 @@
 
 #pragma mark - Table view data source
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-    
-    // This versions shows all chars in the alphabet in the index
-    NSMutableArray *alphabet = [NSMutableArray array]; 
-    for (char a = 'a'; a <= 'z'; a++) {
-        [alphabet addObject:[NSString stringWithFormat:@"%c", a]];
-    }
-    return [alphabet copy];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[self.fetchedResultsController sections] count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo name]; 
-}
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+//    
+//    // This versions shows all chars in the alphabet in the index
+//    NSMutableArray *alphabet = [NSMutableArray array]; 
+//    for (char a = 'a'; a <= 'z'; a++) {
+//        [alphabet addObject:[NSString stringWithFormat:@"%c", a]];
+//    }
+//    return [alphabet copy];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
