@@ -18,6 +18,8 @@
 @implementation DictionaryTableViewController
 
 @synthesize activeDictionary = _activeDictionary;
+@synthesize firstLetterList = _firstLetterList;
+@synthesize wordsByLetter = _wordsByLetter;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,7 +33,7 @@
 - (void) setupFetchedResultsController 
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES]];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request 
                                                                         managedObjectContext:self.activeDictionary.managedObjectContext 
@@ -47,6 +49,7 @@
         self.title = [activeDictionary.fileURL lastPathComponent];
     }
 }
+         
 
 
 - (void)viewDidLoad
@@ -74,19 +77,31 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
-//}
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    
+    // This versions shows all chars in the alphabet in the index
+    NSMutableArray *alphabet = [NSMutableArray array]; 
+    for (char a = 'a'; a <= 'z'; a++) {
+        [alphabet addObject:[NSString stringWithFormat:@"%c", a]];
+    }
+    return [alphabet copy];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[self.fetchedResultsController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    return [sectionInfo name]; 
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
