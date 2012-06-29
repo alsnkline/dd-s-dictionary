@@ -24,8 +24,8 @@
                                 <rect key="frame" x="40" y="400" width="694" height="311"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nB3-Yg-V0N">
-                                        <rect key="frame" x="-8" y="0.0" width="711" height="209"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="pick a word" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="nB3-Yg-V0N">
+                                        <rect key="frame" x="-18" y="0.0" width="732" height="209"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="140"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -54,6 +54,7 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="listenButton" destination="VOQ-d4-6KN" id="qIU-my-sgb"/>
                         <outlet property="spelling" destination="nB3-Yg-V0N" id="e6d-fX-CkL"/>
                         <outlet property="toolbar" destination="b6o-LN-qBX" id="Qyi-Wu-pkl"/>
                     </connections>
@@ -139,21 +140,6 @@
     <resources>
         <image name="resources.bundle/Images/1340506912_sound_high.png" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="DictionaryTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionaryTableViewController.h"/>
-        </class>
-        <class className="DisplayWordViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayWordViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="spelling" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

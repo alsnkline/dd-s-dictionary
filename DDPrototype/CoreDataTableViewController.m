@@ -87,7 +87,7 @@
     {
         return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
     } else {
-        return nil;
+        return 0;
     }
     
 }

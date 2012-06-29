@@ -149,6 +149,7 @@
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
         Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.spelling.text = selectedWord.spelling;
+        dwvc.listenButton.enabled = YES;
     }
 }
 
@@ -169,12 +170,6 @@
             [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.view.window.rootViewController];
         }];
     }
-        
-//    [self.activeDictionary.managedObjectContext performBlock:^ {
-//        [Word wordFromString:@"would" inManagedObjectContext:self.activeDictionary.managedObjectContext];
-//        [Word wordFromString:@"could" inManagedObjectContext:self.activeDictionary.managedObjectContext];
-//        [Word wordFromString:@"should" inManagedObjectContext:self.activeDictionary.managedObjectContext];
-//    }];
 }
 
 @end

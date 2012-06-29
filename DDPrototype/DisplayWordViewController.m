@@ -22,6 +22,7 @@
 @synthesize spelling = _spelling;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
+@synthesize listenButton = _listenButton;
 
 
 -(void)awakeFromNib
@@ -109,12 +110,15 @@
 //    UIImageView *newImageView = [[UIImageView alloc] initWithImage:myImage];
 //    [self.view addSubview:newImageView];
     
+    self.word ? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
+    
 }
 
 - (void)viewDidUnload
 {
     [self setSpelling:nil];
     [self setToolbar:nil];
+    [self setListenButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
