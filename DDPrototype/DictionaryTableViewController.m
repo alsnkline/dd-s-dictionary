@@ -149,7 +149,13 @@
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
         Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.spelling.text = selectedWord.spelling;
-        dwvc.listenButton.enabled = YES;
+        if ([[NSBundle mainBundle] URLForResource:selectedWord.spelling withExtension:@"wav"])
+        {
+            dwvc.listenButton.enabled = YES;
+            [dwvc listenToWord:self];
+        } else {
+            dwvc.listenButton.enabled = NO;
+        }
     }
 }
 

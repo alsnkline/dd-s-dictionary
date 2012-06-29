@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *spelling;
 @property (weak, nonatomic) IBOutlet UIButton *listenButton;
 
+- (IBAction)listenToWord:(id)sender;
 
 @end
