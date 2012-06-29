@@ -47,7 +47,6 @@
             if (success){
                 completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc created");
-            //    [DictionaryHelper populateInitialDataInToNewDictionary:dictionaryDatabase];
             } else {
                 NSLog(@"failed to saveForCreating %@", [dictionaryDatabase.fileURL lastPathComponent]);
             }
@@ -69,7 +68,7 @@
 
 + (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock
 {
-    [DictionaryHelper openDictionary:@"FirstGradeDictionary" usingBlock:completionBlock];
+    [DictionaryHelper openDictionary:@"defaultDictionary" usingBlock:completionBlock];
 }
 
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController
@@ -120,15 +119,6 @@
             avc.activeDictionary = activeDictionary;
         }
     }
-}
-
-+ (void) populateInitialDataInToNewDictionary:(UIManagedDocument *)newDictionary 
-{
-    [newDictionary.managedObjectContext performBlock:^ {
-        [Word wordFromString:@"would" inManagedObjectContext:newDictionary.managedObjectContext];
-        [Word wordFromString:@"could" inManagedObjectContext:newDictionary.managedObjectContext];
-        [Word wordFromString:@"should" inManagedObjectContext:newDictionary.managedObjectContext];
-    }];
 }
 
 @end

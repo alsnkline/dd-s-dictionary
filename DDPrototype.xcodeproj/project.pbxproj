@@ -49,6 +49,7 @@
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
+		B1D367BB159DA41E00BBAA89 /* FirstGradeDictionary.xml in Resources */ = {isa = PBXBuildFile; fileRef = B1D367BA159DA41E00BBAA89 /* FirstGradeDictionary.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B1D367BA159DA41E00BBAA89 /* FirstGradeDictionary.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FirstGradeDictionary.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				B1786142159BD6E3004A79E5 /* GDataXMLNode.h */,
 				B1786143159BD6E3004A79E5 /* GDataXMLNode.m */,
 				B150AEB8159A8277007A1129 /* Phonemes */,
+				B1D367B7159DA3B900BBAA89 /* FirstGradeDictionary */,
 				B150AEB9159A8291007A1129 /* TestDictionary1 */,
 				B178606815962B3D0047D631 /* Supporting Files */,
 			);
@@ -246,6 +249,14 @@
 				B17860A515963BB50047D631 /* Pronunciation+Create.m */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		B1D367B7159DA3B900BBAA89 /* FirstGradeDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				B1D367BA159DA41E00BBAA89 /* FirstGradeDictionary.xml */,
+			);
+			name = FirstGradeDictionary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +331,7 @@
 				B178613F159BCCE2004A79E5 /* cat.wav in Resources */,
 				B1786140159BCCE2004A79E5 /* rate.wav in Resources */,
 				B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */,
+				B1D367BB159DA41E00BBAA89 /* FirstGradeDictionary.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

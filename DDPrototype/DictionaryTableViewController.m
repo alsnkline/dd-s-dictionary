@@ -168,14 +168,4 @@
     return dwvc;
 }
 
-- (IBAction)populatePressed:(id)sender 
-{
-    if (!self.activeDictionary) {
-        [DictionaryHelper getDefaultDictionaryUsingBlock:^ (UIManagedDocument *dictionaryDatabase) {
-            NSLog(@"Got dictionary %@", [dictionaryDatabase.fileURL lastPathComponent]);
-            [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.view.window.rootViewController];
-        }];
-    }
-}
-
 @end

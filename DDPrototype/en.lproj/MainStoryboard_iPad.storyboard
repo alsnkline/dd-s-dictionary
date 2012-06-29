@@ -96,13 +96,7 @@
                             <outlet property="delegate" destination="VOC-TP-79N" id="fTM-Cb-FoR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="FY6-Es-MTZ">
-                        <barButtonItem key="leftBarButtonItem" title="populate" id="fnj-8M-zRA">
-                            <connections>
-                                <action selector="populatePressed:" destination="VOC-TP-79N" id="V8h-OA-TDl"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="FY6-Es-MTZ"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-104" y="-912"/>

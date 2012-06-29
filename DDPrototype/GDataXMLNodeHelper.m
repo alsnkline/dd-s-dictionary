@@ -13,14 +13,15 @@
 @implementation GDataXMLNodeHelper
 
 + (NSString *)dataFilePath:(BOOL)forSave {
-    NSString *datafile = [[NSBundle mainBundle] pathForResource:@"TestDictionary1" ofType:@"xml"];
+    //NSString *datafile = [[NSBundle mainBundle] pathForResource:@"TestDictionary1" ofType:@"xml"];
+    NSString *datafile = [[NSBundle mainBundle] pathForResource:@"FirstGradeDictionary" ofType:@"xml"];
     NSLog(@"XML file for parsing = %@", datafile);
     return datafile;
 }
 
 + (NSString *) dictionaryNameFromDoc:(GDataXMLDocument *)doc
 {
-    NSArray *dictionaryNames = [doc.rootElement elementsForName:@"name"];
+    NSArray *dictionaryNames = [doc.rootElement elementsForName:@"displayName"];
     [dictionaryNames count] == 1? NSLog(@"dictionaryName = %@", [dictionaryNames lastObject]): NSLog(@"error getting dictionaryNames");
     if ([dictionaryNames count] == 1) {
         GDataXMLElement *dictionaryNameXML = [dictionaryNames lastObject];
@@ -46,31 +47,6 @@
     }
 }
 
-//+ (NSString *) spellingFromGDataXMLWordElement:(GDataXMLElement *)word
-//{
-//    NSArray *spellings = [word elementsForName:@"spelling"];
-//    if ([spellings count] == 1) {
-//        GDataXMLElement *spellingXML = [spellings lastObject];
-//        NSString *spelling = spellingXML.stringValue;
-//        return spelling;
-//    } else {
-//        NSLog(@"error getting spelling");
-//        return nil;
-//    }
-//}
-//
-//+ (NSString *) uniqueFromGDataXMLWordElement:(GDataXMLElement *)pronunciation
-//{
-//    NSArray *uniques = [pronunciation elementsForName:@"unique"];
-//    if ([uniques count] == 1) {
-//        GDataXMLElement *uniqueXML = [uniques lastObject];
-//        NSString *unique = uniqueXML.stringValue;
-//        return unique;
-//    } else {
-//        NSLog(@"error getting unique");
-//        return nil;
-//    }
-//}
 
 + (GDataXMLDocument *) loadDictionaryFromXML
 {

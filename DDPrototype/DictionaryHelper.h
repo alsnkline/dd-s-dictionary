@@ -25,6 +25,4 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController;
 + (void)deleteDictionary:(NSString *)dictionaryName;
 
-+ (void) populateInitialDataInToNewDictionary:(UIManagedDocument *)newDictionary;   //only used during inital dev
-
 @end
