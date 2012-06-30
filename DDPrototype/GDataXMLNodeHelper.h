@@ -13,7 +13,7 @@
 
 @interface GDataXMLNodeHelper : NSObject
 
-+ (GDataXMLDocument *) loadDictionaryFromXML;
++ (GDataXMLDocument *) loadDictionaryFromXMLError:(NSError **)error;
 + (NSString *) dictionaryNameFromDoc:(GDataXMLDocument *)doc;
 + (NSString *) singleSubElementForName:(NSString *)subElementName 
                    FromGDataXMLElement:(GDataXMLElement *)element;

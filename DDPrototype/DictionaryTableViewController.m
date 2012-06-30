@@ -18,8 +18,6 @@
 @implementation DictionaryTableViewController
 
 @synthesize activeDictionary = _activeDictionary;
-@synthesize firstLetterList = _firstLetterList;
-@synthesize wordsByLetter = _wordsByLetter;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,7 +35,7 @@
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request 
                                                                         managedObjectContext:self.activeDictionary.managedObjectContext 
-                                                                          sectionNameKeyPath:@"tableSection" 
+                                                                          sectionNameKeyPath:@"fetchedResultsSection" 
                                                                                    cacheName:nil];
 }
 
@@ -75,17 +73,40 @@
     return YES;
 }
 
-#pragma mark - Table view data source
-
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-//    
-//    // This versions shows all chars in the alphabet in the index
+//- (NSArray *)alphabet
+//{
 //    NSMutableArray *alphabet = [NSMutableArray array]; 
 //    for (char a = 'a'; a <= 'z'; a++) {
 //        [alphabet addObject:[NSString stringWithFormat:@"%c", a]];
 //    }
 //    return [alphabet copy];
 //}
+
+#pragma mark - Table view data source
+
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+////    return [[self.fetchedResultsController sections] count];
+//    return [[self alphabet] count];
+//}
+//
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+//    
+//    return [self alphabet];
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    
+// //   return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+//    return 0;
+//}
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//	return [[self alphabet] objectAtIndex:section];
+//}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

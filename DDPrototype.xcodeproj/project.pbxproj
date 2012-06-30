@@ -11,10 +11,14 @@
 		B150AEB7159A7B58007A1129 /* could.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEB6159A7B58007A1129 /* could.wav */; };
 		B150AEBF159A830D007A1129 /* should.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEBE159A830D007A1129 /* should.wav */; };
 		B150AEC1159A8319007A1129 /* would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEC0159A8319007A1129 /* would.wav */; };
+		B174DA69159F4E98002D5CE8 /* DisplaySection.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA68159F4E98002D5CE8 /* DisplaySection.m */; };
+		B174DA74159F5AED002D5CE8 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA73159F5AED002D5CE8 /* Word.m */; };
+		B174DA77159F5AED002D5CE8 /* ComponentSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA76159F5AED002D5CE8 /* ComponentSound.m */; };
+		B174DA7A159F5AED002D5CE8 /* ComponentSoundSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA79159F5AED002D5CE8 /* ComponentSoundSpelling.m */; };
+		B174DA7D159F5AEE002D5CE8 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA7C159F5AED002D5CE8 /* Pronunciation.m */; };
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */ = {isa = PBXBuildFile; fileRef = B178056A159CF8A70013AD65 /* TestDictionary1.xml */; };
 		B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */; };
-		B1780575159D1F430013AD65 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B1780574159D1F430013AD65 /* Word.m */; };
 		B178606215962B3D0047D631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606115962B3D0047D631 /* UIKit.framework */; };
 		B178606415962B3D0047D631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606315962B3D0047D631 /* Foundation.framework */; };
 		B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606515962B3D0047D631 /* CoreGraphics.framework */; };
@@ -26,9 +30,6 @@
 		B1786094159638990047D631 /* Dictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B1786092159638990047D631 /* Dictionary.xcdatamodeld */; };
 		B17860A315963B690047D631 /* Word+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B17860A215963B690047D631 /* Word+Create.m */; };
 		B17860A615963BB50047D631 /* Pronunciation+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B17860A515963BB50047D631 /* Pronunciation+Create.m */; };
-		B178611A159BAC99004A79E5 /* PhonemeSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786119159BAC99004A79E5 /* PhonemeSpelling.m */; };
-		B178611D159BAC99004A79E5 /* Phoneme.m in Sources */ = {isa = PBXBuildFile; fileRef = B178611C159BAC99004A79E5 /* Phoneme.m */; };
-		B1786123159BAC99004A79E5 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786122159BAC99004A79E5 /* Pronunciation.m */; };
 		B1786131159BCCCD004A79E5 /* a-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786125159BCCCD004A79E5 /* a-cat.wav */; };
 		B1786132159BCCCD004A79E5 /* aa-rate.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786126159BCCCD004A79E5 /* aa-rate.wav */; };
 		B1786133159BCCCD004A79E5 /* c-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786127159BCCCD004A79E5 /* c-cat.wav */; };
@@ -49,7 +50,8 @@
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
-		B1D367BB159DA41E00BBAA89 /* FirstGradeDictionary.xml in Resources */ = {isa = PBXBuildFile; fileRef = B1D367BA159DA41E00BBAA89 /* FirstGradeDictionary.xml */; };
+		B1D367BF159E3E1C00BBAA89 /* FirstGradeDictionary.xml in Resources */ = {isa = PBXBuildFile; fileRef = B1D367BE159E3E1C00BBAA89 /* FirstGradeDictionary.xml */; };
+		B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,11 +59,19 @@
 		B150AEB6159A7B58007A1129 /* could.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = could.wav; sourceTree = "<group>"; };
 		B150AEBE159A830D007A1129 /* should.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = should.wav; sourceTree = "<group>"; };
 		B150AEC0159A8319007A1129 /* would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = would.wav; sourceTree = "<group>"; };
+		B174DA67159F4E98002D5CE8 /* DisplaySection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySection.h; sourceTree = "<group>"; };
+		B174DA68159F4E98002D5CE8 /* DisplaySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySection.m; sourceTree = "<group>"; };
+		B174DA72159F5AED002D5CE8 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		B174DA73159F5AED002D5CE8 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		B174DA75159F5AED002D5CE8 /* ComponentSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSound.h; sourceTree = "<group>"; };
+		B174DA76159F5AED002D5CE8 /* ComponentSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSound.m; sourceTree = "<group>"; };
+		B174DA78159F5AED002D5CE8 /* ComponentSoundSpelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSoundSpelling.h; sourceTree = "<group>"; };
+		B174DA79159F5AED002D5CE8 /* ComponentSoundSpelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSoundSpelling.m; sourceTree = "<group>"; };
+		B174DA7B159F5AED002D5CE8 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
+		B174DA7C159F5AED002D5CE8 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
 		B178056A159CF8A70013AD65 /* TestDictionary1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestDictionary1.xml; sourceTree = "<group>"; };
 		B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNodeHelper.h; sourceTree = "<group>"; };
 		B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNodeHelper.m; sourceTree = "<group>"; };
-		B1780573159D1F430013AD65 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		B1780574159D1F430013AD65 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B178605D15962B3D0047D631 /* DDPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B178606115962B3D0047D631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B178606315962B3D0047D631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -79,12 +89,6 @@
 		B17860A215963B690047D631 /* Word+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Word+Create.m"; sourceTree = "<group>"; };
 		B17860A415963BB50047D631 /* Pronunciation+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pronunciation+Create.h"; sourceTree = "<group>"; };
 		B17860A515963BB50047D631 /* Pronunciation+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pronunciation+Create.m"; sourceTree = "<group>"; };
-		B1786118159BAC99004A79E5 /* PhonemeSpelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhonemeSpelling.h; sourceTree = "<group>"; };
-		B1786119159BAC99004A79E5 /* PhonemeSpelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhonemeSpelling.m; sourceTree = "<group>"; };
-		B178611B159BAC99004A79E5 /* Phoneme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phoneme.h; sourceTree = "<group>"; };
-		B178611C159BAC99004A79E5 /* Phoneme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phoneme.m; sourceTree = "<group>"; };
-		B1786121159BAC99004A79E5 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
-		B1786122159BAC99004A79E5 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
 		B1786125159BCCCD004A79E5 /* a-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "a-cat.wav"; sourceTree = "<group>"; };
 		B1786126159BCCCD004A79E5 /* aa-rate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "aa-rate.wav"; sourceTree = "<group>"; };
 		B1786127159BCCCD004A79E5 /* c-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "c-cat.wav"; sourceTree = "<group>"; };
@@ -111,7 +115,8 @@
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B1D367BA159DA41E00BBAA89 /* FirstGradeDictionary.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FirstGradeDictionary.xml; sourceTree = "<group>"; };
+		B1D367BE159E3E1C00BBAA89 /* FirstGradeDictionary.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FirstGradeDictionary.xml; sourceTree = "<group>"; };
+		B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GDataXMLNode.Copying.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +213,7 @@
 				B17CE6BF15980481005A12D3 /* DictionaryHelper.m */,
 				B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */,
 				B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */,
+				B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */,
 				B1786142159BD6E3004A79E5 /* GDataXMLNode.h */,
 				B1786143159BD6E3004A79E5 /* GDataXMLNode.m */,
 				B150AEB8159A8277007A1129 /* Phonemes */,
@@ -235,14 +241,16 @@
 			isa = PBXGroup;
 			children = (
 				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
-				B1780573159D1F430013AD65 /* Word.h */,
-				B1780574159D1F430013AD65 /* Word.m */,
-				B1786121159BAC99004A79E5 /* Pronunciation.h */,
-				B1786122159BAC99004A79E5 /* Pronunciation.m */,
-				B178611B159BAC99004A79E5 /* Phoneme.h */,
-				B178611C159BAC99004A79E5 /* Phoneme.m */,
-				B1786118159BAC99004A79E5 /* PhonemeSpelling.h */,
-				B1786119159BAC99004A79E5 /* PhonemeSpelling.m */,
+				B174DA7B159F5AED002D5CE8 /* Pronunciation.h */,
+				B174DA7C159F5AED002D5CE8 /* Pronunciation.m */,
+				B174DA78159F5AED002D5CE8 /* ComponentSoundSpelling.h */,
+				B174DA79159F5AED002D5CE8 /* ComponentSoundSpelling.m */,
+				B174DA75159F5AED002D5CE8 /* ComponentSound.h */,
+				B174DA76159F5AED002D5CE8 /* ComponentSound.m */,
+				B174DA72159F5AED002D5CE8 /* Word.h */,
+				B174DA73159F5AED002D5CE8 /* Word.m */,
+				B174DA67159F4E98002D5CE8 /* DisplaySection.h */,
+				B174DA68159F4E98002D5CE8 /* DisplaySection.m */,
 				B17860A115963B690047D631 /* Word+Create.h */,
 				B17860A215963B690047D631 /* Word+Create.m */,
 				B17860A415963BB50047D631 /* Pronunciation+Create.h */,
@@ -254,7 +262,7 @@
 		B1D367B7159DA3B900BBAA89 /* FirstGradeDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				B1D367BA159DA41E00BBAA89 /* FirstGradeDictionary.xml */,
+				B1D367BE159E3E1C00BBAA89 /* FirstGradeDictionary.xml */,
 			);
 			name = FirstGradeDictionary;
 			sourceTree = "<group>";
@@ -331,7 +339,8 @@
 				B178613F159BCCE2004A79E5 /* cat.wav in Resources */,
 				B1786140159BCCE2004A79E5 /* rate.wav in Resources */,
 				B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */,
-				B1D367BB159DA41E00BBAA89 /* FirstGradeDictionary.xml in Resources */,
+				B1D367BF159E3E1C00BBAA89 /* FirstGradeDictionary.xml in Resources */,
+				B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,11 +361,12 @@
 				B17AAB7B1596B87F009A5C1D /* DictionaryTableViewController.m in Sources */,
 				B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */,
 				B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */,
-				B178611A159BAC99004A79E5 /* PhonemeSpelling.m in Sources */,
-				B178611D159BAC99004A79E5 /* Phoneme.m in Sources */,
-				B1786123159BAC99004A79E5 /* Pronunciation.m in Sources */,
 				B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */,
-				B1780575159D1F430013AD65 /* Word.m in Sources */,
+				B174DA69159F4E98002D5CE8 /* DisplaySection.m in Sources */,
+				B174DA74159F5AED002D5CE8 /* Word.m in Sources */,
+				B174DA77159F5AED002D5CE8 /* ComponentSound.m in Sources */,
+				B174DA7A159F5AED002D5CE8 /* ComponentSoundSpelling.m in Sources */,
+				B174DA7D159F5AEE002D5CE8 /* Pronunciation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

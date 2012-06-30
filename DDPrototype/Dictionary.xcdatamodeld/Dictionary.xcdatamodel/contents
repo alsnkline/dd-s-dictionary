@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Phoneme" representedClassName="Phoneme" syncable="YES">
+    <entity name="ComponentSound" representedClassName="ComponentSound" syncable="YES">
         <attribute name="fileLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pronunciationData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="spelling" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhonemeSpelling" inverseName="phoneme" inverseEntity="PhonemeSpelling" syncable="YES"/>
-        <relationship name="usedIn" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="phonemes" inverseEntity="Pronunciation" syncable="YES"/>
+        <relationship name="componentSoundSpelling" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ComponentSoundSpelling" inverseName="spellingOf" inverseEntity="ComponentSoundSpelling" syncable="YES"/>
+        <relationship name="usedIn" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="componentSounds" inverseEntity="Pronunciation" syncable="YES"/>
     </entity>
-    <entity name="PhonemeSpelling" representedClassName="PhonemeSpelling" syncable="YES">
-        <attribute name="phonemeSpelling" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="ComponentSoundSpelling" representedClassName="ComponentSoundSpelling" syncable="YES">
+        <attribute name="componentSoundSpelling" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="silentLetters" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="phoneme" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Phoneme" inverseName="spelling" inverseEntity="Phoneme" syncable="YES"/>
+        <relationship name="spellingOf" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ComponentSound" inverseName="componentSoundSpelling" inverseEntity="ComponentSound" syncable="YES"/>
     </entity>
     <entity name="Pronunciation" representedClassName="Pronunciation" syncable="YES">
         <attribute name="fileLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pronuciationData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="phonemes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Phoneme" inverseName="usedIn" inverseEntity="Phoneme" syncable="YES"/>
+        <relationship name="componentSounds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ComponentSound" inverseName="usedIn" inverseEntity="ComponentSound" syncable="YES"/>
         <relationship name="spelling" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="pronunciations" inverseEntity="Word" syncable="YES"/>
     </entity>
     <entity name="Word" representedClassName="Word" syncable="YES">
+        <attribute name="fetchedResultsSection" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="spelling" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tableSection" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="pronunciations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="spelling" inverseEntity="Pronunciation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Phoneme" positionX="567" positionY="375" width="128" height="120"/>
-        <element name="PhonemeSpelling" positionX="745" positionY="510" width="128" height="90"/>
-        <element name="Pronunciation" positionX="394" positionY="285" width="128" height="120"/>
-        <element name="Word" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="ComponentSound" positionX="513" positionY="438" width="128" height="120"/>
+        <element name="ComponentSoundSpelling" positionX="682" positionY="513" width="173" height="90"/>
+        <element name="Pronunciation" positionX="333" positionY="285" width="128" height="120"/>
+        <element name="Word" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

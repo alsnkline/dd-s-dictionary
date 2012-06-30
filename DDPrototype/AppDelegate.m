@@ -20,20 +20,34 @@
 {
     // Override point for customization after application launch.
     
-    //Get scource file for words to populate dictionary - 
-    GDataXMLDocument *doc = [GDataXMLNodeHelper loadDictionaryFromXML];
-    NSString *dictionaryName = [GDataXMLNodeHelper dictionaryNameFromDoc:doc];
+    //Get scource file for words to populate dictionary -
+    NSError *error = nil;
+    GDataXMLDocument *doc = [GDataXMLNodeHelper loadDictionaryFromXMLError:&error];
     
-    //Get UIManagedDocument for dictionary
-    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase) {
-        NSLog(@"Got dictionary %@", [dictionaryDatabase.fileURL lastPathComponent]);
+    if (error) {
+        UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary XML parsing" 
+                                                            message:[NSString stringWithFormat:@"It seems we can't read your XML Dictionary. Please confirm it conforms to the expected xml format (%@)", error] 
+                                                           delegate:self cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+        NSLog(@"error %@ %@",error, [error userInfo]);
+        [alertUser sizeToFit];
+        [alertUser show];
+    }
+    
+    if (doc) {
+        NSString *dictionaryName = [GDataXMLNodeHelper dictionaryNameFromDoc:doc];
         
-        //process file to populate UIManagedDocument - need to add logic to save repopulating every time from scratch!
-        [GDataXMLNodeHelper processXMLfile:doc intoManagedObjectContext:dictionaryDatabase.managedObjectContext];
-        
-        //share activeDictionary with all VC's
-        [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.window.rootViewController];
-    }];
+        //Get UIManagedDocument for dictionary
+        [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase) {
+            NSLog(@"Got dictionary %@", [dictionaryDatabase.fileURL lastPathComponent]);
+            
+            //process file to populate UIManagedDocument - need to add logic to save repopulating every time from scratch!
+            [GDataXMLNodeHelper processXMLfile:doc intoManagedObjectContext:dictionaryDatabase.managedObjectContext];
+            
+            //share activeDictionary with all VC's
+            [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.window.rootViewController];
+        }];
+    }
     
     return YES;
 }

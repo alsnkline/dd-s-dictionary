@@ -2,21 +2,21 @@
 //  Pronunciation.m
 //  DDPrototype
 //
-//  Created by Alison Kline on 6/27/12.
+//  Created by Alison Kline on 6/30/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Pronunciation.h"
-#import "Phoneme.h"
+#import "ComponentSound.h"
 #import "Word.h"
 
 
 @implementation Pronunciation
 
-@dynamic pronuciationData;
 @dynamic fileLocation;
+@dynamic pronuciationData;
 @dynamic unique;
+@dynamic componentSounds;
 @dynamic spelling;
-@dynamic phonemes;
 
 @end

@@ -48,15 +48,15 @@
 }
 
 
-+ (GDataXMLDocument *) loadDictionaryFromXML
++ (GDataXMLDocument *) loadDictionaryFromXMLError:(NSError **)error
 {
     NSString *filePath = [self dataFilePath:FALSE];
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filePath];
-    NSError *error;
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
-                                                           options:0 error:&error];
+                                                           options:0 error:error];
     if (doc == nil) { return nil; }
     //NSLog(@"%@", doc.rootElement);
+    
     return doc;
 }
 
