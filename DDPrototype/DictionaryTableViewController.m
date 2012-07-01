@@ -175,7 +175,7 @@
             dwvc.listenButton.enabled = YES;
             [dwvc listenToWord:self];
         } else {
-            dwvc.listenButton.enabled = NO;
+            dwvc.listenButton.enabled = YES;        //change to NO and update withExtension above when file format and storage is finalised
         }
     }
 }

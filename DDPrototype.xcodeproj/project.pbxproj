@@ -44,13 +44,14 @@
 		B178613C159BCCCD004A79E5 /* w-would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786130159BCCCD004A79E5 /* w-would.wav */; };
 		B178613F159BCCE2004A79E5 /* cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178613D159BCCE2004A79E5 /* cat.wav */; };
 		B1786140159BCCE2004A79E5 /* rate.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178613E159BCCE2004A79E5 /* rate.wav */; };
+		B17A6609159F78030031DFF2 /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B17A6608159F78030031DFF2 /* Glenmore_KK_all_words.xml */; };
 		B17AAB7B1596B87F009A5C1D /* DictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */; };
 		B17CE6BA15980041005A12D3 /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B17CE6B915980041005A12D3 /* resources.bundle */; };
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
-		B1D367BF159E3E1C00BBAA89 /* FirstGradeDictionary.xml in Resources */ = {isa = PBXBuildFile; fileRef = B1D367BE159E3E1C00BBAA89 /* FirstGradeDictionary.xml */; };
+		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
 		B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		B178613E159BCCE2004A79E5 /* rate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rate.wav; sourceTree = "<group>"; };
 		B1786142159BD6E3004A79E5 /* GDataXMLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		B1786143159BD6E3004A79E5 /* GDataXMLNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		B17A6608159F78030031DFF2 /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B17AAB791596B87F009A5C1D /* DictionaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryTableViewController.h; sourceTree = "<group>"; };
 		B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryTableViewController.m; sourceTree = "<group>"; };
 		B17CE6B915980041005A12D3 /* resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resources.bundle; sourceTree = "<group>"; };
@@ -115,8 +117,10 @@
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		B1D367BE159E3E1C00BBAA89 /* FirstGradeDictionary.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FirstGradeDictionary.xml; sourceTree = "<group>"; };
+		B1C114A6159FC81100D60CB4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GDataXMLNode.Copying.txt; sourceTree = "<group>"; };
+		B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		B1DDD40D159FD4D1004CD0FB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */,
 				B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */,
 				B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */,
 				B178606215962B3D0047D631 /* UIKit.framework in Frameworks */,
@@ -170,6 +175,9 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
+				B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */,
+				B1C114A6159FC81100D60CB4 /* AVFoundation.framework */,
 				B150AEB3159A6771007A1129 /* AudioToolbox.framework */,
 				B1B6DA171596C6A8001781C9 /* CoreData.framework */,
 				B178606715962B3D0047D631 /* DDPrototype */,
@@ -262,7 +270,7 @@
 		B1D367B7159DA3B900BBAA89 /* FirstGradeDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				B1D367BE159E3E1C00BBAA89 /* FirstGradeDictionary.xml */,
+				B17A6608159F78030031DFF2 /* Glenmore_KK_all_words.xml */,
 			);
 			name = FirstGradeDictionary;
 			sourceTree = "<group>";
@@ -339,8 +347,8 @@
 				B178613F159BCCE2004A79E5 /* cat.wav in Resources */,
 				B1786140159BCCE2004A79E5 /* rate.wav in Resources */,
 				B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */,
-				B1D367BF159E3E1C00BBAA89 /* FirstGradeDictionary.xml in Resources */,
 				B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */,
+				B17A6609159F78030031DFF2 /* Glenmore_KK_all_words.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

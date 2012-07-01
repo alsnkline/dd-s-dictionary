@@ -14,7 +14,8 @@
 
 + (NSString *)dataFilePath:(BOOL)forSave {
     //NSString *datafile = [[NSBundle mainBundle] pathForResource:@"TestDictionary1" ofType:@"xml"];
-    NSString *datafile = [[NSBundle mainBundle] pathForResource:@"FirstGradeDictionary" ofType:@"xml"];
+    //NSString *datafile = [[NSBundle mainBundle] pathForResource:@"FirstGradeDictionary" ofType:@"xml"];
+    NSString *datafile = [[NSBundle mainBundle] pathForResource:@"Glenmore_KK_all_words" ofType:@"xml"];
     NSLog(@"XML file for parsing = %@", datafile);
     return datafile;
 }

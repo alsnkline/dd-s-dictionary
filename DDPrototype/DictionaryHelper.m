@@ -12,6 +12,27 @@
 
 @implementation DictionaryHelper
 
++ (NSURL *)directoryForInputDictionaryWithName:(NSString *)dictionaryName
+{
+    NSFileManager *localFileManager = [[NSFileManager alloc] init];
+    NSURL *baseUrl = [[localFileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *directoryName = dictionaryName;
+    NSURL *dirUrl = [baseUrl URLByAppendingPathComponent:directoryName];
+    
+    BOOL isDir = NO;
+    [localFileManager fileExistsAtPath:[dirUrl path] isDirectory:&isDir];
+    
+    if (!isDir ) {
+        NSError *error = nil;
+        [localFileManager createDirectoryAtPath:[dirUrl path] withIntermediateDirectories:NO attributes:nil error:&error];
+        if (error) {
+            NSLog(@"something went wrong with dirCreate = %@", error);
+        }
+    }
+    return dirUrl;
+}
+
+
 + (NSURL *)dictionaryDirectory
 {
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
@@ -38,7 +59,7 @@
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
     NSURL *dirURL = [self dictionaryDirectory];
     NSURL *thisDictionaryUrl = [dirURL URLByAppendingPathComponent:dictionaryName];
-    NSLog(@"This dictionary url = %@", thisDictionaryUrl);
+    NSLog(@"This core data dictionary url = %@", thisDictionaryUrl);
     
     UIManagedDocument *dictionaryDatabase = [[UIManagedDocument alloc] initWithFileURL:thisDictionaryUrl];
     

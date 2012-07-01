@@ -18,6 +18,7 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
 
 @interface DictionaryHelper : NSObject
 
++ (NSURL *)directoryForInputDictionaryWithName:(NSString *)dictionaryName;
 + (NSURL *)dictionaryDirectory;
 + (void)openDictionary:(NSString *)dictionaryName
           usingBlock:(completion_block_t)completionBlock;

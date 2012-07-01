@@ -8,12 +8,14 @@
 
 #import "DisplayWordViewController.h"
 #import "DictionaryHelper.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import <AudioToolbox/AudioToolbox.h>  //for system sounds
+#import <AVFoundation/AVAudioPlayer.h> //for audioPlayer
 
-@interface DisplayWordViewController ()
+@interface DisplayWordViewController () <AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) UIBarButtonItem *splitViewBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -23,6 +25,7 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
 @synthesize listenButton = _listenButton;
+@synthesize audioPlayer = _audioPlayer;
 
 
 -(void)awakeFromNib
@@ -76,27 +79,34 @@
 }
 - (IBAction)listenToWord:(id)sender 
 {   
-//    NSBundle *mainBundle = [NSBundle mainBundle];
-//    NSLog(@"mainbundle = %@", mainBundle);
-//    NSArray *allBundles = [NSBundle allBundles];
-//    NSLog(@"All bundles = %@", allBundles);
+// can't use system sounds as needs a .caf or .wav - too big.
     
+    NSString *currentWord = self.spelling.text;
+    NSString *pathForSoundName = [NSString pathWithComponents:[NSArray arrayWithObjects:@"resources.bundle",@"Sounds",currentWord, nil]];
+    NSString *soundName = [[NSBundle mainBundle] pathForResource:pathForSoundName ofType:@"m4a"];
+                                  
+    NSLog(@"soundFilePath = %@", soundName);
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundName];
+    NSLog(@"fileURL = %@", fileURL);
     
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"could" ofType:@"wav"];
-//    NSLog(@"path = %@", path);
-//    NSURL *pathURL = [NSURL fileURLWithPath:path];
+    // Trying to figure out if I have my paths and URL's right!
+    NSFileManager *localFileManager = [[NSFileManager alloc] init];
+    BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
+    NSLog(@"fileFound for URL: %@", fileFound ? @"YES" : @"NO");
     
-    NSURL *wordSoundURL = [[NSBundle mainBundle] URLForResource:self.spelling.text withExtension:@"wav"];
-    NSLog(@"wordSoundURL = %@",wordSoundURL);
-    
-    NSArray *wavFileArray = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"wav" subdirectory:@"TestDictionary1/"];
-    NSLog(@"wavFileArray = %@", wavFileArray);
-    
-    SystemSoundID soundID;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef) wordSoundURL, &soundID);
-    
-    AudioServicesPlaySystemSound(soundID);
+    NSError *error = nil;
+    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+    self.audioPlayer = newPlayer;
+ 
+    [self.audioPlayer prepareToPlay];
+    [self.audioPlayer setDelegate:self];
+    [self.audioPlayer play];
 
+}
+
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)playedSuccessfully 
+{
+    self.audioPlayer = nil;
 }
 
 - (void)viewDidLoad
