@@ -36,13 +36,16 @@
     
     if (doc) {
         NSString *dictionaryName = [GDataXMLNodeHelper dictionaryNameFromDoc:doc];
+        BOOL alreadyProcessed = [DictionaryHelper alreadyHaveDictionaryWithName:dictionaryName];
         
         //Get UIManagedDocument for dictionary
         [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase) {
             NSLog(@"Got dictionary %@", [dictionaryDatabase.fileURL lastPathComponent]);
             
-            //process file to populate UIManagedDocument - need to add logic to save repopulating every time from scratch!
-            [GDataXMLNodeHelper processXMLfile:doc intoManagedObjectContext:dictionaryDatabase.managedObjectContext];
+//            if (!alreadyProcessed) {
+                //process file to populate UIManagedDocument - need to add way to force reanalysis for changes
+                [GDataXMLNodeHelper processXMLfile:doc intoManagedObjectContext:dictionaryDatabase.managedObjectContext];
+//            }
             
             //share activeDictionary with all VC's
             [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.window.rootViewController];

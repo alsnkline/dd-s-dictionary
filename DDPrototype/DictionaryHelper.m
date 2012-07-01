@@ -12,7 +12,7 @@
 
 @implementation DictionaryHelper
 
-+ (NSURL *)directoryForInputDictionaryWithName:(NSString *)dictionaryName
++ (NSURL *)directoryForXMLDictionaryWithName:(NSString *)dictionaryName
 {
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
     NSURL *baseUrl = [[localFileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -33,7 +33,7 @@
 }
 
 
-+ (NSURL *)dictionaryDirectory
++ (NSURL *)dictionaryDirectory      //for Core Data UIManagedDocument
 {
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
     NSURL *baseUrl = [[localFileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -53,13 +53,28 @@
     return dirUrl;
 }
 
++ (NSURL *)dictionaryURLFor:(NSString *)dictionaryName
+{
+    NSURL *dirURL = [self dictionaryDirectory];
+    NSURL *thisDictionaryUrl = [dirURL URLByAppendingPathComponent:dictionaryName];
+    NSLog(@"This core data dictionary url = %@", thisDictionaryUrl);
+    return thisDictionaryUrl;
+}
+
+
++ (BOOL)alreadyHaveDictionaryWithName:(NSString *)dictionaryName
+{
+    NSFileManager *localFileManager = [[NSFileManager alloc] init];
+    NSURL *thisDictionaryURL = [self dictionaryURLFor:dictionaryName];    
+    BOOL isAlreadyPresent = [localFileManager fileExistsAtPath:[thisDictionaryURL path]];
+    return isAlreadyPresent;
+}
+
 + (void)openDictionary:(NSString *)dictionaryName 
             usingBlock:(completion_block_t)completionBlock
 {
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
-    NSURL *dirURL = [self dictionaryDirectory];
-    NSURL *thisDictionaryUrl = [dirURL URLByAppendingPathComponent:dictionaryName];
-    NSLog(@"This core data dictionary url = %@", thisDictionaryUrl);
+    NSURL *thisDictionaryUrl = [self dictionaryURLFor:dictionaryName];
     
     UIManagedDocument *dictionaryDatabase = [[UIManagedDocument alloc] initWithFileURL:thisDictionaryUrl];
     
@@ -141,5 +156,26 @@
         }
     }
 }
+
++ (NSURL *)fileURLForSpelling:(NSString *)spelling
+{
+    NSString *pathForSoundName = [NSString pathWithComponents:[NSArray arrayWithObjects:@"resources.bundle",@"Sounds",spelling, nil]];
+    NSLog(@"current word = %@", spelling);
+    NSLog(@"pathForSoundName = %@",pathForSoundName);
+    NSString *soundName = [[NSBundle mainBundle] pathForResource:pathForSoundName ofType:@"m4a"];
+    
+    NSArray *m4pFiles = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"" subdirectory:@"resources.bundle/Sounds"];
+    NSLog(@"m4pFiles in mainBundle = %@", m4pFiles);
+    
+    NSLog(@"soundName = %@", soundName);
+    NSURL *fileURL;
+    if (soundName) {
+        fileURL = [[NSURL alloc] initFileURLWithPath:soundName];
+    }
+    NSLog(@"fileURL = %@", fileURL);
+    
+    return fileURL;
+}
+
 
 @end

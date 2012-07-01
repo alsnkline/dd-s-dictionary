@@ -170,12 +170,20 @@
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
         Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.spelling.text = selectedWord.spelling;
-        if ([[NSBundle mainBundle] URLForResource:selectedWord.spelling withExtension:@"wav"])
+        
+        //work out path for Sound - should come from Word *
+        NSURL *fileURL = [DictionaryHelper fileURLForSpelling:selectedWord.spelling];
+        
+        NSFileManager *localFileManager = [[NSFileManager alloc] init];
+        BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
+        NSLog(@"fileFound %@ for soundName: %@", fileFound ? @"YES" : @"NO", [fileURL path]);
+        
+        if (fileFound)
         {
             dwvc.listenButton.enabled = YES;
             [dwvc listenToWord:self];
         } else {
-            dwvc.listenButton.enabled = YES;        //change to NO and update withExtension above when file format and storage is finalised
+            dwvc.listenButton.enabled = NO;        
         }
     }
 }

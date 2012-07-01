@@ -62,7 +62,7 @@
             </objects>
             <point key="canvasLocation" x="-638" y="24"/>
         </scene>
-        <!--Dictionary Table View Controller - Root View Controller-->
+        <!--Dictionary Table View Controller - processing...-->
         <scene sceneID="hip-Nq-SQq">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzd-Sf-Ze8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -96,7 +96,7 @@
                             <outlet property="delegate" destination="VOC-TP-79N" id="fTM-Cb-FoR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="FY6-Es-MTZ"/>
+                    <navigationItem key="navigationItem" title="processing..." id="FY6-Es-MTZ"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-104" y="-912"/>

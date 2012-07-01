@@ -81,13 +81,7 @@
 {   
 // can't use system sounds as needs a .caf or .wav - too big.
     
-    NSString *currentWord = self.spelling.text;
-    NSString *pathForSoundName = [NSString pathWithComponents:[NSArray arrayWithObjects:@"resources.bundle",@"Sounds",currentWord, nil]];
-    NSString *soundName = [[NSBundle mainBundle] pathForResource:pathForSoundName ofType:@"m4a"];
-                                  
-    NSLog(@"soundFilePath = %@", soundName);
-    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:soundName];
-    NSLog(@"fileURL = %@", fileURL);
+    NSURL *fileURL = [DictionaryHelper fileURLForSpelling:self.spelling.text];
     
     // Trying to figure out if I have my paths and URL's right!
     NSFileManager *localFileManager = [[NSFileManager alloc] init];

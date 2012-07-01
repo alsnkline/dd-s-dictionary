@@ -18,12 +18,14 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
 
 @interface DictionaryHelper : NSObject
 
-+ (NSURL *)directoryForInputDictionaryWithName:(NSString *)dictionaryName;
++ (NSURL *)directoryForXMLDictionaryWithName:(NSString *)dictionaryName;
 + (NSURL *)dictionaryDirectory;
++ (BOOL)alreadyHaveDictionaryWithName:(NSString *)dictionaryName;
 + (void)openDictionary:(NSString *)dictionaryName
           usingBlock:(completion_block_t)completionBlock;
 + (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock;
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController;
 + (void)deleteDictionary:(NSString *)dictionaryName;
++ (NSURL *)fileURLForSpelling:(NSString *)spelling;
 
 @end

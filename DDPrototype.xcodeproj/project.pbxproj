@@ -7,17 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B137DCA415A0DFF0000C62C3 /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B137DCA315A0DFF0000C62C3 /* Glenmore_KK_all_words.xml */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
-		B150AEB7159A7B58007A1129 /* could.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEB6159A7B58007A1129 /* could.wav */; };
-		B150AEBF159A830D007A1129 /* should.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEBE159A830D007A1129 /* should.wav */; };
-		B150AEC1159A8319007A1129 /* would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B150AEC0159A8319007A1129 /* would.wav */; };
 		B174DA69159F4E98002D5CE8 /* DisplaySection.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA68159F4E98002D5CE8 /* DisplaySection.m */; };
 		B174DA74159F5AED002D5CE8 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA73159F5AED002D5CE8 /* Word.m */; };
 		B174DA77159F5AED002D5CE8 /* ComponentSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA76159F5AED002D5CE8 /* ComponentSound.m */; };
 		B174DA7A159F5AED002D5CE8 /* ComponentSoundSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA79159F5AED002D5CE8 /* ComponentSoundSpelling.m */; };
 		B174DA7D159F5AEE002D5CE8 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA7C159F5AED002D5CE8 /* Pronunciation.m */; };
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */ = {isa = PBXBuildFile; fileRef = B178056A159CF8A70013AD65 /* TestDictionary1.xml */; };
 		B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */; };
 		B178606215962B3D0047D631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606115962B3D0047D631 /* UIKit.framework */; };
 		B178606415962B3D0047D631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606315962B3D0047D631 /* Foundation.framework */; };
@@ -42,9 +39,6 @@
 		B178613A159BCCCD004A79E5 /* sh-should.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612E159BCCCD004A79E5 /* sh-should.wav */; };
 		B178613B159BCCCD004A79E5 /* t-cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178612F159BCCCD004A79E5 /* t-cat.wav */; };
 		B178613C159BCCCD004A79E5 /* w-would.wav in Resources */ = {isa = PBXBuildFile; fileRef = B1786130159BCCCD004A79E5 /* w-would.wav */; };
-		B178613F159BCCE2004A79E5 /* cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178613D159BCCE2004A79E5 /* cat.wav */; };
-		B1786140159BCCE2004A79E5 /* rate.wav in Resources */ = {isa = PBXBuildFile; fileRef = B178613E159BCCE2004A79E5 /* rate.wav */; };
-		B17A6609159F78030031DFF2 /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B17A6608159F78030031DFF2 /* Glenmore_KK_all_words.xml */; };
 		B17AAB7B1596B87F009A5C1D /* DictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */; };
 		B17CE6BA15980041005A12D3 /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B17CE6B915980041005A12D3 /* resources.bundle */; };
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
@@ -56,10 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B137DCA315A0DFF0000C62C3 /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		B150AEB6159A7B58007A1129 /* could.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = could.wav; sourceTree = "<group>"; };
-		B150AEBE159A830D007A1129 /* should.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = should.wav; sourceTree = "<group>"; };
-		B150AEC0159A8319007A1129 /* would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = would.wav; sourceTree = "<group>"; };
 		B174DA67159F4E98002D5CE8 /* DisplaySection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySection.h; sourceTree = "<group>"; };
 		B174DA68159F4E98002D5CE8 /* DisplaySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySection.m; sourceTree = "<group>"; };
 		B174DA72159F5AED002D5CE8 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
@@ -70,7 +62,6 @@
 		B174DA79159F5AED002D5CE8 /* ComponentSoundSpelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSoundSpelling.m; sourceTree = "<group>"; };
 		B174DA7B159F5AED002D5CE8 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
 		B174DA7C159F5AED002D5CE8 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
-		B178056A159CF8A70013AD65 /* TestDictionary1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestDictionary1.xml; sourceTree = "<group>"; };
 		B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNodeHelper.h; sourceTree = "<group>"; };
 		B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNodeHelper.m; sourceTree = "<group>"; };
 		B178605D15962B3D0047D631 /* DDPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,11 +93,8 @@
 		B178612E159BCCCD004A79E5 /* sh-should.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sh-should.wav"; sourceTree = "<group>"; };
 		B178612F159BCCCD004A79E5 /* t-cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "t-cat.wav"; sourceTree = "<group>"; };
 		B1786130159BCCCD004A79E5 /* w-would.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "w-would.wav"; sourceTree = "<group>"; };
-		B178613D159BCCE2004A79E5 /* cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cat.wav; sourceTree = "<group>"; };
-		B178613E159BCCE2004A79E5 /* rate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rate.wav; sourceTree = "<group>"; };
 		B1786142159BD6E3004A79E5 /* GDataXMLNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		B1786143159BD6E3004A79E5 /* GDataXMLNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
-		B17A6608159F78030031DFF2 /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B17AAB791596B87F009A5C1D /* DictionaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryTableViewController.h; sourceTree = "<group>"; };
 		B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryTableViewController.m; sourceTree = "<group>"; };
 		B17CE6B915980041005A12D3 /* resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = resources.bundle; sourceTree = "<group>"; };
@@ -157,19 +145,6 @@
 				B1786130159BCCCD004A79E5 /* w-would.wav */,
 			);
 			name = Phonemes;
-			sourceTree = "<group>";
-		};
-		B150AEB9159A8291007A1129 /* TestDictionary1 */ = {
-			isa = PBXGroup;
-			children = (
-				B178056A159CF8A70013AD65 /* TestDictionary1.xml */,
-				B178613D159BCCE2004A79E5 /* cat.wav */,
-				B178613E159BCCE2004A79E5 /* rate.wav */,
-				B150AEBE159A830D007A1129 /* should.wav */,
-				B150AEC0159A8319007A1129 /* would.wav */,
-				B150AEB6159A7B58007A1129 /* could.wav */,
-			);
-			name = TestDictionary1;
 			sourceTree = "<group>";
 		};
 		B178605215962B3D0047D631 = {
@@ -225,8 +200,7 @@
 				B1786142159BD6E3004A79E5 /* GDataXMLNode.h */,
 				B1786143159BD6E3004A79E5 /* GDataXMLNode.m */,
 				B150AEB8159A8277007A1129 /* Phonemes */,
-				B1D367B7159DA3B900BBAA89 /* FirstGradeDictionary */,
-				B150AEB9159A8291007A1129 /* TestDictionary1 */,
+				B1D367B7159DA3B900BBAA89 /* InitialLoadDictionary */,
 				B178606815962B3D0047D631 /* Supporting Files */,
 			);
 			path = DDPrototype;
@@ -267,12 +241,12 @@
 			name = Database;
 			sourceTree = "<group>";
 		};
-		B1D367B7159DA3B900BBAA89 /* FirstGradeDictionary */ = {
+		B1D367B7159DA3B900BBAA89 /* InitialLoadDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				B17A6608159F78030031DFF2 /* Glenmore_KK_all_words.xml */,
+				B137DCA315A0DFF0000C62C3 /* Glenmore_KK_all_words.xml */,
 			);
-			name = FirstGradeDictionary;
+			name = InitialLoadDictionary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,9 +303,6 @@
 				B178607515962B3D0047D631 /* MainStoryboard_iPhone.storyboard in Resources */,
 				B178607815962B3D0047D631 /* MainStoryboard_iPad.storyboard in Resources */,
 				B17CE6BA15980041005A12D3 /* resources.bundle in Resources */,
-				B150AEB7159A7B58007A1129 /* could.wav in Resources */,
-				B150AEBF159A830D007A1129 /* should.wav in Resources */,
-				B150AEC1159A8319007A1129 /* would.wav in Resources */,
 				B1786131159BCCCD004A79E5 /* a-cat.wav in Resources */,
 				B1786132159BCCCD004A79E5 /* aa-rate.wav in Resources */,
 				B1786133159BCCCD004A79E5 /* c-cat.wav in Resources */,
@@ -344,11 +315,8 @@
 				B178613A159BCCCD004A79E5 /* sh-should.wav in Resources */,
 				B178613B159BCCCD004A79E5 /* t-cat.wav in Resources */,
 				B178613C159BCCCD004A79E5 /* w-would.wav in Resources */,
-				B178613F159BCCE2004A79E5 /* cat.wav in Resources */,
-				B1786140159BCCE2004A79E5 /* rate.wav in Resources */,
-				B178056B159CF8A70013AD65 /* TestDictionary1.xml in Resources */,
 				B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */,
-				B17A6609159F78030031DFF2 /* Glenmore_KK_all_words.xml in Resources */,
+				B137DCA415A0DFF0000C62C3 /* Glenmore_KK_all_words.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
