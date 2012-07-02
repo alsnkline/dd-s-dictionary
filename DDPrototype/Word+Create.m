@@ -45,6 +45,7 @@
         inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Word *word = nil;
+//    NSLog(@"GDataXMLElement = %@", wordXML);
 //    NSString *spelling = [GDataXMLNodeHelper spellingFromGDataXMLWordElement:wordXML];
     NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML];
     
@@ -65,7 +66,7 @@
         //                [word setValue:string forKey:@"Word"]; //only if you don't use the subclass
         word.spelling = spelling;
         word.fetchedResultsSection = [[spelling substringWithRange:NSRangeFromString(@"0 1")] uppercaseString];
-        word.isHomophone = [isHomophone isEqualToString:@"YES"]? [NSNumber numberWithBool:YES]:[NSNumber numberWithBool:NO];
+        word.isHomophone = [isHomophone isEqualToString:@"yes"]? [NSNumber numberWithBool:YES]:[NSNumber numberWithBool:NO];
         
         // set all pronunciations in the word.
         NSArray *XMLPronunciations = [wordXML elementsForName:@"pronunciations"];
