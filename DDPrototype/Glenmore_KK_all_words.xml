@@ -101,6 +101,10 @@
 	</word>
 	<word>
 		<spelling>aren't</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>aunt</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>arm</spelling>
@@ -125,12 +129,14 @@
 	</word>
 	<word>
 		<spelling>ate</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>August</spelling>
 	</word>
 	<word>
 		<spelling>aunt</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>autumn</spelling>
@@ -161,6 +167,7 @@
 	</word>
 	<word>
 		<spelling>be</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>bear</spelling>
@@ -179,6 +186,10 @@
 	</word>
 	<word>
 		<spelling>bee</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>be</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>been</spelling>
@@ -317,12 +328,17 @@
 	</word>
 	<word>
 		<spelling>buy</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>buzz</spelling>
 	</word>
 	<word>
 		<spelling>by</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>buy</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>cage</spelling>
@@ -437,6 +453,12 @@
 	</word>
 	<word>
 		<spelling>close</spelling>
+		<pronunciation>
+			<unique>close1</unique>
+		</pronunciation>
+		<pronunciation>
+			<unique>close2</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>clothes</spelling>
@@ -539,6 +561,7 @@
 	</word>
 	<word>
 		<spelling>dear</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>December</spelling>
@@ -551,6 +574,10 @@
 	</word>
 	<word>
 		<spelling>deer</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>dear</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>desk</spelling>
@@ -593,6 +620,7 @@
 	</word>
 	<word>
 		<spelling>doctor</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>does</spelling>
@@ -629,6 +657,10 @@
 	</word>
 	<word>
 		<spelling>Dr.</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>doctor</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>dragon</spelling>
@@ -698,6 +730,10 @@
 	</word>
 	<word>
 		<spelling>eight</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>ate</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>eighteen</spelling>
@@ -1193,6 +1229,10 @@
 	</word>
 	<word>
 		<spelling>hour</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>our</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>house</spelling>
@@ -1394,9 +1434,14 @@
 	</word>
 	<word>
 		<spelling>knot</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>not</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>know</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>lady</spelling>
@@ -1424,6 +1469,12 @@
 	</word>
 	<word>
 		<spelling>lead</spelling>
+		<pronunciation>
+			<unique>lead1</unique>
+		</pronunciation>
+		<pronunciation>
+			<unique>lead2</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>learn</spelling>
@@ -1478,6 +1529,12 @@
 	</word>
 	<word>
 		<spelling>live</spelling>
+		<pronunciation>
+			<unique>live1</unique>
+		</pronunciation>
+		<pronunciation>
+			<unique>live2</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>lizard</spelling>
@@ -1553,9 +1610,15 @@
 	</word>
 	<word>
 		<spelling>may</spelling>
+		<pronunciation>
+			<unique>may</unique>
+		</pronunciation>
 	</word>
 	<word>
-		<spelling>may/May</spelling>
+		<spelling>May</spelling>
+		<pronunciation>
+			<unique>may</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>me</spelling>
@@ -1745,6 +1808,10 @@
 	</word>
 	<word>
 		<spelling>no</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>know</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>noise</spelling>
@@ -1757,6 +1824,7 @@
 	</word>
 	<word>
 		<spelling>not</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>nothing</spelling>
@@ -1790,6 +1858,9 @@
 	</word>
 	<word>
 		<spelling>of course</spelling>
+		<pronunciation>
+			<unique>of_course</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>off</spelling>
@@ -1844,6 +1915,7 @@
 	</word>
 	<word>
 		<spelling>our</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>out</spelling>

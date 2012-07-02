@@ -41,6 +41,7 @@
 {
     if (_word != word) {
         _word = word;
+        self.spelling.text = word.spelling;
         [self manageListenButtons];
     }
 }

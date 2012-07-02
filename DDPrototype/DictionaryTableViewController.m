@@ -180,7 +180,7 @@
             dwvc.listenButton.enabled = YES;
             [dwvc listenToWord:self];
         } else {
-            dwvc.listenButton.enabled = YES;        
+            dwvc.listenButton.enabled = NO;        
         }
     }
 }

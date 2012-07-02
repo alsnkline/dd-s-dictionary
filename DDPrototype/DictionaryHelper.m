@@ -180,7 +180,11 @@
     BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
     NSLog(@"fileFound for URL: %@", fileFound ? @"YES" : @"NO");
     
-    return fileURL;
+    if (fileFound) {
+        return fileURL;
+    } else {
+        return nil;
+    }
 }
 
 

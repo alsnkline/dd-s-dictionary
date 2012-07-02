@@ -21,6 +21,7 @@
     </entity>
     <entity name="Word" representedClassName="Word" syncable="YES">
         <attribute name="fetchedResultsSection" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isHomophone" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="spelling" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="pronunciations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="spellings" inverseEntity="Pronunciation" syncable="YES"/>
     </entity>

@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * fetchedResultsSection;
 @property (nonatomic, retain) NSString * spelling;
+@property (nonatomic, retain) NSNumber * isHomophone;
 @property (nonatomic, retain) NSSet *pronunciations;
 @end
 

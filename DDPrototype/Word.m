@@ -14,6 +14,7 @@
 
 @dynamic fetchedResultsSection;
 @dynamic spelling;
+@dynamic isHomophone;
 @dynamic pronunciations;
 
 @end
