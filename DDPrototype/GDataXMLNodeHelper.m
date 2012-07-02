@@ -43,7 +43,7 @@
         NSString *singleSubElement = subElementXML.stringValue;
         return singleSubElement;
     } else {
-        NSLog(@"error getting %@ from %@", subElementName, element);
+        NSLog(@"no %@ in %@", subElementName, element);
         return nil;
     }
 }
