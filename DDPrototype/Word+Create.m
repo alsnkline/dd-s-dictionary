@@ -65,10 +65,22 @@
         word.fetchedResultsSection = [[spelling substringWithRange:NSRangeFromString(@"0 1")] uppercaseString];
         
         // set all pronunciations in the word.
-        NSArray *pronunciations = [wordXML elementsForName:@"pronunciation"];
-        for (GDataXMLElement *pronunciation in pronunciations) {
-            [Pronunciation pronunciationFromGDataXMLElement:pronunciation inManagedObjectContext:context];
+        NSArray *XMLPronunciations = [wordXML elementsForName:@"pronunciation"];
+        int pronunciationCount = [XMLPronunciations count];
+        
+        pronunciationCount < 1? pronunciationCount = 1 : pronunciationCount;
+        
+        NSMutableSet *pronunciations = [NSMutableSet setWithCapacity:pronunciationCount];
+        for (GDataXMLElement *pronunciation in XMLPronunciations) {
+            Pronunciation *pronunciationForElement = [Pronunciation pronunciationFromGDataXMLElement:pronunciation inManagedObjectContext:context];
+            [pronunciations addObject:pronunciationForElement];
         };
+        if ([XMLPronunciations count] == 0) {
+            //create pronunciation with unique = spelling
+            Pronunciation *pronunciationForElement = [Pronunciation pronunciationFromString:spelling inManagedObjectContext:context];
+            [pronunciations addObject:pronunciationForElement];
+        }
+        word.pronunciations = pronunciations;
         
     } else {
         word = [matches lastObject];

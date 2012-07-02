@@ -17,5 +17,7 @@
                           inManagedObjectContext:(NSManagedObjectContext *)context;
 + (Pronunciation *)pronunciationFromGDataXMLElement:(GDataXMLElement *)pronunciationXML 
                              inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Pronunciation *)pronunciationFromString:(NSString *)string
+                    inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

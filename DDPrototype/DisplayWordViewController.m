@@ -10,6 +10,8 @@
 #import "DictionaryHelper.h"
 #import <AudioToolbox/AudioToolbox.h>  //for system sounds
 #import <AVFoundation/AVAudioPlayer.h> //for audioPlayer
+#import "Word.h"
+#import "Pronunciation.h"
 
 @interface DisplayWordViewController () <AVAudioPlayerDelegate>
 
@@ -25,6 +27,7 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
 @synthesize listenButton = _listenButton;
+@synthesize heteronymListenButton = _heteronymListenButton;
 @synthesize audioPlayer = _audioPlayer;
 
 
@@ -32,6 +35,24 @@
 {
     [super awakeFromNib];
     self.splitViewController.delegate = self;
+}
+
+-(void)setWord:(Word *)word
+{
+    if (_word != word) {
+        _word = word;
+        [self manageListenButtons];
+    }
+}
+
+- (void) manageListenButtons
+{
+    NSSet *pronunciations = self.word.pronunciations;
+    if ([pronunciations count] == 1) {
+        self.heteronymListenButton.hidden = YES;
+    } else {
+        self.heteronymListenButton.hidden = NO;
+    }
 }
 
 - (void) setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
@@ -77,25 +98,31 @@
     }
     return self;
 }
-- (IBAction)listenToWord:(id)sender 
+- (IBAction)listenToWord:(UIButton *)sender 
 {   
 // can't use system sounds as needs a .caf or .wav - too big.
+    NSString *wordToSay = nil;
+    NSSet *pronunciations = self.word.pronunciations;
     
-    NSURL *fileURL = [DictionaryHelper fileURLForSpelling:self.spelling.text];
     
-    // Trying to figure out if I have my paths and URL's right!
-    NSFileManager *localFileManager = [[NSFileManager alloc] init];
-    BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
-    NSLog(@"fileFound for URL: %@", fileFound ? @"YES" : @"NO");
     
-    NSError *error = nil;
-    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
-    self.audioPlayer = newPlayer;
- 
-    [self.audioPlayer prepareToPlay];
-    [self.audioPlayer setDelegate:self];
-    [self.audioPlayer play];
-
+    for (Pronunciation *pronunciation in pronunciations) {
+        wordToSay = pronunciation.unique;
+        NSURL *fileURL = [DictionaryHelper fileURLForSpelling:wordToSay];
+        
+        // Trying to figure out if I have my paths and URL's right!
+        NSFileManager *localFileManager = [[NSFileManager alloc] init];
+        BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
+        NSLog(@"fileFound for URL: %@", fileFound ? @"YES" : @"NO");
+        
+        NSError *error = nil;
+        AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+        self.audioPlayer = newPlayer;
+        
+        [self.audioPlayer prepareToPlay];
+        [self.audioPlayer setDelegate:self];
+        [self.audioPlayer play];
+    }
 }
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)playedSuccessfully 
@@ -123,6 +150,7 @@
     [self setSpelling:nil];
     [self setToolbar:nil];
     [self setListenButton:nil];
+    [self setHeteronymListenButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

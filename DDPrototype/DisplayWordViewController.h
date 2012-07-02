@@ -15,6 +15,7 @@
 @property (nonatomic, strong) Word *word; //word for display the model for this MVC
 @property (weak, nonatomic) IBOutlet UILabel *spelling;
 @property (weak, nonatomic) IBOutlet UIButton *listenButton;
+@property (weak, nonatomic) IBOutlet UIButton *heteronymListenButton;
 
 - (IBAction)listenToWord:(id)sender;
 

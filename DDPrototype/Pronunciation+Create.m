@@ -46,8 +46,17 @@
 + (Pronunciation *)pronunciationFromGDataXMLElement:(GDataXMLElement *)pronunciationXML 
            inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    Pronunciation *pronunciation = nil;
+    
     NSString *unique = [GDataXMLNodeHelper singleSubElementForName:@"unique" FromGDataXMLElement:pronunciationXML];
+    
+    return [self pronunciationFromString:unique inManagedObjectContext:context];
+}
+
++ (Pronunciation *)pronunciationFromString:(NSString *)string
+                    inManagedObjectContext:(NSManagedObjectContext *)context
+{
+    Pronunciation *pronunciation = nil;
+    NSString *unique = string;
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Pronunciation"];
     request.predicate = [NSPredicate predicateWithFormat:@"unique = %@", unique];
@@ -56,7 +65,7 @@
     
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
-
+    
     if (!matches || ([matches count] > 1)) {
         //handle error
     } else if ([matches count] == 0) {
@@ -70,9 +79,10 @@
         pronunciation = [matches lastObject];
     }
     NSLog(@"Pronunciation in dictionary %@", pronunciation);
-
+    
     return pronunciation;
 }
+
 
 
 @end
