@@ -98,30 +98,29 @@
     }
     return self;
 }
+
+- (void)playWord:(Pronunciation *)pronunciation
+{
+    // can't use system sounds as needs a .caf or .wav - too big.
+    
+    NSURL *fileURL = [DictionaryHelper fileURLForSpelling:pronunciation.unique];
+    
+    NSError *error = nil;
+    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+    self.audioPlayer = newPlayer;
+    
+    [self.audioPlayer prepareToPlay];
+    [self.audioPlayer setDelegate:self];
+    [self.audioPlayer play];
+}
+
 - (IBAction)listenToWord:(UIButton *)sender 
 {   
-// can't use system sounds as needs a .caf or .wav - too big.
-    NSString *wordToSay = nil;
+
     NSSet *pronunciations = self.word.pronunciations;
     
-    
-    
     for (Pronunciation *pronunciation in pronunciations) {
-        wordToSay = pronunciation.unique;
-        NSURL *fileURL = [DictionaryHelper fileURLForSpelling:wordToSay];
-        
-        // Trying to figure out if I have my paths and URL's right!
-        NSFileManager *localFileManager = [[NSFileManager alloc] init];
-        BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
-        NSLog(@"fileFound for URL: %@", fileFound ? @"YES" : @"NO");
-        
-        NSError *error = nil;
-        AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
-        self.audioPlayer = newPlayer;
-        
-        [self.audioPlayer prepareToPlay];
-        [self.audioPlayer setDelegate:self];
-        [self.audioPlayer play];
+        [self playWord:pronunciation];
     }
 }
 

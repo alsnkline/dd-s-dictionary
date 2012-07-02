@@ -169,16 +169,13 @@
     if ([self splitViewWithDisplayWordViewController]) {
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
         Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        dwvc.spelling.text = selectedWord.spelling;
+        dwvc.word = selectedWord;
+//        dwvc.spelling.text = selectedWord.spelling;
         
         //work out path for Sound - should come from Word *
         NSURL *fileURL = [DictionaryHelper fileURLForSpelling:selectedWord.spelling];
         
-        NSFileManager *localFileManager = [[NSFileManager alloc] init];
-        BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
-        NSLog(@"fileFound %@ for soundName: %@", fileFound ? @"YES" : @"NO", [fileURL path]);
-        
-        if (fileFound)
+        if (fileURL)
         {
             dwvc.listenButton.enabled = YES;
             [dwvc listenToWord:self];

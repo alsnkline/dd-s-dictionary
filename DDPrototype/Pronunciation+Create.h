@@ -9,6 +9,7 @@
 #import "Pronunciation.h"
 
 @class GDataXMLElement;
+@class Word;
 
 @interface Pronunciation (Create)
 
@@ -16,8 +17,10 @@
                                        andUnique:(NSString *)unique 
                           inManagedObjectContext:(NSManagedObjectContext *)context;
 + (Pronunciation *)pronunciationFromGDataXMLElement:(GDataXMLElement *)pronunciationXML 
+                                            forWord:(Word *)word
                              inManagedObjectContext:(NSManagedObjectContext *)context;
 + (Pronunciation *)pronunciationFromString:(NSString *)string
+                                   forWord:(Word *)word
                     inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

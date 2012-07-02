@@ -163,16 +163,22 @@
     NSLog(@"current word = %@", spelling);
     NSLog(@"pathForSoundName = %@",pathForSoundName);
     NSString *soundName = [[NSBundle mainBundle] pathForResource:pathForSoundName ofType:@"m4a"];
-    
-    NSArray *m4pFiles = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"" subdirectory:@"resources.bundle/Sounds"];
-    NSLog(@"m4pFiles in mainBundle = %@", m4pFiles);
-    
     NSLog(@"soundName = %@", soundName);
+    
+//    NSArray *m4pFiles = [[NSBundle mainBundle] URLsForResourcesWithExtension:@"" subdirectory:@"resources.bundle/Sounds"];
+//    NSLog(@"m4pFiles in mainBundle = %@", m4pFiles);
+    
+    
     NSURL *fileURL;
     if (soundName) {
         fileURL = [[NSURL alloc] initFileURLWithPath:soundName];
     }
     NSLog(@"fileURL = %@", fileURL);
+    
+    // Get the paths and URL's right!
+    NSFileManager *localFileManager = [[NSFileManager alloc] init];
+    BOOL fileFound = [localFileManager fileExistsAtPath:[fileURL path]];
+    NSLog(@"fileFound for URL: %@", fileFound ? @"YES" : @"NO");
     
     return fileURL;
 }

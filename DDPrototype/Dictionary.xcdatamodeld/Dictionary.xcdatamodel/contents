@@ -17,12 +17,12 @@
         <attribute name="pronuciationData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="componentSounds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ComponentSound" inverseName="usedIn" inverseEntity="ComponentSound" syncable="YES"/>
-        <relationship name="spelling" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="pronunciations" inverseEntity="Word" syncable="YES"/>
+        <relationship name="spellings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="pronunciations" inverseEntity="Word" syncable="YES"/>
     </entity>
     <entity name="Word" representedClassName="Word" syncable="YES">
         <attribute name="fetchedResultsSection" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="spelling" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="pronunciations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="spelling" inverseEntity="Pronunciation" syncable="YES"/>
+        <relationship name="pronunciations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="spellings" inverseEntity="Pronunciation" syncable="YES"/>
     </entity>
     <elements>
         <element name="ComponentSound" positionX="513" positionY="438" width="128" height="120"/>

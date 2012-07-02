@@ -2,7 +2,7 @@
 //  Pronunciation.h
 //  DDPrototype
 //
-//  Created by Alison Kline on 6/30/12.
+//  Created by Alison Kline on 7/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSData * pronuciationData;
 @property (nonatomic, retain) NSString * unique;
 @property (nonatomic, retain) NSSet *componentSounds;
-@property (nonatomic, retain) NSSet *spelling;
+@property (nonatomic, retain) NSSet *spellings;
 @end
 
 @interface Pronunciation (CoreDataGeneratedAccessors)
@@ -27,9 +27,9 @@
 - (void)addComponentSounds:(NSSet *)values;
 - (void)removeComponentSounds:(NSSet *)values;
 
-- (void)addSpellingObject:(Word *)value;
-- (void)removeSpellingObject:(Word *)value;
-- (void)addSpelling:(NSSet *)values;
-- (void)removeSpelling:(NSSet *)values;
+- (void)addSpellingsObject:(Word *)value;
+- (void)removeSpellingsObject:(Word *)value;
+- (void)addSpellings:(NSSet *)values;
+- (void)removeSpellings:(NSSet *)values;
 
 @end

@@ -2,7 +2,7 @@
 //  Word.m
 //  DDPrototype
 //
-//  Created by Alison Kline on 6/30/12.
+//  Created by Alison Kline on 7/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
