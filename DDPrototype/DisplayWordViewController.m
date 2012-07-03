@@ -28,6 +28,7 @@
 @synthesize toolbar = _toolbar;
 @synthesize listenButton = _listenButton;
 @synthesize heteronymListenButton = _heteronymListenButton;
+@synthesize wordView = _wordView;
 @synthesize audioPlayer = _audioPlayer;
 
 
@@ -41,8 +42,12 @@
 {
     if (_word != word) {
         _word = word;
-        self.spelling.text = word.spelling;
         [self manageListenButtons];
+        [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve 
+                        animations:^ {
+                            self.spelling.text = word.spelling;
+                        }
+                        completion:nil];
     }
 }
 
@@ -51,10 +56,14 @@
     NSSet *pronunciations = self.word.pronunciations;
     if ([pronunciations count] == 1) {
         self.heteronymListenButton.hidden = YES;
+        self.listenButton.hidden = NO;
         self.listenButton.enabled = YES;
+        self.listenButton.frame = CGRectMake((self.listenButton.superview.frame.size.width/2 - self.listenButton.frame.size.width/2), self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
     } else if ([pronunciations count] == 2) {
         self.heteronymListenButton.hidden = NO;
+        self.listenButton.hidden = NO;
         self.listenButton.enabled = YES;
+        self.listenButton.frame = CGRectMake(0, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
     } else {
         self.listenButton.enabled = NO;
     }
@@ -167,6 +176,7 @@
     [self setToolbar:nil];
     [self setListenButton:nil];
     [self setHeteronymListenButton:nil];
+    [self setWordView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
