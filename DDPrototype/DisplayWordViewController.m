@@ -133,7 +133,10 @@
     NSSet *pronunciations = self.word.pronunciations;
     
     for (Pronunciation *pronunciation in pronunciations) {
-        [self playWord:pronunciation];
+        NSString *unique = pronunciation.unique;
+        if ([unique hasSuffix:[NSString stringWithFormat:@"%i",sender.tag]]) {
+            [self playWord:pronunciation];
+        }
     }
 }
 
