@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIBarButtonItem *splitViewBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+@property (nonatomic, strong) NSArray *soundsToPlay;
 
 @end
 
@@ -30,6 +31,7 @@
 @synthesize heteronymListenButton = _heteronymListenButton;
 @synthesize wordView = _wordView;
 @synthesize audioPlayer = _audioPlayer;
+@synthesize soundsToPlay = _soundsToPlay;
 
 
 -(void)awakeFromNib
@@ -115,16 +117,27 @@
 
 - (void)playAllWords:(NSSet *)pronunciations
 {
-    for (Pronunciation *pronunciation in pronunciations) {
-        [self playWord:pronunciation];
-    };
+    if ([pronunciations count] == 1) {
+        for (Pronunciation *pronunciation in pronunciations) {
+            [self playWord:pronunciation];
+        };
+    } else {
+        NSMutableArray *pronunciationsArray = [NSMutableArray array];
+        for (Pronunciation *pronunciation in pronunciations) {
+            [pronunciationsArray addObject:pronunciation];
+        };
+        self.soundsToPlay = pronunciationsArray;
+        NSLog(@"started to play first word");
+        Pronunciation *pronunciationToPlay = [self.soundsToPlay lastObject];
+        [self playWord:pronunciationToPlay];
+    }
 }
 
 - (void)playWord:(Pronunciation *)pronunciation
 {
     // can't use system sounds as needs a .caf or .wav - too big.
     
-    NSURL *fileURL = [DictionaryHelper fileURLForSpelling:pronunciation.unique];
+    NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
     
     NSError *error = nil;
     AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
@@ -153,6 +166,16 @@
 {
     self.audioPlayer = nil;
     NSLog(@"finished playing a word %@", playedSuccessfully? @"successfully" : @"with error");
+    
+    if ([self.soundsToPlay count] > 0) {
+        NSMutableArray *pronunciationsArray = [NSMutableArray arrayWithArray:self.soundsToPlay];
+        [pronunciationsArray removeLastObject];
+        self.soundsToPlay = pronunciationsArray;
+        
+        if ([self.soundsToPlay count] > 0) {
+            [self playWord:[self.soundsToPlay lastObject]];
+        }
+    }
 }
 
 - (void)viewDidLoad
