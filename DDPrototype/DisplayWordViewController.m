@@ -156,7 +156,7 @@
     
     for (Pronunciation *pronunciation in pronunciations) {
         NSString *unique = pronunciation.unique;
-        if ([unique hasSuffix:[NSString stringWithFormat:@"%i",sender.tag]]) {
+        if (([pronunciations count] > 1 && [unique hasSuffix:[NSString stringWithFormat:@"%i",sender.tag]]) || ([pronunciations count] == 1)) {
             [self playWord:pronunciation];
         }
     }
