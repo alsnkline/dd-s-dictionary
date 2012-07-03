@@ -51,8 +51,12 @@
     NSSet *pronunciations = self.word.pronunciations;
     if ([pronunciations count] == 1) {
         self.heteronymListenButton.hidden = YES;
-    } else {
+        self.listenButton.enabled = YES;
+    } else if ([pronunciations count] == 2) {
         self.heteronymListenButton.hidden = NO;
+        self.listenButton.enabled = YES;
+    } else {
+        self.listenButton.enabled = NO;
     }
 }
 
@@ -100,6 +104,13 @@
     return self;
 }
 
+- (void)playAllWords:(NSSet *)pronunciations
+{
+    for (Pronunciation *pronunciation in pronunciations) {
+        [self playWord:pronunciation];
+    };
+}
+
 - (void)playWord:(Pronunciation *)pronunciation
 {
     // can't use system sounds as needs a .caf or .wav - too big.
@@ -112,6 +123,7 @@
     
     [self.audioPlayer prepareToPlay];
     [self.audioPlayer setDelegate:self];
+    NSLog(@"started to play a word");
     [self.audioPlayer play];
 }
 
@@ -128,6 +140,7 @@
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)playedSuccessfully 
 {
     self.audioPlayer = nil;
+    NSLog(@"finished playing a word %@", playedSuccessfully? @"successfully" : @"with error");
 }
 
 - (void)viewDidLoad

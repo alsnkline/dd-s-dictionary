@@ -82,9 +82,9 @@
         
     } else {
         pronunciation = [matches lastObject];
-        NSMutableSet *spellings = [NSMutableSet setWithSet:pronunciation.spellings];
-        [spellings addObject:word];
-        pronunciation.spellings = spellings;
+//        NSMutableSet *spellings = [NSMutableSet setWithSet:pronunciation.spellings]; NOT needed as done in Word and reverse relationships are auto created
+//        [spellings addObject:word];
+//        pronunciation.spellings = spellings;
         
     }
     NSLog(@"Pronunciation in dictionary %@", pronunciation);

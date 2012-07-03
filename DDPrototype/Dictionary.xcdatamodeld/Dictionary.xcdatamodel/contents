@@ -29,6 +29,6 @@
         <element name="ComponentSound" positionX="513" positionY="438" width="128" height="120"/>
         <element name="ComponentSoundSpelling" positionX="682" positionY="513" width="173" height="90"/>
         <element name="Pronunciation" positionX="333" positionY="285" width="128" height="120"/>
-        <element name="Word" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Word" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

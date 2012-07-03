@@ -170,18 +170,19 @@
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
         Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.word = selectedWord;
+        [dwvc playAllWords:selectedWord.pronunciations];
 //        dwvc.spelling.text = selectedWord.spelling;
         
-        //work out path for Sound - should come from Word *
-        NSURL *fileURL = [DictionaryHelper fileURLForSpelling:selectedWord.spelling];
-        
-        if (fileURL)
-        {
-            dwvc.listenButton.enabled = YES;
-            [dwvc listenToWord:self];
-        } else {
-            dwvc.listenButton.enabled = NO;        
-        }
+//        //work out path for Sound - should come from Word *
+//        NSURL *fileURL = [DictionaryHelper fileURLForSpelling:selectedWord.spelling];
+//        
+//        if (fileURL)
+//        {
+//            dwvc.listenButton.enabled = YES;
+//            [dwvc listenToWord:self];
+//        } else {
+//            dwvc.listenButton.enabled = NO;        
+//        }
     }
 }
 

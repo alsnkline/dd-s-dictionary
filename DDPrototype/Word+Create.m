@@ -69,12 +69,15 @@
         word.isHomophone = [isHomophone isEqualToString:@"yes"]? [NSNumber numberWithBool:YES]:[NSNumber numberWithBool:NO];
         
         // set all pronunciations in the word.
-        NSArray *XMLPronunciations = [wordXML elementsForName:@"pronunciations"];
+        NSArray *XMLPronunciations = [wordXML elementsForName:@"pronunciation"];
         int pronunciationCount = [XMLPronunciations count];
+        if (pronunciationCount>1) {
+            NSLog(@"more than 1 pronunciation in XML");
+        }
         
-        pronunciationCount < 1? pronunciationCount = 1 : pronunciationCount;
+//        pronunciationCount < 1? pronunciationCount = 1 : pronunciationCount;
         
-        NSMutableSet *pronunciations = [NSMutableSet setWithCapacity:pronunciationCount];
+        NSMutableSet *pronunciations = [NSMutableSet set];
         for (GDataXMLElement *pronunciation in XMLPronunciations) {
             Pronunciation *pronunciationForElement = [Pronunciation pronunciationFromGDataXMLElement:pronunciation forWord:word inManagedObjectContext:context];
             [pronunciations addObject:pronunciationForElement];

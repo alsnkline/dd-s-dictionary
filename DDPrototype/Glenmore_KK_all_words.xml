@@ -363,6 +363,9 @@
 	</word>
 	<word>
 		<spelling>can't</spelling>
+		<pronunciation>
+			<unique>cant</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>caption</spelling>
@@ -399,6 +402,7 @@
 	</word>
 	<word>
 		<spelling>cent</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>centimeter</spelling>
@@ -504,6 +508,9 @@
 	</word>
 	<word>
 		<spelling>couldn't</spelling>
+		<pronunciation>
+			<unique>couldnt</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>country</spelling>
@@ -587,6 +594,9 @@
 	</word>
 	<word>
 		<spelling>didn't</spelling>
+		<pronunciation>
+			<unique>didnt</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>die</spelling>
@@ -645,6 +655,9 @@
 	</word>
 	<word>
 		<spelling>don't</spelling>
+		<pronunciation>
+			<unique>dont</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>door</spelling>
@@ -1136,6 +1149,9 @@
 	</word>
 	<word>
 		<spelling>haven't</spelling>
+		<pronunciation>
+			<unique>havent</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>hawk</spelling>
@@ -1275,6 +1291,9 @@
 	</word>
 	<word>
 		<spelling>i'll</spelling>
+		<pronunciation>
+			<unique>illx</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>important</spelling>
@@ -1320,6 +1339,9 @@
 	</word>
 	<word>
 		<spelling>isn't</spelling>
+		<pronunciation>
+			<unique>isnt</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>it</spelling>
@@ -1329,6 +1351,9 @@
 	</word>
 	<word>
 		<spelling>I'm</spelling>
+		<pronunciation>
+			<unique>im</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>jacket</spelling>
@@ -1425,6 +1450,7 @@
 	</word>
 	<word>
 		<spelling>knew</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>knife</spelling>
@@ -1634,12 +1660,17 @@
 	</word>
 	<word>
 		<spelling>meat</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>meet</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>medicine</spelling>
 	</word>
 	<word>
 		<spelling>meet</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>men</spelling>
@@ -1661,9 +1692,24 @@
 	</word>
 	<word>
 		<spelling>minute</spelling>
+		<pronunciation>
+			<unique>minute1</unique>
+		</pronunciation>
+		<pronunciation>
+			<unique>minute2</unique>
+		</pronunciation>
 	</word>
 	<word>
-		<spelling>miss/Miss</spelling>
+		<spelling>miss</spelling>
+        <pronunciation>
+			<unique>miss</unique>
+		</pronunciation>
+	</word>
+	<word>
+		<spelling>Miss</spelling>
+        <pronunciation>
+			<unique>miss</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>mistake</spelling>
@@ -1721,12 +1767,21 @@
 	</word>
 	<word>
 		<spelling>Mr.</spelling>
+	<pronunciation>
+			<unique>Mr</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>Mrs.</spelling>
+		<pronunciation>
+			<unique>Mrs</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>Ms.</spelling>
+		<pronunciation>
+			<unique>Ms</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>much</spelling>
@@ -1784,6 +1839,10 @@
 	</word>
 	<word>
 		<spelling>new</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>knew</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>next</spelling>
@@ -1888,6 +1947,7 @@
 	</word>
 	<word>
 		<spelling>one</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>onion</spelling>
@@ -2177,6 +2237,13 @@
 	</word>
 	<word>
 		<spelling>read</spelling>
+		<pronunciation>
+			<unique>read1</unique>
+		</pronunciation>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>read2</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>ready</spelling>
@@ -2192,6 +2259,10 @@
 	</word>
 	<word>
 		<spelling>red</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>read2</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>refrigerator</spelling>
@@ -2213,12 +2284,17 @@
 	</word>
 	<word>
 		<spelling>right</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>ring</spelling>
 	</word>
 	<word>
 		<spelling>road</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>rode</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>robot</spelling>
@@ -2231,6 +2307,7 @@
 	</word>
 	<word>
 		<spelling>rode</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>room</spelling>
@@ -2243,6 +2320,12 @@
 	</word>
 	<word>
 		<spelling>row</spelling>
+		<pronunciation>
+			<unique>row1</unique>
+		</pronunciation>
+		<pronunciation>
+			<unique>row2</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>rug</spelling>
@@ -2291,9 +2374,13 @@
 	</word>
 	<word>
 		<spelling>sent</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>cent</unique>
+		</pronunciation>
 	</word>
 	<word>
-		<spelling>sentences</spelling>
+		<spelling>sentence</spelling>
 	</word>
 	<word>
 		<spelling>September</spelling>
@@ -2359,9 +2446,6 @@
 		<spelling>six</spelling>
 	</word>
 	<word>
-		<spelling>Six</spelling>
-	</word>
-	<word>
 		<spelling>sixteen</spelling>
 	</word>
 	<word>
@@ -2408,6 +2492,18 @@
 	</word>
 	<word>
 		<spelling>something</spelling>
+	</word>
+	<word>
+		<spelling>someone</spelling>
+	</word>
+	<word>
+		<spelling>sometimes</spelling>
+	</word>
+	<word>
+		<spelling>somebody</spelling>
+	</word>
+	<word>
+		<spelling>somewhere</spelling>
 	</word>
 	<word>
 		<spelling>soon</spelling>
@@ -2564,6 +2660,7 @@
 	</word>
 	<word>
 		<spelling>their</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>them</spelling>
@@ -2573,6 +2670,10 @@
 	</word>
 	<word>
 		<spelling>there</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>their</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>these</spelling>
@@ -2633,6 +2734,10 @@
 	</word>
 	<word>
 		<spelling>to</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>two</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>today</spelling>
@@ -2651,6 +2756,10 @@
 	</word>
 	<word>
 		<spelling>too</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>two</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>took</spelling>
@@ -2699,6 +2808,7 @@
 	</word>
 	<word>
 		<spelling>two</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>umbrella</spelling>
@@ -2720,6 +2830,9 @@
 	</word>
 	<word>
 		<spelling>United States</spelling>
+		<pronunciation>
+			<unique>United_States</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>until</spelling>
@@ -2816,6 +2929,10 @@
 	</word>
 	<word>
 		<spelling>wear</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>where</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>weather</spelling>
@@ -2846,6 +2963,7 @@
 	</word>
 	<word>
 		<spelling>where</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>which</spelling>
@@ -2900,12 +3018,23 @@
 	</word>
 	<word>
 		<spelling>won</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>one</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>won't</spelling>
+		<pronunciation>
+			<unique>wont</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>wood</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>would</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>word</spelling>
@@ -2918,18 +3047,29 @@
 	</word>
 	<word>
 		<spelling>would</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>wouldn't</spelling>
+		<pronunciation>
+			<unique>wouldnt</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>write</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>right</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>wrote</spelling>
 	</word>
 	<word>
 		<spelling>x-ray</spelling>
+		<pronunciation>
+			<unique>xray</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>xylophone</spelling>

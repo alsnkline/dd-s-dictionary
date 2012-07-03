@@ -12,7 +12,6 @@
 		B1741F9115A1FF4000DE3350 /* ComponentSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9015A1FF4000DE3350 /* ComponentSound.m */; };
 		B1741F9715A1FF4000DE3350 /* ComponentSoundSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9615A1FF4000DE3350 /* ComponentSoundSpelling.m */; };
 		B1741F9A15A2220100DE3350 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9915A2220100DE3350 /* Word.m */; };
-		B1741F9C15A225B200DE3350 /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B1741F9B15A225B200DE3350 /* Glenmore_KK_all_words.xml */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
 		B174DA69159F4E98002D5CE8 /* DisplaySection.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA68159F4E98002D5CE8 /* DisplaySection.m */; };
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -44,6 +43,7 @@
 		B17CE6BA15980041005A12D3 /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B17CE6B915980041005A12D3 /* resources.bundle */; };
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
+		B1AF243515A273560081AAF7 /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B1AF243415A273560081AAF7 /* Glenmore_KK_all_words.xml */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
@@ -60,7 +60,6 @@
 		B1741F9615A1FF4000DE3350 /* ComponentSoundSpelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSoundSpelling.m; sourceTree = "<group>"; };
 		B1741F9815A2220100DE3350 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		B1741F9915A2220100DE3350 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
-		B1741F9B15A225B200DE3350 /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
 		B174DA67159F4E98002D5CE8 /* DisplaySection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySection.h; sourceTree = "<group>"; };
 		B174DA68159F4E98002D5CE8 /* DisplaySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySection.m; sourceTree = "<group>"; };
@@ -104,6 +103,7 @@
 		B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		B17CE6BE15980481005A12D3 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
 		B17CE6BF15980481005A12D3 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
+		B1AF243415A273560081AAF7 /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -247,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */,
-				B1741F9B15A225B200DE3350 /* Glenmore_KK_all_words.xml */,
+				B1AF243415A273560081AAF7 /* Glenmore_KK_all_words.xml */,
 			);
 			name = InitialLoadDictionary;
 			sourceTree = "<group>";
@@ -319,8 +319,8 @@
 				B178613B159BCCCD004A79E5 /* t-cat.wav in Resources */,
 				B178613C159BCCCD004A79E5 /* w-would.wav in Resources */,
 				B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */,
-				B1741F9C15A225B200DE3350 /* Glenmore_KK_all_words.xml in Resources */,
 				B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */,
+				B1AF243515A273560081AAF7 /* Glenmore_KK_all_words.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

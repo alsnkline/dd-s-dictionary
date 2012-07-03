@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *heteronymListenButton;
 
 - (IBAction)listenToWord:(id)sender;
+- (void)playAllWords:(NSSet *)pronunciations;
 
 @end
