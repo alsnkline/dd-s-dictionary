@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--  969-Glenmore KK words all no-dupes-->
 <dictionary>
-	<displayName>Your 1st Words</displayName>
+	<displayName>1st Grade All Words</displayName>
 	<fileName>Glenmore_KK_all_words</fileName>
 	<word>
 		<spelling>a</spelling>
@@ -427,6 +427,9 @@
 	</word>
 	<word>
 		<spelling>children</spelling>
+	</word>
+	<word>
+		<spelling>change</spelling>
 	</word>
 	<word>
 		<spelling>chimpanzee</spelling>
@@ -1499,7 +1502,7 @@
 			<unique>lead1</unique>
 		</pronunciation>
 		<pronunciation>
-			<unique>lead22</unique>
+			<unique>lead2</unique>
 		</pronunciation>
 	</word>
 	<word>
