@@ -56,15 +56,31 @@
 - (void) manageListenButtons
 {
     NSSet *pronunciations = self.word.pronunciations;
+    
     if ([pronunciations count] == 1) {
         self.heteronymListenButton.hidden = YES;
         self.listenButton.hidden = NO;
-        self.listenButton.enabled = YES;
+        
+        Pronunciation *pronunciation = [[pronunciations allObjects] lastObject];
+        NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
+        fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
+        
         self.listenButton.frame = CGRectMake((self.listenButton.superview.frame.size.width/2 - self.listenButton.frame.size.width/2), self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
+        
     } else if ([pronunciations count] == 2) {
         self.heteronymListenButton.hidden = NO;
         self.listenButton.hidden = NO;
-        self.listenButton.enabled = YES;
+        
+        for (Pronunciation *pronunciation in pronunciations) {
+            NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
+            if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"1"]]) {
+                fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
+            }
+            if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"2"]]) {
+                fileURL? (self.heteronymListenButton.enabled = YES) : (self.heteronymListenButton.enabled = NO);
+            }
+        }
+        
         self.listenButton.frame = CGRectMake(0, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
     } else {
         self.listenButton.enabled = NO;
@@ -115,6 +131,7 @@
     return self;
 }
 
+
 - (void)playAllWords:(NSSet *)pronunciations
 {
     if ([pronunciations count] == 1) {
@@ -122,10 +139,7 @@
             [self playWord:pronunciation];
         };
     } else {
-        NSMutableArray *pronunciationsArray = [NSMutableArray array];
-        for (Pronunciation *pronunciation in pronunciations) {
-            [pronunciationsArray addObject:pronunciation];
-        };
+        NSMutableArray *pronunciationsArray = [[pronunciations allObjects] mutableCopy];
         self.soundsToPlay = pronunciationsArray;
         NSLog(@"started to play first word");
         Pronunciation *pronunciationToPlay = [self.soundsToPlay lastObject];
