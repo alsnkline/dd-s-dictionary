@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B12EBCF615A4E03D00EAC733 /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B12EBCF515A4E03D00EAC733 /* Glenmore_KK_all_words.xml */; };
+		B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */ = {isa = PBXBuildFile; fileRef = B1420C0C15A51CD000956202 /* icon-72-opaque.png */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
 		B1741F8D15A1FF4000DE3350 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F8C15A1FF3F00DE3350 /* Pronunciation.m */; };
 		B1741F9115A1FF4000DE3350 /* ComponentSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9015A1FF4000DE3350 /* ComponentSound.m */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		B12EBCF515A4E03D00EAC733 /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
+		B1420C0C15A51CD000956202 /* icon-72-opaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72-opaque.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B1741F8B15A1FF3F00DE3350 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
 		B1741F8C15A1FF3F00DE3350 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B1420C0C15A51CD000956202 /* icon-72-opaque.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
 				B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */,
 				B1C114A6159FC81100D60CB4 /* AVFoundation.framework */,
@@ -321,6 +324,7 @@
 				B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */,
 				B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */,
 				B12EBCF615A4E03D00EAC733 /* Glenmore_KK_all_words.xml in Resources */,
+				B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
