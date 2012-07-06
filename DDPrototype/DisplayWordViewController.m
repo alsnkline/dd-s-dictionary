@@ -85,7 +85,7 @@
             [self manageHomonymButtons:pronunciation];
         }
         
-        self.listenButton.frame = CGRectMake(20, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
+        self.listenButton.frame = CGRectMake(30, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
     } else {
         self.listenButton.enabled = NO;
     }
@@ -96,6 +96,7 @@
     NSSet *homonyms = pronunciation.spellings;
     if ([homonyms count] == 1) {
         self.homonymButton.hidden = YES;
+        self.homonym2Button.hidden = YES;
     } else if ([homonyms count] > 1) {
         self.homonymButton.hidden = NO;
         int counter = 0;
@@ -105,10 +106,12 @@
             if (counter == 1) {
                 self.homonymButton.hidden = NO;
                 self.homonymButton.titleLabel.text = word.spelling;
+                self.homonymButton.frame = CGRectMake((self.homonymButton.superview.frame.size.width/2 - self.homonymButton.frame.size.width/2), self.homonymButton.frame.origin.y, self.homonymButton.frame.size.width, self.homonymButton.frame.size.height); 
             }
             if (counter == 2) {
                 self.homonym2Button.hidden = NO;
                 self.homonym2Button.titleLabel.text = word.spelling;
+                self.homonym2Button.frame = CGRectMake((self.homonym2Button.superview.frame.size.width/2 - self.homonym2Button.frame.size.width/2), self.homonym2Button.frame.origin.y, self.homonym2Button.frame.size.width, self.homonym2Button.frame.size.height);
             }
         }
     }
