@@ -31,6 +31,7 @@
 @synthesize heteronymListenButton = _heteronymListenButton;
 @synthesize wordView = _wordView;
 @synthesize homonymButton = _homonymButton;
+@synthesize homonym2Button = _homonym2Button;
 @synthesize audioPlayer = _audioPlayer;
 @synthesize soundsToPlay = _soundsToPlay;
 
@@ -81,6 +82,7 @@
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"2"]]) {
                 fileURL? (self.heteronymListenButton.enabled = YES) : (self.heteronymListenButton.enabled = NO);
             }
+            [self manageHomonymButtons:pronunciation];
         }
         
         self.listenButton.frame = CGRectMake(20, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
@@ -94,11 +96,20 @@
     NSSet *homonyms = pronunciation.spellings;
     if ([homonyms count] == 1) {
         self.homonymButton.hidden = YES;
-    } else if ([homonyms count] == 2) {
+    } else if ([homonyms count] > 1) {
         self.homonymButton.hidden = NO;
+        int counter = 0;
         for (Word *word in homonyms) {
             if (word == self.word) continue;
-            self.homonymButton.titleLabel.text = word.spelling;
+            counter += 1;
+            if (counter == 1) {
+                self.homonymButton.hidden = NO;
+                self.homonymButton.titleLabel.text = word.spelling;
+            }
+            if (counter == 2) {
+                self.homonym2Button.hidden = NO;
+                self.homonym2Button.titleLabel.text = word.spelling;
+            }
         }
     }
 }
@@ -232,6 +243,7 @@
     [self setHeteronymListenButton:nil];
     [self setWordView:nil];
     [self setHomonymButton:nil];
+    [self setHomonym2Button:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

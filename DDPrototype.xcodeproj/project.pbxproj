@@ -15,6 +15,7 @@
 		B1741F9715A1FF4000DE3350 /* ComponentSoundSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9615A1FF4000DE3350 /* ComponentSoundSpelling.m */; };
 		B1741F9A15A2220100DE3350 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9915A2220100DE3350 /* Word.m */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
+		B1745B1515A746CA004FF91C /* icon-72c.png in Resources */ = {isa = PBXBuildFile; fileRef = B1745B1415A746CA004FF91C /* icon-72c.png */; };
 		B174DA69159F4E98002D5CE8 /* DisplaySection.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA68159F4E98002D5CE8 /* DisplaySection.m */; };
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */; };
@@ -64,6 +65,7 @@
 		B1741F9815A2220100DE3350 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		B1741F9915A2220100DE3350 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
+		B1745B1415A746CA004FF91C /* icon-72c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72c.png"; sourceTree = "<group>"; };
 		B174DA67159F4E98002D5CE8 /* DisplaySection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySection.h; sourceTree = "<group>"; };
 		B174DA68159F4E98002D5CE8 /* DisplaySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySection.m; sourceTree = "<group>"; };
 		B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNodeHelper.h; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B1745B1415A746CA004FF91C /* icon-72c.png */,
 				B1420C0C15A51CD000956202 /* icon-72-opaque.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
 				B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */,
@@ -325,6 +328,7 @@
 				B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */,
 				B12EBCF615A4E03D00EAC733 /* Glenmore_KK_all_words.xml in Resources */,
 				B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */,
+				B1745B1515A746CA004FF91C /* icon-72c.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *heteronymListenButton;
 @property (weak, nonatomic) IBOutlet UIView *wordView;
 @property (weak, nonatomic) IBOutlet UIButton *homonymButton;
+@property (weak, nonatomic) IBOutlet UIButton *homonym2Button;
 
 - (IBAction)listenToWord:(id)sender;
 - (void)playAllWords:(NSSet *)pronunciations;
