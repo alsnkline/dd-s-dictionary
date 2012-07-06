@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B12EBCF615A4E03D00EAC733 /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B12EBCF515A4E03D00EAC733 /* Glenmore_KK_all_words.xml */; };
 		B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */ = {isa = PBXBuildFile; fileRef = B1420C0C15A51CD000956202 /* icon-72-opaque.png */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
 		B1741F8D15A1FF4000DE3350 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F8C15A1FF3F00DE3350 /* Pronunciation.m */; };
@@ -15,6 +14,8 @@
 		B1741F9715A1FF4000DE3350 /* ComponentSoundSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9615A1FF4000DE3350 /* ComponentSoundSpelling.m */; };
 		B1741F9A15A2220100DE3350 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B1741F9915A2220100DE3350 /* Word.m */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
+		B174252115A7836F00C6C3FC /* icon-72d.png in Resources */ = {isa = PBXBuildFile; fileRef = B174252015A7836F00C6C3FC /* icon-72d.png */; };
+		B174252815A78D4000C6C3FC /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B174252715A78D4000C6C3FC /* Glenmore_KK_all_words.xml */; };
 		B1745B1515A746CA004FF91C /* icon-72c.png in Resources */ = {isa = PBXBuildFile; fileRef = B1745B1415A746CA004FF91C /* icon-72c.png */; };
 		B174DA69159F4E98002D5CE8 /* DisplaySection.m in Sources */ = {isa = PBXBuildFile; fileRef = B174DA68159F4E98002D5CE8 /* DisplaySection.m */; };
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -53,7 +54,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B12EBCF515A4E03D00EAC733 /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B1420C0C15A51CD000956202 /* icon-72-opaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72-opaque.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B1741F8B15A1FF3F00DE3350 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
@@ -65,6 +65,8 @@
 		B1741F9815A2220100DE3350 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		B1741F9915A2220100DE3350 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
+		B174252015A7836F00C6C3FC /* icon-72d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72d.png"; sourceTree = "<group>"; };
+		B174252715A78D4000C6C3FC /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B1745B1415A746CA004FF91C /* icon-72c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72c.png"; sourceTree = "<group>"; };
 		B174DA67159F4E98002D5CE8 /* DisplaySection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplaySection.h; sourceTree = "<group>"; };
 		B174DA68159F4E98002D5CE8 /* DisplaySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplaySection.m; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B174252015A7836F00C6C3FC /* icon-72d.png */,
 				B1745B1415A746CA004FF91C /* icon-72c.png */,
 				B1420C0C15A51CD000956202 /* icon-72-opaque.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
@@ -253,7 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */,
-				B12EBCF515A4E03D00EAC733 /* Glenmore_KK_all_words.xml */,
+				B174252715A78D4000C6C3FC /* Glenmore_KK_all_words.xml */,
 			);
 			name = InitialLoadDictionary;
 			sourceTree = "<group>";
@@ -326,9 +329,10 @@
 				B178613C159BCCCD004A79E5 /* w-would.wav in Resources */,
 				B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */,
 				B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */,
-				B12EBCF615A4E03D00EAC733 /* Glenmore_KK_all_words.xml in Resources */,
 				B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */,
 				B1745B1515A746CA004FF91C /* icon-72c.png in Resources */,
+				B174252115A7836F00C6C3FC /* icon-72d.png in Resources */,
+				B174252815A78D4000C6C3FC /* Glenmore_KK_all_words.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

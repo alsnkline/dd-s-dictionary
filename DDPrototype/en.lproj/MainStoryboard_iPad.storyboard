@@ -36,7 +36,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wOb-be-bnZ">
-                                                <rect key="frame" x="224" y="0.0" width="72" height="72"/>
+                                                <rect key="frame" x="227" y="0.0" width="72" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="resources.bundle/Images/DyDiListen72-72.png">
@@ -51,7 +51,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VOQ-d4-6KN">
-                                                <rect key="frame" x="74" y="0.0" width="72" height="72"/>
+                                                <rect key="frame" x="56" y="0.0" width="72" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="resources.bundle/Images/DyDiListen72-72.png">
@@ -66,7 +66,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kjj-HT-fDY">
-                                                <rect key="frame" x="29" y="99" width="163" height="72"/>
+                                                <rect key="frame" x="11" y="99" width="163" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                 <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
@@ -78,7 +78,31 @@
                                                 </state>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bYW-5g-iAx">
-                                                <rect key="frame" x="29" y="185" width="163" height="72"/>
+                                                <rect key="frame" x="11" y="185" width="163" height="72"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WE4-DK-VSn">
+                                                <rect key="frame" x="182" y="99" width="163" height="72"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rX3-mq-r7x">
+                                                <rect key="frame" x="182" y="185" width="163" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                 <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
@@ -102,6 +126,8 @@
                     <connections>
                         <outlet property="heteronymListenButton" destination="wOb-be-bnZ" id="jSO-YD-qE1"/>
                         <outlet property="homonym2Button" destination="bYW-5g-iAx" id="gXP-bb-fEM"/>
+                        <outlet property="homonym3Button" destination="WE4-DK-VSn" id="LnX-ao-2Zl"/>
+                        <outlet property="homonym4Button" destination="rX3-mq-r7x" id="hHk-Lm-06m"/>
                         <outlet property="homonymButton" destination="Kjj-HT-fDY" id="E4y-DF-eBG"/>
                         <outlet property="listenButton" destination="VOQ-d4-6KN" id="C4f-mD-nA4"/>
                         <outlet property="spelling" destination="nB3-Yg-V0N" id="e6d-fX-CkL"/>

@@ -32,6 +32,8 @@
 @synthesize wordView = _wordView;
 @synthesize homonymButton = _homonymButton;
 @synthesize homonym2Button = _homonym2Button;
+@synthesize homonym3Button = _homonym3Button;
+@synthesize homonym4Button = _homonym4Button;
 @synthesize audioPlayer = _audioPlayer;
 @synthesize soundsToPlay = _soundsToPlay;
 
@@ -61,10 +63,12 @@
     
     if ([pronunciations count] == 1) {
         self.heteronymListenButton.hidden = YES;
+        self.homonym3Button.hidden = YES;
+        self.homonym4Button.hidden = YES;
         self.listenButton.hidden = NO;
         
         Pronunciation *pronunciation = [[pronunciations allObjects] lastObject];
-        [self manageHomonymButtons:pronunciation];
+        [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button];
         NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
         fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
         
@@ -78,11 +82,12 @@
             NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"1"]]) {
                 fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
+                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button];
             }
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"2"]]) {
                 fileURL? (self.heteronymListenButton.enabled = YES) : (self.heteronymListenButton.enabled = NO);
+                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonym3Button and:self.homonym4Button];
             }
-            [self manageHomonymButtons:pronunciation];
         }
         
         self.listenButton.frame = CGRectMake(30, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
@@ -91,27 +96,28 @@
     }
 }
 
-- (void) manageHomonymButtons:(Pronunciation *)pronunciation
+    
+- (void) manageHomonymsOfPronunciation:(Pronunciation *)pronunciation WithButtons:(UIButton *)button1 and:(UIButton *)button2
 {
     NSSet *homonyms = pronunciation.spellings;
+        
     if ([homonyms count] == 1) {
-        self.homonymButton.hidden = YES;
-        self.homonym2Button.hidden = YES;
+        button1.hidden = YES;
+        button2.hidden = YES;
     } else if ([homonyms count] > 1) {
-        self.homonymButton.hidden = NO;
         int counter = 0;
         for (Word *word in homonyms) {
             if (word == self.word) continue;
             counter += 1;
             if (counter == 1) {
-                self.homonymButton.hidden = NO;
-                self.homonymButton.titleLabel.text = word.spelling;
-                self.homonymButton.frame = CGRectMake((self.homonymButton.superview.frame.size.width/2 - self.homonymButton.frame.size.width/2), self.homonymButton.frame.origin.y, self.homonymButton.frame.size.width, self.homonymButton.frame.size.height); 
+                button1.hidden = NO;
+                button1.titleLabel.text = word.spelling;
+                button1.frame = CGRectMake((self.homonymButton.superview.frame.size.width/2 - self.homonymButton.frame.size.width/2), self.homonymButton.frame.origin.y, self.homonymButton.frame.size.width, self.homonymButton.frame.size.height); 
             }
             if (counter == 2) {
-                self.homonym2Button.hidden = NO;
-                self.homonym2Button.titleLabel.text = word.spelling;
-                self.homonym2Button.frame = CGRectMake((self.homonym2Button.superview.frame.size.width/2 - self.homonym2Button.frame.size.width/2), self.homonym2Button.frame.origin.y, self.homonym2Button.frame.size.width, self.homonym2Button.frame.size.height);
+                button2.hidden = NO;
+                button2.titleLabel.text = word.spelling;
+                button2.frame = CGRectMake((self.homonym2Button.superview.frame.size.width/2 - self.homonym2Button.frame.size.width/2), self.homonym2Button.frame.origin.y, self.homonym2Button.frame.size.width, self.homonym2Button.frame.size.height);
             }
         }
     }
@@ -247,6 +253,8 @@
     [self setWordView:nil];
     [self setHomonymButton:nil];
     [self setHomonym2Button:nil];
+    [self setHomonym3Button:nil];
+    [self setHomonym4Button:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

@@ -1170,6 +1170,10 @@
 	</word>
 	<word>
 		<spelling>hear</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>here</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>heard</spelling>
@@ -1194,6 +1198,7 @@
 	</word>
 	<word>
 		<spelling>here</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>hid</spelling>
