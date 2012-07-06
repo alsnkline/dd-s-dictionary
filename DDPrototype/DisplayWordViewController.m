@@ -30,6 +30,7 @@
 @synthesize listenButton = _listenButton;
 @synthesize heteronymListenButton = _heteronymListenButton;
 @synthesize wordView = _wordView;
+@synthesize homonymButton = _homonymButton;
 @synthesize audioPlayer = _audioPlayer;
 @synthesize soundsToPlay = _soundsToPlay;
 
@@ -62,6 +63,7 @@
         self.listenButton.hidden = NO;
         
         Pronunciation *pronunciation = [[pronunciations allObjects] lastObject];
+        [self manageHomonymButtons:pronunciation];
         NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
         fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
         
@@ -81,9 +83,23 @@
             }
         }
         
-        self.listenButton.frame = CGRectMake(0, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
+        self.listenButton.frame = CGRectMake(20, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
     } else {
         self.listenButton.enabled = NO;
+    }
+}
+
+- (void) manageHomonymButtons:(Pronunciation *)pronunciation
+{
+    NSSet *homonyms = pronunciation.spellings;
+    if ([homonyms count] == 1) {
+        self.homonymButton.hidden = YES;
+    } else if ([homonyms count] == 2) {
+        self.homonymButton.hidden = NO;
+        for (Word *word in homonyms) {
+            if (word == self.word) continue;
+            self.homonymButton.titleLabel.text = word.spelling;
+        }
     }
 }
 
@@ -209,11 +225,13 @@
 
 - (void)viewDidUnload
 {
+    [self setWord:nil];
     [self setSpelling:nil];
     [self setToolbar:nil];
     [self setListenButton:nil];
     [self setHeteronymListenButton:nil];
     [self setWordView:nil];
+    [self setHomonymButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -222,6 +240,5 @@
 {
     return YES;
 }
-
 
 @end
