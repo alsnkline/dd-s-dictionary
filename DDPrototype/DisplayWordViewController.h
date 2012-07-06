@@ -9,10 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @class Word;
+@class DisplayWordViewController;
+
+@protocol DisplayWordViewControllerDelegate <NSObject> //added <NSObject> so we can do a respondsToSelector: on the delegate
+@optional
+
+- (void) DisplayWordViewController:(DisplayWordViewController *) sender 
+                                homonymSelectedWith:(NSString *)spelling;
+@end
+
 
 @interface DisplayWordViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) Word *word; //word for display the model for this MVC
+@property (nonatomic, weak) id <DisplayWordViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *spelling;
 @property (weak, nonatomic) IBOutlet UIButton *listenButton;
 @property (weak, nonatomic) IBOutlet UIButton *heteronymListenButton;

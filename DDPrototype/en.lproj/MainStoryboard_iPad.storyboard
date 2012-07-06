@@ -32,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" id="Emr-H2-6SN">
-                                        <rect key="frame" x="171" y="210" width="357" height="257"/>
+                                        <rect key="frame" x="171" y="210" width="357" height="229"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wOb-be-bnZ">
@@ -66,52 +66,64 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kjj-HT-fDY">
-                                                <rect key="frame" x="11" y="99" width="163" height="72"/>
+                                                <rect key="frame" x="11" y="132" width="163" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
+                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="homoymnButtonPressed:" destination="NaL-TQ-fev" eventType="touchUpInside" id="7l7-IG-AFI"/>
+                                                </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bYW-5g-iAx">
-                                                <rect key="frame" x="11" y="185" width="163" height="72"/>
+                                                <rect key="frame" x="11" y="191" width="163" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
+                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="homoymnButtonPressed:" destination="NaL-TQ-fev" eventType="touchUpInside" id="x8o-3b-rtc"/>
+                                                </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WE4-DK-VSn">
-                                                <rect key="frame" x="182" y="99" width="163" height="72"/>
+                                                <rect key="frame" x="182" y="132" width="163" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
+                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="homoymnButtonPressed:" destination="NaL-TQ-fev" eventType="touchUpInside" id="C2i-hF-gMa"/>
+                                                </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rX3-mq-r7x">
-                                                <rect key="frame" x="182" y="185" width="163" height="72"/>
+                                                <rect key="frame" x="182" y="191" width="163" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite72-72.png">
+                                                <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="homoymnButtonPressed:" destination="NaL-TQ-fev" eventType="touchUpInside" id="31c-Ul-iH4"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -209,7 +221,7 @@
     </scenes>
     <resources>
         <image name="resources.bundle/Images/DyDiListen72-72.png" width="16" height="16"/>
-        <image name="resources.bundle/Images/DyDiWrite72-72.png" width="16" height="16"/>
+        <image name="resources.bundle/Images/DyDiWrite32-32.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>

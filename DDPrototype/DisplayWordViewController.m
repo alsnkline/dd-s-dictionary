@@ -24,6 +24,7 @@
 
 @implementation DisplayWordViewController
 @synthesize word = _word;
+@synthesize delegate = _delegate;
 @synthesize spelling = _spelling;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
@@ -67,37 +68,38 @@
         self.homonym4Button.hidden = YES;
         self.listenButton.hidden = NO;
         
+        self.listenButton.frame = CGRectMake((self.listenButton.superview.frame.size.width/2 - self.listenButton.frame.size.width/2), self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
+        
         Pronunciation *pronunciation = [[pronunciations allObjects] lastObject];
-        [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button];
         NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
         fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
-        
-        self.listenButton.frame = CGRectMake((self.listenButton.superview.frame.size.width/2 - self.listenButton.frame.size.width/2), self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
+                
+        [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button UnderListenButton:self.listenButton];
         
     } else if ([pronunciations count] == 2) {
         self.heteronymListenButton.hidden = NO;
         self.listenButton.hidden = NO;
         
+        self.listenButton.frame = CGRectMake(56, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
+        
         for (Pronunciation *pronunciation in pronunciations) {
             NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"1"]]) {
                 fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
-                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button];
+                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button UnderListenButton:self.listenButton];
             }
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"2"]]) {
                 fileURL? (self.heteronymListenButton.enabled = YES) : (self.heteronymListenButton.enabled = NO);
-                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonym3Button and:self.homonym4Button];
+                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonym3Button and:self.homonym4Button UnderListenButton:self.heteronymListenButton];
             }
         }
-        
-        self.listenButton.frame = CGRectMake(30, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
     } else {
         self.listenButton.enabled = NO;
     }
 }
 
     
-- (void) manageHomonymsOfPronunciation:(Pronunciation *)pronunciation WithButtons:(UIButton *)button1 and:(UIButton *)button2
+- (void) manageHomonymsOfPronunciation:(Pronunciation *)pronunciation WithButtons:(UIButton *)button1 and:(UIButton *)button2 UnderListenButton:(UIButton *)listenbutton
 {
     NSSet *homonyms = pronunciation.spellings;
         
@@ -111,13 +113,20 @@
             counter += 1;
             if (counter == 1) {
                 button1.hidden = NO;
-                button1.titleLabel.text = word.spelling;
-                button1.frame = CGRectMake((self.homonymButton.superview.frame.size.width/2 - self.homonymButton.frame.size.width/2), self.homonymButton.frame.origin.y, self.homonymButton.frame.size.width, self.homonymButton.frame.size.height); 
+                [button1 setTitle:word.spelling forState:UIControlStateNormal];
+                [button1 sizeToFit];
+                CGRect frame = CGRectMake(listenbutton.frame.origin.x - (button1.frame.size.width/2 - listenbutton.frame.size.width/2), button1.frame.origin.y, button1.frame.size.width, button1.frame.size.height);
+                button1.frame = frame;
+                
+                //CGRectMake((button1.superview.frame.size.width/2 - button1.frame.size.width/2), button1.frame.origin.y, button1.frame.size.width, button1.frame.size.height); 
             }
             if (counter == 2) {
                 button2.hidden = NO;
-                button2.titleLabel.text = word.spelling;
-                button2.frame = CGRectMake((self.homonym2Button.superview.frame.size.width/2 - self.homonym2Button.frame.size.width/2), self.homonym2Button.frame.origin.y, self.homonym2Button.frame.size.width, self.homonym2Button.frame.size.height);
+                [button2 setTitle:word.spelling forState:UIControlStateNormal];
+                [button2 sizeToFit];
+                CGRect frame = CGRectMake(listenbutton.frame.origin.x - (button2.frame.size.width/2 - listenbutton.frame.size.width/2), button2.frame.origin.y, button2.frame.size.width, button2.frame.size.height);
+                button2.frame = frame;
+                //CGRectMake((button2.superview.frame.size.width/2 - button2.frame.size.width/2), button2.frame.origin.y, button2.frame.size.width, button2.frame.size.height);
             }
         }
     }
@@ -210,6 +219,13 @@
             [self playWord:pronunciation];
         }
     }
+}
+
+- (IBAction)homoymnButtonPressed:(UIButton *)sender 
+{
+    NSString *spelling = sender.titleLabel.text;
+    //send to delegate
+    [self.delegate DisplayWordViewController:self homonymSelectedWith:spelling];
 }
 
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)playedSuccessfully 

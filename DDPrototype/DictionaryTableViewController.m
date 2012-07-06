@@ -11,7 +11,7 @@
 #import "Word+Create.h"
 
 
-@interface DictionaryTableViewController ()
+@interface DictionaryTableViewController () <DisplayWordViewControllerDelegate>
 
 @end
 
@@ -59,6 +59,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
+    [dwvc setDelegate:self];
 }
 
 - (void)viewDidUnload
@@ -166,23 +168,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath];
+    
+}
+
+- (void) wordSelectedAtIndexPath:(NSIndexPath *)indexPath
+{
     if ([self splitViewWithDisplayWordViewController]) {
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
         Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.word = selectedWord;
         [dwvc playAllWords:selectedWord.pronunciations];
-//        dwvc.spelling.text = selectedWord.spelling;
-        
-//        //work out path for Sound - should come from Word *
-//        NSURL *fileURL = [DictionaryHelper fileURLForSpelling:selectedWord.spelling];
-//        
-//        if (fileURL)
-//        {
-//            dwvc.listenButton.enabled = YES;
-//            [dwvc listenToWord:self];
-//        } else {
-//            dwvc.listenButton.enabled = NO;        
-//        }
     }
 }
 
@@ -193,6 +189,28 @@
         dwvc = nil;
     }
     return dwvc;
+}
+
+- (void) DisplayWordViewController:(DisplayWordViewController *)sender homonymSelectedWith:(NSString *)spelling
+{
+    NSLog(@"homonymSelected with spelling = %@",spelling);
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+    request.predicate = [NSPredicate predicateWithFormat:@"spelling = %@",spelling];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *matches = [self.activeDictionary.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (!matches || ([matches count] != 1)) {
+        //handle error
+    } else if ([matches count] == 1) {
+        Word *homonymn = [matches lastObject];
+        NSIndexPath *indexPathOfHomonymn = [self.fetchedResultsController indexPathForObject:homonymn];
+        [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [self wordSelectedAtIndexPath:indexPathOfHomonymn];
+    }
 }
 
 @end
