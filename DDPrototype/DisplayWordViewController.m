@@ -108,6 +108,8 @@
         button2.hidden = YES;
     } else if ([homonyms count] > 1) {
         int counter = 0;
+        button1.hidden = YES;
+        button2.hidden = YES;
         for (Word *word in homonyms) {
             if (word == self.word) continue;
             counter += 1;

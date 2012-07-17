@@ -4,7 +4,12 @@
 \margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
 
-\f0\fs24 \cf0 each word must have an <word> </word> entry\
+\f0\fs24 \cf0 Dictionary bundles must have a dictionary.xml file and a directory containing the sounds of each word being pronounced.\
+\
+Each dictionary should have a <displayName> this will be used to refer to the dictionary in user displays.\
+and a <bundleName> this is the name of the bundle and will be used as the name for the Core Data UIManagedDocument that is created from the dictionary Bundle.\
+\
+each word must have an <word> </word> entry\
 <spelling> must be unique\
 The contents of spelling will be used as the <pronunciation><unique> unless these tags are provided\
 \

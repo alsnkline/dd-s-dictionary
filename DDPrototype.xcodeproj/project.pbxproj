@@ -11,7 +11,6 @@
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
 		B174252115A7836F00C6C3FC /* icon-72d.png in Resources */ = {isa = PBXBuildFile; fileRef = B174252015A7836F00C6C3FC /* icon-72d.png */; };
-		B174252815A78D4000C6C3FC /* Glenmore_KK_all_words.xml in Resources */ = {isa = PBXBuildFile; fileRef = B174252715A78D4000C6C3FC /* Glenmore_KK_all_words.xml */; };
 		B1745B1515A746CA004FF91C /* icon-72c.png in Resources */ = {isa = PBXBuildFile; fileRef = B1745B1415A746CA004FF91C /* icon-72c.png */; };
 		B177D83015B51B61002A8814 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D82F15B51B61002A8814 /* Dictionary.m */; };
 		B177D83415B51B62002A8814 /* ComponentSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83315B51B62002A8814 /* ComponentSound.m */; };
@@ -19,6 +18,7 @@
 		B177D83A15B51B62002A8814 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83915B51B62002A8814 /* Pronunciation.m */; };
 		B177D83D15B51B62002A8814 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83C15B51B62002A8814 /* Word.m */; };
 		B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83F15B51B98002A8814 /* Dictionary+Create.m */; };
+		B177D84615B531A4002A8814 /* FirstThousandWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B177D84515B531A3002A8814 /* FirstThousandWords.bundle */; };
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */; };
 		B178606215962B3D0047D631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B178606115962B3D0047D631 /* UIKit.framework */; };
@@ -59,7 +59,6 @@
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
 		B174252015A7836F00C6C3FC /* icon-72d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72d.png"; sourceTree = "<group>"; };
-		B174252715A78D4000C6C3FC /* Glenmore_KK_all_words.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Glenmore_KK_all_words.xml; sourceTree = "<group>"; };
 		B1745B1415A746CA004FF91C /* icon-72c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72c.png"; sourceTree = "<group>"; };
 		B177D82E15B51B61002A8814 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
 		B177D82F15B51B61002A8814 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		B177D83C15B51B62002A8814 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B177D83E15B51B98002A8814 /* Dictionary+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dictionary+Create.h"; sourceTree = "<group>"; };
 		B177D83F15B51B98002A8814 /* Dictionary+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dictionary+Create.m"; sourceTree = "<group>"; };
+		B177D84515B531A3002A8814 /* FirstThousandWords.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FirstThousandWords.bundle; sourceTree = "<group>"; };
 		B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNodeHelper.h; sourceTree = "<group>"; };
 		B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNodeHelper.m; sourceTree = "<group>"; };
 		B178605D15962B3D0047D631 /* DDPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,8 +213,9 @@
 				B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */,
 				B1786142159BD6E3004A79E5 /* GDataXMLNode.h */,
 				B1786143159BD6E3004A79E5 /* GDataXMLNode.m */,
+				B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */,
+				B177D84515B531A3002A8814 /* FirstThousandWords.bundle */,
 				B150AEB8159A8277007A1129 /* Phonemes */,
-				B1D367B7159DA3B900BBAA89 /* InitialLoadDictionary */,
 				B178606815962B3D0047D631 /* Supporting Files */,
 			);
 			path = DDPrototype;
@@ -255,15 +256,6 @@
 				B17860A515963BB50047D631 /* Pronunciation+Create.m */,
 			);
 			name = Database;
-			sourceTree = "<group>";
-		};
-		B1D367B7159DA3B900BBAA89 /* InitialLoadDictionary */ = {
-			isa = PBXGroup;
-			children = (
-				B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */,
-				B174252715A78D4000C6C3FC /* Glenmore_KK_all_words.xml */,
-			);
-			name = InitialLoadDictionary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,7 +329,7 @@
 				B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */,
 				B1745B1515A746CA004FF91C /* icon-72c.png in Resources */,
 				B174252115A7836F00C6C3FC /* icon-72d.png in Resources */,
-				B174252815A78D4000C6C3FC /* Glenmore_KK_all_words.xml in Resources */,
+				B177D84615B531A4002A8814 /* FirstThousandWords.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

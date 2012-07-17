@@ -8,21 +8,23 @@
 
 #import "GDataXMLNodeHelper.h"
 #import "GDataXMLNode.h"
-#import "Word+Create.h"
+// #import "Word+Create.h"
+#import "Dictionary+Create.h"
 
 @implementation GDataXMLNodeHelper
 
-+ (NSString *)dataFilePath:(BOOL)forSave {
-    //NSString *datafile = [[NSBundle mainBundle] pathForResource:@"TestDictionary1" ofType:@"xml"];
-    //NSString *datafile = [[NSBundle mainBundle] pathForResource:@"FirstGradeDictionary" ofType:@"xml"];
-    NSString *datafile = [[NSBundle mainBundle] pathForResource:@"Glenmore_KK_all_words" ofType:@"xml"];
+
++ (NSString *)dataFilePathFromDictionaryBundle:(NSBundle *)dictionaryBundle :(BOOL)forSave {
+    
+    NSString *datafile = [dictionaryBundle pathForResource:@"dictionary" ofType:@"xml"];
     NSLog(@"XML file for parsing = %@", datafile);
     return datafile;
 }
 
-+ (NSString *) dictionaryNameFromDoc:(GDataXMLDocument *)doc
++ (NSString *) dictionaryNameFor:(NSString *)element 
+                      FromXMLDoc:(GDataXMLDocument *)doc
 {
-    NSArray *dictionaryNames = [doc.rootElement elementsForName:@"displayName"];
+    NSArray *dictionaryNames = [doc.rootElement elementsForName:element];
     [dictionaryNames count] == 1? NSLog(@"dictionaryName = %@", [dictionaryNames lastObject]): NSLog(@"error getting dictionaryNames");
     if ([dictionaryNames count] == 1) {
         GDataXMLElement *dictionaryNameXML = [dictionaryNames lastObject];
@@ -33,7 +35,6 @@
         return nil;
     }
 }
-
 + (NSString *) singleSubElementForName:(NSString *)subElementName 
                    FromGDataXMLElement:(GDataXMLElement *)element
 {
@@ -48,10 +49,16 @@
     }
 }
 
++ (GDataXMLDocument *) loadDictionaryFromXMLInDictionaryBundle:(NSBundle *)dictionaryBundle Error:(NSError **)error
+{    
+    NSString *filePath = [self dataFilePathFromDictionaryBundle:dictionaryBundle :FALSE];
+    GDataXMLDocument *doc = [self loadDictionaryFromXMLWithFilePath:filePath Error:error];
+    
+    return doc;
+}
 
-+ (GDataXMLDocument *) loadDictionaryFromXMLError:(NSError **)error
++ (GDataXMLDocument *) loadDictionaryFromXMLWithFilePath:(NSString *)filePath Error:(NSError **)error
 {
-    NSString *filePath = [self dataFilePath:FALSE];
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filePath];
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
                                                            options:0 error:error];
@@ -64,10 +71,14 @@
 + (void) processXMLfile:(GDataXMLDocument *)doc 
 intoManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSArray *words = [doc.rootElement elementsForName:@"word"];
-    for (GDataXMLElement *word in words) {
-        [Word wordFromGDataXMLElement:word inManagedObjectContext:context];
-    };
+    
+    GDataXMLElement *dictionary = doc.rootElement;
+    [Dictionary dictionaryFromGDataXMLElement:dictionary inManagedObjectContext:context];
+    
+//    NSArray *words = [doc.rootElement elementsForName:@"word"];
+//    for (GDataXMLElement *word in words) {
+//        [Word wordFromGDataXMLElement:word inManagedObjectContext:context];
+//    };
 }
 
 

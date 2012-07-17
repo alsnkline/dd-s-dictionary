@@ -12,6 +12,13 @@
 
 @implementation DictionaryHelper
 
++ (NSBundle *)defaultDictionaryBundle
+{
+    NSString *pathForDictionaryBundle = [[NSBundle mainBundle] pathForResource:DEFAULT_DICTIONARY_BUNDLE_NAME ofType:@"bundle"];
+    NSBundle *dictionaryBundle = [NSBundle bundleWithPath:pathForDictionaryBundle];
+    return dictionaryBundle;
+}
+
 + (NSURL *)directoryForXMLDictionaryWithName:(NSString *)dictionaryName
 {
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
@@ -51,6 +58,22 @@
         }
     }
     return dirUrl;
+}
+
++ (NSArray *)currentContentsOfdictionaryDirectory
+{
+    NSError *error = nil;
+    NSFileManager *localFileManager = [[NSFileManager alloc] init];
+    NSURL *dictionaryDirectoryURL = [DictionaryHelper dictionaryDirectory];
+    NSArray *currentDictionaryDirectory = [localFileManager contentsOfDirectoryAtURL:dictionaryDirectoryURL includingPropertiesForKeys:nil options: NSDirectoryEnumerationSkipsHiddenFiles error:&error];
+    //    NSLog(@"currentCache = %@",currentCache);
+    
+    if (!error) {
+        return currentDictionaryDirectory;
+    } else {
+        NSLog(@"error getting contentsOfDirectoryAtPath = %@",error);
+        return nil;
+    }
 }
 
 + (NSURL *)dictionaryURLFor:(NSString *)dictionaryName
@@ -203,6 +226,36 @@
     }
     return displayName;
 }
+
++ (void)numberOfWordsInCoreDataDocument:(UIManagedDocument *)activeDictionary
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+    NSError *error = nil;
+    NSArray *results = [activeDictionary.managedObjectContext executeFetchRequest:request error:&error];
+    
+    NSLog(@"%i words in your Dictionary", [results count]);
+    
+}
+
++ (NSString *)stringForState:(UIDocumentState)state 
+{ 
+    NSMutableArray *states = [NSMutableArray array]; 
+    if (state == 0) { 
+        [states addObject:@"Normal"]; 
+    } if (state & UIDocumentStateClosed) { 
+        [states addObject:@"Closed"]; 
+    } if (state & UIDocumentStateInConflict) { 
+        [states addObject:@"In Conflict"]; 
+    } if (state & UIDocumentStateSavingError) { 
+        [states addObject:@"Saving error"]; 
+    } if (state & UIDocumentStateEditingDisabled) { 
+        [states addObject:@"Editing disabled"]; 
+    } 
+    return [states componentsJoinedByString:@", "]; 
+}   
+// Example use: NSLog(@"Loaded File URL: %@, State: %@, Last Modified: %@", [doc.fileURL lastPathComponent], [self stringForState:state], version.modificationDate.mediumString);
+
 
 
 @end
