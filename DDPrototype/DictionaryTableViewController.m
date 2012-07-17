@@ -12,12 +12,16 @@
 
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *autoControlButton;
+@property (nonatomic) BOOL playWordsOnSelection;
 
 @end
 
 @implementation DictionaryTableViewController
+@synthesize autoControlButton = _autoControlButton;
 
 @synthesize activeDictionary = _activeDictionary;
+@synthesize playWordsOnSelection = _playWordsOnSelection;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -61,10 +65,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
     [dwvc setDelegate:self];
+    self.playWordsOnSelection = YES;
 }
 
 - (void)viewDidUnload
 {
+    [self setAutoControlButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -178,7 +184,9 @@
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
         Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.word = selectedWord;
-        [dwvc playAllWords:selectedWord.pronunciations];
+        if (self.playWordsOnSelection) {
+            [dwvc playAllWords:selectedWord.pronunciations];
+        }
     }
 }
 
@@ -210,6 +218,16 @@
         NSIndexPath *indexPathOfHomonymn = [self.fetchedResultsController indexPathForObject:homonymn];
         [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self wordSelectedAtIndexPath:indexPathOfHomonymn];
+    }
+}
+- (IBAction)autoButtonPressed:(UIButton *)sender 
+{
+    if (self.playWordsOnSelection) {
+        self.playWordsOnSelection = NO;
+        self.autoControlButton.title = @"auto:NO";
+    } else {
+        self.playWordsOnSelection = YES;
+        self.autoControlButton.title = @"auto:YES";
     }
 }
 
