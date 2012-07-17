@@ -31,10 +31,10 @@
 @synthesize listenButton = _listenButton;
 @synthesize heteronymListenButton = _heteronymListenButton;
 @synthesize wordView = _wordView;
-@synthesize homonymButton = _homonymButton;
-@synthesize homonym2Button = _homonym2Button;
-@synthesize homonym3Button = _homonym3Button;
-@synthesize homonym4Button = _homonym4Button;
+@synthesize homonymButton1 = _homonymButton1;
+@synthesize homonymButton2 = _homonymButton2;
+@synthesize homonymButton3 = _homonymButton3;
+@synthesize homonymButton4 = _homonymButton4;
 @synthesize audioPlayer = _audioPlayer;
 @synthesize soundsToPlay = _soundsToPlay;
 
@@ -64,8 +64,8 @@
     
     if ([pronunciations count] == 1) {
         self.heteronymListenButton.hidden = YES;
-        self.homonym3Button.hidden = YES;
-        self.homonym4Button.hidden = YES;
+        self.homonymButton3.hidden = YES;
+        self.homonymButton4.hidden = YES;
         self.listenButton.hidden = NO;
         
         self.listenButton.frame = CGRectMake((self.listenButton.superview.frame.size.width/2 - self.listenButton.frame.size.width/2), self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
@@ -74,7 +74,7 @@
         NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
         fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
                 
-        [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button UnderListenButton:self.listenButton];
+        [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton1 and:self.homonymButton2 UnderListenButton:self.listenButton];
         
     } else if ([pronunciations count] == 2) {
         self.heteronymListenButton.hidden = NO;
@@ -86,11 +86,11 @@
             NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"1"]]) {
                 fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
-                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton and:self.homonym2Button UnderListenButton:self.listenButton];
+                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton1 and:self.homonymButton2 UnderListenButton:self.listenButton];
             }
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"2"]]) {
                 fileURL? (self.heteronymListenButton.enabled = YES) : (self.heteronymListenButton.enabled = NO);
-                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonym3Button and:self.homonym4Button UnderListenButton:self.heteronymListenButton];
+                [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton3 and:self.homonymButton4 UnderListenButton:self.heteronymListenButton];
             }
         }
     } else {
@@ -267,10 +267,10 @@
     [self setListenButton:nil];
     [self setHeteronymListenButton:nil];
     [self setWordView:nil];
-    [self setHomonymButton:nil];
-    [self setHomonym2Button:nil];
-    [self setHomonym3Button:nil];
-    [self setHomonym4Button:nil];
+    [self setHomonymButton1:nil];
+    [self setHomonymButton2:nil];
+    [self setHomonymButton3:nil];
+    [self setHomonymButton4:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

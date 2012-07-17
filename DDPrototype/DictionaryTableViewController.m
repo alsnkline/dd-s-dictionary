@@ -44,7 +44,7 @@
     if (_activeDictionary != activeDictionary) {
         _activeDictionary = activeDictionary;
         [self setupFetchedResultsController];
-        self.title = [activeDictionary.fileURL lastPathComponent];
+        self.title = [DictionaryHelper dictionaryDisplayNameFrom:activeDictionary];
     }
 }
          

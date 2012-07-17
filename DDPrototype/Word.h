@@ -2,21 +2,22 @@
 //  Word.h
 //  DDPrototype
 //
-//  Created by Alison Kline on 7/2/12.
+//  Created by Alison Kline on 7/16/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Pronunciation;
+@class Dictionary, Pronunciation;
 
 @interface Word : NSManagedObject
 
 @property (nonatomic, retain) NSString * fetchedResultsSection;
-@property (nonatomic, retain) NSString * spelling;
 @property (nonatomic, retain) NSNumber * isHomophone;
+@property (nonatomic, retain) NSString * spelling;
 @property (nonatomic, retain) NSSet *pronunciations;
+@property (nonatomic, retain) Dictionary *inDictionary;
 @end
 
 @interface Word (CoreDataGeneratedAccessors)

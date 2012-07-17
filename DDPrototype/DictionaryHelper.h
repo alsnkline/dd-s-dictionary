@@ -27,5 +27,6 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController;
 + (void)deleteDictionary:(NSString *)dictionaryName;
 + (NSURL *)fileURLForPronunciation:(NSString *)word;
++ (NSString *)dictionaryDisplayNameFrom:(UIManagedDocument *)activeDictionary;
 
 @end

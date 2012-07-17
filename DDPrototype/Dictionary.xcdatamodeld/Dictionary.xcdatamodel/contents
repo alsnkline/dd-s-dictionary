@@ -12,6 +12,11 @@
         <attribute name="silentLetters" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="spellingOf" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ComponentSound" inverseName="componentSoundSpelling" inverseEntity="ComponentSound" syncable="YES"/>
     </entity>
+    <entity name="Dictionary" representedClassName="Dictionary" syncable="YES">
+        <attribute name="bundleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="inDictionary" inverseEntity="Word" syncable="YES"/>
+    </entity>
     <entity name="Pronunciation" representedClassName="Pronunciation" syncable="YES">
         <attribute name="fileLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pronuciationData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -23,6 +28,7 @@
         <attribute name="fetchedResultsSection" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isHomophone" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="spelling" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inDictionary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dictionary" inverseName="words" inverseEntity="Dictionary" syncable="YES"/>
         <relationship name="pronunciations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="spellings" inverseEntity="Pronunciation" syncable="YES"/>
     </entity>
     <elements>
@@ -30,5 +36,6 @@
         <element name="ComponentSoundSpelling" positionX="682" positionY="513" width="173" height="90"/>
         <element name="Pronunciation" positionX="333" positionY="285" width="128" height="120"/>
         <element name="Word" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Dictionary" positionX="-45" positionY="135" width="128" height="90"/>
     </elements>
 </model>

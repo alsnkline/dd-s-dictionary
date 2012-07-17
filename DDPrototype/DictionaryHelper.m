@@ -7,7 +7,7 @@
 //
 
 #import "DictionaryHelper.h"
-#import "Word+Create.h"
+#import "Dictionary+Create.h"
 #import "GDataXMLNode.h"
 
 @implementation DictionaryHelper
@@ -185,6 +185,23 @@
     } else {
         return nil;
     }
+}
+
++ (NSString *)dictionaryDisplayNameFrom:(UIManagedDocument *)activeDictionary
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Dictionary"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *matches = [activeDictionary.managedObjectContext executeFetchRequest:request error:&error];
+    
+    NSString *displayName = nil;
+    if ([matches count] == 1) {
+        Dictionary *dictionary = [matches lastObject];
+        displayName = dictionary.displayName;
+    }
+    return displayName;
 }
 
 
