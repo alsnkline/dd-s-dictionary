@@ -810,9 +810,7 @@
 	</word>
 	<word>
 		<spelling>eye</spelling>
-	</word>
-	<word>
-		<spelling>eyes</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>face</spelling>
@@ -927,6 +925,10 @@
 	</word>
 	<word>
 		<spelling>for</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>four</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>forty</spelling>
@@ -936,6 +938,7 @@
 	</word>
 	<word>
 		<spelling>four</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>fourteen</spelling>
@@ -1281,6 +1284,10 @@
 	</word>
 	<word>
 		<spelling>I</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>eye</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>ice</spelling>
