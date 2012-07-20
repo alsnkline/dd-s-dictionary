@@ -17,7 +17,9 @@
 @implementation DictionarySetupViewController
 @synthesize dictionaryBundle = _dictionaryBundle;
 @synthesize delegate = _delegate;
-@synthesize statusLable = _statusLable;
+@synthesize progressMessageLabel = _progressMessageLable;
+@synthesize dictionaryName = _dictionaryName;
+@synthesize spinner = _spinner;
 
 - (void)setDictionaryBundle:(NSBundle *)dictionaryBundle
 {
@@ -28,8 +30,6 @@
         if (doc) { 
             [self processDoc:doc];
         }
-            
-//        self.title = [DictionaryHelper dictionaryDisplayNameFrom:??];
     }
 }
 
@@ -48,9 +48,19 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //show name of dictionary being processed to user
+    self.dictionaryName.text = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:[self loadDictionaryFromXMLInDictionaryBundle:self.dictionaryBundle]];
+    [self.spinner startAnimating];
+}
+
 - (void)viewDidUnload
 {
-    [self setStatusLable:nil];
+    [self setProgressMessageLabel:nil];
+    [self setDictionaryName:nil];
+    [self setSpinner:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -102,12 +112,13 @@
     [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase) {
         
         NSLog(@"Got dictionary %@ doc state = %@", [dictionaryDatabase.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionaryDatabase.documentState]);
+        
         if (dictionaryDatabase.documentState == UIDocumentStateNormal) {
             
             if (XMLdoc) {
                 
                 //process file to populate and save the UIManagedDocument (no way to force reanalysis for changes currently)
-                [GDataXMLNodeHelper processXMLfile:XMLdoc intoManagedObjectContext:dictionaryDatabase.managedObjectContext];
+                [GDataXMLNodeHelper processXMLfile:XMLdoc intoManagedObjectContext:dictionaryDatabase.managedObjectContext showProgressIn:self.progressMessageLabel];
                 [DictionaryHelper numberOfWordsInCoreDataDocument:dictionaryDatabase];
             }
             

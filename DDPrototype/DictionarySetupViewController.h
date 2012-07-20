@@ -19,7 +19,9 @@
 @interface DictionarySetupViewController : UIViewController
 @property (strong, nonatomic) NSBundle *dictionaryBundle;        //The model for this MVC
 @property (nonatomic, weak) id <DictionarySetupViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UILabel *statusLable;
+@property (weak, nonatomic) IBOutlet UILabel *progressMessageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dictionaryName;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 + (void)loadDictionarywithName:(NSString *)dictionaryName passAroundIn:(UIViewController *)rootViewController;
 

@@ -14,5 +14,6 @@
 
 
 + (Dictionary *)dictionaryFromGDataXMLElement:(GDataXMLElement *)dictionaryXML 
-                       inManagedObjectContext:(NSManagedObjectContext *)context;
+                       inManagedObjectContext:(NSManagedObjectContext *)context 
+                               showProgressIn:(UILabel *)label;
 @end

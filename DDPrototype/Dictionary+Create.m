@@ -14,7 +14,8 @@
 @implementation Dictionary (Create)
 
 + (Dictionary *)dictionaryFromGDataXMLElement:(GDataXMLElement *)dictionaryXML 
-           inManagedObjectContext:(NSManagedObjectContext *)context
+           inManagedObjectContext:(NSManagedObjectContext *)context 
+                               showProgressIn:(UILabel *)label
 {
     Dictionary *dictionary = nil;
     //    NSLog(@"GDataXMLElement = %@", wordXML);
@@ -44,6 +45,8 @@
         for (GDataXMLElement *word in XMLWords) {
             Word *wordForElement = [Word wordFromGDataXMLElement:word inManagedObjectContext:context];
             [words addObject:wordForElement];
+            label.text = [NSString stringWithFormat:@"added word '%@'", wordForElement.spelling];
+            [label setNeedsDisplay];
         };
 
         dictionary.words = words;

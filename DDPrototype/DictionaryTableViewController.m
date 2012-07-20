@@ -92,15 +92,6 @@
         dsPopoverC.popoverContentSize = CGSizeMake(457, 297);
         [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2, 100, 0, 0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         [dsPopoverC setDelegate:self];
-        
-        
-        // give it the scource file for the dictionary
-        //let it do its thing
-        //dismiss it on completion - delegate???
-        
-        //Get scource file for words to populate dictionary -
-        
-        
     }
 }
 

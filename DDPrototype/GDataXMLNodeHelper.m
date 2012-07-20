@@ -69,11 +69,12 @@
 }
 
 + (void) processXMLfile:(GDataXMLDocument *)doc 
-intoManagedObjectContext:(NSManagedObjectContext *)context
+intoManagedObjectContext:(NSManagedObjectContext *)context 
+           showProgressIn:(UILabel *)label
 {
     
     GDataXMLElement *dictionary = doc.rootElement;
-    [Dictionary dictionaryFromGDataXMLElement:dictionary inManagedObjectContext:context];
+    [Dictionary dictionaryFromGDataXMLElement:dictionary inManagedObjectContext:context showProgressIn:(UILabel *)label];
     
 //    NSArray *words = [doc.rootElement elementsForName:@"word"];
 //    for (GDataXMLElement *word in words) {

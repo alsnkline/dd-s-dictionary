@@ -22,6 +22,7 @@
 + (NSString *) singleSubElementForName:(NSString *)subElementName 
                    FromGDataXMLElement:(GDataXMLElement *)element;
 + (void) processXMLfile:(GDataXMLDocument *)doc 
- intoManagedObjectContext:(NSManagedObjectContext *)context;
+ intoManagedObjectContext:(NSManagedObjectContext *)context 
+           showProgressIn:(UILabel *)label;
 
 @end
