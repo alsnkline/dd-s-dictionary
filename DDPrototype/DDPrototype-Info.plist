@@ -14,7 +14,9 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>icon-72d.png</string>
+				<string>Default-Landscape~ipad.png</string>
+				<string>Default-Portrait~ipad.png</string>
+				<string>icon-72e.png</string>
 			</array>
 		</dict>
 	</dict>

@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */ = {isa = PBXBuildFile; fileRef = B1420C0C15A51CD000956202 /* icon-72-opaque.png */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
-		B174252115A7836F00C6C3FC /* icon-72d.png in Resources */ = {isa = PBXBuildFile; fileRef = B174252015A7836F00C6C3FC /* icon-72d.png */; };
-		B1745B1515A746CA004FF91C /* icon-72c.png in Resources */ = {isa = PBXBuildFile; fileRef = B1745B1415A746CA004FF91C /* icon-72c.png */; };
 		B177D83015B51B61002A8814 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D82F15B51B61002A8814 /* Dictionary.m */; };
 		B177D83415B51B62002A8814 /* ComponentSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83315B51B62002A8814 /* ComponentSound.m */; };
 		B177D83715B51B62002A8814 /* ComponentSoundSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83615B51B62002A8814 /* ComponentSoundSpelling.m */; };
@@ -48,6 +45,10 @@
 		B17CE6BA15980041005A12D3 /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B17CE6B915980041005A12D3 /* resources.bundle */; };
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
+		B17E2A0B15B5A8720021816E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0A15B5A8720021816E /* Default-Landscape~ipad.png */; };
+		B17E2A0D15B5A8780021816E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0C15B5A8780021816E /* Default-Portrait~ipad.png */; };
+		B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0E15B5ECCD0021816E /* icon-72e.png */; };
+		B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A1015B5ECFA0021816E /* iTunesArtwork */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
@@ -55,11 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B1420C0C15A51CD000956202 /* icon-72-opaque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72-opaque.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
-		B174252015A7836F00C6C3FC /* icon-72d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72d.png"; sourceTree = "<group>"; };
-		B1745B1415A746CA004FF91C /* icon-72c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72c.png"; sourceTree = "<group>"; };
 		B177D82E15B51B61002A8814 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
 		B177D82F15B51B61002A8814 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
 		B177D83215B51B62002A8814 /* ComponentSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSound.h; sourceTree = "<group>"; };
@@ -113,6 +111,10 @@
 		B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		B17CE6BE15980481005A12D3 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
 		B17CE6BF15980481005A12D3 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
+		B17E2A0A15B5A8720021816E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		B17E2A0C15B5A8780021816E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		B17E2A0E15B5ECCD0021816E /* icon-72e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72e.png"; sourceTree = "<group>"; };
+		B17E2A1015B5ECFA0021816E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -161,9 +163,10 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
-				B174252015A7836F00C6C3FC /* icon-72d.png */,
-				B1745B1415A746CA004FF91C /* icon-72c.png */,
-				B1420C0C15A51CD000956202 /* icon-72-opaque.png */,
+				B17E2A1015B5ECFA0021816E /* iTunesArtwork */,
+				B17E2A0E15B5ECCD0021816E /* icon-72e.png */,
+				B17E2A0C15B5A8780021816E /* Default-Portrait~ipad.png */,
+				B17E2A0A15B5A8720021816E /* Default-Landscape~ipad.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
 				B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */,
 				B1C114A6159FC81100D60CB4 /* AVFoundation.framework */,
@@ -326,10 +329,11 @@
 				B178613C159BCCCD004A79E5 /* w-would.wav in Resources */,
 				B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */,
 				B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */,
-				B1420C0D15A51CD000956202 /* icon-72-opaque.png in Resources */,
-				B1745B1515A746CA004FF91C /* icon-72c.png in Resources */,
-				B174252115A7836F00C6C3FC /* icon-72d.png in Resources */,
 				B177D84615B531A4002A8814 /* FirstThousandWords.bundle in Resources */,
+				B17E2A0B15B5A8720021816E /* Default-Landscape~ipad.png in Resources */,
+				B17E2A0D15B5A8780021816E /* Default-Portrait~ipad.png in Resources */,
+				B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */,
+				B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +428,56 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B178607F15962B3D0047D631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
+				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B178608015962B3D0047D631 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
+				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B17E2A1215B5EF1E0021816E /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -439,9 +493,9 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Ad Hoc";
 		};
-		B178607F15962B3D0047D631 /* Debug */ = {
+		B17E2A1315B5EF1E0021816E /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -449,21 +503,10 @@
 				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
-			name = Debug;
-		};
-		B178608015962B3D0047D631 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
-				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
+			name = "Ad Hoc";
 		};
 /* End XCBuildConfiguration section */
 
@@ -473,6 +516,7 @@
 			buildConfigurations = (
 				B178607C15962B3D0047D631 /* Debug */,
 				B178607D15962B3D0047D631 /* Release */,
+				B17E2A1215B5EF1E0021816E /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -482,6 +526,7 @@
 			buildConfigurations = (
 				B178607F15962B3D0047D631 /* Debug */,
 				B178608015962B3D0047D631 /* Release */,
+				B17E2A1315B5EF1E0021816E /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

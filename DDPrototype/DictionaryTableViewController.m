@@ -65,7 +65,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
     [dwvc setDelegate:self];
-    self.playWordsOnSelection = YES;
+    self.playWordsOnSelection = NO;
 }
 
 - (void)viewDidUnload

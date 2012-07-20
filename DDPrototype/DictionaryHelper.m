@@ -182,7 +182,8 @@
 
 + (NSURL *)fileURLForPronunciation:(NSString *)word
 {
-    NSString *pathForSoundName = [NSString pathWithComponents:[NSArray arrayWithObjects:@"resources.bundle",@"Sounds",word, nil]];
+    NSString *pathComponentForBundle = [NSString stringWithFormat:@"%@.bundle",DEFAULT_DICTIONARY_BUNDLE_NAME];
+    NSString *pathForSoundName = [NSString pathWithComponents:[NSArray arrayWithObjects:pathComponentForBundle,@"Sounds",word, nil]];
     NSLog(@"current word = %@", word);
     NSLog(@"pathForSoundName = %@",pathForSoundName);
     NSString *soundName = [[NSBundle mainBundle] pathForResource:pathForSoundName ofType:@"m4a"];
