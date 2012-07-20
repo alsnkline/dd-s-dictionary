@@ -9,19 +9,21 @@
 #import "DictionaryTableViewController.h"
 #import "DisplayWordViewController.h"
 #import "Word+Create.h"
+#import "DictionarySetupViewController.h"
 
 
-@interface DictionaryTableViewController () <DisplayWordViewControllerDelegate>
+@interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, DictionarySetupViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *autoControlButton;
 @property (nonatomic) BOOL playWordsOnSelection;
+@property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover
 
 @end
 
 @implementation DictionaryTableViewController
 @synthesize autoControlButton = _autoControlButton;
-
 @synthesize activeDictionary = _activeDictionary;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
+@synthesize popoverController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -66,7 +68,57 @@
     DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
     [dwvc setDelegate:self];
     self.playWordsOnSelection = NO;
+    
+    //see if there are any dictionary's
+    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
+    NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
+    
+    if ([dictionariesAvailable count] == 1) {
+        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
+        NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
+        NSLog(@"Opening the 1 dicitonary available its name: %@", activeDictionaryName);
+        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.view.window.rootViewController];
+        
+    } else {
+        NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
+        
+        // instanciate a Dictionary Setup controller and show its view in a popover
+        DictionarySetupViewController *dsvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Processing Dictionary View"];
+        dsvc.dictionaryBundle = dictionaryShippingWithApp;
+        [dsvc setDelegate:self];
+        
+        UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:dsvc];
+        self.popoverController = dsPopoverC;
+        dsPopoverC.popoverContentSize = CGSizeMake(457, 297);
+        [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2, 100, 0, 0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [dsPopoverC setDelegate:self];
+        
+        
+        // give it the scource file for the dictionary
+        //let it do its thing
+        //dismiss it on completion - delegate???
+        
+        //Get scource file for words to populate dictionary -
+        
+        
+    }
 }
+
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    return NO;
+}
+
+-(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popoverController = nil;
+}
+
+- (void)DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)sender
+{
+    [self.popoverController dismissPopoverAnimated:YES];
+}
+
 
 - (void)viewDidUnload
 {

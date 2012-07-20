@@ -45,6 +45,7 @@
 		B17CE6BA15980041005A12D3 /* resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B17CE6B915980041005A12D3 /* resources.bundle */; };
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
+		B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */; };
 		B17E2A0B15B5A8720021816E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0A15B5A8720021816E /* Default-Landscape~ipad.png */; };
 		B17E2A0D15B5A8780021816E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0C15B5A8780021816E /* Default-Portrait~ipad.png */; };
 		B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0E15B5ECCD0021816E /* icon-72e.png */; };
@@ -111,6 +112,8 @@
 		B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		B17CE6BE15980481005A12D3 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
 		B17CE6BF15980481005A12D3 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
+		B17D466815B8DA8D0059214F /* DictionarySetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionarySetupViewController.h; sourceTree = "<group>"; };
+		B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionarySetupViewController.m; sourceTree = "<group>"; };
 		B17E2A0A15B5A8720021816E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		B17E2A0C15B5A8780021816E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B17E2A0E15B5ECCD0021816E /* icon-72e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72e.png"; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				B178607615962B3D0047D631 /* MainStoryboard_iPad.storyboard */,
 				B17CE6B915980041005A12D3 /* resources.bundle */,
 				B178608B159638050047D631 /* Database */,
+				B17D466815B8DA8D0059214F /* DictionarySetupViewController.h */,
+				B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */,
 				B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */,
 				B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */,
 				B17CE6BC15980349005A12D3 /* CoreDataTableViewController.h */,
@@ -361,6 +366,7 @@
 				B177D83A15B51B62002A8814 /* Pronunciation.m in Sources */,
 				B177D83D15B51B62002A8814 /* Word.m in Sources */,
 				B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */,
+				B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
