@@ -90,7 +90,7 @@
         UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:dsvc];
         self.popoverController = dsPopoverC;
         dsPopoverC.popoverContentSize = CGSizeMake(457, 297);
-        [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.frame.size.width/2, 100, 0, 0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.bounds.size.width/2, 100, 0, 0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         [dsPopoverC setDelegate:self];
     }
 }
@@ -122,6 +122,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+-(void)viewDidLayoutSubviews
+{
+//    [super viewDidLayoutSubviews];
+ //   [self.popoverController 
 }
 
 //- (NSArray *)alphabet

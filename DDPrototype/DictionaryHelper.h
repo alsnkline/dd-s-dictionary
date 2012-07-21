@@ -30,6 +30,7 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
 + (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock;
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController;
 + (void)deleteDictionary:(NSString *)dictionaryName;
++ (void)saveDictionary:(UIManagedDocument *)dictionary;
 + (NSURL *)fileURLForPronunciation:(NSString *)word;
 + (NSString *)dictionaryDisplayNameFrom:(UIManagedDocument *)activeDictionary;
 + (void)numberOfWordsInCoreDataDocument:(UIManagedDocument *)activeDictionary;

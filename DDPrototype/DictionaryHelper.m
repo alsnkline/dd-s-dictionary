@@ -106,6 +106,8 @@
             if (success){
                 completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc created");
+                [DictionaryHelper saveDictionary:dictionaryDatabase];
+                
             } else {
                 NSLog(@"failed to saveForCreating %@", [dictionaryDatabase.fileURL lastPathComponent]);
             }
@@ -167,6 +169,17 @@
         NSLog(@"No dictionary of that name here!");
     }
     
+}
+
++ (void)saveDictionary:(UIManagedDocument *)dictionary
+{
+    [dictionary saveToURL:dictionary.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^ (BOOL success) {
+        if (success) {
+            NSLog(@"Saved Dictionary URL = %@ doc state = %@", [dictionary.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionary.documentState]);
+        } else {
+            NSLog(@"Save failed URL = %@ doc state = %@", [dictionary.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionary.documentState]);
+        };
+    }];
 }
 
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundNavBarVCs:(NSArray *)navViewControllers
