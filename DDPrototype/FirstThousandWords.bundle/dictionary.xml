@@ -83,6 +83,7 @@
 	</word>
 	<word>
 		<spelling>ant</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>any</spelling>
@@ -101,10 +102,6 @@
 	</word>
 	<word>
 		<spelling>aren't</spelling>
-		<isHomophone>yes</isHomophone>
-		<pronunciation>
-			<unique>aunt</unique>
-		</pronunciation>
 	</word>
 	<word>
 		<spelling>arm</spelling>
@@ -137,6 +134,9 @@
 	<word>
 		<spelling>aunt</spelling>
 		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>ant</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>autumn</spelling>
@@ -1020,9 +1020,6 @@
 	</word>
 	<word>
 		<spelling>gift</spelling>
-	</word>
-	<word>
-		<spelling>gin</spelling>
 	</word>
 	<word>
 		<spelling>giraffe</spelling>
@@ -2214,7 +2211,7 @@
 	<word>
 		<spelling>quietly</spelling>
 	</word>
-    <word>
+	<word>
 		<spelling>quit</spelling>
 	</word>
 	<word>
