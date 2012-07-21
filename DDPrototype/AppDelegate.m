@@ -22,14 +22,14 @@
     // Override point for customization after application launch.
     
     //see if there are any dictionary's
-    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
-    NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
-    if ([dictionariesAvailable count] == 1) {
-        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
-        NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
-        NSLog(@"Opening the 1 dicitonary available its name: %@", activeDictionaryName);
-        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.window.rootViewController] ;
-    }
+//    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
+//    NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
+//    if ([dictionariesAvailable count] == 1) {
+//        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
+//        NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
+//        NSLog(@"Opening the 1 dicitonary available its name: %@", activeDictionaryName);
+//        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.window.rootViewController] ;
+//    }
     //else {
 //        //Get scource file for words to populate dictionary -
 //        NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
