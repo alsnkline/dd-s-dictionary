@@ -106,7 +106,7 @@
             if (success){
                 completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc created");
-//                [DictionaryHelper saveDictionary:dictionaryDatabase];
+                [DictionaryHelper saveDictionary:dictionaryDatabase];
                 
             } else {
                 NSLog(@"failed to saveForCreating %@", [dictionaryDatabase.fileURL lastPathComponent]);

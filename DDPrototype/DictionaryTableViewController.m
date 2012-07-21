@@ -73,13 +73,22 @@
     NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
     NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
     
-    if ([dictionariesAvailable count] == 1) {
-        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
-        NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
-        NSLog(@"Opening the 1 dicitonary available its name: %@", activeDictionaryName);
-        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.view.window.rootViewController];
+//    if ([dictionariesAvailable count] == 1) {
+//        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
+//        NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
+//        NSLog(@"Opening the 1 dicitonary available its name: %@", activeDictionaryName);
+//        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.view.];  //self.view.window.rootviewcontroller
+//        
+    //could try different ways to get rootViewController as why this code is not working but the same in App Delegate does.
+    
+//    } else {
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    if (!self.activeDictionary) {   //as managment an exsisting dictionary is currently running in appDelegate
         
-    } else {
         NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
         
         // instanciate a Dictionary Setup controller and show its view in a popover
@@ -89,11 +98,41 @@
         
         UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:dsvc];
         self.popoverController = dsPopoverC;
-        dsPopoverC.popoverContentSize = CGSizeMake(457, 297);
-        [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.bounds.size.width/2, 100, 0, 0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        dsPopoverC.popoverContentSize = CGSizeMake(457, 247);
+        NSLog(@"self.view.window = %@", self.view.window);
+        NSLog(@"self.view.frame = %@", self.view.frame);
+        NSLog(@"self.view.bounds = %@", self.view.bounds);
+        
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        
+        if ((orientation == UIDeviceOrientationPortrait) || 
+            (orientation == UIDeviceOrientationPortraitUpsideDown)) {
+            [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.window.frame.size.width/2, 400, 1, 1) inView:self.splitViewController.view permittedArrowDirections:0 animated:YES];
+            NSLog(@"portrait");
+        } else if ((orientation == UIDeviceOrientationLandscapeLeft) || 
+                   (orientation == UIDeviceOrientationLandscapeRight)) {
+            [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.window.frame.size.height/2, 300, 1, 1) inView:self.splitViewController.view permittedArrowDirections:0 animated:YES];
+            NSLog(@"landscape");
+        }
+        
         [dsPopoverC setDelegate:self];
     }
 }
+
+- (void)viewDidUnload
+{
+    [self setAutoControlButton:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+//popover Controller delegate and contents of popover controller delegate management methods.
 
 - (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
 {
@@ -110,25 +149,6 @@
     [self.popoverController dismissPopoverAnimated:YES];
 }
 
-
-- (void)viewDidUnload
-{
-    [self setAutoControlButton:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return YES;
-}
-
--(void)viewDidLayoutSubviews
-{
-//    [super viewDidLayoutSubviews];
- //   [self.popoverController 
-}
 
 //- (NSArray *)alphabet
 //{
@@ -278,7 +298,6 @@
         self.playWordsOnSelection = YES;
         self.autoControlButton.title = @"auto:YES";
     }
-    [DictionaryHelper saveDictionary:self.activeDictionary];
 }
 
 @end
