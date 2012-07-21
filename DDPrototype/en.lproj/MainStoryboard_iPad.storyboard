@@ -205,19 +205,17 @@
                                 <rect key="frame" x="20" y="20" width="728" height="247"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="OaO-Wl-hfP">
-                                        <rect key="frame" x="269" y="199" width="231" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" id="OaO-Wl-hfP">
+                                        <rect key="frame" x="160" y="199" width="449" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="10" id="JTW-r6-olL">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="One moment while we set up your dictionary." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="20" id="JTW-r6-olL">
                                         <rect key="frame" x="-20" y="0.0" width="768" height="154"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <string key="text">One moment while we set up your dictionary.
-We only do it once and it wont take us very long.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -281,40 +279,6 @@ We only do it once and it wont take us very long.</string>
         <image name="resources.bundle/Images/DyDiListen72-72.png" width="16" height="16"/>
         <image name="resources.bundle/Images/DyDiWrite32-32.png" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="DictionarySetupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionarySetupViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dictionaryName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="progressMessageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="DictionaryTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionaryTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="autoControlButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="DisplayWordViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayWordViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="listenToWord:"/>
-                <relationship kind="outlet" name="heteronymListenButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton1" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton2" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton3" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton4" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="spelling" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="wordView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

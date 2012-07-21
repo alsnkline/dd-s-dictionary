@@ -278,6 +278,7 @@
         self.playWordsOnSelection = YES;
         self.autoControlButton.title = @"auto:YES";
     }
+    [DictionaryHelper saveDictionary:self.activeDictionary];
 }
 
 @end

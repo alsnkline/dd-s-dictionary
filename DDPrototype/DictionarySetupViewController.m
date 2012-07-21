@@ -52,7 +52,8 @@
 {
     [super viewWillAppear:animated];
     //show name of dictionary being processed to user
-    self.dictionaryName.text = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:[self loadDictionaryFromXMLInDictionaryBundle:self.dictionaryBundle]];
+    NSString *dictionaryDisplayName = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:[self loadDictionaryFromXMLInDictionaryBundle:self.dictionaryBundle]];
+    self.dictionaryName.text = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
     [self.spinner startAnimating];
 }
 
@@ -120,6 +121,8 @@
                 //process file to populate and save the UIManagedDocument (no way to force reanalysis for changes currently)
                 [GDataXMLNodeHelper processXMLfile:XMLdoc intoManagedObjectContext:dictionaryDatabase.managedObjectContext showProgressIn:self.progressMessageLabel];
                 [DictionaryHelper numberOfWordsInCoreDataDocument:dictionaryDatabase];
+//                [DictionaryHelper saveDictionary:dictionaryDatabase]; saving here seems to save a blank UIManagedDocument
+                
             }
             
             //share activeDictionary with all VC's
