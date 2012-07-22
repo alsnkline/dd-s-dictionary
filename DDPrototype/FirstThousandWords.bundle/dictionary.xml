@@ -338,6 +338,14 @@
 	</word>
 	<word>
 		<spelling>but</spelling>
+		<isHomophone>yes</isHomophone>
+	</word>
+	<word>
+		<spelling>butt</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>but</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>butterfly</spelling>
@@ -482,9 +490,14 @@
 		<pronunciation>
 			<unique>close2</unique>
 		</pronunciation>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>clothes</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>close2</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>cloud</spelling>
@@ -503,9 +516,6 @@
 	</word>
 	<word>
 		<spelling>come</spelling>
-	</word>
-	<word>
-		<spelling>comes</spelling>
 	</word>
 	<word>
 		<spelling>cone</spelling>
@@ -1379,6 +1389,14 @@
 	</word>
 	<word>
 		<spelling>its</spelling>
+		<isHomophone>yes</isHomophone>
+	</word>
+	<word>
+		<spelling>it's</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>its</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>I'm</spelling>
@@ -2557,6 +2575,12 @@
 		<spelling>should</spelling>
 	</word>
 	<word>
+		<spelling>shouldn't</spelling>
+		<pronunciation>
+			<unique>shouldnt</unique>
+		</pronunciation>
+	</word>
+	<word>
 		<spelling>show</spelling>
 	</word>
 	<word>
@@ -2841,7 +2865,7 @@
 	<word>
 		<spelling>they</spelling>
 	</word>
-    <word>
+	<word>
 		<spelling>they're</spelling>
 		<isHomophone>yes</isHomophone>
 		<pronunciation>
@@ -3154,9 +3178,7 @@
 	<word>
 		<spelling>went</spelling>
 	</word>
-	<word>
-		<spelling>were</spelling>
-	</word>
+	 
 	<word>
 		<spelling>whale</spelling>
 	</word>
