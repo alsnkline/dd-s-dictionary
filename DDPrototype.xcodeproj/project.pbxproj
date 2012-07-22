@@ -34,8 +34,8 @@
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
 		B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */; };
-		B17DBC0515BB04F90032258D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17DBC0415BB04F80032258D /* Default-Landscape~ipad.png */; };
-		B17DBC0715BB04FD0032258D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17DBC0615BB04FD0032258D /* Default-Portrait~ipad.png */; };
+		B17DBC5115BB87840032258D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17DBC5015BB87840032258D /* Default-Landscape~ipad.png */; };
+		B17DBC5315BB87880032258D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17DBC5215BB87880032258D /* Default-Portrait~ipad.png */; };
 		B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0E15B5ECCD0021816E /* icon-72e.png */; };
 		B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A1015B5ECFA0021816E /* iTunesArtwork */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
@@ -90,8 +90,8 @@
 		B17CE6BF15980481005A12D3 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
 		B17D466815B8DA8D0059214F /* DictionarySetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionarySetupViewController.h; sourceTree = "<group>"; };
 		B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionarySetupViewController.m; sourceTree = "<group>"; };
-		B17DBC0415BB04F80032258D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		B17DBC0615BB04FD0032258D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		B17DBC5015BB87840032258D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		B17DBC5215BB87880032258D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B17E2A0E15B5ECCD0021816E /* icon-72e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72e.png"; sourceTree = "<group>"; };
 		B17E2A1015B5ECFA0021816E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
-				B17DBC0615BB04FD0032258D /* Default-Portrait~ipad.png */,
-				B17DBC0415BB04F80032258D /* Default-Landscape~ipad.png */,
+				B17DBC5215BB87880032258D /* Default-Portrait~ipad.png */,
+				B17DBC5015BB87840032258D /* Default-Landscape~ipad.png */,
 				B17E2A1015B5ECFA0021816E /* iTunesArtwork */,
 				B17E2A0E15B5ECCD0021816E /* icon-72e.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
@@ -281,8 +281,8 @@
 				B177D84615B531A4002A8814 /* FirstThousandWords.bundle in Resources */,
 				B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */,
 				B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */,
-				B17DBC0515BB04F90032258D /* Default-Landscape~ipad.png in Resources */,
-				B17DBC0715BB04FD0032258D /* Default-Portrait~ipad.png in Resources */,
+				B17DBC5115BB87840032258D /* Default-Landscape~ipad.png in Resources */,
+				B17DBC5315BB87880032258D /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
