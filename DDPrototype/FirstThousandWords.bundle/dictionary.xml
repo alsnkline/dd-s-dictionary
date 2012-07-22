@@ -2841,6 +2841,13 @@
 	<word>
 		<spelling>they</spelling>
 	</word>
+    <word>
+		<spelling>they're</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>their</unique>
+		</pronunciation>
+	</word>
 	<word>
 		<spelling>thing</spelling>
 	</word>
