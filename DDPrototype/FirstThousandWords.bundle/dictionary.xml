@@ -1257,6 +1257,13 @@
 		<spelling>hold</spelling>
 	</word>
 	<word>
+		<spelling>hole</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>whole</unique>
+		</pronunciation>
+	</word>
+	<word>
 		<spelling>holiday</spelling>
 	</word>
 	<word>
@@ -1524,6 +1531,13 @@
 	<word>
 		<spelling>know</spelling>
 		<isHomophone>yes</isHomophone>
+	</word>
+	<word>
+		<spelling>knows</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>nose</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>lady</spelling>
@@ -1976,6 +1990,7 @@
 	</word>
 	<word>
 		<spelling>nose</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>not</spelling>
@@ -2132,6 +2147,14 @@
 	</word>
 	<word>
 		<spelling>pause</spelling>
+		<isHomophone>yes</isHomophone>
+	</word>
+	<word>
+		<spelling>paws</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>pause</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>pay</spelling>
@@ -3064,10 +3087,18 @@
 		<spelling>van</spelling>
 	</word>
 	<word>
+		<spelling>vary</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>very</unique>
+		</pronunciation>
+	</word>
+	<word>
 		<spelling>vegetable</spelling>
 	</word>
 	<word>
 		<spelling>very</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>vest</spelling>
@@ -3209,6 +3240,7 @@
 	</word>
 	<word>
 		<spelling>whole</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>why</spelling>
