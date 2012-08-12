@@ -125,6 +125,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B10D3E6115D8086D006407DB /* dino144-144.png */,
 				B17DBC5215BB87880032258D /* Default-Portrait~ipad.png */,
 				B17DBC5015BB87840032258D /* Default-Landscape~ipad.png */,
 				B17E2A1015B5ECFA0021816E /* iTunesArtwork */,
@@ -285,6 +286,7 @@
 				B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */,
 				B17DBC5115BB87840032258D /* Default-Landscape~ipad.png in Resources */,
 				B17DBC5315BB87880032258D /* Default-Portrait~ipad.png in Resources */,
+				B10D3E6215D8086D006407DB /* dino144-144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
