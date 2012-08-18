@@ -178,16 +178,7 @@
                             <outlet property="delegate" destination="VOC-TP-79N" id="fTM-Cb-FoR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FY6-Es-MTZ">
-                        <barButtonItem key="leftBarButtonItem" title="auto:NO" id="zbg-Bn-9x4">
-                            <connections>
-                                <action selector="autoButtonPressed:" destination="VOC-TP-79N" id="oXv-rq-Ofi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="autoControlButton" destination="zbg-Bn-9x4" id="eGO-s5-FXo"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="FY6-Es-MTZ"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="507" y="-1237"/>
