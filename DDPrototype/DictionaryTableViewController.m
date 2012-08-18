@@ -10,6 +10,7 @@
 #import "DisplayWordViewController.h"
 #import "Word+Create.h"
 #import "DictionarySetupViewController.h"
+#import "NSUserDefaultKeys.h"
 
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, DictionarySetupViewControllerDelegate>
@@ -65,12 +66,15 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
     [dwvc setDelegate:self];
-    self.playWordsOnSelection = NO;
 
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    //set value of playWordsOnSelection
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
+    
     //see if there are any dictionary's already processed
     NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
     NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
