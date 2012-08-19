@@ -41,6 +41,7 @@
 		B18248B115E059F30093E71F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18248B015E059F30093E71F /* AboutViewController.m */; };
 		B18248B715E0AD6E0093E71F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */; };
 		B18248B915E0AD970093E71F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
+		B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18248BA15E0B7EC0093E71F /* MessageUI.framework */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
@@ -103,6 +104,7 @@
 		B18248B015E059F30093E71F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		B18248BA15E0B7EC0093E71F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -117,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */,
 				B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */,
 				B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */,
 				B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */,
@@ -132,6 +135,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B18248BA15E0B7EC0093E71F /* MessageUI.framework */,
 				B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */,
 				B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */,
 				B10D3E6115D8086D006407DB /* dino144-144.png */,

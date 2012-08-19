@@ -8,14 +8,19 @@
 
 #import "SettingsTableViewController.h"
 #import "NSUserDefaultKeys.h"
+#import <MessageUI/MessageUI.h>
 
-@interface SettingsTableViewController ()
+@interface SettingsTableViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *playOnSelectionSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *versionLable;
+@property (nonatomic, strong) NSIndexPath *selectedCellIndexPath;
 
 @end
 
 @implementation SettingsTableViewController
 @synthesize playOnSelectionSwitch = _playOnSelectionSwitch;
+@synthesize versionLable = _versionLable;
+@synthesize selectedCellIndexPath = _selectedCellIndexPath;
 
 - (void)viewDidAppear:(BOOL)animated
 {   
@@ -29,6 +34,13 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (NSString*) version {
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    return [NSString stringWithFormat:@"%@ build %@", version, build];
+}
+
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -41,6 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.versionLable.text = [NSString stringWithFormat:@"Version: %@",[self version]];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,6 +65,7 @@
 - (void)viewDidUnload
 {
     [self setPlayOnSelectionSwitch:nil];
+    [self setVersionLable:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -131,13 +145,51 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSLog(@"Indexpath of Selected Cell = %@", indexPath);
+    UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    self.selectedCellIndexPath = indexPath;
+    NSLog(@"selectedCell Tag = %d", selectedCell.tag);
+    if (selectedCell.tag  == 3) {
+        [self sendEmail:selectedCell];
+    }
 }
+
+#pragma mark - Sending an Email
+
+- (IBAction) sendEmail: (id) sender
+{
+	BOOL	bCanSendMail = [MFMailComposeViewController canSendMail];
+    
+	if (!bCanSendMail)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"No Email Account"
+                                                        message: @"You must set up an email account for your device before you can send mail."
+                                                       delegate: nil
+                                              cancelButtonTitle: nil
+                                              otherButtonTitles: @"OK", nil];
+		[alert show];
+	}
+	else
+	{
+		MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        
+		picker.mailComposeDelegate = self;
+        
+		[picker setToRecipients: [NSArray arrayWithObject: @"dave@blahblahblah.com"]];
+		[picker setSubject: @"An important email!"];
+		[picker setMessageBody: @"Blah blah blah! Blah blah, blah blah blah!" isHTML: NO];
+        
+		[self presentModalViewController: picker animated: YES];
+	}
+}
+
+- (void) mailComposeController: (MFMailComposeViewController *) controller
+           didFinishWithResult: (MFMailComposeResult) result
+                         error: (NSError *) error
+{
+	[self dismissModalViewControllerAnimated: YES];
+    [self.tableView deselectRowAtIndexPath:self.selectedCellIndexPath animated:YES];
+}
+
 
 @end
