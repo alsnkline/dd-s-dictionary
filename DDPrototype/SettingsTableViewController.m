@@ -159,6 +159,7 @@
 - (IBAction) sendEmail: (id) sender
 {
 	BOOL	bCanSendMail = [MFMailComposeViewController canSendMail];
+//    BOOL	bCanSendMail = NO; //for testing the no email alert
     
 	if (!bCanSendMail)
 	{
@@ -175,12 +176,13 @@
         
 		picker.mailComposeDelegate = self;
         
-		[picker setToRecipients: [NSArray arrayWithObject: @"dave@blahblahblah.com"]];
-		[picker setSubject: @"An important email!"];
-		[picker setMessageBody: @"Blah blah blah! Blah blah, blah blah blah!" isHTML: NO];
+		[picker setToRecipients: [NSArray arrayWithObject: @"dydifeedback@gmail.com"]];
+		[picker setSubject: @"Dy-Di Feedback"];
+		[picker setMessageBody: [NSString stringWithFormat:@"What do you like about Dy-Di? \r\n\r\n What would you like to see improved? \r\n\r\n What new features would be key for you? \r\n\r\n Any other thoughts? \r\n\r\n\r\n\r\n Thank you so much for taking the time to give us your feedback.\r\n\r\n Best regards Alison.\r\n (from Version: %@)",[self version]] isHTML: NO];
         
 		[self presentModalViewController: picker animated: YES];
 	}
+    [self.tableView deselectRowAtIndexPath:self.selectedCellIndexPath animated:YES];
 }
 
 - (void) mailComposeController: (MFMailComposeViewController *) controller
@@ -188,7 +190,6 @@
                          error: (NSError *) error
 {
 	[self dismissModalViewControllerAnimated: YES];
-    [self.tableView deselectRowAtIndexPath:self.selectedCellIndexPath animated:YES];
 }
 
 
