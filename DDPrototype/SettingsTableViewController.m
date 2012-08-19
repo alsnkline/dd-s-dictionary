@@ -15,7 +15,7 @@
 @end
 
 @implementation SettingsTableViewController
-@synthesize playOnSelectionSwitch;
+@synthesize playOnSelectionSwitch = _playOnSelectionSwitch;
 
 - (void)viewDidAppear:(BOOL)animated
 {   

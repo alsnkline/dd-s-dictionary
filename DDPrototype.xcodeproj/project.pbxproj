@@ -35,11 +35,12 @@
 		B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BF15980481005A12D3 /* DictionaryHelper.m */; };
 		B17CE6C1159812F4005A12D3 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */; };
 		B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */; };
-		B17DBC5115BB87840032258D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17DBC5015BB87840032258D /* Default-Landscape~ipad.png */; };
-		B17DBC5315BB87880032258D /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B17DBC5215BB87880032258D /* Default-Portrait~ipad.png */; };
 		B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0E15B5ECCD0021816E /* icon-72e.png */; };
 		B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A1015B5ECFA0021816E /* iTunesArtwork */; };
 		B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B182489B15E04C7B0093E71F /* SettingsTableViewController.m */; };
+		B18248B115E059F30093E71F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18248B015E059F30093E71F /* AboutViewController.m */; };
+		B18248B715E0AD6E0093E71F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */; };
+		B18248B915E0AD970093E71F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
@@ -93,13 +94,15 @@
 		B17CE6BF15980481005A12D3 /* DictionaryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryHelper.m; sourceTree = "<group>"; };
 		B17D466815B8DA8D0059214F /* DictionarySetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionarySetupViewController.h; sourceTree = "<group>"; };
 		B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionarySetupViewController.m; sourceTree = "<group>"; };
-		B17DBC5015BB87840032258D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		B17DBC5215BB87880032258D /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B17E2A0E15B5ECCD0021816E /* icon-72e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72e.png"; sourceTree = "<group>"; };
 		B17E2A1015B5ECFA0021816E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		B182489A15E04C7A0093E71F /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		B182489B15E04C7B0093E71F /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		B18248AA15E052CF0093E71F /* NSUserDefaultKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultKeys.h; sourceTree = "<group>"; };
+		B18248AF15E059F30093E71F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		B18248B015E059F30093E71F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -129,9 +132,9 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */,
+				B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */,
 				B10D3E6115D8086D006407DB /* dino144-144.png */,
-				B17DBC5215BB87880032258D /* Default-Portrait~ipad.png */,
-				B17DBC5015BB87840032258D /* Default-Landscape~ipad.png */,
 				B17E2A1015B5ECFA0021816E /* iTunesArtwork */,
 				B17E2A0E15B5ECCD0021816E /* icon-72e.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
@@ -181,6 +184,8 @@
 				B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */,
 				B182489A15E04C7A0093E71F /* SettingsTableViewController.h */,
 				B182489B15E04C7B0093E71F /* SettingsTableViewController.m */,
+				B18248AF15E059F30093E71F /* AboutViewController.h */,
+				B18248B015E059F30093E71F /* AboutViewController.m */,
 				B17CE6BE15980481005A12D3 /* DictionaryHelper.h */,
 				B17CE6BF15980481005A12D3 /* DictionaryHelper.m */,
 				B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */,
@@ -291,9 +296,9 @@
 				B177D84615B531A4002A8814 /* FirstThousandWords.bundle in Resources */,
 				B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */,
 				B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */,
-				B17DBC5115BB87840032258D /* Default-Landscape~ipad.png in Resources */,
-				B17DBC5315BB87880032258D /* Default-Portrait~ipad.png in Resources */,
 				B10D3E6215D8086D006407DB /* dino144-144.png in Resources */,
+				B18248B715E0AD6E0093E71F /* Default-Landscape~ipad.png in Resources */,
+				B18248B915E0AD970093E71F /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +328,7 @@
 				B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */,
 				B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */,
 				B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */,
+				B18248B115E059F30093E71F /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

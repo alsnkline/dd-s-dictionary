@@ -240,7 +240,7 @@
                         <sections>
                             <tableViewSection headerTitle="" id="fy2-dy-VVS">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="FwL-dh-u7n">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="FwL-dh-u7n">
                                         <rect key="frame" x="0.0" y="10" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -269,7 +269,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Your Dictionaries" id="BMW-KA-Yn4">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="X8J-sB-JYi" style="IBUITableViewCellStyleDefault" id="OvH-T0-7Hm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="X8J-sB-JYi" style="IBUITableViewCellStyleDefault" id="OvH-T0-7Hm">
                                         <rect key="frame" x="0.0" y="100" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -291,15 +291,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Extras" footerTitle="Thank you - Alison" id="Wl4-Ra-sWX">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="h86-Pn-a7K" style="IBUITableViewCellStyleDefault" id="RpE-g6-cch">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="h86-Pn-a7K" style="IBUITableViewCellStyleDefault" id="RpE-g6-cch">
                                         <rect key="frame" x="0.0" y="190" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="About Dy-Di" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h86-Pn-a7K">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -308,33 +308,18 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="HWB-8S-2DH" kind="push" id="wfM-8f-8xB"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="b2K-hc-z6l" style="IBUITableViewCellStyleDefault" id="ekh-MV-0eh">
-                                        <rect key="frame" x="0.0" y="235" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="235" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Give us your feedback" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b2K-hc-z6l">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Fqg-sA-Nmv" style="IBUITableViewCellStyleDefault" id="OB7-qt-mIm">
-                                        <rect key="frame" x="0.0" y="279" width="320" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Acknowledgments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fqg-sA-Nmv">
                                                     <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -357,12 +342,37 @@
             </objects>
             <point key="canvasLocation" x="507" y="-2247"/>
         </scene>
+        <!--About View Controller - About-->
+        <scene sceneID="NGW-dx-bqh">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="px9-i8-mXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="HWB-8S-2DH" customClass="AboutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="blP-z5-kZN">
+                        <rect key="frame" x="0.0" y="64" width="320" height="739"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="gJP-Pj-hRr">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="739"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="cpU-zU-E4m"/>
+                    <connections>
+                        <outlet property="webView" destination="gJP-Pj-hRr" id="dFA-kO-EKD"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1192" y="-2247"/>
+        </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="1pC-xf-Uuj">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O0B-yX-qgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="RHE-R9-UFW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="resources.bundle/Images/Icon.png" id="189-kk-5md"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="resources.bundle/Images/20-gear2.png" id="189-kk-5md"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7wA-ut-C3A">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -398,7 +408,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUa-Pc-NTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="K0M-yB-CgB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dictionary" image="resources.bundle/Images/DyDiWrite32-32.png" id="lqk-Ll-5qk"/>
+                    <tabBarItem key="tabBarItem" title="Dictionary" image="resources.bundle/Images/DinoTabIcon.png" id="lqk-Ll-5qk"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="86b-PC-lhq">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -425,9 +435,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="resources.bundle/Images/20-gear2.png" width="16" height="16"/>
+        <image name="resources.bundle/Images/DinoTabIcon.png" width="16" height="16"/>
         <image name="resources.bundle/Images/DyDiListen72-72.png" width="16" height="16"/>
         <image name="resources.bundle/Images/DyDiWrite32-32.png" width="16" height="16"/>
-        <image name="resources.bundle/Images/Icon.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
