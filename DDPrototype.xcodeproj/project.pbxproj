@@ -244,9 +244,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B178605C15962B3D0047D631 /* DDPrototype */ = {
+		B178605C15962B3D0047D631 /* DD's Dictionary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B178607E15962B3D0047D631 /* Build configuration list for PBXNativeTarget "DDPrototype" */;
+			buildConfigurationList = B178607E15962B3D0047D631 /* Build configuration list for PBXNativeTarget "DD's Dictionary" */;
 			buildPhases = (
 				B178605915962B3D0047D631 /* Sources */,
 				B178605A15962B3D0047D631 /* Frameworks */,
@@ -256,7 +256,7 @@
 			);
 			dependencies = (
 			);
-			name = DDPrototype;
+			name = "DD's Dictionary";
 			productName = DDPrototype;
 			productReference = B178605D15962B3D0047D631 /* DDPrototype.app */;
 			productType = "com.apple.product-type.application";
@@ -281,7 +281,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B178605C15962B3D0047D631 /* DDPrototype */,
+				B178605C15962B3D0047D631 /* DD's Dictionary */,
 			);
 		};
 /* End PBXProject section */
@@ -450,7 +450,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -461,6 +461,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"OTHER_LDFLAGS[arch=*]" = "-lxml2";
+				PRODUCT_NAME = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -495,7 +497,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B178607E15962B3D0047D631 /* Build configuration list for PBXNativeTarget "DDPrototype" */ = {
+		B178607E15962B3D0047D631 /* Build configuration list for PBXNativeTarget "DD's Dictionary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B178607F15962B3D0047D631 /* Debug */,
