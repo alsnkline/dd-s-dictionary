@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B10D3E6215D8086D006407DB /* dino144-144.png in Resources */ = {isa = PBXBuildFile; fileRef = B10D3E6115D8086D006407DB /* dino144-144.png */; };
+		B1310880168B93B5002E2355 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */; };
+		B1310881168B93BD002E2355 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
+		B1310883168B93C8002E2355 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */; };
+		B1310884168B93D4002E2355 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
 		B177D83015B51B61002A8814 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D82F15B51B61002A8814 /* Dictionary.m */; };
@@ -39,8 +43,6 @@
 		B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A1015B5ECFA0021816E /* iTunesArtwork */; };
 		B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B182489B15E04C7B0093E71F /* SettingsTableViewController.m */; };
 		B18248B115E059F30093E71F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18248B015E059F30093E71F /* AboutViewController.m */; };
-		B18248B715E0AD6E0093E71F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */; };
-		B18248B915E0AD970093E71F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
 		B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18248BA15E0B7EC0093E71F /* MessageUI.framework */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		B10D3E6115D8086D006407DB /* dino144-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino144-144.png"; sourceTree = "<group>"; };
+		B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
 		B177D82E15B51B61002A8814 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
@@ -67,7 +71,7 @@
 		B177D84515B531A3002A8814 /* FirstThousandWords.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FirstThousandWords.bundle; sourceTree = "<group>"; };
 		B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNodeHelper.h; sourceTree = "<group>"; };
 		B178056D159D0C1E0013AD65 /* GDataXMLNodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNodeHelper.m; sourceTree = "<group>"; };
-		B178605D15962B3D0047D631 /* DDPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B178605D15962B3D0047D631 /* DD's Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DD's Dictionary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B178606115962B3D0047D631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B178606315962B3D0047D631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B178606515962B3D0047D631 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -135,6 +139,8 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */,
+				B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */,
 				B18248BA15E0B7EC0093E71F /* MessageUI.framework */,
 				B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */,
 				B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */,
@@ -155,7 +161,7 @@
 		B178605E15962B3D0047D631 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B178605D15962B3D0047D631 /* DDPrototype.app */,
+				B178605D15962B3D0047D631 /* DD's Dictionary.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,7 +264,7 @@
 			);
 			name = "DD's Dictionary";
 			productName = DDPrototype;
-			productReference = B178605D15962B3D0047D631 /* DDPrototype.app */;
+			productReference = B178605D15962B3D0047D631 /* DD's Dictionary.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -301,8 +307,10 @@
 				B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */,
 				B17E2A1115B5ECFA0021816E /* iTunesArtwork in Resources */,
 				B10D3E6215D8086D006407DB /* dino144-144.png in Resources */,
-				B18248B715E0AD6E0093E71F /* Default-Landscape~ipad.png in Resources */,
-				B18248B915E0AD970093E71F /* Default-Portrait~ipad.png in Resources */,
+				B1310880168B93B5002E2355 /* Default-Portrait@2x~ipad.png in Resources */,
+				B1310881168B93BD002E2355 /* Default-Portrait~ipad.png in Resources */,
+				B1310883168B93C8002E2355 /* Default-Landscape@2x~ipad.png in Resources */,
+				B1310884168B93D4002E2355 /* Default-Landscape~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +432,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
 				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -437,7 +445,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
 				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -476,7 +484,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
 				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 2;
