@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Ga4-da-l27">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Ga4-da-l27">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Display Word View Controller-->
         <scene sceneID="ujY-6A-eEp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4IO-VK-a6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="NaL-TQ-fev" customClass="DisplayWordViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J03-Zx-tXe">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
@@ -141,13 +139,13 @@
                         <outlet property="wordView" destination="d03-dy-5Nz" id="5yf-3W-5xF"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4IO-VK-a6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-638" y="24"/>
         </scene>
         <!--Dictionary Table View Controller-->
         <scene sceneID="hip-Nq-SQq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dzd-Sf-Ze8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="VOC-TP-79N" customClass="DictionaryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="YC5-yK-ZiJ">
                         <rect key="frame" x="0.0" y="64" width="320" height="739"/>
@@ -180,13 +178,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="FY6-Es-MTZ"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dzd-Sf-Ze8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="507" y="-1237"/>
         </scene>
         <!--Dictionary Setup View Controller-->
         <scene sceneID="Fe1-2I-afE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FdV-qy-1h7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Processing Dictionary View" id="jGd-Cl-dGP" customClass="DictionarySetupViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pof-Zn-N1i">
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
@@ -225,13 +223,13 @@
                         <outlet property="spinner" destination="pjI-6g-xL3" id="3l0-5a-hTq"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FdV-qy-1h7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="454" y="-292"/>
         </scene>
         <!--Settings Table View Controller - Settings-->
         <scene sceneID="4Bh-ok-FBx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xCe-uy-haW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="P3y-1c-ZYu" customClass="SettingsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="HEG-aL-Bj2">
                         <rect key="frame" x="0.0" y="64" width="320" height="739"/>
@@ -360,13 +358,13 @@ Copyright © 2012 Alison Kline.   All rights reserved.</string>
                         <outlet property="versionLable" destination="baS-4J-eWP" id="zwH-lm-nVj"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xCe-uy-haW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="507" y="-2247"/>
         </scene>
         <!--About View Controller - About-->
         <scene sceneID="NGW-dx-bqh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="px9-i8-mXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="HWB-8S-2DH" customClass="AboutViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="blP-z5-kZN">
                         <rect key="frame" x="0.0" y="64" width="320" height="739"/>
@@ -385,13 +383,13 @@ Copyright © 2012 Alison Kline.   All rights reserved.</string>
                         <outlet property="webView" destination="gJP-Pj-hRr" id="dFA-kO-EKD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="px9-i8-mXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1192" y="-2247"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="1pC-xf-Uuj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O0B-yX-qgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="RHE-R9-UFW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="resources.bundle/Images/20-gear2.png" id="189-kk-5md"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7wA-ut-C3A">
@@ -401,13 +399,13 @@ Copyright © 2012 Alison Kline.   All rights reserved.</string>
                         <segue destination="P3y-1c-ZYu" kind="relationship" relationship="rootViewController" id="jRa-Jp-gPh"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O0B-yX-qgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-23" y="-2255"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="uho-Wj-dlB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fNK-HT-zIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController definesPresentationContext="YES" id="2Dw-vO-l2d" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="GEi-pg-YIx"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -421,15 +419,15 @@ Copyright © 2012 Alison Kline.   All rights reserved.</string>
                         <segue destination="RHE-R9-UFW" kind="relationship" relationship="viewControllers" id="gtJ-VE-Vxl"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fNK-HT-zIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-654" y="-1671"/>
         </scene>
         <!--Navigation Controller - Dictionary-->
         <scene sceneID="Aax-Tf-fKW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YUa-Pc-NTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="K0M-yB-CgB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dictionary" image="resources.bundle/Images/DinoTabIcon.png" id="lqk-Ll-5qk"/>
+                    <tabBarItem key="tabBarItem" title="Dictionary" image="resources.bundle/Images/DinoTabIconv2.png" id="lqk-Ll-5qk"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="86b-PC-lhq">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -437,13 +435,13 @@ Copyright © 2012 Alison Kline.   All rights reserved.</string>
                         <segue destination="VOC-TP-79N" kind="relationship" relationship="rootViewController" id="j19-mD-sSa"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YUa-Pc-NTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-42" y="-1237"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="3fq-Bj-gaa">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nFT-eL-2kx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <splitViewController id="Ga4-da-l27" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
@@ -451,60 +449,17 @@ Copyright © 2012 Alison Kline.   All rights reserved.</string>
                         <segue destination="2Dw-vO-l2d" kind="relationship" relationship="masterViewController" id="Fzd-sI-KJs"/>
                     </connections>
                 </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nFT-eL-2kx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1620" y="-446"/>
         </scene>
     </scenes>
     <resources>
         <image name="resources.bundle/Images/20-gear2.png" width="16" height="16"/>
-        <image name="resources.bundle/Images/DinoTabIcon.png" width="16" height="16"/>
+        <image name="resources.bundle/Images/DinoTabIconv2.png" width="16" height="16"/>
         <image name="resources.bundle/Images/DyDiListen72-72.png" width="16" height="16"/>
         <image name="resources.bundle/Images/DyDiWrite32-32.png" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="AboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="CoreDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
-        </class>
-        <class className="DictionarySetupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionarySetupViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dictionaryName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="progressMessageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
-            </relationships>
-        </class>
-        <class className="DictionaryTableViewController" superclassName="CoreDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionaryTableViewController.h"/>
-        </class>
-        <class className="DisplayWordViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayWordViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="listenToWord:"/>
-                <relationship kind="outlet" name="heteronymListenButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton1" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton2" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton3" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homonymButton4" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="spelling" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="wordView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="SettingsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="playOnSelectionSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="versionLable" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
