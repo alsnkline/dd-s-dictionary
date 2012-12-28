@@ -288,8 +288,12 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Extras" id="Wl4-Ra-sWX">
-                                <string key="footerTitle">Thank you - Alison  
-Copyright © 2012 Alison Kline.   All rights reserved.</string>
+                                <string key="footerTitle">Thank you - Alison
+
+
+Copyright © 2012 Alison Kline. 
+
+All rights reserved.</string>
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="h86-Pn-a7K" style="IBUITableViewCellStyleDefault" id="RpE-g6-cch">
                                         <rect key="frame" x="0.0" y="190" width="320" height="45"/>
