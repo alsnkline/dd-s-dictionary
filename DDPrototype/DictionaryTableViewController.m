@@ -16,6 +16,7 @@
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, DictionarySetupViewControllerDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
 @property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover
+@property (nonatomic, strong) Word *selectedWord;
 
 @end
 
@@ -23,6 +24,7 @@
 @synthesize activeDictionary = _activeDictionary;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
 @synthesize popoverController;
+@synthesize selectedWord = _selectedWord;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -218,15 +220,30 @@
     
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //used for iphone only
+    if ([segue.identifier isEqualToString:@"Word Selected"]) {
+        [segue.destinationViewController setWord:self.selectedWord];
+        // [segue.destinationViewController setTitle:sender];
+        //        [segue.destinationViewController setDisplayDelegate:self];
+    }
+}
+
 - (void) wordSelectedAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self splitViewWithDisplayWordViewController]) {
+    Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if ([self splitViewWithDisplayWordViewController]) { //iPad
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
-        Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//        Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.word = selectedWord;
         if (self.playWordsOnSelection) {
             [dwvc playAllWords:selectedWord.pronunciations];
         }
+    } else { //iPhone
+        self.selectedWord = selectedWord;
+        [self performSegueWithIdentifier:@"Word Selected" sender:selectedWord];
     }
 }
 
