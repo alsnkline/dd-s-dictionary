@@ -46,7 +46,6 @@
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
-		B1CC6A28168E031700E1F777 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = B1CC6A27168E031700E1F777 /* iTunesArtwork */; };
 		B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */; };
 /* End PBXBuildFile section */
 
@@ -112,7 +111,6 @@
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B1C114A6159FC81100D60CB4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		B1CC6A27168E031700E1F777 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GDataXMLNode.Copying.txt; sourceTree = "<group>"; };
 		B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		B1DDD40D159FD4D1004CD0FB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -145,7 +143,6 @@
 				B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */,
 				B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */,
 				B10D3E6115D8086D006407DB /* dino144-144.png */,
-				B1CC6A27168E031700E1F777 /* iTunesArtwork */,
 				B17E2A0E15B5ECCD0021816E /* icon-72e.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
 				B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */,
@@ -310,7 +307,6 @@
 				B1310886168B9A7B002E2355 /* Default-Portrait~ipad.png in Resources */,
 				B1310887168B9A82002E2355 /* Default-Landscape@2x~ipad.png in Resources */,
 				B1310888168B9A89002E2355 /* Default-Landscape~ipad.png in Resources */,
-				B1CC6A28168E031700E1F777 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
