@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B103442F1692746C00589A41 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = B103442E1692746C00589A41 /* iTunesArtwork.png */; };
+		B103444F169282A700589A41 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B103444E169282A700589A41 /* Default-568h@2x.png */; };
 		B10D3E6215D8086D006407DB /* dino144-144.png in Resources */ = {isa = PBXBuildFile; fileRef = B10D3E6115D8086D006407DB /* dino144-144.png */; };
 		B1310885168B9A74002E2355 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */; };
 		B1310886168B9A7B002E2355 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		B103442E1692746C00589A41 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		B103444E169282A700589A41 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B10D3E6115D8086D006407DB /* dino144-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino144-144.png"; sourceTree = "<group>"; };
 		B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B103444E169282A700589A41 /* Default-568h@2x.png */,
 				B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */,
 				B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */,
 				B18248BA15E0B7EC0093E71F /* MessageUI.framework */,
@@ -311,6 +314,7 @@
 				B1310887168B9A82002E2355 /* Default-Landscape@2x~ipad.png in Resources */,
 				B1310888168B9A89002E2355 /* Default-Landscape~ipad.png in Resources */,
 				B103442F1692746C00589A41 /* iTunesArtwork.png in Resources */,
+				B103444F169282A700589A41 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +440,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A810B7C5-731A-469F-A9DF-741E9019B790";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -451,7 +455,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A810B7C5-731A-469F-A9DF-741E9019B790";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -493,7 +497,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A810B7C5-731A-469F-A9DF-741E9019B790";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";

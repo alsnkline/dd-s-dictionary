@@ -135,29 +135,40 @@
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController
 {
     if ([rootViewController isKindOfClass:[UISplitViewController class]]) { //for ipad get the splitview master's ViewController
+        NSLog(@"We have a SV controller (master)");
         UISplitViewController *svc = (UISplitViewController *)rootViewController;
         UIViewController *masterVC = [svc.viewControllers objectAtIndex:0];
         
-        if ([masterVC isKindOfClass:[UINavigationController class]]) {
-            UINavigationController *masterNVC = (UINavigationController *)masterVC;
-            [self passActiveDictionary:activeDictionary arroundNavBarVCs:masterNVC.viewControllers];
-        } else if ([masterVC isKindOfClass:[UITabBarController class]]) {
-            NSLog(@"We have a tab bar controller");
-            UITabBarController *masterTBVC = (UITabBarController *)masterVC;
-            [self passActiveDictionary:activeDictionary arroundTabBarVCs:masterTBVC.viewControllers];
-        }
+        [self passActiveDictionary:activeDictionary arroundVCsInControllerOfControllers:masterVC];
 
         UIViewController *detailVC = [svc.viewControllers lastObject];
+        NSLog(@"We have a SV controller (detail)");
         if ([detailVC conformsToProtocol:@protocol(ActiveDictionaryFollower)]) {
             id <ActiveDictionaryFollower> avc = (id <ActiveDictionaryFollower>)detailVC;
             avc.activeDictionary = activeDictionary;
         }
         
-    } else if ([rootViewController isKindOfClass:[UINavigationController class]]){
-        //for iphone 
+    } else {
+        //for iphone
+        [self passActiveDictionary:activeDictionary arroundVCsInControllerOfControllers:rootViewController];
     }
     NSLog(@"Passed activeDictionary rootVC's vc's %@", activeDictionary.fileURL.lastPathComponent);
     }
+
+
++ (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsInControllerOfControllers:(UIViewController *)viewController
+{
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        NSLog(@"We have a nav controller");
+        UINavigationController *NVC = (UINavigationController *)viewController;
+        [self passActiveDictionary:activeDictionary arroundNavBarVCs:NVC.viewControllers];
+    } else if ([viewController isKindOfClass:[UITabBarController class]]) {
+        NSLog(@"We have a tab bar controller");
+        UITabBarController *TBVC = (UITabBarController *)viewController;
+        [self passActiveDictionary:activeDictionary arroundTabBarVCs:TBVC.viewControllers];
+    }
+}
+
 
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundTabBarVCs:(NSArray *)tabBarViewControllers
 {
