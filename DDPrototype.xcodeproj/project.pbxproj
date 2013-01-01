@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B103442F1692746C00589A41 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = B103442E1692746C00589A41 /* iTunesArtwork.png */; };
 		B10D3E6215D8086D006407DB /* dino144-144.png in Resources */ = {isa = PBXBuildFile; fileRef = B10D3E6115D8086D006407DB /* dino144-144.png */; };
 		B1310885168B9A74002E2355 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */; };
 		B1310886168B9A7B002E2355 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B103442E1692746C00589A41 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		B10D3E6115D8086D006407DB /* dino144-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino144-144.png"; sourceTree = "<group>"; };
 		B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				B18248BA15E0B7EC0093E71F /* MessageUI.framework */,
 				B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */,
 				B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */,
+				B103442E1692746C00589A41 /* iTunesArtwork.png */,
 				B10D3E6115D8086D006407DB /* dino144-144.png */,
 				B17E2A0E15B5ECCD0021816E /* icon-72e.png */,
 				B1DDD40D159FD4D1004CD0FB /* Security.framework */,
@@ -307,6 +310,7 @@
 				B1310886168B9A7B002E2355 /* Default-Portrait~ipad.png in Resources */,
 				B1310887168B9A82002E2355 /* Default-Landscape@2x~ipad.png in Resources */,
 				B1310888168B9A89002E2355 /* Default-Landscape~ipad.png in Resources */,
+				B103442F1692746C00589A41 /* iTunesArtwork.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
