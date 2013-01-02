@@ -24,6 +24,7 @@
 
 @implementation DisplayWordViewController
 @synthesize word = _word;
+@synthesize playWordsOnSelection = _playWordsOnSelection;
 @synthesize delegate = _delegate;
 @synthesize spelling = _spelling;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
@@ -49,13 +50,24 @@
 {
     if (_word != word) {
         _word = word;
-        [self manageListenButtons];
-        [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve 
-                        animations:^ {
-                            self.spelling.text = word.spelling;
-                        }
-                        completion:nil];
+//        [self manageListenButtons];
+//        [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve 
+//                        animations:^ {
+//                            self.spelling.text = word.spelling;
+//                        }
+//                        completion:nil];
+        [self setUpViewForWord:word];
     }
+}
+
+-(void)setUpViewForWord:(Word *)word
+{
+    [self manageListenButtons];
+    [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^ {
+                        self.spelling.text = word.spelling;
+                    }
+                    completion:nil];
 }
 
 - (void) manageListenButtons
@@ -242,6 +254,16 @@
         
         if ([self.soundsToPlay count] > 0) {
             [self playWord:[self.soundsToPlay lastObject]];
+        }
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (self.word) {
+        [self setUpViewForWord:self.word];
+        if (self.playWordsOnSelection) {
+            [self playAllWords:self.word.pronunciations];
         }
     }
 }

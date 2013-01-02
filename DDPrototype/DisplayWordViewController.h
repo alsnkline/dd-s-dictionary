@@ -22,6 +22,7 @@
 @interface DisplayWordViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) Word *word; //word for display the model for this MVC
+@property (nonatomic) BOOL playWordsOnSelection;
 @property (nonatomic, weak) id <DisplayWordViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *spelling;
 @property (weak, nonatomic) IBOutlet UIButton *listenButton;

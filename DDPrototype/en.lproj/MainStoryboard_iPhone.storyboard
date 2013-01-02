@@ -27,7 +27,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="QWu-pi-g6W" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="fhe-Y1-i1O">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -273,22 +273,22 @@ All rights reserved.</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="mNY-Lo-MYT">
-                                <rect key="frame" x="15" y="0.0" width="289" height="474"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="5" y="0.0" width="310" height="474"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="pick a word" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="7f3-A5-0H6">
-                                        <rect key="frame" x="-18" y="0.0" width="327" height="209"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="310" height="160"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="55"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" id="DJm-80-WOZ">
-                                        <rect key="frame" x="0.0" y="210" width="357" height="229"/>
+                                        <rect key="frame" x="0.0" y="160" width="310" height="195"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="647-SD-ibU">
-                                                <rect key="frame" x="227" y="0.0" width="72" height="72"/>
+                                                <rect key="frame" x="193" y="9" width="72" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="resources.bundle/Images/DyDiListen72-72.png">
@@ -303,7 +303,7 @@ All rights reserved.</string>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vER-Rh-nUF">
-                                                <rect key="frame" x="56" y="0.0" width="72" height="72"/>
+                                                <rect key="frame" x="45" y="9" width="72" height="72"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" image="resources.bundle/Images/DyDiListen72-72.png">
@@ -318,9 +318,9 @@ All rights reserved.</string>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ant-ya-gcp">
-                                                <rect key="frame" x="11" y="132" width="163" height="38"/>
+                                                <rect key="frame" x="23" y="94" width="117" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -333,9 +333,9 @@ All rights reserved.</string>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c8f-Ju-e4V">
-                                                <rect key="frame" x="11" y="191" width="163" height="38"/>
+                                                <rect key="frame" x="23" y="143" width="117" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -348,9 +348,9 @@ All rights reserved.</string>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cBl-M2-GSO">
-                                                <rect key="frame" x="182" y="132" width="163" height="38"/>
+                                                <rect key="frame" x="171" y="94" width="117" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -363,9 +363,9 @@ All rights reserved.</string>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4td-cv-qpp">
-                                                <rect key="frame" x="182" y="191" width="163" height="38"/>
+                                                <rect key="frame" x="171" y="143" width="117" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <state key="normal" title="spelling" image="resources.bundle/Images/DyDiWrite32-32.png">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -390,13 +390,13 @@ All rights reserved.</string>
                     <navigationItem key="navigationItem" id="gTj-3I-x6D"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="heteronymListenButton" destination="647-SD-ibU" id="qys-2p-4RD"/>
+                        <outlet property="heteronymListenButton" destination="647-SD-ibU" id="jXh-Zr-Hca"/>
                         <outlet property="homonymButton1" destination="Ant-ya-gcp" id="g3e-bj-pGI"/>
                         <outlet property="homonymButton2" destination="c8f-Ju-e4V" id="6cj-oX-zkp"/>
                         <outlet property="homonymButton3" destination="cBl-M2-GSO" id="dAG-QB-9H6"/>
                         <outlet property="homonymButton4" destination="4td-cv-qpp" id="sBr-Xt-j45"/>
                         <outlet property="listenButton" destination="vER-Rh-nUF" id="fea-Rc-Krl"/>
-                        <outlet property="spelling" destination="7f3-A5-0H6" id="71w-Sj-Hsc"/>
+                        <outlet property="spelling" destination="7f3-A5-0H6" id="4xb-JI-ugM"/>
                         <outlet property="wordView" destination="mNY-Lo-MYT" id="7pg-ol-bqa"/>
                     </connections>
                 </viewController>

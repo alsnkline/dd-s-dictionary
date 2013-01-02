@@ -225,8 +225,10 @@
     //used for iphone only
     if ([segue.identifier isEqualToString:@"Word Selected"]) {
         [segue.destinationViewController setWord:self.selectedWord];
-        // [segue.destinationViewController setTitle:sender];
-        //        [segue.destinationViewController setDisplayDelegate:self];
+        if (self.playWordsOnSelection) {
+            [segue.destinationViewController setPlayWordsOnSelection:self.playWordsOnSelection];
+        }
+        [segue.destinationViewController setDelegate:self];
     }
 }
 
@@ -236,12 +238,11 @@
     
     if ([self splitViewWithDisplayWordViewController]) { //iPad
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
-//        Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         dwvc.word = selectedWord;
         if (self.playWordsOnSelection) {
             [dwvc playAllWords:selectedWord.pronunciations];
         }
-    } else { //iPhone
+    } else { //iPhone (passing playWordsOnSelection handled in prepare for Segue
         self.selectedWord = selectedWord;
         [self performSegueWithIdentifier:@"Word Selected" sender:selectedWord];
     }
@@ -273,6 +274,10 @@
     } else if ([matches count] == 1) {
         Word *homonymn = [matches lastObject];
         NSIndexPath *indexPathOfHomonymn = [self.fetchedResultsController indexPathForObject:homonymn];
+        if (![self splitViewWithDisplayWordViewController]) { //iPhone
+            //pop old word off navigation controller
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self wordSelectedAtIndexPath:indexPathOfHomonymn];
     }
