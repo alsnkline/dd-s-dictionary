@@ -140,6 +140,7 @@
         // iPhone
 //        if (![self.dsvc isBeingDismissed])
  //           [self.dsvc dismissViewControllerAnimated:NO completion:nil]; will probably work once I get the tableView to correctly load after a newly processed UIManagedDoc
+ //       [self.navigationController popViewControllerAnimated:NO];
         
     }
 }
@@ -335,6 +336,7 @@
         
         [dsPopoverC setDelegate:self];
     } else { //iPhone
+        [self.navigationController pushViewController:self.dsvc animated:YES];
  //        [self presentViewController:self.dsvc animated:YES completion:nil];
 
     }
