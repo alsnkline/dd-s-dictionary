@@ -50,12 +50,6 @@
 {
     if (_word != word) {
         _word = word;
-//        [self manageListenButtons];
-//        [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve 
-//                        animations:^ {
-//                            self.spelling.text = word.spelling;
-//                        }
-//                        completion:nil];
         [self setUpViewForWord:word];
     }
 }
@@ -234,6 +228,7 @@
         }
     }
 }
+
 
 - (IBAction)homoymnButtonPressed:(UIButton *)sender 
 {

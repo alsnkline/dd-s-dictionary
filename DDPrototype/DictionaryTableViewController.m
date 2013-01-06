@@ -276,7 +276,8 @@
         NSIndexPath *indexPathOfHomonymn = [self.fetchedResultsController indexPathForObject:homonymn];
         if (![self splitViewWithDisplayWordViewController]) { //iPhone
             //pop old word off navigation controller
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:NO]; //Not animated as this is just preparing the Navigation Controller stack for the new word to be pushed on.
+            
         }
         [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         [self wordSelectedAtIndexPath:indexPathOfHomonymn];
