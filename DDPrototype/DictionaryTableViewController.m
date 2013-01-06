@@ -15,7 +15,8 @@
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, DictionarySetupViewControllerDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
-@property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover
+@property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover in iPad
+@property (nonatomic, strong) DictionarySetupViewController *dsvc; //used to track the start up vc in iPhone as there is no popover
 @property (nonatomic, strong) Word *selectedWord;
 
 @end
@@ -24,6 +25,7 @@
 @synthesize activeDictionary = _activeDictionary;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
 @synthesize popoverController;
+@synthesize dsvc = _dsvc;
 @synthesize selectedWord = _selectedWord;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -64,6 +66,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
     [dwvc setDelegate:self];
 
@@ -75,6 +78,12 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
     
+    [self setUpDictionary];
+
+}
+
+-(void) setUpDictionary
+{
     //see if there are any dictionary's already processed
     NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
     NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
@@ -83,19 +92,23 @@
         NSURL *dictionaryURL = [dictionariesAvailable lastObject];
         NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
         NSLog(@"Opening the 1 dictionary available its name: %@", activeDictionaryName);
-        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.view.window.rootViewController];  
+        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.view.window.rootViewController];
         
     } else {
         
         NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
-        [self displayPopoverWhileProcessing:dictionaryShippingWithApp];
+        [self displayViewWhileProcessing:dictionaryShippingWithApp];
+//        [self setUpDictionary]; didn't work - dictionary hasn't been saved yet for passing around again
         
     }
+
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.popoverController = nil;
+    self.dsvc = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -119,7 +132,16 @@
 
 - (void)DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)sender
 {
-    [self.popoverController dismissPopoverAnimated:YES];
+    
+    if ([self splitViewWithDisplayWordViewController]) {
+        // iPad
+        [self.popoverController dismissPopoverAnimated:YES];
+    } else {
+        // iPhone
+//        if (![self.dsvc isBeingDismissed])
+ //           [self.dsvc dismissViewControllerAnimated:NO completion:nil]; will probably work once I get the tableView to correctly load after a newly processed UIManagedDoc
+        
+    }
 }
 
 
@@ -284,31 +306,38 @@
     }
 }
 
--(void)displayPopoverWhileProcessing:(NSBundle *)dictionary
+-(void)displayViewWhileProcessing:(NSBundle *)dictionary
 {
-    // instanciate a Dictionary Setup controller and show its view in a popover
-    DictionarySetupViewController *dsvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Processing Dictionary View"];
-    dsvc.dictionaryBundle = dictionary;
-    [dsvc setDelegate:self];
+    // instanciate a Dictionary Setup controller and show its view
+    self.dsvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Processing Dictionary View"];
+    self.dsvc.dictionaryBundle = dictionary;
+    self.dsvc.rootViewControllerForPassingProcessedDictionaryAround = self.view.window.rootViewController;
+    [self.dsvc setDelegate:self];
     
-    UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:dsvc];
-    self.popoverController = dsPopoverC;
-    dsPopoverC.popoverContentSize = CGSizeMake(457, 247);
-    NSLog(@"self.view.window = %@", self.view.window);
+    if ([self splitViewWithDisplayWordViewController]) { //iPad
     
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
-    if ((orientation == UIDeviceOrientationPortrait) || 
-        (orientation == UIDeviceOrientationPortraitUpsideDown)) {
-        [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.window.frame.size.width/2, 400, 1, 1) inView:self.splitViewController.view permittedArrowDirections:0 animated:YES];
-        NSLog(@"portrait");
-    } else if ((orientation == UIDeviceOrientationLandscapeLeft) || 
-               (orientation == UIDeviceOrientationLandscapeRight)) {
-        [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.window.frame.size.height/2, 300, 1, 1) inView:self.splitViewController.view permittedArrowDirections:0 animated:YES];
-        NSLog(@"landscape");
+        UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:self.dsvc];
+        self.popoverController = dsPopoverC;
+        dsPopoverC.popoverContentSize = CGSizeMake(457, 247);
+        NSLog(@"self.view.window = %@", self.view.window);
+        
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        
+        if ((orientation == UIDeviceOrientationPortrait) || 
+            (orientation == UIDeviceOrientationPortraitUpsideDown)) {
+            [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.window.frame.size.width/2, 400, 1, 1) inView:self.splitViewController.view permittedArrowDirections:0 animated:YES];
+            NSLog(@"portrait");
+        } else if ((orientation == UIDeviceOrientationLandscapeLeft) || 
+                   (orientation == UIDeviceOrientationLandscapeRight)) {
+            [dsPopoverC presentPopoverFromRect:CGRectMake(self.view.window.frame.size.height/2, 300, 1, 1) inView:self.splitViewController.view permittedArrowDirections:0 animated:YES];
+            NSLog(@"landscape");
+        }
+        
+        [dsPopoverC setDelegate:self];
+    } else { //iPhone
+ //        [self presentViewController:self.dsvc animated:YES completion:nil];
+
     }
-    
-    [dsPopoverC setDelegate:self];
 
 }
 

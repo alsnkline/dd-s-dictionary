@@ -413,7 +413,7 @@ All rights reserved.</string>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="BCX-D8-6Yu">
-                                <rect key="frame" x="8" y="9" width="303" height="113"/>
+                                <rect key="frame" x="8" y="9" width="303" height="257"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" id="5lf-v3-6e6">
@@ -431,7 +431,7 @@ All rights reserved.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" id="8Y9-3L-rn8">
-                                        <rect key="frame" x="141" y="142" width="20" height="20"/>
+                                        <rect key="frame" x="141" y="133" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                 </subviews>
@@ -448,7 +448,7 @@ All rights reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pag-d7-CGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1436" y="-224"/>
+            <point key="canvasLocation" x="1395" y="-582"/>
         </scene>
     </scenes>
     <resources>

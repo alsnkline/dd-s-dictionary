@@ -18,6 +18,8 @@
 
 @interface DictionarySetupViewController : UIViewController
 @property (strong, nonatomic) NSBundle *dictionaryBundle;        //The model for this MVC
+@property (strong, nonatomic) GDataXMLDocument *XMLdoc;
+@property (strong, nonatomic) UIViewController *rootViewControllerForPassingProcessedDictionaryAround;
 @property (nonatomic, weak) id <DictionarySetupViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *progressMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dictionaryName;

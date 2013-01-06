@@ -158,6 +158,7 @@
 
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsInControllerOfControllers:(UIViewController *)viewController
 {
+    NSLog(@"viewController passed in for passing around %@", viewController);
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         NSLog(@"We have a nav controller");
         UINavigationController *NVC = (UINavigationController *)viewController;

@@ -16,6 +16,8 @@
 
 @implementation DictionarySetupViewController
 @synthesize dictionaryBundle = _dictionaryBundle;
+@synthesize XMLdoc = _XMLdoc;
+@synthesize rootViewControllerForPassingProcessedDictionaryAround = _rootViewControllerForPassingProcessedDictionaryAround;
 @synthesize delegate = _delegate;
 @synthesize progressMessageLabel = _progressMessageLable;
 @synthesize dictionaryName = _dictionaryName;
@@ -26,10 +28,17 @@
     if (_dictionaryBundle != dictionaryBundle) {
         _dictionaryBundle = dictionaryBundle;
         
-        GDataXMLDocument *doc = [self loadDictionaryFromXMLInDictionaryBundle:dictionaryBundle];
-        if (doc) { 
-            [self processDoc:doc];
-        }
+        self.XMLdoc = [self loadDictionaryFromXMLInDictionaryBundle:dictionaryBundle];
+        
+    }
+}
+
+- (void)setXMLdoc:(GDataXMLDocument *)XMLdoc
+{
+    if (_XMLdoc != XMLdoc) {
+        _XMLdoc = XMLdoc;
+
+        [self processDoc];
     }
 }
 
@@ -51,8 +60,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     //show name of dictionary being processed to user
-    NSString *dictionaryDisplayName = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:[self loadDictionaryFromXMLInDictionaryBundle:self.dictionaryBundle]];
+    NSString *dictionaryDisplayName = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:self.XMLdoc];
     self.dictionaryName.text = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
     [self.spinner startAnimating];
 }
@@ -82,7 +92,7 @@
     }];
 }
 
-- (GDataXMLDocument *)loadDictionaryFromXMLInDictionaryBundle:(NSBundle *)bundle 
+- (GDataXMLDocument *)loadDictionaryFromXMLInDictionaryBundle:(NSBundle *)bundle
 {
     NSError *error = nil;
     GDataXMLDocument *XMLdoc = [GDataXMLNodeHelper loadDictionaryFromXMLInDictionaryBundle:bundle Error:&error];
@@ -101,10 +111,12 @@
     return XMLdoc;
 }
 
-- (void)processDoc:(GDataXMLDocument *)XMLdoc {
+
+-(void)processDoc
+{
+    NSString *dictionaryName = [GDataXMLNodeHelper dictionaryNameFor:@"bundleName" FromXMLDoc:self.XMLdoc];
+    [self loadDictionarywithName:dictionaryName createFromXML:self.XMLdoc];
     
-    NSString *dictionaryName = [GDataXMLNodeHelper dictionaryNameFor:@"bundleName" FromXMLDoc:XMLdoc];
-    [self loadDictionarywithName:dictionaryName createFromXML:XMLdoc];
 }
 
 - (void)loadDictionarywithName:(NSString *)dictionaryName createFromXML:(GDataXMLDocument *)XMLdoc
@@ -113,12 +125,11 @@
     [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase) {
         
         NSLog(@"Got dictionary %@ doc state = %@", [dictionaryDatabase.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionaryDatabase.documentState]);
-        
         if (dictionaryDatabase.documentState == UIDocumentStateNormal) {
             
             if (XMLdoc) {
                 
-                //process file to populate and save the UIManagedDocument (no way to force reanalysis for changes currently)
+                //process file to populate the UIManagedDocument (no way to force reanalysis for changes currently)
                 [GDataXMLNodeHelper processXMLfile:XMLdoc intoManagedObjectContext:dictionaryDatabase.managedObjectContext showProgressIn:self.progressMessageLabel];
                 [DictionaryHelper numberOfWordsInCoreDataDocument:dictionaryDatabase];
 //                [DictionaryHelper saveDictionary:dictionaryDatabase]; saving here seems to save a blank UIManagedDocument
@@ -126,9 +137,12 @@
             }
             
             //share activeDictionary with all VC's
-            [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.view.window.rootViewController];
+            //only place where this seems to work
+            //the UIManagedDoc is not saved yet - can not pass around there as it is a class method so has no sense of self.
+            // but cannot show and dismiss view because of conflict with displaying of TableView
+            [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.rootViewControllerForPassingProcessedDictionaryAround];
             
-            [self.delegate DictionarySetupViewDidCompleteProcessingDictionary:self];
+            [self.delegate DictionarySetupViewDidCompleteProcessingDictionary:self]; //didn't work when moved to end of processDoc.
             
         } else {
             NSLog(@"dictionary documentState NOT normal");
