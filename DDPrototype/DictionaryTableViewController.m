@@ -13,7 +13,7 @@
 #import "NSUserDefaultKeys.h"
 
 
-@interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, DictionarySetupViewControllerDelegate>
+@interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
 @property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover in iPad
 @property (nonatomic, strong) DictionarySetupViewController *dsvc; //used to track the start up vc in iPhone as there is no popover
@@ -54,6 +54,11 @@
         _activeDictionary = activeDictionary;
         [self setupFetchedResultsController];
         self.title = [DictionaryHelper dictionaryDisplayNameFrom:activeDictionary];
+        
+// different ways to dismiss views - all attempts to control iPhone flow from this one class caused corruption in the Nav Controller stack
+//           [self.dsvc dismissViewControllerAnimated:YES completion:nil]; 
+//           [self.navigationController popViewControllerAnimated:NO];
+
     }
 }
          
@@ -69,7 +74,10 @@
     
     DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
     [dwvc setDelegate:self];
-
+    
+    //if iPhone to prevent the back button flashing
+    [self.navigationItem setHidesBackButton:YES];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -78,8 +86,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
     
-    [self setUpDictionary];
-
+    if (!self.activeDictionary) {
+         [self setUpDictionary]; // working except for view order issues on iPhone solved with new class and pre-screen in nav controller.
+    }
 }
 
 -(void) setUpDictionary
@@ -92,13 +101,13 @@
         NSURL *dictionaryURL = [dictionariesAvailable lastObject];
         NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
         NSLog(@"Opening the 1 dictionary available its name: %@", activeDictionaryName);
+        NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
         [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.view.window.rootViewController];
         
     } else {
         
         NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
         [self displayViewWhileProcessing:dictionaryShippingWithApp];
-//        [self setUpDictionary]; didn't work - dictionary hasn't been saved yet for passing around again
         
     }
 
@@ -136,12 +145,6 @@
     if ([self splitViewWithDisplayWordViewController]) {
         // iPad
         [self.popoverController dismissPopoverAnimated:YES];
-    } else {
-        // iPhone
-//        if (![self.dsvc isBeingDismissed])
- //           [self.dsvc dismissViewControllerAnimated:NO completion:nil]; will probably work once I get the tableView to correctly load after a newly processed UIManagedDoc
- //       [self.navigationController popViewControllerAnimated:NO];
-        
     }
 }
 
@@ -265,7 +268,7 @@
         if (self.playWordsOnSelection) {
             [dwvc playAllWords:selectedWord.pronunciations];
         }
-    } else { //iPhone (passing playWordsOnSelection handled in prepare for Segue
+    } else { //iPhone (passing playWordsOnSelection handled in prepare for Segue)
         self.selectedWord = selectedWord;
         [self performSegueWithIdentifier:@"Word Selected" sender:selectedWord];
     }
@@ -309,11 +312,9 @@
 
 -(void)displayViewWhileProcessing:(NSBundle *)dictionary
 {
-    // instanciate a Dictionary Setup controller and show its view
+    // instanciate a Dictionary Setup controller which starts processing a dictionary
     self.dsvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Processing Dictionary View"];
-    self.dsvc.dictionaryBundle = dictionary;
-    self.dsvc.rootViewControllerForPassingProcessedDictionaryAround = self.view.window.rootViewController;
-    [self.dsvc setDelegate:self];
+    [DictionaryTableViewController use:self.dsvc toProcess:dictionary passDictionaryAround:self.view.window.rootViewController setDelegate:self];
     
     if ([self splitViewWithDisplayWordViewController]) { //iPad
     
@@ -335,12 +336,33 @@
         }
         
         [dsPopoverC setDelegate:self];
-    } else { //iPhone
-        [self.navigationController pushViewController:self.dsvc animated:YES];
- //        [self presentViewController:self.dsvc animated:YES completion:nil];
+    } else { //iPhone different ways to show UI... replaced with extra UI Nav Controller class
+ //       [self.navigationController pushViewController:self.dsvc animated:YES];
+ //       [self presentViewController:self.dsvc animated:YES completion:nil];
+        [self showExplanationForFrozenUI];  //never called now used during development
 
     }
 
+}
+
++ (void) use:(DictionarySetupViewController *)dsvc
+   toProcess:(NSBundle *)dictionary
+passDictionaryAround:(UIViewController *)rootViewController
+ setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
+{
+    dsvc.dictionaryBundle = dictionary;
+    dsvc.rootViewControllerForPassingProcessedDictionaryAround = rootViewController;
+    [dsvc setDelegate:delegate];
+}
+
+- (void) showExplanationForFrozenUI     //used during app development superceeded by setupTableSwitchedViewController.
+{
+    UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary processing"
+                                                        message:[NSString stringWithFormat:@"Please wait while we build your dictionary for the first time."]
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertUser sizeToFit];
+    [alertUser show];
 }
 
 @end

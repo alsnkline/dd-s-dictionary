@@ -204,10 +204,28 @@ All rights reserved.</string>
             </objects>
             <point key="canvasLocation" x="960" y="157"/>
         </scene>
+        <!--Setup Table Switch View Controller-->
+        <scene sceneID="SZa-QG-U1w">
+            <objects>
+                <viewController id="x4H-Mb-JJI" customClass="SetupTableSwitchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZqA-Ts-wyv">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ToE-df-E0g"/>
+                    <connections>
+                        <segue destination="b6d-OK-Qfz" kind="push" identifier="Push Dictionary Table View" id="4Nl-ma-Wau"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="epC-Fd-amF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="429" y="-1061"/>
+        </scene>
         <!--Dictionary Table View Controller-->
         <scene sceneID="nlg-oJ-eEV">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="b6d-OK-Qfz" customClass="DictionaryTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Dictionary Table View" clearsSelectionOnViewWillAppear="NO" id="b6d-OK-Qfz" customClass="DictionaryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZXh-do-UqE">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,7 +263,7 @@ All rights reserved.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWV-9o-JNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504" y="-670"/>
+            <point key="canvasLocation" x="868" y="-1061"/>
         </scene>
         <!--Navigation Controller - Dictionary-->
         <scene sceneID="0ur-L0-XbQ">
@@ -257,12 +275,12 @@ All rights reserved.</string>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="b6d-OK-Qfz" kind="relationship" relationship="rootViewController" id="EgM-CY-nGf"/>
+                        <segue destination="x4H-Mb-JJI" kind="relationship" relationship="rootViewController" id="DWw-Bj-5YE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZ1-Nk-cEl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6" y="-670"/>
+            <point key="canvasLocation" x="-6" y="-1061"/>
         </scene>
         <!--Display Word View Controller-->
         <scene sceneID="3QP-8Z-AcO">
@@ -402,7 +420,7 @@ All rights reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xvx-lQ-Ay0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960" y="-670"/>
+            <point key="canvasLocation" x="1316" y="-1061"/>
         </scene>
         <!--Dictionary Setup View Controller-->
         <scene sceneID="Unu-Rq-O1k">
@@ -410,11 +428,11 @@ All rights reserved.</string>
                 <viewController storyboardIdentifier="Processing Dictionary View" id="1wS-nE-6Eh" customClass="DictionarySetupViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g6I-dS-yhk">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="BCX-D8-6Yu">
                                 <rect key="frame" x="8" y="9" width="303" height="257"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" id="5lf-v3-6e6">
                                         <rect key="frame" x="0.0" y="179" width="303" height="36"/>
@@ -448,7 +466,7 @@ All rights reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pag-d7-CGA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1395" y="-582"/>
+            <point key="canvasLocation" x="429" y="-481"/>
         </scene>
     </scenes>
     <resources>

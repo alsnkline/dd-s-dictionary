@@ -139,8 +139,11 @@
             //share activeDictionary with all VC's
             //only place where this seems to work
             //the UIManagedDoc is not saved yet - can not pass around there as it is a class method so has no sense of self.
-            // but cannot show and dismiss view because of conflict with displaying of TableView
-            [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.rootViewControllerForPassingProcessedDictionaryAround];
+            // but cannot show and dismiss view in iPhone because of conflict with displaying of TableView
+            if (self.rootViewControllerForPassingProcessedDictionaryAround)
+            {
+                [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.rootViewControllerForPassingProcessedDictionaryAround];
+            }
             
             [self.delegate DictionarySetupViewDidCompleteProcessingDictionary:self]; //didn't work when moved to end of processDoc.
             

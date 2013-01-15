@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
 #import "DictionaryHelper.h"
+#import "DictionarySetupViewController.h"
 
-@interface DictionaryTableViewController : CoreDataTableViewController <ActiveDictionaryFollower>
+@interface DictionaryTableViewController : CoreDataTableViewController <ActiveDictionaryFollower, DictionarySetupViewControllerDelegate>
 
 //use activeDictionary for model for this MVC
+
++ (void) use:(DictionarySetupViewController *)dsvc
+   toProcess:(NSBundle *)dictionary
+passDictionaryAround:(UIViewController *)rootViewController
+ setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate;
 
 @end
