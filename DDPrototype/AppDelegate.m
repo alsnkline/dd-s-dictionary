@@ -12,6 +12,7 @@
 #import "GDataXMLNode.h"
 #import "Word+Create.h"
 #import "DictionarySetupViewController.h"
+#import "GAI.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    // Optional: set debug to YES for extra debugging information.
+    [GAI sharedInstance].debug = YES;
+    // Create tracker instance.
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-1"];
+    
+    //track with GA manually avoid subclassing UIViewController
+    NSString *viewNameForGA = [NSString stringWithFormat:@"DD's Dictionary launched"];
+//    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
+
     
        return YES;
 }

@@ -11,6 +11,7 @@
 #import "Word+Create.h"
 #import "DictionarySetupViewController.h"
 #import "NSUserDefaultKeys.h"
+#import "GAI.h"
 
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate>
@@ -89,6 +90,12 @@
     if (!self.activeDictionary) {
          [self setUpDictionary]; // working except for view order issues on iPhone solved with new class and pre-screen in nav controller.
     }
+    
+    //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
+    NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
 -(void) setUpDictionary

@@ -108,7 +108,7 @@
 Copyright © 2012 Alison Kline. 
 All rights reserved.</string>
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="N9P-BL-Wz6" style="IBUITableViewCellStyleDefault" id="RGO-HT-5Np">
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="N9P-BL-Wz6" style="IBUITableViewCellStyleDefault" id="RGO-HT-5Np">
                                         <rect key="frame" x="0.0" y="194" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -125,9 +125,6 @@ All rights reserved.</string>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="ICl-i9-QCJ" kind="push" id="LaZ-WC-l9l"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="JwK-4D-Kmg" style="IBUITableViewCellStyleDefault" id="v8e-mt-Ik4">
                                         <rect key="frame" x="0.0" y="239" width="320" height="44"/>
@@ -147,14 +144,32 @@ All rights reserved.</string>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Td3-zo-frv">
-                                        <rect key="frame" x="0.0" y="283" width="320" height="45"/>
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="r16-Es-R7b" style="IBUITableViewCellStyleDefault" id="Td3-zo-frv">
+                                        <rect key="frame" x="0.0" y="283" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Small Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r16-Es-R7b">
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pbb-mg-1mY">
+                                        <rect key="frame" x="0.0" y="327" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" enabled="NO" id="fN6-b0-YGh">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" enabled="NO" id="6sv-Cz-mIN">
                                                     <rect key="frame" x="8" y="11" width="285" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -172,17 +187,18 @@ All rights reserved.</string>
                     <navigationItem key="navigationItem" title="Settings" id="6FP-7L-esi"/>
                     <connections>
                         <outlet property="playOnSelectionSwitch" destination="GJZ-fv-8Gy" id="C1F-3r-D3u"/>
-                        <outlet property="versionLable" destination="fN6-b0-YGh" id="okx-bn-nzz"/>
+                        <outlet property="versionLable" destination="6sv-Cz-mIN" id="bjb-QA-EsE"/>
+                        <segue destination="ICl-i9-QCJ" kind="push" identifier="display WebView" id="LxO-hG-fZn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkP-Nj-Lmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="489" y="157"/>
         </scene>
-        <!--About View Controller - About-->
+        <!--Html Page View Controller - About-->
         <scene sceneID="QsL-P1-oeT">
             <objects>
-                <viewController id="ICl-i9-QCJ" customClass="AboutViewController" sceneMemberID="viewController">
+                <viewController id="ICl-i9-QCJ" customClass="htmlPageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fVy-sC-ENB">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -475,6 +491,59 @@ All rights reserved.</string>
         <image name="resources.bundle/Images/DyDiListen72-72.png" width="16" height="16"/>
         <image name="resources.bundle/Images/DyDiWrite32-32.png" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="DictionarySetupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionarySetupViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dictionaryName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressMessageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="DictionaryTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionaryTableViewController.h"/>
+        </class>
+        <class className="DisplayWordViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayWordViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="homoymnButtonPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="listenToWord:"/>
+                <relationship kind="outlet" name="heteronymListenButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton1" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton2" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton3" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton4" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="spelling" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="wordView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="SettingsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playOnSelectionSwitchChanged:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="sendEmail:"/>
+                <relationship kind="outlet" name="playOnSelectionSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="versionLable" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SetupTableSwitchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetupTableSwitchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="setupOrTable" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="htmlPageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/htmlPageViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

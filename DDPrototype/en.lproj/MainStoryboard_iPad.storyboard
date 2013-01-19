@@ -294,7 +294,7 @@ Copyright © 2012 Alison Kline.
 
 All rights reserved.</string>
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="h86-Pn-a7K" style="IBUITableViewCellStyleDefault" id="RpE-g6-cch">
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="h86-Pn-a7K" style="IBUITableViewCellStyleDefault" id="RpE-g6-cch">
                                         <rect key="frame" x="0.0" y="190" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -311,9 +311,6 @@ All rights reserved.</string>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="HWB-8S-2DH" kind="push" id="wfM-8f-8xB"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="b2K-hc-z6l" style="IBUITableViewCellStyleDefault" id="ekh-MV-0eh">
                                         <rect key="frame" x="0.0" y="235" width="320" height="44"/>
@@ -333,14 +330,32 @@ All rights reserved.</string>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Cgx-w7-Ip9">
-                                        <rect key="frame" x="0.0" y="279" width="320" height="45"/>
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="lBT-wf-T2a" style="IBUITableViewCellStyleDefault" id="Cgx-w7-Ip9">
+                                        <rect key="frame" x="0.0" y="279" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Small Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lBT-wf-T2a">
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zsK-l3-IQg">
+                                        <rect key="frame" x="0.0" y="323" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" enabled="NO" id="baS-4J-eWP">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" enabled="NO" id="ZvG-vS-P30">
                                                     <rect key="frame" x="8" y="11" width="285" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -358,17 +373,18 @@ All rights reserved.</string>
                     <navigationItem key="navigationItem" title="Settings" id="N39-cg-UcJ"/>
                     <connections>
                         <outlet property="playOnSelectionSwitch" destination="PnM-wQ-K7N" id="pyd-EF-CQz"/>
-                        <outlet property="versionLable" destination="baS-4J-eWP" id="zwH-lm-nVj"/>
+                        <outlet property="versionLable" destination="ZvG-vS-P30" id="SO9-y3-Zrw"/>
+                        <segue destination="HWB-8S-2DH" kind="push" identifier="display WebView" id="rT8-fE-irU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCe-uy-haW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="507" y="-2247"/>
         </scene>
-        <!--About View Controller - About-->
+        <!--Html Page View Controller - About-->
         <scene sceneID="NGW-dx-bqh">
             <objects>
-                <viewController id="HWB-8S-2DH" customClass="AboutViewController" sceneMemberID="viewController">
+                <viewController id="HWB-8S-2DH" customClass="htmlPageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="blP-z5-kZN">
                         <rect key="frame" x="0.0" y="64" width="320" height="739"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

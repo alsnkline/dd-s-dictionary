@@ -43,8 +43,10 @@
 		B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */; };
 		B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0E15B5ECCD0021816E /* icon-72e.png */; };
 		B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B182489B15E04C7B0093E71F /* SettingsTableViewController.m */; };
-		B18248B115E059F30093E71F /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18248B015E059F30093E71F /* AboutViewController.m */; };
 		B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18248BA15E0B7EC0093E71F /* MessageUI.framework */; };
+		B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E40A316AB35D200D346A6 /* htmlPageViewController.m */; };
+		B18E40AC16AB544000D346A6 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E40AB16AB544000D346A6 /* libGoogleAnalytics.a */; };
+		B18E40AE16AB547A00D346A6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */; };
 		B18F862416A200A100F33B34 /* SetupTableSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F862316A200A000F33B34 /* SetupTableSwitchViewController.m */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
@@ -107,11 +109,18 @@
 		B182489A15E04C7A0093E71F /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		B182489B15E04C7B0093E71F /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		B18248AA15E052CF0093E71F /* NSUserDefaultKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSUserDefaultKeys.h; sourceTree = "<group>"; };
-		B18248AF15E059F30093E71F /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		B18248B015E059F30093E71F /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B18248BA15E0B7EC0093E71F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B18E40A216AB35D200D346A6 /* htmlPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = htmlPageViewController.h; sourceTree = "<group>"; };
+		B18E40A316AB35D200D346A6 /* htmlPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = htmlPageViewController.m; sourceTree = "<group>"; };
+		B18E40A616AB542200D346A6 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		B18E40A716AB542200D346A6 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		B18E40A816AB542200D346A6 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		B18E40A916AB542300D346A6 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
+		B18E40AA16AB542300D346A6 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
+		B18E40AB16AB544000D346A6 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B18F862216A200A000F33B34 /* SetupTableSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupTableSwitchViewController.h; sourceTree = "<group>"; };
 		B18F862316A200A000F33B34 /* SetupTableSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupTableSwitchViewController.m; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
@@ -128,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18E40AE16AB547A00D346A6 /* SystemConfiguration.framework in Frameworks */,
 				B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */,
 				B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */,
 				B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */,
@@ -135,6 +145,7 @@
 				B178606215962B3D0047D631 /* UIKit.framework in Frameworks */,
 				B178606415962B3D0047D631 /* Foundation.framework in Frameworks */,
 				B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */,
+				B18E40AC16AB544000D346A6 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +155,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */,
 				B103444E169282A700589A41 /* Default-568h@2x.png */,
 				B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */,
 				B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */,
@@ -202,8 +214,8 @@
 				B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */,
 				B182489A15E04C7A0093E71F /* SettingsTableViewController.h */,
 				B182489B15E04C7B0093E71F /* SettingsTableViewController.m */,
-				B18248AF15E059F30093E71F /* AboutViewController.h */,
-				B18248B015E059F30093E71F /* AboutViewController.m */,
+				B18E40A216AB35D200D346A6 /* htmlPageViewController.h */,
+				B18E40A316AB35D200D346A6 /* htmlPageViewController.m */,
 				B17CE6BE15980481005A12D3 /* DictionaryHelper.h */,
 				B17CE6BF15980481005A12D3 /* DictionaryHelper.m */,
 				B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */,
@@ -212,6 +224,7 @@
 				B1786142159BD6E3004A79E5 /* GDataXMLNode.h */,
 				B1786143159BD6E3004A79E5 /* GDataXMLNode.m */,
 				B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */,
+				B18E40A516AB53E700D346A6 /* GoogleAnalytics */,
 				B177D84515B531A3002A8814 /* FirstThousandWords.bundle */,
 				B178606815962B3D0047D631 /* Supporting Files */,
 			);
@@ -253,6 +266,19 @@
 				B17860A515963BB50047D631 /* Pronunciation+Create.m */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		B18E40A516AB53E700D346A6 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				B18E40AB16AB544000D346A6 /* libGoogleAnalytics.a */,
+				B18E40A616AB542200D346A6 /* GAI.h */,
+				B18E40A716AB542200D346A6 /* GAITrackedViewController.h */,
+				B18E40A816AB542200D346A6 /* GAITracker.h */,
+				B18E40A916AB542300D346A6 /* GAITransaction.h */,
+				B18E40AA16AB542300D346A6 /* GAITransactionItem.h */,
+			);
+			name = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,8 +375,8 @@
 				B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */,
 				B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */,
 				B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */,
-				B18248B115E059F30093E71F /* AboutViewController.m in Sources */,
 				B18F862416A200A100F33B34 /* SetupTableSwitchViewController.m in Sources */,
+				B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +470,10 @@
 				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
 				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DDPrototype\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,6 +489,10 @@
 				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
 				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DDPrototype\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A810B7C5-731A-469F-A9DF-741E9019B790";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -500,6 +534,10 @@
 				GCC_PREFIX_HEADER = "DDPrototype/DDPrototype-Prefix.pch";
 				INFOPLIST_FILE = "DDPrototype/DDPrototype-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/DDPrototype\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "38B4E5D5-DF7E-4F7B-88AF-B8648E0B77B9";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

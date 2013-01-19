@@ -12,6 +12,7 @@
 #import <AVFoundation/AVAudioPlayer.h> //for audioPlayer
 #import "Word.h"
 #import "Pronunciation.h"
+#import "GAI.h"
 
 @interface DisplayWordViewController () <AVAudioPlayerDelegate>
 
@@ -62,6 +63,12 @@
                         self.spelling.text = word.spelling;
                     }
                     completion:nil];
+    
+    //track with GA manually so it will trigger on iPad when view isn't reloaded with each new word.
+    NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", word.spelling];
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
 - (void) manageListenButtons
@@ -294,9 +301,24 @@
     // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation //iOS 5 not 6
 {
-    return YES;
+//    if ([self splitViewWithDisplayWordViewController]) {
+        return YES;
+//    } else {
+//        return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//    } iOS 6 makes supporting rotation on iPhone harder (changes in how its done - so just supporting portrait for now - upsidedown is also out without category on UINavController and UITabController to override the default no upsidedown on iPhone. http://stackoverflow.com/questions/12520030/how-to-force-a-uiviewcontroller-to-portait-orientation-in-ios-6
+    
+}
+
+
+- (DisplayWordViewController *)splitViewWithDisplayWordViewController
+{
+    id dwvc = [self.splitViewController.viewControllers lastObject];
+    if (![dwvc isKindOfClass:[DisplayWordViewController class]]) {
+        dwvc = nil;
+    }
+    return dwvc;
 }
 
 @end

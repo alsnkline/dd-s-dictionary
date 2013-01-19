@@ -9,6 +9,8 @@
 #import "SettingsTableViewController.h"
 #import "NSUserDefaultKeys.h"
 #import <MessageUI/MessageUI.h>
+#import "htmlPageViewController.h"
+#import "GAI.h"
 
 @interface SettingsTableViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *playOnSelectionSwitch;
@@ -26,6 +28,12 @@
 {   
     self.playOnSelectionSwitch.on = [[NSUserDefaults standardUserDefaults] floatForKey:PLAY_WORDS_ON_SELECTION];
     [super viewDidAppear:animated];
+    
+    //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
+    NSString *viewNameForGA = [NSString stringWithFormat:@"Settings"];
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
 - (IBAction)playOnSelectionSwitchChanged:(UISwitch *)sender 
@@ -151,8 +159,34 @@
     NSLog(@"selectedCell Tag = %d", selectedCell.tag);
     if (selectedCell.tag  == 3) {
         [self sendEmail:selectedCell];
+    } else if (selectedCell.tag == 1) {
+        [self performSegueWithIdentifier:@"display WebView" sender:selectedCell];
     }
 }
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //used set up webView depending upon which item was selected.
+    if ([segue.identifier isEqualToString:@"display WebView"]) {
+        if ([sender isKindOfClass:[UITableViewCell class]]) {
+            UITableViewCell *cell = (UITableViewCell *)sender;
+            [segue.destinationViewController setStringForTitle:cell.textLabel.text];
+            
+        if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:0 inSection:2]]) {
+            //about needed
+            [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
+            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+            
+        } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
+            //small print selected.
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
+            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+        }
+    }
+    }
+}
+
 
 #pragma mark - Sending an Email
 
@@ -160,6 +194,12 @@
 {
 	BOOL	bCanSendMail = [MFMailComposeViewController canSendMail];
 //    BOOL	bCanSendMail = NO; //for testing the no email alert
+    
+    //track with GA manually avoid subclassing UIViewController
+    NSString *viewNameForGA = [NSString stringWithFormat:@"SendEmail triggered"];
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
     
 	if (!bCanSendMail)
 	{

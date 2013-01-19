@@ -9,6 +9,7 @@
 #import "DictionarySetupViewController.h"
 #import "DictionaryHelper.h"
 #import "GDataXMLNodeHelper.h"
+#import "GAI.h"
 
 @interface DictionarySetupViewController ()
 
@@ -55,6 +56,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -65,6 +67,12 @@
     NSString *dictionaryDisplayName = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:self.XMLdoc];
     self.dictionaryName.text = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
     [self.spinner startAnimating];
+    
+    //track with GA manually avoid subclassing UIViewController
+    NSString *viewNameForGA = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
 - (void)viewDidUnload
@@ -170,5 +178,6 @@
     return YES;
  //   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 @end
