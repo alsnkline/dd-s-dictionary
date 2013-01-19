@@ -388,7 +388,7 @@ All rights reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="px9-i8-mXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1192" y="-2247"/>
+            <point key="canvasLocation" x="1056" y="-2247"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="1pC-xf-Uuj">
