@@ -18,6 +18,7 @@
 				<string>Default-Portrait~ipad.png</string>
 				<string>icon-72e.png</string>
 				<string>dino144-144.png</string>
+				<string>dino114-114.png</string>
 			</array>
 		</dict>
 	</dict>
@@ -34,7 +35,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0</string>
+	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>

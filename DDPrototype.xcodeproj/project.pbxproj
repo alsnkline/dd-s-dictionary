@@ -47,6 +47,8 @@
 		B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E40A316AB35D200D346A6 /* htmlPageViewController.m */; };
 		B18E40AC16AB544000D346A6 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E40AB16AB544000D346A6 /* libGoogleAnalytics.a */; };
 		B18E40AE16AB547A00D346A6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */; };
+		B18E40B016AB706C00D346A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40AF16AB706B00D346A6 /* Default@2x.png */; };
+		B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B116AB71A800D346A6 /* dino114-114.png */; };
 		B18F862416A200A100F33B34 /* SetupTableSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F862316A200A000F33B34 /* SetupTableSwitchViewController.m */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
@@ -121,6 +123,8 @@
 		B18E40AA16AB542300D346A6 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
 		B18E40AB16AB544000D346A6 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B18E40AF16AB706B00D346A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B18E40B116AB71A800D346A6 /* dino114-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino114-114.png"; sourceTree = "<group>"; };
 		B18F862216A200A000F33B34 /* SetupTableSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupTableSwitchViewController.h; sourceTree = "<group>"; };
 		B18F862316A200A000F33B34 /* SetupTableSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupTableSwitchViewController.m; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B18E40B116AB71A800D346A6 /* dino114-114.png */,
+				B18E40AF16AB706B00D346A6 /* Default@2x.png */,
 				B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */,
 				B103444E169282A700589A41 /* Default-568h@2x.png */,
 				B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */,
@@ -346,6 +352,8 @@
 				B1310888168B9A89002E2355 /* Default-Landscape~ipad.png in Resources */,
 				B103442F1692746C00589A41 /* iTunesArtwork.png in Resources */,
 				B103444F169282A700589A41 /* Default-568h@2x.png in Resources */,
+				B18E40B016AB706C00D346A6 /* Default@2x.png in Resources */,
+				B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
