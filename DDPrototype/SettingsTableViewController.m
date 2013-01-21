@@ -40,6 +40,12 @@
 {
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:PLAY_WORDS_ON_SELECTION];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //track event with GA
+    id tracker = [GAI sharedInstance].defaultTracker;
+    NSString *switchSetting = sender.on ? @"ON" : @"OFF";
+    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"playOnSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_Setting playOnSetlectionChanged %@",switchSetting);
 }
 
 - (NSString*) version {

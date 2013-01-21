@@ -56,6 +56,12 @@
         [self setupFetchedResultsController];
         self.title = [DictionaryHelper dictionaryDisplayNameFrom:activeDictionary];
         
+        if (self.isViewLoaded && self.view.window) {
+            //viewController is visible track with GA allowing iPad stats to show which dict got loaded.
+            NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
+            [self trackView:viewNameForGA];
+        }
+        
 // different ways to dismiss views - all attempts to control iPhone flow from this one class caused corruption in the Nav Controller stack
 //           [self.dsvc dismissViewControllerAnimated:YES completion:nil]; 
 //           [self.navigationController popViewControllerAnimated:NO];
@@ -81,6 +87,13 @@
     
 }
 
+-(void)trackView:(NSString *)viewNameForGA
+{
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     //set value of playWordsOnSelection
@@ -88,14 +101,12 @@
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
     
     if (!self.activeDictionary) {
-         [self setUpDictionary]; // working except for view order issues on iPhone solved with new class and pre-screen in nav controller.
+         [self setUpDictionary]; // used iPad only, working except for view order issues on iPhone solved with new class and pre-screen in nav controller.
     }
     
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
     NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendView:viewNameForGA];
-    NSLog(@"View sent to GA %@", viewNameForGA);
+    [self trackView:viewNameForGA];
 }
 
 -(void) setUpDictionary

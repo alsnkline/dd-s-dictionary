@@ -55,6 +55,13 @@
     }
 }
 
+-(void)trackView:(NSString *)viewNameForGA
+{
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
+}
+
 -(void)setUpViewForWord:(Word *)word
 {
     [self manageListenButtons];
@@ -64,11 +71,11 @@
                     }
                     completion:nil];
     
-    //track with GA manually so it will trigger on iPad when view isn't reloaded with each new word.
-    NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", word.spelling];
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendView:viewNameForGA];
-    NSLog(@"View sent to GA %@", viewNameForGA);
+    if (self.isViewLoaded && self.view.window) {
+        //viewController is visible track with GA allowing iPad stats to show which word got loaded.
+        NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", self.spelling.text];
+        [self trackView:viewNameForGA];
+    }
 }
 
 - (void) manageListenButtons
@@ -232,6 +239,11 @@
         NSString *unique = pronunciation.unique;
         if (([pronunciations count] > 1 && [unique hasSuffix:[NSString stringWithFormat:@"%i",sender.tag]]) || ([pronunciations count] == 1)) {
             [self playWord:pronunciation];
+            
+            //track event with GA
+            id tracker = [GAI sharedInstance].defaultTracker;
+            [tracker sendEventWithCategory:@"uiAction_Word" withAction:@"listenToWord" withLabel:unique withValue:[NSNumber numberWithInt:1]];
+            NSLog(@"Event sent to GA uiAction_Word listenToWord %@",unique);
         }
     }
 }
@@ -242,9 +254,14 @@
     NSString *spelling = sender.titleLabel.text;
     //send to delegate
     [self.delegate DisplayWordViewController:self homonymSelectedWith:spelling];
+    
+    //track event with GA
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendEventWithCategory:@"uiAction_Word" withAction:@"homoymnButtomPressed" withLabel:spelling withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_Word homoymnButtonPressed %@",spelling);
 }
 
--(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)playedSuccessfully 
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)playedSuccessfully
 {
     self.audioPlayer = nil;
     NSLog(@"finished playing a word %@", playedSuccessfully? @"successfully" : @"with error");
@@ -268,6 +285,8 @@
             [self playAllWords:self.word.pronunciations];
         }
     }
+    NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", self.spelling.text];
+    [self trackView:viewNameForGA];
 }
 
 - (void)viewDidLoad
