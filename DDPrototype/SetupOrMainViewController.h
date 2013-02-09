@@ -1,8 +1,8 @@
 //
-//  SetupTableSwitchViewController.h
+//  SetupOrMainViewController.h
 //  DDPrototype
 //
-//  Created by Alison KLINE on 1/12/13.
+//  Created by Alison KLINE on 2/9/13.
 //
 //
 
@@ -11,9 +11,8 @@
 
 @class DictionarySetupViewController;
 
-@interface SetupTableSwitchViewController : UIViewController <ActiveDictionaryFollower>
+@interface SetupOrMainViewController : UIViewController <ActiveDictionaryFollower>
 
 @property (strong, nonatomic) DictionarySetupViewController *setupViewController;
-
 
 @end

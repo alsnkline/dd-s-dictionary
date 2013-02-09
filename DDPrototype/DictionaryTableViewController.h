@@ -15,9 +15,5 @@
 
 //use activeDictionary for model for this MVC
 
-+ (void) use:(DictionarySetupViewController *)dsvc
-   toProcess:(NSBundle *)dictionary
-passDictionaryAround:(UIViewController *)rootViewController
- setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate;
 
 @end

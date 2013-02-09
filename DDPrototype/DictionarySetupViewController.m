@@ -100,6 +100,35 @@
     }];
 }
 
++ (NSString *)dictionaryAlreadyProcessed //introduced to test for processing dictionary.
+{
+    NSString *processedDictionaryName = nil;
+    
+    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
+    NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
+    
+    if ([dictionariesAvailable count] == 1) {
+        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
+        processedDictionaryName = [dictionaryURL lastPathComponent];
+    } else if ([dictionariesAvailable count] > 1) {
+        NSLog(@"more than one processed dictionary");
+        processedDictionaryName = @"More than 1";
+    }
+    
+    return processedDictionaryName;
+}
+
++ (void) use:(DictionarySetupViewController *)dsvc
+   toProcess:(NSBundle *)dictionary
+passDictionaryAround:(UIViewController *)rootViewController
+ setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
+{
+    dsvc.dictionaryBundle = dictionary;
+    dsvc.rootViewControllerForPassingProcessedDictionaryAround = rootViewController;
+    [dsvc setDelegate:delegate];
+}
+
+
 - (GDataXMLDocument *)loadDictionaryFromXMLInDictionaryBundle:(NSBundle *)bundle
 {
     NSError *error = nil;

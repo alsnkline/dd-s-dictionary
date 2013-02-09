@@ -80,11 +80,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
-    [dwvc setDelegate:self];
-    
-    //if iPhone to prevent the back button flashing
-    [self.navigationItem setHidesBackButton:YES];
-    
+    if (dwvc) {
+        //iPad
+        [dwvc setDelegate:self];
+    } else {
+        //if iPhone to prevent the back button flashing
+        [self.navigationItem setHidesBackButton:YES];
+    }
 }
 
 -(void)trackView:(NSString *)viewNameForGA
@@ -101,7 +103,7 @@
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
     
     if (!self.activeDictionary) {
-         [self setUpDictionary]; // used iPad only, working except for view order issues on iPhone solved with new class and pre-screen in nav controller.
+         [self setUpDictionary]; // used in iPad to trigger loading if necessary, in iphone it always triggers loading and passing the processed dictionary around.
     }
     
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
@@ -112,21 +114,26 @@
 -(void) setUpDictionary
 {
     //see if there are any dictionary's already processed
-    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
-    NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
+    NSString *availableDictionary = [DictionarySetupViewController dictionaryAlreadyProcessed];
     
-    if ([dictionariesAvailable count] == 1) {
-        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
-        NSString *activeDictionaryName = [dictionaryURL lastPathComponent];
-        NSLog(@"Opening the 1 dictionary available its name: %@", activeDictionaryName);
-        NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
-        [DictionarySetupViewController loadDictionarywithName:activeDictionaryName passAroundIn:self.view.window.rootViewController];
+    if ([availableDictionary isEqualToString:@"More than 1"]) {
+        
+        [self showErrorTooManyDictionaries];
         
     } else {
-        
-        NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
-        [self displayViewWhileProcessing:dictionaryShippingWithApp];
-        
+
+        if (availableDictionary) {
+
+            NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
+            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
+            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
+            
+        } else {
+            
+            NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
+            [self displayViewWhileProcessing:dictionaryShippingWithApp];
+            
+        }
     }
 
 }
@@ -332,9 +339,9 @@
 {
     // instanciate a Dictionary Setup controller which starts processing a dictionary
     self.dsvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Processing Dictionary View"];
-    [DictionaryTableViewController use:self.dsvc toProcess:dictionary passDictionaryAround:self.view.window.rootViewController setDelegate:self];
+    [DictionarySetupViewController use:self.dsvc toProcess:dictionary passDictionaryAround:self.view.window.rootViewController setDelegate:self];
     
-    if ([self splitViewWithDisplayWordViewController]) { //iPad
+    if ([self splitViewWithDisplayWordViewController]) { //iPad show DictionarySetupViewController in popover
     
         UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:self.dsvc];
         self.popoverController = dsPopoverC;
@@ -363,15 +370,6 @@
 
 }
 
-+ (void) use:(DictionarySetupViewController *)dsvc
-   toProcess:(NSBundle *)dictionary
-passDictionaryAround:(UIViewController *)rootViewController
- setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
-{
-    dsvc.dictionaryBundle = dictionary;
-    dsvc.rootViewControllerForPassingProcessedDictionaryAround = rootViewController;
-    [dsvc setDelegate:delegate];
-}
 
 - (void) showExplanationForFrozenUI     //used during app development superceeded by setupTableSwitchedViewController.
 {
@@ -382,5 +380,16 @@ passDictionaryAround:(UIViewController *)rootViewController
     [alertUser sizeToFit];
     [alertUser show];
 }
+
+- (void) showErrorTooManyDictionaries     //also in SetupTableSwitchViewController
+{
+    UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary processing problem"
+                                                        message:[NSString stringWithFormat:@"Sorry, you have too many dictionaries processed."]
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertUser sizeToFit];
+    [alertUser show];
+}
+
 
 @end

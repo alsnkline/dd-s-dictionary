@@ -50,7 +50,7 @@
 		B18E40B016AB706C00D346A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40AF16AB706B00D346A6 /* Default@2x.png */; };
 		B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B116AB71A800D346A6 /* dino114-114.png */; };
 		B18E40B416AB76D500D346A6 /* dino57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B316AB76D500D346A6 /* dino57-57.png */; };
-		B18F862416A200A100F33B34 /* SetupTableSwitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F862316A200A000F33B34 /* SetupTableSwitchViewController.m */; };
+		B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F833716C6AF440082D687 /* SetupOrMainViewController.m */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
@@ -127,8 +127,8 @@
 		B18E40AF16AB706B00D346A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B18E40B116AB71A800D346A6 /* dino114-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino114-114.png"; sourceTree = "<group>"; };
 		B18E40B316AB76D500D346A6 /* dino57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino57-57.png"; sourceTree = "<group>"; };
-		B18F862216A200A000F33B34 /* SetupTableSwitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupTableSwitchViewController.h; sourceTree = "<group>"; };
-		B18F862316A200A000F33B34 /* SetupTableSwitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupTableSwitchViewController.m; sourceTree = "<group>"; };
+		B18F833616C6AF440082D687 /* SetupOrMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupOrMainViewController.h; sourceTree = "<group>"; };
+		B18F833716C6AF440082D687 /* SetupOrMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupOrMainViewController.m; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -211,12 +211,13 @@
 				B17CE6B915980041005A12D3 /* resources.bundle */,
 				B178608B159638050047D631 /* Database */,
 				B18248AA15E052CF0093E71F /* NSUserDefaultKeys.h */,
-				B18F862216A200A000F33B34 /* SetupTableSwitchViewController.h */,
-				B18F862316A200A000F33B34 /* SetupTableSwitchViewController.m */,
 				B17D466815B8DA8D0059214F /* DictionarySetupViewController.h */,
 				B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */,
+				B18F833616C6AF440082D687 /* SetupOrMainViewController.h */,
+				B18F833716C6AF440082D687 /* SetupOrMainViewController.m */,
 				B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */,
 				B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */,
+				B18E40A316AB35D200D346A6 /* htmlPageViewController.m */,
 				B17CE6BC15980349005A12D3 /* CoreDataTableViewController.h */,
 				B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */,
 				B17AAB791596B87F009A5C1D /* DictionaryTableViewController.h */,
@@ -224,7 +225,6 @@
 				B182489A15E04C7A0093E71F /* SettingsTableViewController.h */,
 				B182489B15E04C7B0093E71F /* SettingsTableViewController.m */,
 				B18E40A216AB35D200D346A6 /* htmlPageViewController.h */,
-				B18E40A316AB35D200D346A6 /* htmlPageViewController.m */,
 				B17CE6BE15980481005A12D3 /* DictionaryHelper.h */,
 				B17CE6BF15980481005A12D3 /* DictionaryHelper.m */,
 				B178056C159D0C1E0013AD65 /* GDataXMLNodeHelper.h */,
@@ -387,8 +387,8 @@
 				B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */,
 				B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */,
 				B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */,
-				B18F862416A200A100F33B34 /* SetupTableSwitchViewController.m in Sources */,
 				B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */,
+				B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

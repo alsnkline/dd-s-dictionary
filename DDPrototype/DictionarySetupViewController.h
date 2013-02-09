@@ -26,5 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 + (void)loadDictionarywithName:(NSString *)dictionaryName passAroundIn:(UIViewController *)rootViewController;
++ (NSString *)dictionaryAlreadyProcessed;
++ (void) use:(DictionarySetupViewController *)dsvc toProcess:(NSBundle *)dictionary passDictionaryAround:(UIViewController *)rootViewController setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate;
+
 
 @end
