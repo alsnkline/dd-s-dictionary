@@ -14,6 +14,7 @@
 
 @interface SettingsTableViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *playOnSelectionSwitch;
+@property (weak, nonatomic) IBOutlet UISlider *backgroundColourSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLable;
 @property (nonatomic, strong) NSIndexPath *selectedCellIndexPath;
 
@@ -21,12 +22,16 @@
 
 @implementation SettingsTableViewController
 @synthesize playOnSelectionSwitch = _playOnSelectionSwitch;
+@synthesize backgroundColourSlider = _backgroundColourSlider;
 @synthesize versionLable = _versionLable;
 @synthesize selectedCellIndexPath = _selectedCellIndexPath;
 
 - (void)viewDidAppear:(BOOL)animated
 {   
     self.playOnSelectionSwitch.on = [[NSUserDefaults standardUserDefaults] floatForKey:PLAY_WORDS_ON_SELECTION];
+    float customBackgroundColour = [[NSUserDefaults standardUserDefaults] floatForKey:BACKGROUND_COLOUR];
+    self.backgroundColourSlider.value = customBackgroundColour;
+    [self setCellBackgroundColour:customBackgroundColour];
     [super viewDidAppear:animated];
     
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
@@ -34,6 +39,16 @@
     id tracker = [GAI sharedInstance].defaultTracker;
     [tracker sendView:viewNameForGA];
     NSLog(@"View sent to GA %@", viewNameForGA);
+}
+
+- (void) setCellBackgroundColour:(float)colour
+{
+    NSArray *tableCells = self.tableView.visibleCells;
+    for (UITableViewCell *cell in tableCells)
+    {
+        cell.backgroundColor = [UIColor colorWithHue:colour saturation:.20 brightness:1 alpha:1];
+    }
+
 }
 
 - (IBAction)playOnSelectionSwitchChanged:(UISwitch *)sender 
@@ -47,6 +62,24 @@
     [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"playOnSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
     NSLog(@"Event sent to GA uiAction_Setting playOnSetlectionChanged %@",switchSetting);
 }
+
+- (IBAction)backgroundColourChanged:(UISlider*)sender
+{
+    [[NSUserDefaults standardUserDefaults] setFloat:sender.value forKey:BACKGROUND_COLOUR];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self setCellBackgroundColour:sender.value];
+        
+//    self.view.backgroundColor = [UIColor colorWithHue:sender.value saturation:.20 brightness:1 alpha:1]; //this changes main table view that is obscured by the gray and the cells backgrounds!
+    
+    //track event with GA
+    id tracker = [GAI sharedInstance].defaultTracker;
+    NSString *sliderSetting = [NSString stringWithFormat:@"%f", sender.value];
+    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"backgroundColourChanged" withLabel:sliderSetting withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_Setting backgroundColourChanged %@",sliderSetting);
+}
+
+
 
 - (NSString*) version {
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];

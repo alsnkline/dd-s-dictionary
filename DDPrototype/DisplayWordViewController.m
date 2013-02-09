@@ -13,6 +13,7 @@
 #import "Word.h"
 #import "Pronunciation.h"
 #import "GAI.h"
+#import "NSUserDefaultKeys.h"
 
 @interface DisplayWordViewController () <AVAudioPlayerDelegate>
 
@@ -26,6 +27,7 @@
 @implementation DisplayWordViewController
 @synthesize word = _word;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
+@synthesize customBackgroundColour = _customBackgroundColour;
 @synthesize delegate = _delegate;
 @synthesize spelling = _spelling;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
@@ -52,6 +54,14 @@
     if (_word != word) {
         _word = word;
         [self setUpViewForWord:word];
+    }
+}
+
+-(void)setCustomBackgroundColour:(NSNumber *)customBackgroundColour
+{
+    if (_customBackgroundColour != customBackgroundColour) {
+        _customBackgroundColour = customBackgroundColour;
+         self.view.backgroundColor = [UIColor colorWithHue:[self.customBackgroundColour floatValue] saturation:.20 brightness:1 alpha:1];
     }
 }
 
@@ -277,11 +287,21 @@
     }
 }
 
+//- (void) setupCustomBackgroundColour
+//{
+//    self.view.backgroundColor = [UIColor colorWithHue:[self.customBackgroundColour floatValue] saturation:.20 brightness:1 alpha:1];
+//}
+
 - (void)viewWillAppear:(BOOL)animated
 {
+    if (!self.customBackgroundColour) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        self.customBackgroundColour = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOUR]];
+    }
+    
     if (self.word) {
         [self setUpViewForWord:self.word];
-        if (self.playWordsOnSelection) {
+        if (self.playWordsOnSelection) { //only used in iPhone - playwords on iPad done from DictionaryTableViewController
             [self playAllWords:self.word.pronunciations];
         }
     }
