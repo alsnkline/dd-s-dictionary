@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *backgroundColourSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLable;
 @property (nonatomic, strong) NSIndexPath *selectedCellIndexPath;
+@property (nonatomic, strong) NSNumber *customBackgroundColour;
 
 @end
 
@@ -25,13 +26,17 @@
 @synthesize backgroundColourSlider = _backgroundColourSlider;
 @synthesize versionLable = _versionLable;
 @synthesize selectedCellIndexPath = _selectedCellIndexPath;
+@synthesize customBackgroundColour = _backgroundColour;
 
 - (void)viewDidAppear:(BOOL)animated
-{   
-    self.playOnSelectionSwitch.on = [[NSUserDefaults standardUserDefaults] floatForKey:PLAY_WORDS_ON_SELECTION];
-    float customBackgroundColour = [[NSUserDefaults standardUserDefaults] floatForKey:BACKGROUND_COLOUR];
-    self.backgroundColourSlider.value = customBackgroundColour;
-    [self setCellBackgroundColour:customBackgroundColour];
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.playOnSelectionSwitch.on = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
+    self.customBackgroundColour = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOUR]];
+//    float customBackgroundColour = [[NSUserDefaults standardUserDefaults] floatForKey:BACKGROUND_COLOUR];
+    self.backgroundColourSlider.value = [self.customBackgroundColour floatValue];
+    [self setCellBackgroundColour:[self.customBackgroundColour floatValue]];
     [super viewDidAppear:animated];
     
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
@@ -68,6 +73,7 @@
     [[NSUserDefaults standardUserDefaults] setFloat:sender.value forKey:BACKGROUND_COLOUR];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    self.customBackgroundColour = [NSNumber numberWithFloat:sender.value];
     [self setCellBackgroundColour:sender.value];
         
 //    self.view.backgroundColor = [UIColor colorWithHue:sender.value saturation:.20 brightness:1 alpha:1]; //this changes main table view that is obscured by the gray and the cells backgrounds!
@@ -189,6 +195,11 @@
 */
 
 #pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor colorWithHue:[self.customBackgroundColour floatValue] saturation:.20 brightness:1 alpha:1];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
