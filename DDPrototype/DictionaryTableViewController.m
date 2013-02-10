@@ -16,7 +16,7 @@
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
-@property (nonatomic, strong) NSNumber *customBackgroundColour;
+@property (nonatomic, strong) UIColor *customBackgroundColor;
 @property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover in iPad
 @property (nonatomic, strong) DictionarySetupViewController *dsvc; //used to track the start up vc in iPhone as there is no popover
 @property (nonatomic, strong) Word *selectedWord;
@@ -26,7 +26,7 @@
 @implementation DictionaryTableViewController
 @synthesize activeDictionary = _activeDictionary;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
-@synthesize customBackgroundColour = _backgroundColour;
+@synthesize customBackgroundColor = _backgroundColor;
 @synthesize popoverController;
 @synthesize dsvc = _dsvc;
 @synthesize selectedWord = _selectedWord;
@@ -103,8 +103,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //set value of backgroundColour
-    self.customBackgroundColour = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOUR]];
-    self.view.backgroundColor = [UIColor colorWithHue:[self.customBackgroundColour floatValue] saturation:.20 brightness:1 alpha:1];
+    self.customBackgroundColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
+    self.view.backgroundColor = self.customBackgroundColor;
     
     //set value of playWordsOnSelection
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
@@ -286,8 +286,8 @@
         if (self.playWordsOnSelection) {
             [segue.destinationViewController setPlayWordsOnSelection:self.playWordsOnSelection];
         }
-        if (self.customBackgroundColour) {
-            [segue.destinationViewController setCustomBackgroundColour:self.customBackgroundColour];
+        if (self.customBackgroundColor) {
+            [segue.destinationViewController setCustomBackgroundColor:self.customBackgroundColor];
         }
         [segue.destinationViewController setDelegate:self];
     }

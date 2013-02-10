@@ -23,7 +23,7 @@
 
 @property (nonatomic, strong) Word *word; //word for display the model for this MVC
 @property (nonatomic) BOOL playWordsOnSelection;
-@property (nonatomic, strong) NSNumber *customBackgroundColour;
+@property (nonatomic, strong) UIColor *customBackgroundColor;
 @property (nonatomic, weak) id <DisplayWordViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *spelling;
 @property (weak, nonatomic) IBOutlet UIButton *listenButton;

@@ -11,32 +11,48 @@
 #import <MessageUI/MessageUI.h>
 #import "htmlPageViewController.h"
 #import "GAI.h"
+#import "DisplayWordViewController.h"
 
 @interface SettingsTableViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *playOnSelectionSwitch;
-@property (weak, nonatomic) IBOutlet UISlider *backgroundColourSlider;
+@property (weak, nonatomic) IBOutlet UISlider *backgroundHueSlider;
+@property (weak, nonatomic) IBOutlet UISlider *backgroundSaturationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLable;
+@property (weak, nonatomic) IBOutlet UILabel *backgroundColorLable;
 @property (nonatomic, strong) NSIndexPath *selectedCellIndexPath;
-@property (nonatomic, strong) NSNumber *customBackgroundColour;
+@property (nonatomic, strong) NSNumber *customBackgroundColorHue;
+@property (nonatomic, strong) NSNumber *customBackgroundColorSaturation;
+@property (nonatomic, strong) UIColor *customBackgroundColor;
 
 @end
 
 @implementation SettingsTableViewController
 @synthesize playOnSelectionSwitch = _playOnSelectionSwitch;
-@synthesize backgroundColourSlider = _backgroundColourSlider;
+@synthesize backgroundHueSlider = _backgroundHueSlider;
+@synthesize backgroundSaturationSlider = _backgroundSaturationSlider;
 @synthesize versionLable = _versionLable;
+@synthesize backgroundColorLable = _backgroundColourLable;
 @synthesize selectedCellIndexPath = _selectedCellIndexPath;
-@synthesize customBackgroundColour = _backgroundColour;
+@synthesize customBackgroundColorHue = _customBackgroundColorHue;
+@synthesize customBackgroundColorSaturation = _customBackgroundColorSaturation;
+@synthesize customBackgroundColor = _backgroundColor;
 
 - (void)viewDidAppear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.playOnSelectionSwitch.on = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
-    self.customBackgroundColour = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOUR]];
-//    float customBackgroundColour = [[NSUserDefaults standardUserDefaults] floatForKey:BACKGROUND_COLOUR];
-    self.backgroundColourSlider.value = [self.customBackgroundColour floatValue];
-    [self setCellBackgroundColour:[self.customBackgroundColour floatValue]];
+    
+    self.customBackgroundColorHue = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_HUE]];
+    self.customBackgroundColorSaturation = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_SATURATION]*10];
+    
+    self.backgroundHueSlider.value = [self.customBackgroundColorHue floatValue];
+    self.backgroundSaturationSlider.value = [self.customBackgroundColorSaturation floatValue];
+    
+    self.customBackgroundColor = [UIColor colorWithHue:[self.customBackgroundColorHue floatValue]  saturation:[self.customBackgroundColorSaturation floatValue] brightness:1 alpha:1];
+    [self setCellBackgroundColor];
+    [self manageBackgroundColorLable];
+    
     [super viewDidAppear:animated];
     
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
@@ -46,12 +62,12 @@
     NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
-- (void) setCellBackgroundColour:(float)colour
+- (void) setCellBackgroundColor
 {
     NSArray *tableCells = self.tableView.visibleCells;
     for (UITableViewCell *cell in tableCells)
     {
-        cell.backgroundColor = [UIColor colorWithHue:colour saturation:.20 brightness:1 alpha:1];
+        cell.backgroundColor = self.customBackgroundColor;
     }
 
 }
@@ -68,24 +84,69 @@
     NSLog(@"Event sent to GA uiAction_Setting playOnSetlectionChanged %@",switchSetting);
 }
 
-- (IBAction)backgroundColourChanged:(UISlider*)sender
+- (IBAction)backgroundHueSliderChanged:(UISlider *)sender
 {
-    [[NSUserDefaults standardUserDefaults] setFloat:sender.value forKey:BACKGROUND_COLOUR];
+    [[NSUserDefaults standardUserDefaults] setFloat:sender.value forKey:BACKGROUND_COLOR_HUE];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    self.customBackgroundColour = [NSNumber numberWithFloat:sender.value];
-    [self setCellBackgroundColour:sender.value];
-        
-//    self.view.backgroundColor = [UIColor colorWithHue:sender.value saturation:.20 brightness:1 alpha:1]; //this changes main table view that is obscured by the gray and the cells backgrounds!
+    self.customBackgroundColorHue = [NSNumber numberWithFloat:sender.value];
+    [self backgroundColorChanged];
     
     //track event with GA
     id tracker = [GAI sharedInstance].defaultTracker;
-    NSString *sliderSetting = [NSString stringWithFormat:@"%f", sender.value];
-    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"backgroundColourChanged" withLabel:sliderSetting withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Setting backgroundColourChanged %@",sliderSetting);
+    NSString *customBackgroundColorHueSetting = [NSString stringWithFormat:@"Color Hue Changed"];
+    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"backgroundColorChanged" withLabel:customBackgroundColorHueSetting withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_Setting backgroundColorChanged %@",customBackgroundColorHueSetting);
 }
 
+- (IBAction)backgroundSaturationSliderChanged:(UISlider *)sender
+{
+    //slider runs from 0-2 to allow me to use interger rounding - storage and UIColor calulations assume a 0-1 range, so need to /10 and *10 where appropriate to deliver 10% and 20% saturation.
+    int sliderValue;
+    sliderValue = lroundf(sender.value);
+    [sender setValue:sliderValue animated:YES];
+    float saturation = sender.value/10;
+    
+    [[NSUserDefaults standardUserDefaults] setFloat:saturation forKey:BACKGROUND_COLOR_SATURATION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    self.customBackgroundColorSaturation = [NSNumber numberWithFloat:saturation];
+    [self manageBackgroundColorLable];
+    [self backgroundColorChanged];
+    
+    //track event with GA
+    id tracker = [GAI sharedInstance].defaultTracker;
+    NSString *customBackgroundColorSaturationSetting = [NSString stringWithFormat:@"Color Saturation:%f", saturation];
+    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"backgroundColorChanged" withLabel:customBackgroundColorSaturationSetting withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_Setting backgroundColorChanged %@",customBackgroundColorSaturationSetting);
+}
 
+- (IBAction)backgroundColorChanged
+{
+    self.customBackgroundColor = [UIColor colorWithHue:[self.customBackgroundColorHue floatValue]  saturation:[self.customBackgroundColorSaturation floatValue] brightness:1 alpha:1];
+    [self setCellBackgroundColor];
+    
+    if ([self splitViewWithDisplayWordViewController]) {
+        [self splitViewWithDisplayWordViewController].customBackgroundColor = self.customBackgroundColor;
+    }
+        
+//    self.view.backgroundColor = [UIColor colorWithHue:sender.value saturation:.20 brightness:1 alpha:1]; //this changes main table view that is obscured by the gray and the cells backgrounds!
+    
+}
+
+- (void) manageBackgroundColorLable
+{
+    if ([self.customBackgroundColorSaturation isEqualToNumber:[NSNumber numberWithFloat:0]]) {
+        self.backgroundColorLable.text = [NSString stringWithFormat:@"Background color: None"];
+   //     self.versionLable.text = [NSString stringWithFormat:@"Version: %@",[self version]];
+    } else if ([self.customBackgroundColorSaturation isEqualToNumber:[NSNumber numberWithFloat:1]]) {
+        self.backgroundColorLable.text = [NSString stringWithFormat:@"Background color: Some"];
+    } else if ([self.customBackgroundColorSaturation isEqualToNumber:[NSNumber numberWithFloat:2]]) {
+        self.backgroundColorLable.text  = [NSString stringWithFormat:@"Background color: Lots"];
+    } else {
+        self.backgroundColorLable.text  = [NSString stringWithFormat:@"Problem"];
+    }
+}
 
 - (NSString*) version {
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
@@ -198,7 +259,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [UIColor colorWithHue:[self.customBackgroundColour floatValue] saturation:.20 brightness:1 alpha:1];
+    cell.backgroundColor = self.customBackgroundColor;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -237,6 +298,14 @@
     }
 }
 
+- (DisplayWordViewController *)splitViewWithDisplayWordViewController
+{
+    id dwvc = [self.splitViewController.viewControllers lastObject];
+    if (![dwvc isKindOfClass:[DisplayWordViewController class]]) {
+        dwvc = nil;
+    }
+    return dwvc;
+}
 
 #pragma mark - Sending an Email
 

@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define PLAY_WORDS_ON_SELECTION @"DDPrototype.PlayWordsOnSelection"
-#define BACKGROUND_COLOUR @"DDPrototype.BackgroundColour"
+#define BACKGROUND_COLOR_HUE @"DDPrototype.BackgroundColorHue"
+#define BACKGROUND_COLOR_SATURATION @"DDPrototype.BackgroundColorSaturation"
 
 @protocol NSUserDefaultKeys <NSObject>
 

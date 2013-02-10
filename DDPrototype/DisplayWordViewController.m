@@ -27,7 +27,7 @@
 @implementation DisplayWordViewController
 @synthesize word = _word;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
-@synthesize customBackgroundColour = _customBackgroundColour;
+@synthesize customBackgroundColor = _customBackgroundColor;
 @synthesize delegate = _delegate;
 @synthesize spelling = _spelling;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
@@ -57,11 +57,11 @@
     }
 }
 
--(void)setCustomBackgroundColour:(NSNumber *)customBackgroundColour
+-(void)setCustomBackgroundColor:(UIColor *)customBackgroundColor
 {
-    if (_customBackgroundColour != customBackgroundColour) {
-        _customBackgroundColour = customBackgroundColour;
-         self.view.backgroundColor = [UIColor colorWithHue:[self.customBackgroundColour floatValue] saturation:.20 brightness:1 alpha:1];
+    if (_customBackgroundColor != customBackgroundColor) {
+        _customBackgroundColor = customBackgroundColor;
+        self.view.backgroundColor = self.customBackgroundColor;
     }
 }
 
@@ -294,9 +294,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (!self.customBackgroundColour) {
+    if (!self.customBackgroundColor) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        self.customBackgroundColour = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOUR]];
+        self.customBackgroundColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
     }
     
     if (self.word) {
