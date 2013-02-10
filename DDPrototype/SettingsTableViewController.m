@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *backgroundHueSlider;
 @property (weak, nonatomic) IBOutlet UISlider *backgroundSaturationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLable;
-@property (weak, nonatomic) IBOutlet UILabel *backgroundColorLable;
+@property (weak, nonatomic) IBOutlet UILabel *customBackgroundColorLable;
 @property (nonatomic, strong) NSIndexPath *selectedCellIndexPath;
 @property (nonatomic, strong) NSNumber *customBackgroundColorHue;
 @property (nonatomic, strong) NSNumber *customBackgroundColorSaturation;
@@ -31,11 +31,14 @@
 @synthesize backgroundHueSlider = _backgroundHueSlider;
 @synthesize backgroundSaturationSlider = _backgroundSaturationSlider;
 @synthesize versionLable = _versionLable;
-@synthesize backgroundColorLable = _backgroundColourLable;
+@synthesize customBackgroundColorLable = _customBackgroundColorLable;
 @synthesize selectedCellIndexPath = _selectedCellIndexPath;
 @synthesize customBackgroundColorHue = _customBackgroundColorHue;
 @synthesize customBackgroundColorSaturation = _customBackgroundColorSaturation;
 @synthesize customBackgroundColor = _backgroundColor;
+
+#define SATURATION_MULTIPLIER 10
+//Saturation slider runs from 0-2 to allow me to use interger rounding - storage and UIColor calulations assume a 0-1 range, so need to / and * where appropriate by a factor to deliver two levels.
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -44,10 +47,10 @@
     self.playOnSelectionSwitch.on = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
     
     self.customBackgroundColorHue = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_HUE]];
-    self.customBackgroundColorSaturation = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_SATURATION]*10];
+    self.customBackgroundColorSaturation = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_SATURATION]];
     
     self.backgroundHueSlider.value = [self.customBackgroundColorHue floatValue];
-    self.backgroundSaturationSlider.value = [self.customBackgroundColorSaturation floatValue];
+    self.backgroundSaturationSlider.value = [self.customBackgroundColorSaturation floatValue]*SATURATION_MULTIPLIER;
     
     self.customBackgroundColor = [UIColor colorWithHue:[self.customBackgroundColorHue floatValue]  saturation:[self.customBackgroundColorSaturation floatValue] brightness:1 alpha:1];
     [self setCellBackgroundColor];
@@ -105,7 +108,8 @@
     int sliderValue;
     sliderValue = lroundf(sender.value);
     [sender setValue:sliderValue animated:YES];
-    float saturation = sender.value/10;
+    
+    float saturation = sender.value/SATURATION_MULTIPLIER;
     
     [[NSUserDefaults standardUserDefaults] setFloat:saturation forKey:BACKGROUND_COLOR_SATURATION];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -121,7 +125,7 @@
     NSLog(@"Event sent to GA uiAction_Setting backgroundColorChanged %@",customBackgroundColorSaturationSetting);
 }
 
-- (IBAction)backgroundColorChanged
+- (void) backgroundColorChanged
 {
     self.customBackgroundColor = [UIColor colorWithHue:[self.customBackgroundColorHue floatValue]  saturation:[self.customBackgroundColorSaturation floatValue] brightness:1 alpha:1];
     [self setCellBackgroundColor];
@@ -136,15 +140,17 @@
 
 - (void) manageBackgroundColorLable
 {
-    if ([self.customBackgroundColorSaturation isEqualToNumber:[NSNumber numberWithFloat:0]]) {
-        self.backgroundColorLable.text = [NSString stringWithFormat:@"Background color: None"];
-   //     self.versionLable.text = [NSString stringWithFormat:@"Version: %@",[self version]];
-    } else if ([self.customBackgroundColorSaturation isEqualToNumber:[NSNumber numberWithFloat:1]]) {
-        self.backgroundColorLable.text = [NSString stringWithFormat:@"Background color: Some"];
-    } else if ([self.customBackgroundColorSaturation isEqualToNumber:[NSNumber numberWithFloat:2]]) {
-        self.backgroundColorLable.text  = [NSString stringWithFormat:@"Background color: Lots"];
+    if (self.backgroundSaturationSlider.value == 0) {
+        self.customBackgroundColorLable.text = [NSString stringWithFormat:@"Background color: None"];
+        self.backgroundHueSlider.enabled = FALSE;
+    } else if (self.backgroundSaturationSlider.value == 1) {
+        self.customBackgroundColorLable.text = [NSString stringWithFormat:@"Background color: Some"];
+        self.backgroundHueSlider.enabled = TRUE;
+    } else if (self.backgroundSaturationSlider.value == 2) {
+        self.customBackgroundColorLable.text  = [NSString stringWithFormat:@"Background color: Lots"];
+        self.backgroundHueSlider.enabled = TRUE;
     } else {
-        self.backgroundColorLable.text  = [NSString stringWithFormat:@"Problem"];
+        self.customBackgroundColorLable.text  = [NSString stringWithFormat:@"Problem"];
     }
 }
 

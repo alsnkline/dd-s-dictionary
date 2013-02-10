@@ -333,7 +333,7 @@
                                 <string key="footerTitle">Thank you - Alison
 
 
-Copyright © 2012 Alison Kline. 
+Copyright © 2013 Alison Kline. 
 
 All rights reserved.</string>
                                 <cells>
@@ -415,9 +415,9 @@ All rights reserved.</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="N39-cg-UcJ"/>
                     <connections>
-                        <outlet property="backgroundColorLable" destination="j35-B2-WOa" id="M1B-6E-Joy"/>
                         <outlet property="backgroundHueSlider" destination="2s9-bN-12f" id="a5E-tb-VkR"/>
                         <outlet property="backgroundSaturationSlider" destination="ZGs-ac-6j6" id="k4c-PE-G1z"/>
+                        <outlet property="customBackgroundColorLable" destination="j35-B2-WOa" id="9P9-8S-Sgz"/>
                         <outlet property="playOnSelectionSwitch" destination="PnM-wQ-K7N" id="pyd-EF-CQz"/>
                         <outlet property="versionLable" destination="ZvG-vS-P30" id="SO9-y3-Zrw"/>
                         <segue destination="HWB-8S-2DH" kind="push" identifier="display WebView" id="rT8-fE-irU"/>

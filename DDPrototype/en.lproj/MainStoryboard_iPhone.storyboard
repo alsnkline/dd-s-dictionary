@@ -85,13 +85,20 @@
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dEn-ck-Ccx">
-                                                    <rect key="frame" x="11" y="11" width="173" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background color: None" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dEn-ck-Ccx">
+                                                    <rect key="frame" x="11" y="11" width="183" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="2" id="qa2-5w-hmK">
+                                                    <rect key="frame" x="209" y="11" width="81" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="backgroundSaturationSliderChanged:" destination="Xgw-44-NPE" eventType="touchUpInside" id="QAs-vV-q34"/>
+                                                    </connections>
+                                                </slider>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -107,7 +114,7 @@
                                                     <rect key="frame" x="18" y="11" width="264" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="backgroundColourChanged:" destination="Xgw-44-NPE" eventType="valueChanged" id="HmQ-FJ-cM5"/>
+                                                        <action selector="backgroundHueSliderChanged:" destination="Xgw-44-NPE" eventType="valueChanged" id="s66-bb-vHW"/>
                                                     </connections>
                                                 </slider>
                                             </subviews>
@@ -141,7 +148,7 @@
                             <tableViewSection headerTitle="Extras" id="FPp-nA-cST">
                                 <string key="footerTitle">Thank you - Alison
 
-Copyright © 2012 Alison Kline. 
+Copyright © 2013 Alison Kline. 
 All rights reserved.</string>
                                 <cells>
                                     <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="N9P-BL-Wz6" style="IBUITableViewCellStyleDefault" id="RGO-HT-5Np">
@@ -223,6 +230,8 @@ All rights reserved.</string>
                     <navigationItem key="navigationItem" title="Settings" id="6FP-7L-esi"/>
                     <connections>
                         <outlet property="backgroundHueSlider" destination="khT-6F-x6g" id="bet-tg-EPc"/>
+                        <outlet property="backgroundSaturationSlider" destination="qa2-5w-hmK" id="4KR-Ux-Ng5"/>
+                        <outlet property="customBackgroundColorLable" destination="dEn-ck-Ccx" id="YC0-hL-972"/>
                         <outlet property="playOnSelectionSwitch" destination="GJZ-fv-8Gy" id="C1F-3r-D3u"/>
                         <outlet property="versionLable" destination="6sv-Cz-mIN" id="bjb-QA-EsE"/>
                         <segue destination="ICl-i9-QCJ" kind="push" identifier="display WebView" id="LxO-hG-fZn"/>
@@ -596,10 +605,13 @@ All rights reserved.</string>
         <class className="SettingsTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backgroundColourChanged:" candidateClass="UISlider"/>
+                <relationship kind="action" name="backgroundHueSliderChanged:" candidateClass="UISlider"/>
+                <relationship kind="action" name="backgroundSaturationSliderChanged:" candidateClass="UISlider"/>
                 <relationship kind="action" name="playOnSelectionSwitchChanged:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="sendEmail:"/>
-                <relationship kind="outlet" name="backgroundColourSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="backgroundHueSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="backgroundSaturationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="customBackgroundColorLable" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playOnSelectionSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="versionLable" candidateClass="UILabel"/>
             </relationships>
