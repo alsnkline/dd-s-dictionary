@@ -26,6 +26,14 @@
     return self;
 }
 
+- (void)setWebView:(UIWebView *)webView
+{
+    _webView = webView;
+    NSLog(@"urlToDisplay = %@", self.urlToDisplay);
+    self.webView.scalesPageToFit = NO;  //set to yes to enable zooming etc of the webpages
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,6 +43,12 @@
     self.webView.delegate = self;
     NSLog(@"urlToDisplay = %@", self.urlToDisplay);
     [self.webView loadRequest:[NSURLRequest requestWithURL:self.urlToDisplay]];
+    
+//    self.webView.scrollView.minimumZoomScale = 0.2;
+//    self.webView.scrollView.maximumZoomScale = 5;
+//    [self.webView.scrollView setZoomScale:2 animated:YES];
+//    NSLog(@"zoomScale = %f", self.webView.scrollView.zoomScale);
+//    NSLog(@"max zoomScale, min zoomscale = %f, %f", self.webView.scrollView.maximumZoomScale, self.webView.scrollView.minimumZoomScale);
     
     self.trackedViewName = self.stringForTitle;
     NSLog(@"View sent to GA %@", self.stringForTitle);
