@@ -314,18 +314,25 @@
                 }
             }
             
+            NSFileManager *localFileManager = [[NSFileManager alloc] init];
             switch (switchValue) {
                 case 0: {
                     //set up about page
                     [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
                     NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
-                    [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+                    
+                    if ([localFileManager fileExistsAtPath:path]) { //avoid crash if file changes and forgot to clean build :-)
+                        [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+                    }
                     break;
                 }
                 case 1: {
                     //small print selected.
                     NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
-                    [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+                    
+                    if ([localFileManager fileExistsAtPath:path]) { //avoid crash if file changes and forgot to clean build :-)
+                        [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+                    }
                     break;
                 }
                 default:
