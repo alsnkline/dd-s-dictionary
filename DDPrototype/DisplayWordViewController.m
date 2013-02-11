@@ -9,7 +9,7 @@
 #import "DisplayWordViewController.h"
 #import "DictionaryHelper.h"
 #import <AudioToolbox/AudioToolbox.h>  //for system sounds
-#import <AVFoundation/AVAudioPlayer.h> //for audioPlayer
+#import <AVFoundation/AVFoundation.h> //for audioPlayer
 #import "Word.h"
 #import "Pronunciation.h"
 #import "GAI.h"
@@ -47,6 +47,32 @@
 {
     [super awakeFromNib];
     self.splitViewController.delegate = self;
+    
+    [self setupAudioSession];
+    [self setAudioSessionCategoryToPlayback];
+    
+}
+
+-(void)setupAudioSession
+{
+    //setting up the AVAudioSession and activating it.
+    NSError *activationError = nil;
+    BOOL success = [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
+    if (!success) {
+        NSLog(@"AVAudioSession not setup %@", activationError);
+    }
+}
+
+-(void)setAudioSessionCategoryToPlayback
+{
+    NSError *setCategoryError = nil;
+    BOOL success = [[AVAudioSession sharedInstance]
+                    setCategory: AVAudioSessionCategoryPlayback
+                    error: &setCategoryError];
+    
+    if (!success) {
+        NSLog(@"AVAudioSessionCategory not set %@", setCategoryError);
+    }
 }
 
 -(void)setWord:(Word *)word
@@ -223,6 +249,7 @@
         [self playWord:pronunciationToPlay];
     }
 }
+
 
 - (void)playWord:(Pronunciation *)pronunciation
 {
