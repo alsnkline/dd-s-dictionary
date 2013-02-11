@@ -12,6 +12,7 @@
 #import "DictionarySetupViewController.h"
 #import "NSUserDefaultKeys.h"
 #import "GAI.h"
+#import "ErrorsHelper.h"
 
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate>
@@ -125,7 +126,7 @@
     
     if ([availableDictionary isEqualToString:@"More than 1"]) {
         
-        [self showErrorTooManyDictionaries];
+        [ErrorsHelper showErrorTooManyDictionaries];
         
     } else {
 
@@ -374,32 +375,12 @@
     } else { //iPhone different ways to show UI... replaced with extra UI Nav Controller class
  //       [self.navigationController pushViewController:self.dsvc animated:YES];
  //       [self presentViewController:self.dsvc animated:YES completion:nil];
-        [self showExplanationForFrozenUI];  //never called now used during development
+        [ErrorsHelper showExplanationForFrozenUI];  //never called now used during development
 
     }
 
 }
 
-
-- (void) showExplanationForFrozenUI     //used during app development superceeded by setupTableSwitchedViewController.
-{
-    UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary processing"
-                                                        message:[NSString stringWithFormat:@"Please wait while we build your dictionary for the first time."]
-                                                       delegate:self cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertUser sizeToFit];
-    [alertUser show];
-}
-
-- (void) showErrorTooManyDictionaries     //also in SetupTableSwitchViewController
-{
-    UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary processing problem"
-                                                        message:[NSString stringWithFormat:@"Sorry, you have too many dictionaries processed."]
-                                                       delegate:self cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertUser sizeToFit];
-    [alertUser show];
-}
 
 
 @end

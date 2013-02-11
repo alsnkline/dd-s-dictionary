@@ -44,6 +44,7 @@
 		B17E2A0F15B5ECCD0021816E /* icon-72e.png in Resources */ = {isa = PBXBuildFile; fileRef = B17E2A0E15B5ECCD0021816E /* icon-72e.png */; };
 		B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B182489B15E04C7B0093E71F /* SettingsTableViewController.m */; };
 		B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18248BA15E0B7EC0093E71F /* MessageUI.framework */; };
+		B18C7B3D16C8043600FCF6D0 /* ErrorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B18C7B3C16C8043600FCF6D0 /* ErrorsHelper.m */; };
 		B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E40A316AB35D200D346A6 /* htmlPageViewController.m */; };
 		B18E40AC16AB544000D346A6 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E40AB16AB544000D346A6 /* libGoogleAnalytics.a */; };
 		B18E40AE16AB547A00D346A6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */; };
@@ -115,6 +116,8 @@
 		B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		B18248BA15E0B7EC0093E71F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B18C7B3B16C8043600FCF6D0 /* ErrorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorsHelper.h; sourceTree = "<group>"; };
+		B18C7B3C16C8043600FCF6D0 /* ErrorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorsHelper.m; sourceTree = "<group>"; };
 		B18E40A216AB35D200D346A6 /* htmlPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = htmlPageViewController.h; sourceTree = "<group>"; };
 		B18E40A316AB35D200D346A6 /* htmlPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = htmlPageViewController.m; sourceTree = "<group>"; };
 		B18E40A616AB542200D346A6 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				B17CE6B915980041005A12D3 /* resources.bundle */,
 				B178608B159638050047D631 /* Database */,
 				B18248AA15E052CF0093E71F /* NSUserDefaultKeys.h */,
+				B18C7B3B16C8043600FCF6D0 /* ErrorsHelper.h */,
+				B18C7B3C16C8043600FCF6D0 /* ErrorsHelper.m */,
 				B17D466815B8DA8D0059214F /* DictionarySetupViewController.h */,
 				B17D466915B8DA8D0059214F /* DictionarySetupViewController.m */,
 				B18F833616C6AF440082D687 /* SetupOrMainViewController.h */,
@@ -389,6 +394,7 @@
 				B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */,
 				B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */,
 				B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */,
+				B18C7B3D16C8043600FCF6D0 /* ErrorsHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

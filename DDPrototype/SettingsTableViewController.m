@@ -283,24 +283,30 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //used set up webView depending upon which item was selected.
+    //used to set up webView depending upon which item was selected.
     if ([segue.identifier isEqualToString:@"display WebView"]) {
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             UITableViewCell *cell = (UITableViewCell *)sender;
             [segue.destinationViewController setStringForTitle:cell.textLabel.text];
+            NSLog(@"IndexPath of selectedcell = %@", self.selectedCellIndexPath);
+            NSLog(@"Cell Lable = %@", cell.textLabel.text);
             
-        if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:0 inSection:2]]) {
+//        if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:0 inSection:2]]) { //NSIndexPath indexPathForItem: inSection: is triggering selector not found error in iOS 5.0 and 5.1
+            // check out http://stackoverflow.com/questions/3862933/check-ios-version-at-runtime for another way to avoid the crash but run the better code where possible
+            if ([cell.textLabel.text isEqualToString:@"About Dy-Di"]) {
             //about needed
             [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
             NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
             [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
             
-        } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
+            
+//        } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
+            } else if ([cell.textLabel.text isEqualToString:@"Small Print"]) {
             //small print selected.
             NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
             [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+            }
         }
-    }
     }
 }
 

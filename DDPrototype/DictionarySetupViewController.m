@@ -10,6 +10,7 @@
 #import "DictionaryHelper.h"
 #import "GDataXMLNodeHelper.h"
 #import "GAI.h"
+#import "ErrorsHelper.h"
 
 @interface DictionarySetupViewController ()
 
@@ -136,14 +137,18 @@ passDictionaryAround:(UIViewController *)rootViewController
     // GDataXMLDocument *doc = [GDataXMLNodeHelper loadDictionaryFromXMLError:&error];
     
     if (error) {
-        UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary XML parsing" 
-                                                            message:[NSString stringWithFormat:@"It seems we can't read your XML Dictionary. Please confirm it conforms to the expected xml format (%@)", error] 
-                                                           delegate:self cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
         NSLog(@"error %@ %@",error, [error userInfo]);
-        [alertUser sizeToFit];
-        [alertUser show];
+        [ErrorsHelper showXMLParsingError:error];
         XMLdoc = nil;
+        
+//        UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary XML parsing" 
+//                                                            message:[NSString stringWithFormat:@"It seems we can't read your XML Dictionary. Please confirm it conforms to the expected xml format (%@)", error] 
+//                                                           delegate:self cancelButtonTitle:@"OK" 
+//                                                  otherButtonTitles:nil];
+//
+//        [alertUser sizeToFit];
+//        [alertUser show];
+        
     }
     return XMLdoc;
 }

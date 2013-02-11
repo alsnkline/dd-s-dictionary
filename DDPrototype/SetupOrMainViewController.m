@@ -9,6 +9,7 @@
 #import "SetupOrMainViewController.h"
 #import "DictionarySetupViewController.h"
 #import "AppDelegate.h"
+#import "ErrorsHelper.h"
 
 
 @interface SetupOrMainViewController () <DictionarySetupViewControllerDelegate>
@@ -53,7 +54,7 @@
     
     if ([availableDictionary isEqualToString:@"More than 1"]) {
         
-        [self showErrorTooManyDictionaries];
+        [ErrorsHelper showErrorTooManyDictionaries];
         
     } else {
         
@@ -83,7 +84,27 @@
 
 -(void) DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)sender
 {
-    //processing complete switch to Home Tab Controller
+    //processing complete add a short timer to let the saving of the Dictionary complete on all devices even slow ones :-)
+    
+    //This code sleeps the thread, stoping the saving also?? - although 15 secs did seem to often work.... it was still un-reliable
+//    float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
+//    if (ver <= 5.1) {
+//        [NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:15]]; //60,30, 20, 15 work, 10 secs is not long enough on simulator test
+//        //delay for 5.0 and 5.1 devices to avoid blank Dictionary tables.
+//    }
+    
+    NSString *info = @"myTimer event fired";
+    NSTimer *mytimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerDone:) userInfo:info repeats:NO];
+    NSLog(@"mytimer = %@", mytimer);
+    
+    //processing complete switch to Home Tab Controller - moved to after timer completes
+//    [self switchToHomeTabController];
+}
+
+- (void) timerDone:(NSTimer *)atimer
+{
+    //processing and saving! complete switch to Home Tab Controller
+    NSLog(@"%@", atimer.userInfo);
     [self switchToHomeTabController];
 }
 
@@ -101,17 +122,5 @@
 {
     return YES;
 }
-
-
-- (void) showErrorTooManyDictionaries     //also in DictionaryTableViewContoller
-{
-    UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary processing problem"
-                                                        message:[NSString stringWithFormat:@"Sorry, you have too many dictionaries processed."]
-                                                       delegate:self cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertUser sizeToFit];
-    [alertUser show];
-}
-
 
 @end
