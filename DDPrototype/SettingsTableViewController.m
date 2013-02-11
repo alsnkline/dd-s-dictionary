@@ -291,21 +291,63 @@
             NSLog(@"IndexPath of selectedcell = %@", self.selectedCellIndexPath);
             NSLog(@"Cell Lable = %@", cell.textLabel.text);
             
+            
+            NSInteger switchValue;
+            
+            if ([[NSIndexPath class] respondsToSelector:@selector(indexPathForItem:inSection:)]) {
+                // we are in an iOS 6.0 device and can use cell position to test for what was selected.
+                if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:0 inSection:2]]) {
+                    switchValue = 0; //About
+                } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
+                    switchValue = 1; //Small Print
+                } else {
+                    switchValue = 2;
+                }
+            } else {
+                // we are in an iOS 5.0, 5.1 or 5.1.1 device
+                if ([cell.textLabel.text isEqualToString:@"About Dy-Di"]) {
+                    switchValue = 0; //About
+                } else if ([cell.textLabel.text isEqualToString:@"Small Print"]) {
+                    switchValue = 1; //Small Print
+                } else {
+                    switchValue = 2;
+                }
+            }
+            
+            switch (switchValue) {
+                case 0: {
+                    //set up about page
+                    [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
+                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
+                    [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+                    break;
+                }
+                case 1: {
+                    //small print selected.
+                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
+                    [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+                    break;
+                }
+                default:
+                    NSLog(@"not resolved which cell was pressed on settings page");
+                    break;
+            }
+            
 //        if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:0 inSection:2]]) { //NSIndexPath indexPathForItem: inSection: is triggering selector not found error in iOS 5.0 and 5.1
             // check out http://stackoverflow.com/questions/3862933/check-ios-version-at-runtime for another way to avoid the crash but run the better code where possible
-            if ([cell.textLabel.text isEqualToString:@"About Dy-Di"]) {
-            //about needed
-            [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
-            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
-            
-            
-//        } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
-            } else if ([cell.textLabel.text isEqualToString:@"Small Print"]) {
-            //small print selected.
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
-            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
-            }
+//            if ([cell.textLabel.text isEqualToString:@"About Dy-Di"]) {
+//            //about needed
+//            [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
+//            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+//            
+//            
+////        } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
+//            } else if ([cell.textLabel.text isEqualToString:@"Small Print"]) {
+//            //small print selected.
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
+//            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+//            }
         }
     }
 }

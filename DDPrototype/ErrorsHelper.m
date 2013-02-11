@@ -42,7 +42,9 @@
     NSLog(@"Event sent to GA uiAction_Error processing tooManyDictionaries");
 }
 
-+ (void) showErrorMuteOn
++ (void) showErrorMuteOn //not used the right way to avoid this need is to initialize an audio session, make it active and set its category to AVAudiaSessionDategoryPlayback
+// http://stackoverflow.com/questions/10180500/how-to-use-kaudiosessionproperty-overridecategorymixwithothers
+// https://developer.apple.com/library/ios/#documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Configuration/Configuration.html
 {
     UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Sound is muted"
                                                         message:[NSString stringWithFormat:@"Please set your volumn so you can hear."]
