@@ -105,7 +105,15 @@
     
     //set value of backgroundColour
     self.customBackgroundColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
-    self.view.backgroundColor = self.customBackgroundColor;
+    if ([self.tableView indexPathForSelectedRow]) {
+        // we have to deselect change color and reselect or we get the old color showing up when the selection is changed.
+        NSIndexPath *selectedCell = [self.tableView indexPathForSelectedRow];
+        [self.tableView deselectRowAtIndexPath:selectedCell animated:NO];
+        self.view.backgroundColor = self.customBackgroundColor;
+        [self.tableView selectRowAtIndexPath:selectedCell animated:NO scrollPosition:UITableViewScrollPositionNone];
+    } else {
+        self.view.backgroundColor = self.customBackgroundColor;
+    }
     
     //set value of playWordsOnSelection
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
