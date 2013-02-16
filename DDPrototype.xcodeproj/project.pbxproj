@@ -52,6 +52,7 @@
 		B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B116AB71A800D346A6 /* dino114-114.png */; };
 		B18E40B416AB76D500D346A6 /* dino57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B316AB76D500D346A6 /* dino57-57.png */; };
 		B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F833716C6AF440082D687 /* SetupOrMainViewController.m */; };
+		B191B62516D01E57008BDDD5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B191B62416D01E57008BDDD5 /* QuartzCore.framework */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
@@ -132,6 +133,7 @@
 		B18E40B316AB76D500D346A6 /* dino57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino57-57.png"; sourceTree = "<group>"; };
 		B18F833616C6AF440082D687 /* SetupOrMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupOrMainViewController.h; sourceTree = "<group>"; };
 		B18F833716C6AF440082D687 /* SetupOrMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupOrMainViewController.m; sourceTree = "<group>"; };
+		B191B62416D01E57008BDDD5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -146,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B191B62516D01E57008BDDD5 /* QuartzCore.framework in Frameworks */,
 				B18E40AE16AB547A00D346A6 /* SystemConfiguration.framework in Frameworks */,
 				B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */,
 				B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */,
@@ -164,6 +167,7 @@
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
+				B191B62416D01E57008BDDD5 /* QuartzCore.framework */,
 				B18E40B316AB76D500D346A6 /* dino57-57.png */,
 				B18E40B116AB71A800D346A6 /* dino114-114.png */,
 				B18E40AF16AB706B00D346A6 /* Default@2x.png */,

@@ -14,6 +14,7 @@
 #import "Pronunciation.h"
 #import "GAI.h"
 #import "NSUserDefaultKeys.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DisplayWordViewController () <AVAudioPlayerDelegate>
 
@@ -88,6 +89,13 @@
     if (_customBackgroundColor != customBackgroundColor) {
         _customBackgroundColor = customBackgroundColor;
         self.view.backgroundColor = self.customBackgroundColor;
+        
+        NSArray *myListenButtons = [NSArray arrayWithObjects:self.listenButton, self.heteronymListenButton, nil];
+        [self setColorOfButtons:myListenButtons toColor:self.customBackgroundColor];
+        
+        NSArray *myHomonyButtons = [NSArray arrayWithObjects:self.homonymButton1, self.homonymButton2, self.homonymButton3, self.homonymButton4, nil];
+        [self setColorOfButtons:myHomonyButtons toColor:self.customBackgroundColor];
+        
     }
 }
 
@@ -387,6 +395,118 @@
         dwvc = nil;
     }
     return dwvc;
+}
+
+- (void) setColorOfButtons:(NSArray*)buttons toColor:(UIColor *)color
+{
+    //raw idea at http://stackoverflow.com/questions/7238507/change-round-rect-button-background-color-on-statehighlighted
+    //modified to take UIColor on input not a color spec
+    
+    if (buttons.count == 0) {
+        return;
+    }
+    
+    // get the first button
+    NSEnumerator* buttonEnum = [buttons objectEnumerator];
+    UIButton* button = (UIButton*)[buttonEnum nextObject];
+    
+    UIColor *highlightColor = color;
+    [button setTintColor:highlightColor];
+    
+    float cRadius = 10;
+//    NSLog(@"button size from imageView.image = h%f w%f", button.imageView.image.size.height, button.imageView.image.size.width);
+//    NSLog(@"button size from layer.frame = h%f w%f", button.layer.frame.size.height, button.layer.frame.size.width);
+//    NSLog(@"button size from button.bounds = h%f w%f", button.bounds.size.height, button.bounds.size.width);
+    UIImage *image = [self createImageOfColor:highlightColor ofSize:CGSizeMake(40, 37) withCornerRadius:cRadius];
+    
+    UIImage* stretchableImage = [image resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    
+    // set background image of all buttons
+    do {
+        [button setBackgroundImage:stretchableImage forState:UIControlStateNormal];
+        
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = cRadius;
+        button.layer.needsDisplayOnBoundsChange = YES;
+        
+    } while (button = (UIButton*)[buttonEnum nextObject]);
+    
+    //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    //    CAGradientLayer *gradient = [CAGradientLayer layer];
+    //    gradient.frame = rect;
+    //    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor blackColor] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+    //    [view.layer insertSublayer:gradient atIndex:0];
+}
+
+- (UIImage *)createImageOfColor:(UIColor *)color ofSize:(CGSize)size withCornerRadius:(float)cRadius
+{
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(context, 0, size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    
+    // image drawing code here
+
+    
+//    Used to draw a perfect rectangle for use as button background during development.
+//    CGContextBeginPath(context);
+//    CGContextMoveToPoint(context, 0, 0);
+//    CGContextAddLineToPoint(context, 0, image.size.height);
+//    CGContextAddLineToPoint(context, image.size.width, image.size.height);
+//    CGContextAddLineToPoint(context, image.size.width, 0);
+//    CGContextAddLineToPoint(context, 0, 0);
+//    CGContextClosePath(context);
+//    CGContextFillPath(context);
+    
+    [color setFill];
+    [[UIColor grayColor] setStroke];
+    
+    UIGraphicsPushContext(context);
+    
+    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius: cRadius];
+    [roundedRect fillWithBlendMode: kCGBlendModeNormal alpha:1.0f];
+    
+//    [[UIColor yellowColor] setFill];
+    CGFloat hue;   CGFloat sat;   CGFloat bright;   CGFloat alpha;
+    [color getHue:&hue saturation:&sat brightness:&bright alpha:&alpha];
+    CGFloat darkest=0.8;
+    int loopMax = 4;  //loops 2 times less than this
+    int stepSize = 1;
+    
+    for (int i = 2 ; i < loopMax ; i++)
+    {
+
+        CGFloat brightThisLoop = (1-darkest)/loopMax*i+darkest;
+        NSLog(@"brightThisLoop = %f", brightThisLoop);
+        [[UIColor colorWithHue:hue saturation:sat brightness:brightThisLoop alpha:alpha] setFill];
+     
+        CGContextBeginPath(context);
+        CGContextMoveToPoint(context, 0, size.height);
+        CGContextAddLineToPoint(context, size.width, size.height-stepSize*(i-1));
+        CGContextAddLineToPoint(context, size.width, size.height-stepSize*i);
+        CGContextAddLineToPoint(context, 0, size.height-stepSize*i);
+        CGContextAddLineToPoint(context, 0, size.height-stepSize*(i-1));
+        CGContextClosePath(context);
+        CGContextFillPath(context);
+        
+    }
+    
+    CGFloat lineWidth = 2.0;
+    CGRectInset(rect, lineWidth/2.0, lineWidth/2.0);
+    [roundedRect strokeWithBlendMode:kCGBlendModeNormal alpha:1.0f];
+    
+    UIGraphicsPopContext();
+    
+    UIImage *coloredImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+//    NSLog(@"image I'm passing back %@", coloredImage);
+    return coloredImage;
+    
+    
 }
 
 @end
