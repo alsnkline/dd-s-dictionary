@@ -321,9 +321,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (!self.customBackgroundColor) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        self.customBackgroundColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
+    //check if correct background color is set - needed if user changed color in setting while a work is showing in iPhone.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    UIColor *currentDesiredColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
+    if (![self.customBackgroundColor isEqual:currentDesiredColor]) {
+        self.customBackgroundColor = currentDesiredColor;
     }
     
     if (self.word) {
