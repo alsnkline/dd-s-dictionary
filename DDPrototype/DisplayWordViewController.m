@@ -473,24 +473,30 @@
     CGFloat hue;   CGFloat sat;   CGFloat bright;   CGFloat alpha;
     [color getHue:&hue saturation:&sat brightness:&bright alpha:&alpha];
     CGFloat darkest=0.8;
-    int loopMax = 4;  //loops 2 times less than this
+    int loopMax = 5;  //loops 1 times less than this
     int stepSize = 1;
     
-    for (int i = 2 ; i < loopMax ; i++)
+    for (int i = 1 ; i < loopMax ; i++)
     {
 
-        CGFloat brightThisLoop = (1-darkest)/loopMax*i+darkest;
-        NSLog(@"brightThisLoop = %f", brightThisLoop);
+        CGFloat increaseBrightnessEachLoop = (1-darkest)/(loopMax-1);
+        CGFloat brightThisLoop = darkest + increaseBrightnessEachLoop*i;
+ //       NSLog(@"brightThisLoop = %f", brightThisLoop);
         [[UIColor colorWithHue:hue saturation:sat brightness:brightThisLoop alpha:alpha] setFill];
      
         CGContextBeginPath(context);
-        CGContextMoveToPoint(context, 0, size.height);
+        CGContextMoveToPoint(context, 0, size.height-stepSize*(i-1));
         CGContextAddLineToPoint(context, size.width, size.height-stepSize*(i-1));
         CGContextAddLineToPoint(context, size.width, size.height-stepSize*i);
         CGContextAddLineToPoint(context, 0, size.height-stepSize*i);
         CGContextAddLineToPoint(context, 0, size.height-stepSize*(i-1));
         CGContextClosePath(context);
         CGContextFillPath(context);
+//        NSLog(@"rectangle this loop tl:%f,%f tr:%f,%f br:%f,%f bl:%f,%f",
+//              0.0f,size.height-stepSize*(i-1),
+//              size.width,size.height-stepSize*(i-1),
+//              size.width,size.height-stepSize*i,
+//              0.0f,size.height-stepSize*i);
         
     }
     
