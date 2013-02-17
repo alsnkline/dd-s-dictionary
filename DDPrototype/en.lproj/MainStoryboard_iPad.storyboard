@@ -280,7 +280,7 @@
                                                     <rect key="frame" x="211" y="11" width="81" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="backgroundSaturationSliderChanged:" destination="P3y-1c-ZYu" eventType="touchUpInside" id="FfK-Mi-6WZ"/>
+                                                        <action selector="backgroundSaturationSliderChanged:" destination="P3y-1c-ZYu" eventType="valueChanged" id="okg-E9-qpB"/>
                                                     </connections>
                                                 </slider>
                                             </subviews>

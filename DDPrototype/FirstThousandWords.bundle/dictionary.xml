@@ -3181,6 +3181,7 @@
 	</word>
 	<word>
 		<spelling>weather</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>Wednesday</spelling>
@@ -3217,6 +3218,13 @@
 	</word>
 	<word>
 		<spelling>what</spelling>
+	</word>
+	<word>
+		<spelling>whether</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>weather</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>when</spelling>
