@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DictionarySetupViewController.h"
 
 #define DEFAULT_DICTIONARY_BUNDLE_NAME @"FirstThousandWords"
 
+@class DictionarySetupViewController;
+
 typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
+typedef void (^completion_block_with_done_delegate)(UIManagedDocument *dictionaryDatabase, id <DictionarySetupViewControllerDelegate> *imDoneDelegate); //not being used, passed data the wrong way!
 
 @protocol ActiveDictionaryFollower <NSObject>
 
@@ -26,11 +30,15 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
 + (NSArray *)currentContentsOfdictionaryDirectory;
 + (BOOL)alreadyHaveDictionaryWithName:(NSString *)dictionaryName;
 + (void)openDictionary:(NSString *)dictionaryName
+  withImDoneDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
+               andDsvc:(DictionarySetupViewController *)dsvc
           usingBlock:(completion_block_t)completionBlock;
-+ (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock;
++ (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock; //Used during development only
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController;
 + (void)deleteDictionary:(NSString *)dictionaryName;
-+ (void)saveDictionary:(UIManagedDocument *)dictionary;
++ (void)saveDictionary:(UIManagedDocument *)dictionary
+    withImDoneDelegate:(id<DictionarySetupViewControllerDelegate>)delegate
+               andDsvc:(DictionarySetupViewController *)dsvc;
 + (NSURL *)fileURLForPronunciation:(NSString *)word;
 + (NSString *)dictionaryDisplayNameFrom:(UIManagedDocument *)activeDictionary;
 + (void)numberOfWordsInCoreDataDocument:(UIManagedDocument *)activeDictionary;

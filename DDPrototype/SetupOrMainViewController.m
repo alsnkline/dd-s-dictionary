@@ -93,15 +93,16 @@
 //        //delay for 5.0 and 5.1 devices to avoid blank Dictionary tables.
 //    }
     
-    NSString *info = @"myTimer event fired";
-    NSTimer *mytimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerDone:) userInfo:info repeats:NO];
-    NSLog(@"mytimer = %@", mytimer);
+    //This code sets up a timer and worked consistently in 2.0.4 before passing the completedProcessing Delegate and dsvc into the async methods.
+//    NSString *info = @"myTimer event fired";
+//    NSTimer *mytimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerDone:) userInfo:info repeats:NO];
+//    NSLog(@"mytimer = %@", mytimer);
     
-    //processing complete switch to Home Tab Controller - moved to after timer completes
-//    [self switchToHomeTabController];
+    //processing complete switch to Home Tab Controller - moved to after timer completes in 2.0.4 back from 2.0.5
+    [self switchToHomeTabController];
 }
 
-- (void) timerDone:(NSTimer *)atimer
+- (void) timerDone:(NSTimer *)atimer //method called when timer done used in 2.0.4 before passing the completedProcessing Delegate and dsvc into the async methods.
 {
     //processing and saving! complete switch to Home Tab Controller
     NSLog(@"%@", atimer.userInfo);

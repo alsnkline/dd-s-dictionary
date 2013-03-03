@@ -9,6 +9,7 @@
 #import "DictionaryHelper.h"
 #import "Dictionary+Create.h"
 #import "GDataXMLNode.h"
+#import "DictionarySetupViewController.h"
 
 @implementation DictionaryHelper
 
@@ -93,7 +94,9 @@
     return isAlreadyPresent;
 }
 
-+ (void)openDictionary:(NSString *)dictionaryName 
++ (void)openDictionary:(NSString *)dictionaryName
+    withImDoneDelegate:(id<DictionarySetupViewControllerDelegate>)delegate
+               andDsvc:(DictionarySetupViewController *)dsvc
             usingBlock:(completion_block_t)completionBlock
 {
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
@@ -106,7 +109,8 @@
             if (success){
                 completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc created");
-                [DictionaryHelper saveDictionary:dictionaryDatabase];
+                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc];
+ //               [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc]; - didn't work because savedDictionary is also async!
                 
             } else {
                 NSLog(@"failed to saveForCreating %@", [dictionaryDatabase.fileURL lastPathComponent]);
@@ -127,9 +131,10 @@
     }
 }
 
-+ (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock
++ (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock  //used during development only
 {
-    [DictionaryHelper openDictionary:@"defaultDictionary" usingBlock:completionBlock];
+//    [DictionaryHelper openDictionary:@"defaultDictionary" usingBlock:completionBlock];
+
 }
 
 + (void)passActiveDictionary:(UIManagedDocument *)activeDictionary arroundVCsIn:(UIViewController *)rootViewController
@@ -210,10 +215,13 @@
 }
 
 + (void)saveDictionary:(UIManagedDocument *)dictionary
+    withImDoneDelegate:(id<DictionarySetupViewControllerDelegate>)delegate
+               andDsvc:(DictionarySetupViewController *)dsvc
 {
     [dictionary saveToURL:dictionary.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^ (BOOL success) {
         if (success) {
             NSLog(@"Saved Dictionary URL = %@ doc state = %@", [dictionary.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionary.documentState]);
+            [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc];
         } else {
             NSLog(@"Save failed URL = %@ doc state = %@", [dictionary.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionary.documentState]);
         };

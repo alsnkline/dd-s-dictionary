@@ -87,7 +87,9 @@
 
 + (void)loadDictionarywithName:(NSString *)dictionaryName passAroundIn:(UIViewController *)rootViewController
 {
-    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase) {
+//    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase)
+    [DictionaryHelper openDictionary:dictionaryName withImDoneDelegate:nil andDsvc:nil usingBlock:^ (UIManagedDocument *dictionaryDatabase)
+    {
         
         NSLog(@"Got dictionary %@ doc state = %@", [dictionaryDatabase.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionaryDatabase.documentState]);
         if (dictionaryDatabase.documentState == UIDocumentStateNormal) {
@@ -124,9 +126,9 @@
 passDictionaryAround:(UIViewController *)rootViewController
  setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
 {
-    dsvc.dictionaryBundle = dictionary;
-    dsvc.rootViewControllerForPassingProcessedDictionaryAround = rootViewController;
     [dsvc setDelegate:delegate];
+    dsvc.rootViewControllerForPassingProcessedDictionaryAround = rootViewController;
+    dsvc.dictionaryBundle = dictionary;
 }
 
 
@@ -164,7 +166,9 @@ passDictionaryAround:(UIViewController *)rootViewController
 - (void)loadDictionarywithName:(NSString *)dictionaryName createFromXML:(GDataXMLDocument *)XMLdoc
 {
     //Get UIManagedDocument for dictionary
-    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase) {
+//    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase)
+    [DictionaryHelper openDictionary:dictionaryName withImDoneDelegate:self.delegate andDsvc:self usingBlock:^ (UIManagedDocument *dictionaryDatabase)
+    {
         
         NSLog(@"Got dictionary %@ doc state = %@", [dictionaryDatabase.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionaryDatabase.documentState]);
         if (dictionaryDatabase.documentState == UIDocumentStateNormal) {
@@ -187,7 +191,7 @@ passDictionaryAround:(UIViewController *)rootViewController
                 [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.rootViewControllerForPassingProcessedDictionaryAround];
             }
             
-            [self.delegate DictionarySetupViewDidCompleteProcessingDictionary:self]; //didn't work when moved to end of processDoc.
+//            [self.delegate DictionarySetupViewDidCompleteProcessingDictionary:self]; //didn't work when moved to end of processDoc. moved from here to ensure the async methods have all completed.
             
         } else {
             NSLog(@"dictionary documentState NOT normal");
