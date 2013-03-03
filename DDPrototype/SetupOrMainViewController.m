@@ -69,7 +69,7 @@
             
             //show setupView and process dictionary
             NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
-            [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self]; //should move this to DictionarySetupViewController Class as its set up related
+            [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self];
             [self.view insertSubview:self.setupViewController.view atIndex:0];
         }
     }
