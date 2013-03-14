@@ -274,9 +274,17 @@ All rights reserved.</string>
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="JWK-kH-DtA">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="b6d-OK-Qfz" id="MJy-wy-OSc"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Word" textLabel="GRj-ZJ-P9k" style="IBUITableViewCellStyleDefault" id="y9P-CJ-4BS">
-                                <rect key="frame" x="0.0" y="22" width="320" height="55"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="54"/>
@@ -302,10 +310,20 @@ All rights reserved.</string>
                     <navigationItem key="navigationItem" id="ySC-MO-Ce6"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="G5U-tc-t5m" id="AHw-zn-4q4"/>
                         <segue destination="lg5-ZE-Q8V" kind="push" identifier="Word Selected" id="TRg-pe-YPE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWV-9o-JNx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="G5U-tc-t5m">
+                    <connections>
+                        <outlet property="delegate" destination="b6d-OK-Qfz" id="QPn-8R-DPh"/>
+                        <outlet property="searchBar" destination="JWK-kH-DtA" id="X1h-4a-1lA"/>
+                        <outlet property="searchContentsController" destination="b6d-OK-Qfz" id="kwb-F7-jZ9"/>
+                        <outlet property="searchResultsDataSource" destination="b6d-OK-Qfz" id="7l2-nT-Km1"/>
+                        <outlet property="searchResultsDelegate" destination="b6d-OK-Qfz" id="m12-bA-ueO"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="480" y="-489"/>
         </scene>
@@ -569,10 +587,6 @@ All rights reserved.</string>
         <class className="SettingsTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="backgroundHueSliderChanged:" candidateClass="UISlider"/>
-                <relationship kind="action" name="backgroundSaturationSliderChanged:" candidateClass="UISlider"/>
-                <relationship kind="action" name="playOnSelectionSwitchChanged:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="sendEmail:"/>
                 <relationship kind="outlet" name="backgroundHueSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="backgroundSaturationSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="customBackgroundColorLable" candidateClass="UILabel"/>

@@ -131,7 +131,7 @@
     }
 }
 
-+ (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock  //used during development only
++ (void)getDefaultDictionaryUsingBlock:(completion_block_t)completionBlock  //used during development only commented out when cleaning up async timing issues.
 {
 //    [DictionaryHelper openDictionary:@"defaultDictionary" usingBlock:completionBlock];
 

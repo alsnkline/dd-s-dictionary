@@ -14,7 +14,6 @@
 @class DictionarySetupViewController;
 
 typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
-typedef void (^completion_block_with_done_delegate)(UIManagedDocument *dictionaryDatabase, id <DictionarySetupViewControllerDelegate> *imDoneDelegate); //not being used, passed data the wrong way!
 
 @protocol ActiveDictionaryFollower <NSObject>
 

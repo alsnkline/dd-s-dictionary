@@ -65,7 +65,7 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView //overiding in DictTableView to get Search to work
 {
     return [[self.fetchedResultsController sections] count];
 }
@@ -75,12 +75,12 @@
     return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section //overiding in DictTableView to get Search to work
 {
 	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index 
 {
 	
     if ([self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index])

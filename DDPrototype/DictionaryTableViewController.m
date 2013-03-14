@@ -15,12 +15,13 @@
 #import "ErrorsHelper.h"
 
 
-@interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate>
+@interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
 @property (nonatomic, strong) UIColor *customBackgroundColor;
 @property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover in iPad
 @property (nonatomic, strong) DictionarySetupViewController *dsvc; //used to track the start up vc in iPhone as there is no popover
 @property (nonatomic, strong) Word *selectedWord;
+@property (nonatomic, strong) NSFetchedResultsController *searchFetchedResultsController;
 
 @end
 
@@ -31,6 +32,7 @@
 @synthesize popoverController;
 @synthesize dsvc = _dsvc;
 @synthesize selectedWord = _selectedWord;
+@synthesize searchFetchedResultsController = _searchFetchedResultsController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -46,10 +48,111 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
     
+//    NSString *searchString = [NSString stringWithFormat:@"x"];
+//    request.predicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString]; //test for search
+    
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request 
                                                                         managedObjectContext:self.activeDictionary.managedObjectContext 
                                                                           sectionNameKeyPath:@"fetchedResultsSection" 
                                                                                    cacheName:nil];
+}
+
+- (NSFetchedResultsController *)newFetchedResultsControllerWithSearch:(NSString *)searchString
+{
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+    NSPredicate *filterPredicate = nil;
+//    if (searchString) {
+//        filterPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchString];
+//    }
+    
+    /*
+     Set up the fetched results controller.
+     */
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    //NSEntityDescription *callEntity = [MTCall entityInManagedObjectContext:self.managedObjectContext];
+    //[fetchRequest setEntity:callEntity];
+    
+//    NSMutableArray *predicateArray = [NSMutableArray array];
+//    if(searchString.length)
+//    {
+//        // your search predicate(s) are added to this array
+//        [predicateArray addObject:[NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", searchString]];
+//        // finally add the filter predicate for this view
+//        if(filterPredicate)
+//        {
+//            filterPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:filterPredicate, [NSCompoundPredicate orPredicateWithSubpredicates:predicateArray], nil]];
+//        }
+//        else
+//        {
+//            filterPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicateArray];
+//        }
+//    }
+//    [fetchRequest setPredicate:filterPredicate];
+        filterPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];
+    
+//    NSLog(@"searchString for Predicate: %@", searchString),
+    NSLog(@"Predicate: %@", filterPredicate);
+    [fetchRequest setPredicate:filterPredicate];
+//    
+//    // Set the batch size to a suitable number.
+//    [fetchRequest setFetchBatchSize:20];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSError *error = nil;
+    NSArray *matches = [self.activeDictionary.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"number of matches = %d", [matches count]);
+    for (Word *word in matches) {
+        NSLog(@"found: %@", word.spelling);
+    }
+    //NSLog(@"matches for fetchRequest = %@", matches);
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = nil;
+    
+    if (self.activeDictionary)
+    {
+        aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                                    managedObjectContext:self.activeDictionary.managedObjectContext
+                                                                                                      sectionNameKeyPath:@"fetchedResultsSection"
+                                                                                                               cacheName:nil];
+        aFetchedResultsController.delegate = self;
+        
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error])
+    {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+        
+//    NSFetchedResultsController *aFetchedResultsController = nil;
+//    if (self.activeDictionary) {
+        
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+//    //    request.predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchText];
+//        request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+//    
+//        aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+//                                                                            managedObjectContext:self.activeDictionary.managedObjectContext
+//                                                                              sectionNameKeyPath:@"fetchedResultsSection"
+//                                                                                       cacheName:nil];
+    }
+    
+    return aFetchedResultsController;
+}
+
+- (NSFetchedResultsController *)fetchedResultsControllerForTableView:(UITableView *)tableView
+{
+    return tableView == self.tableView ? self.fetchedResultsController : self.searchFetchedResultsController;
 }
 
 - (void)setActiveDictionary:(UIManagedDocument *)activeDictionary
@@ -90,6 +193,13 @@
         //if iPhone to prevent the back button flashing
         [self.navigationItem setHidesBackButton:YES];
     }
+
+    // set up search VC delegates.
+    self.searchDisplayController.delegate = self;
+    self.searchDisplayController.searchResultsDataSource = self;
+    self.searchDisplayController.searchResultsDelegate = self;
+    
+    self.debug = YES;
 }
 
 -(void)trackView:(NSString *)viewNameForGA
@@ -118,7 +228,7 @@
     //set value of playWordsOnSelection
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
     
-    if (!self.activeDictionary) {
+    if (!self.activeDictionary) {  //this can't be in view did load - doesn't work as activeDictionary is still nil at that time = problems!
          [self setUpDictionary]; // used in iPad to trigger loading if necessary, in iphone it always triggers loading and passing the processed dictionary around.
     }
     
@@ -199,30 +309,118 @@
 //    return [alphabet copy];
 //}
 
+#pragma mark -
+#pragma mark Content Filtering
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSInteger)scope
+{
+    // update the filter, in this case just blow away the old SearchFRC and create another with the relevant search info
+    self.searchFetchedResultsController.delegate = nil;
+    self.searchFetchedResultsController = nil;
+    // if you care about the scope save off the index to be used by the searchFetchedResultsController
+    //self.savedScopeButtonIndex = scope;
+    
+    self.searchFetchedResultsController = [self newFetchedResultsControllerWithSearch:searchText];
+}
+
+
+#pragma mark -
+#pragma mark Search Bar
+- (void)searchDisplayController:(UISearchDisplayController *)controller willUnloadSearchResultsTableView:(UITableView *)tableView;
+{
+    // search is done so get rid of the search FRC and reclaim memory
+    self.searchFetchedResultsController.delegate = nil;
+    self.searchFetchedResultsController = nil;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:[self.searchDisplayController.searchBar text]
+                               scope:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+#pragma mark -
+#pragma mark Search Bar Delegate methods
+//over riding some of those in the coreDataTableViewController parent class
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    UITableView *tableView = controller == self.fetchedResultsController ? self.tableView : self.searchDisplayController.searchResultsTableView;
+    [tableView beginUpdates];
+}
+
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-////    return [[self.fetchedResultsController sections] count];
-//    return [[self alphabet] count];
-//}
-//
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-//    
-//    return [self alphabet];
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    
-// //   return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
-//    return 0;
-//}
-//
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//	return [[self alphabet] objectAtIndex:section];
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSInteger count = [[[self fetchedResultsControllerForTableView:tableView] sections] count];
+    NSLog(@"table section count: %d", count);
+    return count;
+    //    return [[self alphabet] count];
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+
+    NSInteger numberOfRows = 0;
+    NSFetchedResultsController *fetchController = [self fetchedResultsControllerForTableView:tableView];
+    NSArray *sections = fetchController.sections;
+    if(sections.count > 0)
+    {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+        numberOfRows = [sectionInfo numberOfObjects];
+    }
+    
+    return numberOfRows;
+    
+}
+
+
+//overiding section managment to get Search to work
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
+{
+	return [[[[self fetchedResultsControllerForTableView:tableView] sections] objectAtIndex:section] name];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index //overiding in DictTableView to get Search to work
+{
+	
+    if ([[self fetchedResultsControllerForTableView:tableView] sectionForSectionIndexTitle:title atIndex:index])
+    {
+        return [[self fetchedResultsControllerForTableView:tableView] sectionForSectionIndexTitle:title atIndex:index];
+    } else {
+        return 0;
+    }
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView //overiding in DictTableView to get Search to work
+{
+    return [[self fetchedResultsControllerForTableView:tableView] sectionIndexTitles];
+}
+
+
+
+- (void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    // your cell guts here
+    Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = word.spelling;
+
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -233,9 +431,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
-    Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = word.spelling;
+        // Configure the cell...
+    
+    [self fetchedResultsController:[self fetchedResultsControllerForTableView:tableView] configureCell:cell atIndexPath:indexPath];
+    
+
+//    Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    cell.textLabel.text = word.spelling; //moved to get Search to work.
     
     return cell;
 }
