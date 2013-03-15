@@ -160,6 +160,10 @@
     return [NSString stringWithFormat:@"%@ build %@", version, build];
 }
 
+- (NSString *) deviceType {
+    return [UIDevice currentDevice].model;
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -398,7 +402,7 @@
         
 		[picker setToRecipients: [NSArray arrayWithObject: @"dydifeedback@gmail.com"]];
 		[picker setSubject: @"Dy-Di Feedback"];
-		[picker setMessageBody: [NSString stringWithFormat:@"What do you like about Dy-Di? \r\n\r\n What would you like to see improved? \r\n\r\n What new features would be key for you? \r\n\r\n Any other thoughts? \r\n\r\n\r\n\r\n Thank you so much for taking the time to give us your feedback.\r\n\r\n Best regards Alison.\r\n (from Version: %@)",[self version]] isHTML: NO];
+		[picker setMessageBody: [NSString stringWithFormat:@"What do you like about Dy-Di? \r\n\r\n What would you like to see improved? \r\n\r\n What new features would be key for you? \r\n\r\n Any other thoughts? \r\n\r\n\r\n\r\n Thank you so much for taking the time to give us your feedback.\r\n\r\n Best regards Alison.\r\n (from Version: %@ on an %@)",[self version], [self deviceType]] isHTML: NO];
         
 		[self presentModalViewController: picker animated: YES];
 	}

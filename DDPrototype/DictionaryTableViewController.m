@@ -575,7 +575,13 @@
             [self.navigationController popViewControllerAnimated:NO]; //Not animated as this is just preparing the Navigation Controller stack for the new word to be pushed on.
             
         }
-        [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        
+        if (self.searchDisplayController.isActive) { //could enhance this further to check and see if the selected word is in the table and scroll if present not otherwise.
+            NSIndexPath *selectedCell = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:selectedCell animated:NO];
+        } else {
+            [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        }
         [self wordSelectedAtIndexPath:indexPathOfHomonymn fromTableView:self.tableView];
     }
 }
