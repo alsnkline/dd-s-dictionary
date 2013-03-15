@@ -61,19 +61,12 @@
 {
     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
     NSPredicate *filterPredicate = nil;
-//    if (searchString) {
-//        filterPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchString];
-//    }
     
     /*
      Set up the fetched results controller.
      */
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
-    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    //NSEntityDescription *callEntity = [MTCall entityInManagedObjectContext:self.managedObjectContext];
-    //[fetchRequest setEntity:callEntity];
     
 //    NSMutableArray *predicateArray = [NSMutableArray array];
 //    if(searchString.length)
@@ -91,7 +84,8 @@
 //        }
 //    }
 //    [fetchRequest setPredicate:filterPredicate];
-        filterPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];
+    
+    filterPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];
     
 //    NSLog(@"searchString for Predicate: %@", searchString),
     NSLog(@"Predicate: %@", filterPredicate);
@@ -101,13 +95,15 @@
 //    [fetchRequest setFetchBatchSize:20];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    NSError *error = nil;
-    NSArray *matches = [self.activeDictionary.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    NSLog(@"number of matches = %d", [matches count]);
-    for (Word *word in matches) {
-        NSLog(@"found: %@", word.spelling);
-    }
+    /*
+     code used to test predicate during search development
+     */
+//    NSError *error = nil;
+//    NSArray *matches = [self.activeDictionary.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//    NSLog(@"number of matches = %d", [matches count]);
+//    for (Word *word in matches) {
+//        NSLog(@"found: %@", word.spelling);
+//    }
     //NSLog(@"matches for fetchRequest = %@", matches);
     
     // Edit the section name key path and cache name if appropriate.
@@ -122,29 +118,17 @@
                                                                                                                cacheName:nil];
         aFetchedResultsController.delegate = self;
         
-    NSError *error = nil;
-    if (![aFetchedResultsController performFetch:&error])
-    {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-        
-//    NSFetchedResultsController *aFetchedResultsController = nil;
-//    if (self.activeDictionary) {
-        
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
-//    //    request.predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchText];
-//        request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
-//    
-//        aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-//                                                                            managedObjectContext:self.activeDictionary.managedObjectContext
-//                                                                              sectionNameKeyPath:@"fetchedResultsSection"
-//                                                                                       cacheName:nil];
+        NSError *error = nil;
+        if (![aFetchedResultsController performFetch:&error])
+        {
+            /*
+             Replace this implementation with code to handle the error appropriately.
+             
+             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+             */
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
     }
     
     return aFetchedResultsController;
@@ -194,13 +178,33 @@
         [self.navigationItem setHidesBackButton:YES];
     }
 
+//    NSLog(@"TableView frame: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+//    NSLog(@"TableHeaderView frame: %f, %f, %f, %f", self.tableView.tableHeaderView.frame.origin.x, self.tableView.tableHeaderView.frame.origin.y ,self.tableView.tableHeaderView.frame.size.width ,self.tableView.tableHeaderView.frame.size.height);
+    /* added when I was considering showing the search bar all the time - I've decided you definately don't want to do that on the iphone small screen!!!.
+     http://stackoverflow.com/questions/9340345/keep-uisearchbar-visible-even-if-user-is-sliding-down and
+     UISearchBar *searchBar = [[[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44.0)] autorelease];
+     searchBar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+     self.tableView.tableHeaderView = searchBar;
+     from     http://stackoverflow.com/questions/4471289/how-to-filter-nsfetchedresultscontroller-coredata-with-uisearchdisplaycontroll
+     if you ever want to revisit that idea. 
+    */
+    
+    
     // set up search VC delegates.
     self.searchDisplayController.delegate = self;
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.searchResultsDelegate = self;
     
+    
     self.debug = YES;
 }
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
+}
+
 
 -(void)trackView:(NSString *)viewNameForGA
 {
@@ -211,6 +215,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //set value of backgroundColour
@@ -261,7 +266,6 @@
             
         }
     }
-
 }
 
 - (void)viewDidUnload
@@ -399,17 +403,36 @@
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index //overiding in DictTableView to get Search to work
 {
 	
-    if ([[self fetchedResultsControllerForTableView:tableView] sectionForSectionIndexTitle:title atIndex:index])
+    if (self.searchDisplayController.isActive) // return from sections for search table.
     {
         return [[self fetchedResultsControllerForTableView:tableView] sectionForSectionIndexTitle:title atIndex:index];
-    } else {
-        return 0;
+        
+    } else if (index >0) { // return from sections adjusted for the search icon for main table.
+        
+        return [[self fetchedResultsControllerForTableView:tableView] sectionForSectionIndexTitle:title atIndex:index-1];
+        
+    } else {  // force table to top of is show search if search icon is selected.
+        self.tableView.contentOffset = CGPointZero;
+        return NSNotFound;
+//        return 0;
     }
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView //overiding in DictTableView to get Search to work
 {
-    return [[self fetchedResultsControllerForTableView:tableView] sectionIndexTitles];
+    NSFetchedResultsController *FRC = [self fetchedResultsControllerForTableView:tableView];
+    
+    if (!self.searchDisplayController.isActive)
+    {
+        NSMutableArray *index = [NSMutableArray arrayWithObject:UITableViewIndexSearch];
+        NSArray *initials = [FRC sectionIndexTitles];
+        [index addObjectsFromArray:initials];
+        return index;
+    } else {
+        return [FRC sectionIndexTitles];
+    }
+    
+//    return [[self fetchedResultsControllerForTableView:tableView] sectionIndexTitles];
 }
 
 
@@ -485,7 +508,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath];
+    [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:tableView];
     
 }
 
@@ -504,9 +527,10 @@
     }
 }
 
-- (void) wordSelectedAtIndexPath:(NSIndexPath *)indexPath
+- (void) wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:(UITableView *)tableView
 {
-    Word *selectedWord = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    Word *selectedWord = [[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath];
     
     if ([self splitViewWithDisplayWordViewController]) { //iPad
         DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
@@ -531,7 +555,7 @@
 
 - (void) DisplayWordViewController:(DisplayWordViewController *)sender homonymSelectedWith:(NSString *)spelling
 {
-    NSLog(@"homonymSelected with spelling = %@",spelling);
+    NSLog(@"homonymSelected with spelling = %@",spelling);      //need to cancel search when this happens TODO 
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     request.predicate = [NSPredicate predicateWithFormat:@"spelling = %@",spelling];
@@ -552,7 +576,7 @@
             
         }
         [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-        [self wordSelectedAtIndexPath:indexPathOfHomonymn];
+        [self wordSelectedAtIndexPath:indexPathOfHomonymn fromTableView:self.tableView];
     }
 }
 
