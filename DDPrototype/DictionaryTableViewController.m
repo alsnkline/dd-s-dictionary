@@ -267,9 +267,8 @@
                 [DictionarySetupViewController processedDictionaryVersion];
                 [DictionarySetupViewController newVersion]; //to make sure next open the corrections don't get processed again
                 // delete availableDictionary
-            }
-            
-            if ([DictionarySetupViewController newVersion]) {
+                
+            } else if ([DictionarySetupViewController newVersion]) {
                 //first time this version is being run - check for corrections
                 [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:YES];
                 
