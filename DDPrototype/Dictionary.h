@@ -2,8 +2,8 @@
 //  Dictionary.h
 //  DDPrototype
 //
-//  Created by Alison Kline on 7/16/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alison KLINE on 3/21/13.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -13,8 +13,8 @@
 
 @interface Dictionary : NSManagedObject
 
-@property (nonatomic, retain) NSString * displayName;
 @property (nonatomic, retain) NSString * bundleName;
+@property (nonatomic, retain) NSString * displayName;
 @property (nonatomic, retain) NSSet *words;
 @end
 

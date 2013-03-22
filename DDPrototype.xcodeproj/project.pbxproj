@@ -16,11 +16,6 @@
 		B1310888168B9A89002E2355 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
-		B177D83015B51B61002A8814 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D82F15B51B61002A8814 /* Dictionary.m */; };
-		B177D83415B51B62002A8814 /* ComponentSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83315B51B62002A8814 /* ComponentSound.m */; };
-		B177D83715B51B62002A8814 /* ComponentSoundSpelling.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83615B51B62002A8814 /* ComponentSoundSpelling.m */; };
-		B177D83A15B51B62002A8814 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83915B51B62002A8814 /* Pronunciation.m */; };
-		B177D83D15B51B62002A8814 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83C15B51B62002A8814 /* Word.m */; };
 		B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83F15B51B98002A8814 /* Dictionary+Create.m */; };
 		B177D84615B531A4002A8814 /* FirstThousandWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B177D84515B531A3002A8814 /* FirstThousandWords.bundle */; };
 		B1780569159CF52C0013AD65 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B1786143159BD6E3004A79E5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -52,6 +47,9 @@
 		B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B116AB71A800D346A6 /* dino114-114.png */; };
 		B18E40B416AB76D500D346A6 /* dino57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B316AB76D500D346A6 /* dino57-57.png */; };
 		B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F833716C6AF440082D687 /* SetupOrMainViewController.m */; };
+		B18FE22D16FBB7BA00123B63 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22C16FBB7BA00123B63 /* Dictionary.m */; };
+		B18FE23016FBB7BA00123B63 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22F16FBB7BA00123B63 /* Word.m */; };
+		B18FE23316FBB7BA00123B63 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE23216FBB7BA00123B63 /* Pronunciation.m */; };
 		B191B62516D01E57008BDDD5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B191B62416D01E57008BDDD5 /* QuartzCore.framework */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
@@ -67,16 +65,6 @@
 		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
-		B177D82E15B51B61002A8814 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
-		B177D82F15B51B61002A8814 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
-		B177D83215B51B62002A8814 /* ComponentSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSound.h; sourceTree = "<group>"; };
-		B177D83315B51B62002A8814 /* ComponentSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSound.m; sourceTree = "<group>"; };
-		B177D83515B51B62002A8814 /* ComponentSoundSpelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentSoundSpelling.h; sourceTree = "<group>"; };
-		B177D83615B51B62002A8814 /* ComponentSoundSpelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentSoundSpelling.m; sourceTree = "<group>"; };
-		B177D83815B51B62002A8814 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
-		B177D83915B51B62002A8814 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
-		B177D83B15B51B62002A8814 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		B177D83C15B51B62002A8814 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B177D83E15B51B98002A8814 /* Dictionary+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dictionary+Create.h"; sourceTree = "<group>"; };
 		B177D83F15B51B98002A8814 /* Dictionary+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dictionary+Create.m"; sourceTree = "<group>"; };
 		B177D84515B531A3002A8814 /* FirstThousandWords.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FirstThousandWords.bundle; sourceTree = "<group>"; };
@@ -133,6 +121,12 @@
 		B18E40B316AB76D500D346A6 /* dino57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino57-57.png"; sourceTree = "<group>"; };
 		B18F833616C6AF440082D687 /* SetupOrMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupOrMainViewController.h; sourceTree = "<group>"; };
 		B18F833716C6AF440082D687 /* SetupOrMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupOrMainViewController.m; sourceTree = "<group>"; };
+		B18FE22B16FBB7BA00123B63 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
+		B18FE22C16FBB7BA00123B63 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
+		B18FE22E16FBB7BA00123B63 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		B18FE22F16FBB7BA00123B63 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		B18FE23116FBB7BA00123B63 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
+		B18FE23216FBB7BA00123B63 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
 		B191B62416D01E57008BDDD5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
@@ -266,16 +260,12 @@
 			isa = PBXGroup;
 			children = (
 				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
-				B177D83B15B51B62002A8814 /* Word.h */,
-				B177D83C15B51B62002A8814 /* Word.m */,
-				B177D83815B51B62002A8814 /* Pronunciation.h */,
-				B177D83915B51B62002A8814 /* Pronunciation.m */,
-				B177D83515B51B62002A8814 /* ComponentSoundSpelling.h */,
-				B177D83615B51B62002A8814 /* ComponentSoundSpelling.m */,
-				B177D83215B51B62002A8814 /* ComponentSound.h */,
-				B177D83315B51B62002A8814 /* ComponentSound.m */,
-				B177D82E15B51B61002A8814 /* Dictionary.h */,
-				B177D82F15B51B61002A8814 /* Dictionary.m */,
+				B18FE23116FBB7BA00123B63 /* Pronunciation.h */,
+				B18FE23216FBB7BA00123B63 /* Pronunciation.m */,
+				B18FE22E16FBB7BA00123B63 /* Word.h */,
+				B18FE22F16FBB7BA00123B63 /* Word.m */,
+				B18FE22B16FBB7BA00123B63 /* Dictionary.h */,
+				B18FE22C16FBB7BA00123B63 /* Dictionary.m */,
 				B177D83E15B51B98002A8814 /* Dictionary+Create.h */,
 				B177D83F15B51B98002A8814 /* Dictionary+Create.m */,
 				B17860A115963B690047D631 /* Word+Create.h */,
@@ -388,17 +378,15 @@
 				B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */,
 				B17CE6C015980481005A12D3 /* DictionaryHelper.m in Sources */,
 				B178056E159D0C1E0013AD65 /* GDataXMLNodeHelper.m in Sources */,
-				B177D83015B51B61002A8814 /* Dictionary.m in Sources */,
-				B177D83415B51B62002A8814 /* ComponentSound.m in Sources */,
-				B177D83715B51B62002A8814 /* ComponentSoundSpelling.m in Sources */,
-				B177D83A15B51B62002A8814 /* Pronunciation.m in Sources */,
-				B177D83D15B51B62002A8814 /* Word.m in Sources */,
 				B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */,
 				B17D466A15B8DA8D0059214F /* DictionarySetupViewController.m in Sources */,
 				B182489C15E04C7B0093E71F /* SettingsTableViewController.m in Sources */,
 				B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */,
 				B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */,
 				B18C7B3D16C8043600FCF6D0 /* ErrorsHelper.m in Sources */,
+				B18FE22D16FBB7BA00123B63 /* Dictionary.m in Sources */,
+				B18FE23016FBB7BA00123B63 /* Word.m in Sources */,
+				B18FE23316FBB7BA00123B63 /* Pronunciation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,18 +11,25 @@
 @class GDataXMLDocument;
 @class GDataXMLElement;
 
+typedef enum XMLdocType {DOC_TYPE_DICTIONARY, DOC_TYPE_CORRECTIONS} XMLdocType;
+
 @interface GDataXMLNodeHelper : NSObject
 
-+ (GDataXMLDocument *) loadDictionaryFromXMLInDictionaryBundle:(NSBundle *)dictionaryBundle 
-                                                         Error:(NSError **)error;
-+ (GDataXMLDocument *) loadDictionaryFromXMLWithFilePath:(NSString *)filePath 
-                                                   Error:(NSError **)error; //used in createDictionary utility
-+ (NSString *) dictionaryNameFor:(NSString *)element 
++ (NSString *)filePathFromDictionaryBundle:(NSBundle *)dictionaryBundle ofType:(XMLdocType)type;
+
++ (GDataXMLDocument *) loadXMLDocType:(XMLdocType)type
+            FromXMLInDictionaryBundle:(NSBundle *)dictionaryBundle
+                                Error:(NSError **)error;
++ (GDataXMLDocument *) loadDocFromXMLWithFilePath:(NSString *)filePath 
+                                            Error:(NSError **)error; //creates the GDataXMLDocument * to be parsed
+
++ (NSString *) dictionaryNameFor:(NSString *)element
                       FromXMLDoc:(GDataXMLDocument *)doc;
-+ (NSString *) singleSubElementForName:(NSString *)subElementName 
++ (NSString *) singleSubElementForName:(NSString *)subElementName
                    FromGDataXMLElement:(GDataXMLElement *)element;
-+ (void) processXMLfile:(GDataXMLDocument *)doc 
- intoManagedObjectContext:(NSManagedObjectContext *)context 
-           showProgressIn:(UILabel *)label;
+
++ (void) processXMLfile:(GDataXMLDocument *)doc
+                   type:(XMLdocType)docType
+intoManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

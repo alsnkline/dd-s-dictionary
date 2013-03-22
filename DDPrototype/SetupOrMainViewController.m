@@ -58,18 +58,25 @@
         
     } else {
         
+        NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
+        
         if (availableDictionary) {
             
-            //show TableView
-//            [self performSegueWithIdentifier:@"Push Dictionary Table View" sender:self];
-            [self switchToHomeTabController];
-//            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
+            if ([DictionarySetupViewController newVersion]) {
+                //first time this version is being run - check for corrections
+                
+                [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:YES];;
+            } else {
+                //show TableView
+    //            [self performSegueWithIdentifier:@"Push Dictionary Table View" sender:self];
+                [self switchToHomeTabController];
+    //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
+            }
             
         } else {
             
             //show setupView and process dictionary
-            NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
-            [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self];
+            [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:NO];
             [self.view insertSubview:self.setupViewController.view atIndex:0];
         }
     }

@@ -17,17 +17,26 @@
 @end
 
 @interface DictionarySetupViewController : UIViewController
+@property (nonatomic) BOOL processing;
+@property (nonatomic) BOOL correctionsOnly;
 @property (strong, nonatomic) NSBundle *dictionaryBundle;        //The model for this MVC
-@property (strong, nonatomic) GDataXMLDocument *XMLdoc;
+@property (strong, nonatomic) GDataXMLDocument *dictionaryXMLdoc;
+@property (strong, nonatomic) GDataXMLDocument *correctionsXMLdoc;
 @property (strong, nonatomic) UIViewController *rootViewControllerForPassingProcessedDictionaryAround;
 @property (nonatomic, weak) id <DictionarySetupViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UILabel *progressMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dictionaryName;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 + (void)loadDictionarywithName:(NSString *)dictionaryName passAroundIn:(UIViewController *)rootViewController;
 + (NSString *)dictionaryAlreadyProcessed;
-+ (void) use:(DictionarySetupViewController *)dsvc toProcess:(NSBundle *)dictionary passDictionaryAround:(UIViewController *)rootViewController setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate;
++ (BOOL) use:(DictionarySetupViewController *)dsvc
+   toProcess:(NSBundle *)dictionary
+passDictionaryAround:(UIViewController *)rootViewController
+ setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
+correctionsOnly:(BOOL)corrections;
++ (BOOL) newVersion;
++ (BOOL) forceReprocessDictionary;
++ (void) processedDictionaryVersion;
 
 
 @end

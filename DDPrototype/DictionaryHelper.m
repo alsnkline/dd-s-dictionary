@@ -13,7 +13,7 @@
 
 @implementation DictionaryHelper
 
-+ (NSBundle *)defaultDictionaryBundle
++ (NSBundle *)defaultDictionaryBundle       //leaving naming as default rather than change it to DictionaryShippingWithAPPBundleName or similar.
 {
     NSString *pathForDictionaryBundle = [[NSBundle mainBundle] pathForResource:DEFAULT_DICTIONARY_BUNDLE_NAME ofType:@"bundle"];
     NSBundle *dictionaryBundle = [NSBundle bundleWithPath:pathForDictionaryBundle];
@@ -121,6 +121,7 @@
             if (success){
                 completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc opened");
+                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //to save after processing corrections
             } else {
                 NSLog(@"failed to open %@", [dictionaryDatabase.fileURL lastPathComponent]);
             }

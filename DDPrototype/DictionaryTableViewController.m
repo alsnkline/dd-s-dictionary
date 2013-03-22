@@ -143,6 +143,7 @@
 {
     if (_activeDictionary != activeDictionary) {
         _activeDictionary = activeDictionary;
+        
         [self setupFetchedResultsController];
         self.title = [DictionaryHelper dictionaryDisplayNameFrom:activeDictionary];
         
@@ -203,6 +204,8 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
     tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
+    
+    //ADD GA for Search page view....
 }
 
 
@@ -252,18 +255,34 @@
         [ErrorsHelper showErrorTooManyDictionaries];
         
     } else {
+        
+        NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
 
         if (availableDictionary) {
+            
+            if ([DictionarySetupViewController forceReprocessDictionary]) {
+                //first time this version is being run UI Managed Document needs to be recreated eg schema has changed
+                [DictionaryHelper deleteDictionary:availableDictionary];
+                [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:NO];
+                [DictionarySetupViewController processedDictionaryVersion];
+                [DictionarySetupViewController newVersion]; //to make sure next open the corrections don't get processed again
+                // delete availableDictionary
+            }
+            
+            if ([DictionarySetupViewController newVersion]) {
+                //first time this version is being run - check for corrections
+                [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:YES];
+                
+            } else {
 
-            NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
-            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
-            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
+                NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
+    //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
+                [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
+            }
             
         } else {
-            
-            NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
-            [self displayViewWhileProcessing:dictionaryShippingWithApp];
-            
+            [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:NO];
+            [DictionarySetupViewController processedDictionaryVersion];
         }
     }
 }
@@ -324,6 +343,8 @@
     //self.savedScopeButtonIndex = scope;
     
     self.searchFetchedResultsController = [self newFetchedResultsControllerWithSearch:searchText];
+    
+    //ADD GA event tracking to capture which strings are being searched for!
 }
 
 
@@ -586,13 +607,13 @@
     }
 }
 
--(void)displayViewWhileProcessing:(NSBundle *)dictionary
+-(void)displayViewWhileProcessing:(NSBundle *)dictionary correctionsOnly:(BOOL)corrections
 {
     // instanciate a Dictionary Setup controller which starts processing a dictionary
     self.dsvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Processing Dictionary View"];
-    [DictionarySetupViewController use:self.dsvc toProcess:dictionary passDictionaryAround:self.view.window.rootViewController setDelegate:self];
+    BOOL processing = [DictionarySetupViewController use:self.dsvc toProcess:dictionary passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:corrections];
     
-    if ([self splitViewWithDisplayWordViewController]) { //iPad show DictionarySetupViewController in popover
+    if ([self splitViewWithDisplayWordViewController] && processing) { //iPad show DictionarySetupViewController in popover
     
         UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:self.dsvc];
         self.popoverController = dsPopoverC;
@@ -612,11 +633,10 @@
         }
         
         [dsPopoverC setDelegate:self];
-    } else { //iPhone different ways to show UI... replaced with extra UI Nav Controller class
+    } else if (processing) { //iPhone different ways to show UI... replaced with extra UI Nav Controller class
  //       [self.navigationController pushViewController:self.dsvc animated:YES];
  //       [self presentViewController:self.dsvc animated:YES completion:nil];
         [ErrorsHelper showExplanationForFrozenUI];  //never called now used during development
-
     }
 
 }

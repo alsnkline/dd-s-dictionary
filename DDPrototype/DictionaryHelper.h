@@ -23,12 +23,12 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
 
 @interface DictionaryHelper : NSObject
 
-+ (NSBundle *)defaultDictionaryBundle;
++ (NSBundle *)defaultDictionaryBundle;      //rename to shippingWithAppDictionaryBundle???
 + (NSURL *)directoryForXMLDictionaryWithName:(NSString *)dictionaryName;
 + (NSURL *)dictionaryDirectory;
 + (NSArray *)currentContentsOfdictionaryDirectory;
-+ (BOOL)alreadyHaveDictionaryWithName:(NSString *)dictionaryName;
-+ (void)openDictionary:(NSString *)dictionaryName
++ (BOOL)alreadyHaveDictionaryWithName:(NSString *)dictionaryName;  //will need to be normalised to just check for the UI Managed Doc called activeDictionary
++ (void)openDictionary:(NSString *)dictionaryName               //will need to normalise this to activeDictionary as this is the single UI managed Doc not a dictionary!
   withImDoneDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
                andDsvc:(DictionarySetupViewController *)dsvc
           usingBlock:(completion_block_t)completionBlock;
@@ -40,6 +40,7 @@ typedef void (^completion_block_t)(UIManagedDocument *dictionaryDatabase);
                andDsvc:(DictionarySetupViewController *)dsvc;
 + (NSURL *)fileURLForPronunciation:(NSString *)word;
 + (NSString *)dictionaryDisplayNameFrom:(UIManagedDocument *)activeDictionary;
+//+ (NSSet *)namesOfDictionariesIn:(UIManagedDocument *)activeDictionary //possibly needed for multi dicts - maybe after force to 1 managed doc called activeDictionary
 + (void)numberOfWordsInCoreDataDocument:(UIManagedDocument *)activeDictionary;
 + (NSString *)stringForState:(UIDocumentState)state;
 

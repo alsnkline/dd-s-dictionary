@@ -11,17 +11,20 @@
 #import "GDataXMLNodeHelper.h"
 #import "GAI.h"
 #import "ErrorsHelper.h"
+#import "NSUserDefaultKeys.h"
 
 @interface DictionarySetupViewController ()
 
 @end
 
 @implementation DictionarySetupViewController
+@synthesize processing = _processing;
+@synthesize correctionsOnly = _correctionsOnly;
 @synthesize dictionaryBundle = _dictionaryBundle;
-@synthesize XMLdoc = _XMLdoc;
+@synthesize dictionaryXMLdoc = _dictionaryXMLdoc;
+@synthesize correctionsXMLdoc = _correctionsXMLdoc;
 @synthesize rootViewControllerForPassingProcessedDictionaryAround = _rootViewControllerForPassingProcessedDictionaryAround;
 @synthesize delegate = _delegate;
-@synthesize progressMessageLabel = _progressMessageLable;
 @synthesize dictionaryName = _dictionaryName;
 @synthesize spinner = _spinner;
 
@@ -30,17 +33,35 @@
     if (_dictionaryBundle != dictionaryBundle) {
         _dictionaryBundle = dictionaryBundle;
         
-        self.XMLdoc = [self loadDictionaryFromXMLInDictionaryBundle:dictionaryBundle];
+        self.dictionaryXMLdoc = [self loadXML:DOC_TYPE_DICTIONARY fromXMLInDictionaryBundle:dictionaryBundle];
+        self.correctionsXMLdoc = [self loadXML:DOC_TYPE_CORRECTIONS fromXMLInDictionaryBundle:dictionaryBundle];
         
+        if (self.correctionsOnly && !self.correctionsXMLdoc) {
+            //no corrections file and dictionary already processed
+            NSString *availableDictionary = [DictionarySetupViewController dictionaryAlreadyProcessed];
+            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.rootViewControllerForPassingProcessedDictionaryAround];
+            self.processing = NO;
+        }
     }
 }
 
-- (void)setXMLdoc:(GDataXMLDocument *)XMLdoc
+- (void)setDictionaryXMLdoc:(GDataXMLDocument *)XMLdoc
 {
-    if (_XMLdoc != XMLdoc) {
-        _XMLdoc = XMLdoc;
+    if (_dictionaryXMLdoc != XMLdoc) {
+        _dictionaryXMLdoc = XMLdoc;
 
-        [self processDoc];
+        if (!self.correctionsOnly) {
+            [self processDoc:XMLdoc type:DOC_TYPE_DICTIONARY];
+        }
+    }
+}
+
+- (void)setCorrectionsXMLdoc:(GDataXMLDocument *)XMLdoc
+{
+    if (_correctionsXMLdoc != XMLdoc) {
+        _correctionsXMLdoc = XMLdoc;
+        
+        [self processDoc:XMLdoc type:DOC_TYPE_CORRECTIONS];
     }
 }
 
@@ -65,7 +86,10 @@
     [super viewWillAppear:animated];
     
     //show name of dictionary being processed to user
-    NSString *dictionaryDisplayName = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:self.XMLdoc];
+    NSString *dictionaryDisplayName = [GDataXMLNodeHelper dictionaryNameFor:@"displayName" FromXMLDoc:self.dictionaryXMLdoc];
+    if (self.correctionsOnly) {
+        dictionaryDisplayName = [NSString stringWithFormat:@"%@ Additions",dictionaryDisplayName];
+    }
     self.dictionaryName.text = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
     [self.spinner startAnimating];
     
@@ -78,7 +102,6 @@
 
 - (void)viewDidUnload
 {
-    [self setProgressMessageLabel:nil];
     [self setDictionaryName:nil];
     [self setSpinner:nil];
     [super viewDidUnload];
@@ -103,7 +126,7 @@
     }];
 }
 
-+ (NSString *)dictionaryAlreadyProcessed //introduced to test for processing dictionary.
++ (NSString *)dictionaryAlreadyProcessed //introduced to test for processing dictionary.  **** Should move to dictionaryHelper probably ****
 {
     NSString *processedDictionaryName = nil;
     
@@ -121,21 +144,25 @@
     return processedDictionaryName;
 }
 
-+ (void) use:(DictionarySetupViewController *)dsvc
++ (BOOL) use:(DictionarySetupViewController *)dsvc
    toProcess:(NSBundle *)dictionary
 passDictionaryAround:(UIViewController *)rootViewController
  setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
+correctionsOnly:(BOOL)corrections
 {
+    dsvc.processing = YES;
+    dsvc.correctionsOnly = corrections;
     [dsvc setDelegate:delegate];
     dsvc.rootViewControllerForPassingProcessedDictionaryAround = rootViewController;
     dsvc.dictionaryBundle = dictionary;
+    return dsvc.processing;
 }
 
 
-- (GDataXMLDocument *)loadDictionaryFromXMLInDictionaryBundle:(NSBundle *)bundle
+- (GDataXMLDocument *)loadXML:(XMLdocType)type fromXMLInDictionaryBundle:(NSBundle *)bundle
 {
     NSError *error = nil;
-    GDataXMLDocument *XMLdoc = [GDataXMLNodeHelper loadDictionaryFromXMLInDictionaryBundle:bundle Error:&error];
+    GDataXMLDocument *XMLdoc = [GDataXMLNodeHelper loadXMLDocType:type FromXMLInDictionaryBundle:bundle Error:&error];
     // GDataXMLDocument *doc = [GDataXMLNodeHelper loadDictionaryFromXMLError:&error];
     
     if (error) {
@@ -156,17 +183,16 @@ passDictionaryAround:(UIViewController *)rootViewController
 }
 
 
--(void)processDoc
+-(void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType
 {
-    NSString *dictionaryName = [GDataXMLNodeHelper dictionaryNameFor:@"bundleName" FromXMLDoc:self.XMLdoc];
-    [self loadDictionarywithName:dictionaryName createFromXML:self.XMLdoc];
+    NSString *dictionaryName = [GDataXMLNodeHelper dictionaryNameFor:@"bundleName" FromXMLDoc:self.dictionaryXMLdoc];
+    [self loadDictionarywithName:dictionaryName processXML:XMLdoc type:docType];
     
 }
 
-- (void)loadDictionarywithName:(NSString *)dictionaryName createFromXML:(GDataXMLDocument *)XMLdoc
+- (void)loadDictionarywithName:(NSString *)dictionaryName processXML:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType
 {
     //Get UIManagedDocument for dictionary
-//    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase)
     [DictionaryHelper openDictionary:dictionaryName withImDoneDelegate:self.delegate andDsvc:self usingBlock:^ (UIManagedDocument *dictionaryDatabase)
     {
         
@@ -175,8 +201,8 @@ passDictionaryAround:(UIViewController *)rootViewController
             
             if (XMLdoc) {
                 
-                //process file to populate the UIManagedDocument (no way to force reanalysis for changes currently)
-                [GDataXMLNodeHelper processXMLfile:XMLdoc intoManagedObjectContext:dictionaryDatabase.managedObjectContext showProgressIn:self.progressMessageLabel];
+                //process file to populate the UIManagedDocument
+                [GDataXMLNodeHelper processXMLfile:XMLdoc type:docType intoManagedObjectContext:dictionaryDatabase.managedObjectContext];
                 [DictionaryHelper numberOfWordsInCoreDataDocument:dictionaryDatabase];
 //                [DictionaryHelper saveDictionary:dictionaryDatabase]; saving here seems to save a blank UIManagedDocument
                 
@@ -215,6 +241,55 @@ passDictionaryAround:(UIViewController *)rootViewController
 {
     return YES;
  //   return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
++(BOOL) newVersion
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //get application version from NSUserDefaults and the current code
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *storedAppVersion = [defaults stringForKey:APPLICATION_VERSION];
+    NSLog(@"This version %@, stored version %@", version, storedAppVersion);
+    
+    BOOL returnValue = ![version isEqualToString:storedAppVersion];
+    NSLog(@"in New Version: %@", returnValue ? @"YES" : @"NO");
+    
+    //set version in NSUserDefaults so next time this code doesn't run
+    [defaults setObject:version forKey:APPLICATION_VERSION];
+    [defaults synchronize];
+    
+    NSLog(@"**************************");
+    NSLog(@" REMOVE forced New Version");
+    NSLog(@"       Before Ship");
+    NSLog(@"**************************");
+    return YES; //used for testing to force correction process - comment out this line before shipping
+    
+    //    return returnValue; // *********** uncomment this line for SHIP *********
+}
+
++ (BOOL) forceReprocessDictionary
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //get reprocessed for version 2.0.5 from NSUserDefaults
+    BOOL returnValue = ![defaults boolForKey:PROCESSED_DOC_IN_VERSION_205];
+    
+    NSLog(@"**************************");
+    NSLog(@" REMOVE forced Dict Reprocess");
+    NSLog(@"       Before Ship");
+    NSLog(@"**************************");
+    NSLog(@"returnValue = %c", returnValue);
+    return YES; //used for testing to force dictionary reprocess - comment out this line before shipping
+    
+    //    return returnValue; // *********** uncomment this line for SHIP *********
+}
+
++ (void) processedDictionaryVersion
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //set version in NSUserDefaults we can tell that the activeDictionary for this verison of the app is at least at 2.0.5
+    [defaults setBool:YES forKey:PROCESSED_DOC_IN_VERSION_205];
+    [defaults synchronize];
+ 
 }
 
 

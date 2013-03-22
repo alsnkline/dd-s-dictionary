@@ -2,8 +2,8 @@
 //  Word.m
 //  DDPrototype
 //
-//  Created by Alison Kline on 7/16/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alison KLINE on 3/21/13.
+//
 //
 
 #import "Word.h"
@@ -16,7 +16,7 @@
 @dynamic fetchedResultsSection;
 @dynamic isHomophone;
 @dynamic spelling;
-@dynamic pronunciations;
 @dynamic inDictionary;
+@dynamic pronunciations;
 
 @end

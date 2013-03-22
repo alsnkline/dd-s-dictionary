@@ -13,11 +13,16 @@
 
 @implementation GDataXMLNodeHelper
 
-
-+ (NSString *)dataFilePathFromDictionaryBundle:(NSBundle *)dictionaryBundle :(BOOL)forSave {
++ (NSString *)filePathFromDictionaryBundle:(NSBundle *)dictionaryBundle ofType:(XMLdocType)type
+{
+    NSString *datafile = nil;
     
-    NSString *datafile = [dictionaryBundle pathForResource:@"dictionary" ofType:@"xml"];
-    NSLog(@"XML file for parsing = %@", datafile);
+    if (type == DOC_TYPE_DICTIONARY) datafile = [dictionaryBundle pathForResource:@"dictionary" ofType:@"xml"];
+    if (type == DOC_TYPE_CORRECTIONS) datafile = [dictionaryBundle pathForResource:@"corrections" ofType:@"xml"];
+    
+    if (datafile) NSLog(@"XML %@ file found", type ? @"Corrections" : @"Dictionary");
+    if (!datafile)  NSLog(@"XML %@ file NOT found", type ? @"Corrections" : @"Dictionary");
+    
     return datafile;
 }
 
@@ -49,15 +54,17 @@
     }
 }
 
-+ (GDataXMLDocument *) loadDictionaryFromXMLInDictionaryBundle:(NSBundle *)dictionaryBundle Error:(NSError **)error
-{    
-    NSString *filePath = [self dataFilePathFromDictionaryBundle:dictionaryBundle :FALSE];
-    GDataXMLDocument *doc = [self loadDictionaryFromXMLWithFilePath:filePath Error:error];
-    
++ (GDataXMLDocument *)loadXMLDocType:(XMLdocType)type FromXMLInDictionaryBundle:(NSBundle *)dictionaryBundle Error:(NSError *__autoreleasing *)error
+{
+    NSString *filePath = [self filePathFromDictionaryBundle:dictionaryBundle ofType:type];
+    GDataXMLDocument *doc = nil;
+    if (filePath) {
+        doc = [self loadDocFromXMLWithFilePath:filePath Error:error];
+    }
     return doc;
 }
 
-+ (GDataXMLDocument *) loadDictionaryFromXMLWithFilePath:(NSString *)filePath Error:(NSError **)error
++ (GDataXMLDocument *) loadDocFromXMLWithFilePath:(NSString *)filePath Error:(NSError **)error
 {
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filePath];
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData 
@@ -68,18 +75,13 @@
     return doc;
 }
 
-+ (void) processXMLfile:(GDataXMLDocument *)doc 
++ (void) processXMLfile:(GDataXMLDocument *)doc
+                   type:(XMLdocType)docType
 intoManagedObjectContext:(NSManagedObjectContext *)context 
-           showProgressIn:(UILabel *)label
 {
-    
+    NSLog(@"Processing %@ XMLdoc", docType ? @"Corrections" : @"Dictionary");
     GDataXMLElement *dictionary = doc.rootElement;
-    [Dictionary dictionaryFromGDataXMLElement:dictionary inManagedObjectContext:context showProgressIn:(UILabel *)label];
-    
-//    NSArray *words = [doc.rootElement elementsForName:@"word"];
-//    for (GDataXMLElement *word in words) {
-//        [Word wordFromGDataXMLElement:word inManagedObjectContext:context];
-//    };
+    [Dictionary dictionaryFromGDataXMLElement:dictionary XMLdocType:docType inManagedObjectContext:context];
 }
 
 

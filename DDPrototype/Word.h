@@ -2,8 +2,8 @@
 //  Word.h
 //  DDPrototype
 //
-//  Created by Alison Kline on 7/16/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alison KLINE on 3/21/13.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -16,8 +16,8 @@
 @property (nonatomic, retain) NSString * fetchedResultsSection;
 @property (nonatomic, retain) NSNumber * isHomophone;
 @property (nonatomic, retain) NSString * spelling;
-@property (nonatomic, retain) NSSet *pronunciations;
 @property (nonatomic, retain) Dictionary *inDictionary;
+@property (nonatomic, retain) NSSet *pronunciations;
 @end
 
 @interface Word (CoreDataGeneratedAccessors)

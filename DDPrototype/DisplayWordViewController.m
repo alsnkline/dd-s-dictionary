@@ -263,7 +263,7 @@
 {
     // can't use system sounds as needs a .caf or .wav - too big.
     
-    NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
+    NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.fileName];
     
     NSError *error = nil;
     AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];

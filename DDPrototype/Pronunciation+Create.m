@@ -32,7 +32,7 @@
         pronunciation = [NSEntityDescription insertNewObjectForEntityForName:@"Pronunciation" inManagedObjectContext:context];
         //                [pronunciation setValue:string forKey:@"Pronunciation"]; //only if you don't use the subclass
         pronunciation.unique = unique;
-        pronunciation.fileLocation = fileLocation;
+        pronunciation.fileName = fileLocation;
         
         //have to add phonemes and correct phonemeSpelling for this pronunciation
         
@@ -49,8 +49,22 @@
 {
     
     NSString *unique = [GDataXMLNodeHelper singleSubElementForName:@"unique" FromGDataXMLElement:pronunciationXML];
+    Pronunciation *pronunciation = [self pronunciationFromString:unique forWord:word inManagedObjectContext:context];
     
-    return [self pronunciationFromString:unique forWord:word inManagedObjectContext:context];
+    //get fileName if it exsists
+    NSString *newFileName = [GDataXMLNodeHelper singleSubElementForName:@"fileName" FromGDataXMLElement:pronunciationXML];
+    
+    if (newFileName) {
+        
+        NSString *oldFileName = pronunciation.fileName;
+        //delete old file from sounds directory in app. - not done yet as sounds are still all stored in the main app bundle.
+        
+        //override pronunciation.fileName with one from element if it exsits.
+        pronunciation.fileName = newFileName;
+        NSLog(@"Pronunciateion fileName changed from %@ to %@",oldFileName, newFileName);
+    }
+    
+    return pronunciation;
 }
 
 + (Pronunciation *)pronunciationFromString:(NSString *)string 
@@ -74,17 +88,13 @@
         pronunciation = [NSEntityDescription insertNewObjectForEntityForName:@"Pronunciation" inManagedObjectContext:context];
         //                [pronunciation setValue:string forKey:@"Pronunciation"]; //only if you don't use the subclass
         pronunciation.unique = unique;
+        pronunciation.fileName = unique;
         NSMutableSet *spellings = [NSMutableSet set];
         [spellings addObject:word];
         pronunciation.spellings = spellings;
         
-        //have to add phonemes and correct phonemeSpelling for this pronunciation
-        
     } else {
         pronunciation = [matches lastObject];
-//        NSMutableSet *spellings = [NSMutableSet setWithSet:pronunciation.spellings]; NOT needed as done in Word and reverse relationships are auto created
-//        [spellings addObject:word];
-//        pronunciation.spellings = spellings;
         
     }
     NSLog(@"Pronunciation in dictionary %@", pronunciation);

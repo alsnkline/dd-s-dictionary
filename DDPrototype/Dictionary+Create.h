@@ -7,13 +7,19 @@
 //
 
 #import "Dictionary.h"
+#import "GDataXMLNodeHelper.h"
 
 @class GDataXMLElement;
 
 @interface Dictionary (Create)
 
 
-+ (Dictionary *)dictionaryFromGDataXMLElement:(GDataXMLElement *)dictionaryXML 
-                       inManagedObjectContext:(NSManagedObjectContext *)context 
-                               showProgressIn:(UILabel *)label;
++ (Dictionary *)dictionaryFromGDataXMLElement:(GDataXMLElement *)dictionaryXML
+                                   XMLdocType:(XMLdocType)docType
+                       inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (void) processDetailsOfDictionaryXML:(GDataXMLElement *)dictionaryXML
+                                  into:(Dictionary *)dictionary
+                        processingType:(XMLdocType)docType
+                inManagedObjectContext:(NSManagedObjectContext *)context;
 @end

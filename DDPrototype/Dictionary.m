@@ -2,8 +2,8 @@
 //  Dictionary.m
 //  DDPrototype
 //
-//  Created by Alison Kline on 7/16/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alison KLINE on 3/21/13.
+//
 //
 
 #import "Dictionary.h"
@@ -12,8 +12,8 @@
 
 @implementation Dictionary
 
-@dynamic displayName;
 @dynamic bundleName;
+@dynamic displayName;
 @dynamic words;
 
 @end

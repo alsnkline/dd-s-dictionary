@@ -7,6 +7,7 @@
 //
 
 #import "Word.h"
+#import "GDataXMLNodeHelper.h"
 
 @class GDataXMLElement;
 
@@ -14,7 +15,13 @@
 
 + (Word *)wordFromString:(NSString *)string
   inManagedObjectContext:(NSManagedObjectContext *)context;
-+ (Word *)wordFromGDataXMLElement:(GDataXMLElement *)wordXML 
-        inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (Word *)wordFromGDataXMLElement:(GDataXMLElement *)wordXML
+                   processingType:(XMLdocType)docType
+           inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (void) processDetailsOfWordXML:(GDataXMLElement *)wordXML
+                            into:(Word *)word
+          inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

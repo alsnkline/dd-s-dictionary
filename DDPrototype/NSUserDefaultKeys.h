@@ -11,6 +11,8 @@
 #define PLAY_WORDS_ON_SELECTION @"DDPrototype.PlayWordsOnSelection"
 #define BACKGROUND_COLOR_HUE @"DDPrototype.BackgroundColorHue"
 #define BACKGROUND_COLOR_SATURATION @"DDPrototype.BackgroundColorSaturation"
+#define APPLICATION_VERSION @"DDPrototype.ApplicationVersion"
+#define PROCESSED_DOC_IN_VERSION_205 @"DDPrototype.MigratedToVersion205"
 
 @protocol NSUserDefaultKeys <NSObject>
 
