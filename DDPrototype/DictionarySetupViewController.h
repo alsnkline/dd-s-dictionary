@@ -11,6 +11,8 @@
 @class GDataXMLDocument;
 @class DictionarySetupViewController;
 
+typedef enum DocProcessType {DOC_PROCESS_REPROCESS, DOC_PROCESS_CHECK_FOR_CORRECTIONS, DOC_PROCESS_USE_EXSISTING} DocProcessType;
+
 @protocol DictionarySetupViewControllerDelegate <NSObject> //added <NSObject> so we can do a respondsToSelector: on the delegate
 @optional
 -(void) DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)sender;
@@ -28,15 +30,16 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 + (void)loadDictionarywithName:(NSString *)dictionaryName passAroundIn:(UIViewController *)rootViewController;
-+ (NSString *)dictionaryAlreadyProcessed;
 + (BOOL) use:(DictionarySetupViewController *)dsvc
    toProcess:(NSBundle *)dictionary
 passDictionaryAround:(UIViewController *)rootViewController
  setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
 correctionsOnly:(BOOL)corrections;
++ (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType;
 + (BOOL) newVersion;
++ (void) setProcessedDictionaryAppVersion;
 + (BOOL) forceReprocessDictionary;
-+ (void) processedDictionaryVersion;
++ (void) setProcessedDictionarySchemaVersion;
 
 
 @end

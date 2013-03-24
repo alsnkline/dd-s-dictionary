@@ -94,6 +94,25 @@
     return isAlreadyPresent;
 }
 
++ (NSString *)dictionaryAlreadyProcessed //introduced to test for processing dictionary.
+{
+    NSString *processedDictionaryName = nil;
+    
+    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
+    NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
+    
+    if ([dictionariesAvailable count] == 1) {
+        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
+        processedDictionaryName = [dictionaryURL lastPathComponent];
+    } else if ([dictionariesAvailable count] > 1) {
+        NSLog(@"more than one processed dictionary");
+        processedDictionaryName = @"More than 1";
+    }
+    
+    return processedDictionaryName;
+}
+
+
 + (void)openDictionary:(NSString *)dictionaryName
     withImDoneDelegate:(id<DictionarySetupViewControllerDelegate>)delegate
                andDsvc:(DictionarySetupViewController *)dsvc
@@ -215,6 +234,18 @@
     
 }
 
++ (void)cleanOutDictionaryDirectory
+{
+    NSFileManager *localFileManager = [[NSFileManager alloc] init];
+    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
+    for (NSURL *url in dictionariesAvailable) {
+        NSError *error = nil;
+        [localFileManager removeItemAtURL:url error:&error];
+        NSLog(@"Deleted dictionary at %@", url);
+    }
+    NSLog(@"Deleted ALL dictionaries");
+}
+
 + (void)saveDictionary:(UIManagedDocument *)dictionary
     withImDoneDelegate:(id<DictionarySetupViewControllerDelegate>)delegate
                andDsvc:(DictionarySetupViewController *)dsvc
@@ -228,7 +259,6 @@
         };
     }];
 }
-
 
 
 + (NSURL *)fileURLForPronunciation:(NSString *)word

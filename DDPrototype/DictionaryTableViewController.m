@@ -248,40 +248,37 @@
 -(void) setUpDictionary
 {
     //see if there are any dictionary's already processed
-    NSString *availableDictionary = [DictionarySetupViewController dictionaryAlreadyProcessed];
     
-    if ([availableDictionary isEqualToString:@"More than 1"]) {
-        
-        [ErrorsHelper showErrorTooManyDictionaries];
-        
-    } else {
-        
-        NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
-
-        if (availableDictionary) {
-            
-            if ([DictionarySetupViewController forceReprocessDictionary]) {
-                //first time this version is being run UI Managed Document needs to be recreated eg schema has changed
-                [DictionaryHelper deleteDictionary:availableDictionary];
-                [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:NO];
-                [DictionarySetupViewController processedDictionaryVersion];
-                [DictionarySetupViewController newVersion]; //to make sure next open the corrections don't get processed again
-                // delete availableDictionary
-                
-            } else if ([DictionarySetupViewController newVersion]) {
-                //first time this version is being run - check for corrections
-                [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:YES];
-                
-            } else {
-
-                NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
-    //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
-                [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
-            }
-            
-        } else {
+    DocProcessType processType = DOC_PROCESS_USE_EXSISTING; //set a default that gets over riden by the whatProcessingIsNeeded method.
+    NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType];
+    NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
+    
+    switch (processType) {
+        case DOC_PROCESS_REPROCESS:
+        {
             [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:NO];
-            [DictionarySetupViewController processedDictionaryVersion];
+            [DictionarySetupViewController setProcessedDictionarySchemaVersion]; //set schema processed into User Defaults
+            [DictionarySetupViewController setProcessedDictionaryAppVersion]; //set version of app when dictionary was processed
+            break;
+        }
+        case DOC_PROCESS_CHECK_FOR_CORRECTIONS:
+        {
+            [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:YES];
+            [DictionarySetupViewController setProcessedDictionaryAppVersion]; //set version of app when dictionary was processed
+            break;
+        }
+        case DOC_PROCESS_USE_EXSISTING:
+        {
+            if (!availableDictionary) NSLog(@"problem, no dictionary but want to use it"); break; //protect from crash, but this shouldn't happen.
+            NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
+//            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
+            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
+            break;
+        }
+        default:
+        {
+            NSLog(@"Problem detecting type of Processing needed for Dictionary");
+            break;
         }
     }
 }

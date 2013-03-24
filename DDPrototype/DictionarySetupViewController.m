@@ -12,6 +12,7 @@
 #import "GAI.h"
 #import "ErrorsHelper.h"
 #import "NSUserDefaultKeys.h"
+#import "ErrorsHelper.h"
 
 @interface DictionarySetupViewController ()
 
@@ -38,7 +39,7 @@
         
         if (self.correctionsOnly && !self.correctionsXMLdoc) {
             //no corrections file and dictionary already processed
-            NSString *availableDictionary = [DictionarySetupViewController dictionaryAlreadyProcessed];
+            NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
             [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.rootViewControllerForPassingProcessedDictionaryAround];
             self.processing = NO;
         }
@@ -126,23 +127,6 @@
     }];
 }
 
-+ (NSString *)dictionaryAlreadyProcessed //introduced to test for processing dictionary.  **** Should move to dictionaryHelper probably ****
-{
-    NSString *processedDictionaryName = nil;
-    
-    NSArray *dictionariesAvailable = [DictionaryHelper currentContentsOfdictionaryDirectory];
-    NSLog(@"dictionariesAvailable = %@", dictionariesAvailable);
-    
-    if ([dictionariesAvailable count] == 1) {
-        NSURL *dictionaryURL = [dictionariesAvailable lastObject];
-        processedDictionaryName = [dictionaryURL lastPathComponent];
-    } else if ([dictionariesAvailable count] > 1) {
-        NSLog(@"more than one processed dictionary");
-        processedDictionaryName = @"More than 1";
-    }
-    
-    return processedDictionaryName;
-}
 
 + (BOOL) use:(DictionarySetupViewController *)dsvc
    toProcess:(NSBundle *)dictionary
@@ -243,6 +227,34 @@ correctionsOnly:(BOOL)corrections
  //   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
++ (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType
+{
+    
+    //see if there are any dictionary's already processed
+    NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
+    BOOL forceReprocess = [DictionarySetupViewController forceReprocessDictionary];
+    BOOL newVersion = [DictionarySetupViewController newVersion];
+    
+    if ([availableDictionary isEqualToString:@"More than 1"] || forceReprocess || !availableDictionary) {
+        
+        if ([availableDictionary isEqualToString:@"More than 1"]) [ErrorsHelper showErrorTooManyDictionaries];
+        if (forceReprocess) NSLog(@"FORCED delete and reprocessing");
+        if (availableDictionary) {
+            //clean out the dictionaries 
+            [DictionaryHelper cleanOutDictionaryDirectory];
+        }
+        //set ready for processing
+        *docProcessType = DOC_PROCESS_REPROCESS;
+    } else if (newVersion){
+        //set ready for processing
+        *docProcessType = DOC_PROCESS_CHECK_FOR_CORRECTIONS;
+    } else {
+        *docProcessType = DOC_PROCESS_USE_EXSISTING;
+    }
+    
+    return availableDictionary;
+}
+
 +(BOOL) newVersion
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -253,11 +265,7 @@ correctionsOnly:(BOOL)corrections
     
     BOOL returnValue = ![version isEqualToString:storedAppVersion];
     NSLog(@"in New Version: %@", returnValue ? @"YES" : @"NO");
-    
-    //set version in NSUserDefaults so next time this code doesn't run
-    [defaults setObject:version forKey:APPLICATION_VERSION];
-    [defaults synchronize];
-    
+        
     NSLog(@"**************************");
     NSLog(@" REMOVE forced New Version");
     NSLog(@"       Before Ship");
@@ -267,11 +275,20 @@ correctionsOnly:(BOOL)corrections
     //    return returnValue; // *********** uncomment this line for SHIP *********
 }
 
++ (void) setProcessedDictionaryAppVersion
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    //set version in NSUserDefaults so next time this code doesn't run
+    [defaults setObject:version forKey:APPLICATION_VERSION];
+    [defaults synchronize];    
+}
+
 + (BOOL) forceReprocessDictionary
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //get reprocessed for version 2.0.5 from NSUserDefaults
-    BOOL returnValue = ![defaults boolForKey:PROCESSED_DOC_IN_VERSION_205];
+    BOOL returnValue = ![defaults boolForKey:PROCESSED_DOC_SCHEMA_VERSION_205];
     
     NSLog(@"**************************");
     NSLog(@" REMOVE forced Dict Reprocess");
@@ -283,11 +300,11 @@ correctionsOnly:(BOOL)corrections
     //    return returnValue; // *********** uncomment this line for SHIP *********
 }
 
-+ (void) processedDictionaryVersion
++ (void) setProcessedDictionarySchemaVersion
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //set version in NSUserDefaults we can tell that the activeDictionary for this verison of the app is at least at 2.0.5
-    [defaults setBool:YES forKey:PROCESSED_DOC_IN_VERSION_205];
+    [defaults setBool:YES forKey:PROCESSED_DOC_SCHEMA_VERSION_205];
     [defaults synchronize];
  
 }

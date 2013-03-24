@@ -48,39 +48,39 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
     //see if there are any dictionary's already processed
-    NSString *availableDictionary = [DictionarySetupViewController dictionaryAlreadyProcessed];
     
-    if ([availableDictionary isEqualToString:@"More than 1"]) {
-        
-        [ErrorsHelper showErrorTooManyDictionaries];
-        
-    } else {
-        
-        NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
-        
-        if (availableDictionary) {
-            
-            if ([DictionarySetupViewController newVersion]) {
-                //first time this version is being run - check for corrections
-                
-                [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:YES];;
-            } else {
-                //show TableView
-    //            [self performSegueWithIdentifier:@"Push Dictionary Table View" sender:self];
-                [self switchToHomeTabController];
-    //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
-            }
-            
-        } else {
-            
-            //show setupView and process dictionary
+    DocProcessType processType = DOC_PROCESS_USE_EXSISTING; //set a default that gets over riden by the whatProcessingIsNeeded method.
+    [DictionarySetupViewController whatProcessingIsNeeded:&processType];
+    NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
+    
+    switch (processType) {
+        case DOC_PROCESS_REPROCESS:
+        {
             [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:NO];
             [self.view insertSubview:self.setupViewController.view atIndex:0];
+            [DictionarySetupViewController setProcessedDictionarySchemaVersion]; //set schema processed into User Defaults
+            [DictionarySetupViewController setProcessedDictionaryAppVersion]; //set version of app when dictionary was processed
+            break;
+        }
+        case DOC_PROCESS_CHECK_FOR_CORRECTIONS:
+        {
+            [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:YES];
+            [self.view insertSubview:self.setupViewController.view atIndex:0];
+            [DictionarySetupViewController setProcessedDictionaryAppVersion]; //set version of app when dictionary was processed
+            break;
+        }
+        case DOC_PROCESS_USE_EXSISTING:
+        {
+            [self switchToHomeTabController];
+            break;
+        }
+        default:
+        {
+            NSLog(@"Problem detecting type of Processing needed for Dictionary");
+            break;
         }
     }
-
 }
 
 - (void)didReceiveMemoryWarning
