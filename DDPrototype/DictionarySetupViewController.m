@@ -24,6 +24,7 @@
 @synthesize dictionaryBundle = _dictionaryBundle;
 @synthesize dictionaryXMLdoc = _dictionaryXMLdoc;
 @synthesize correctionsXMLdoc = _correctionsXMLdoc;
+@synthesize XMLdocsForProcessing = _XMLdocsForProcessing;
 @synthesize rootViewControllerForPassingProcessedDictionaryAround = _rootViewControllerForPassingProcessedDictionaryAround;
 @synthesize delegate = _delegate;
 @synthesize dictionaryName = _dictionaryName;
@@ -37,11 +38,19 @@
         self.dictionaryXMLdoc = [self loadXML:DOC_TYPE_DICTIONARY fromXMLInDictionaryBundle:dictionaryBundle];
         self.correctionsXMLdoc = [self loadXML:DOC_TYPE_CORRECTIONS fromXMLInDictionaryBundle:dictionaryBundle];
         
-        if (self.correctionsOnly && !self.correctionsXMLdoc) {
-            //no corrections file and dictionary already processed
-            NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
-            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.rootViewControllerForPassingProcessedDictionaryAround];
-            self.processing = NO;
+        
+  // manage docs for processing here to ensure they are processed in series
+        if (self.correctionsOnly) {
+            if (!self.correctionsXMLdoc) {
+                //no corrections file and dictionary already processed
+                NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
+                [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.rootViewControllerForPassingProcessedDictionaryAround];
+                self.processing = NO;
+            } else {
+                [self processDoc:self.correctionsXMLdoc type:DOC_TYPE_CORRECTIONS];
+            }
+        } else {
+            [self processDoc:self.dictionaryXMLdoc type:DOC_TYPE_DICTIONARY];
         }
     }
 }
@@ -52,7 +61,8 @@
         _dictionaryXMLdoc = XMLdoc;
 
         if (!self.correctionsOnly) {
-            [self processDoc:XMLdoc type:DOC_TYPE_DICTIONARY];
+//            [self processDoc:XMLdoc type:DOC_TYPE_DICTIONARY];
+            self.XMLdocsForProcessing = [NSMutableArray arrayWithObjects:self.dictionaryXMLdoc, nil];
         }
     }
 }
@@ -62,7 +72,12 @@
     if (_correctionsXMLdoc != XMLdoc) {
         _correctionsXMLdoc = XMLdoc;
         
-        [self processDoc:XMLdoc type:DOC_TYPE_CORRECTIONS];
+//        [self processDoc:XMLdoc type:DOC_TYPE_CORRECTIONS];
+        if (self.XMLdocsForProcessing) {
+            [self.XMLdocsForProcessing addObject:self.correctionsXMLdoc];
+        } else {
+            self.XMLdocsForProcessing = [NSMutableArray arrayWithObjects:self.correctionsXMLdoc, nil];
+        }
     }
 }
 
@@ -186,9 +201,15 @@ correctionsOnly:(BOOL)corrections
             if (XMLdoc) {
                 
                 //process file to populate the UIManagedDocument
+                NSLog(@"Start Processing docType %@", docType ? @"Corrections" : @"Dictionary");
                 [GDataXMLNodeHelper processXMLfile:XMLdoc type:docType intoManagedObjectContext:dictionaryDatabase.managedObjectContext];
                 [DictionaryHelper numberOfWordsInCoreDataDocument:dictionaryDatabase];
+                [self.XMLdocsForProcessing removeObject:XMLdoc];
+                NSLog(@"still left to process %@" ,self.XMLdocsForProcessing);
 //                [DictionaryHelper saveDictionary:dictionaryDatabase]; saving here seems to save a blank UIManagedDocument
+                
+//                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:self.delegate andDsvc:self]; //trying to get around correction issue
+//                [self.delegate DictionarySetupViewDidCompleteProcessingDictionary:self]; //trying to get around correction issue
                 
             }
             
@@ -196,7 +217,7 @@ correctionsOnly:(BOOL)corrections
             //only place where this seems to work
             //the UIManagedDoc is not saved yet - can not pass around there as it is a class method so has no sense of self.
             // but cannot show and dismiss view in iPhone because of conflict with displaying of TableView
-            if (self.rootViewControllerForPassingProcessedDictionaryAround)
+            if (self.rootViewControllerForPassingProcessedDictionaryAround && ([self.XMLdocsForProcessing count] == 0))  //Only pass around if finished processing
             {
                 [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:self.rootViewControllerForPassingProcessedDictionaryAround];
             }
@@ -235,15 +256,19 @@ correctionsOnly:(BOOL)corrections
     BOOL forceReprocess = [DictionarySetupViewController forceReprocessDictionary];
     BOOL newVersion = [DictionarySetupViewController newVersion];
     
-    if ([availableDictionary isEqualToString:@"More than 1"] || forceReprocess || !availableDictionary) {
-        
-        if ([availableDictionary isEqualToString:@"More than 1"]) [ErrorsHelper showErrorTooManyDictionaries];
+    
+//    NSLog(@"********************************");
+//    NSLog(@" REMOVE Reprocess");
+//    //NSLog(@" REMOVE Correction Check");
+//    NSLog(@"       Before Ship");
+//    NSLog(@"*********************************");
+    //forceReprocess = YES; //used for testing to force dictionary reprocess - comment out this line before shipping
+    //newVersion = YES; //used for testing to force dictionary correction check - comment out this line before shipping
+    
+    
+    if ( forceReprocess || !availableDictionary) {
         if (forceReprocess) NSLog(@"FORCED delete and reprocessing");
-        if (availableDictionary) {
-            //clean out the dictionaries 
-            [DictionaryHelper cleanOutDictionaryDirectory];
-        }
-        //set ready for processing
+        if (!availableDictionary) NSLog(@"Processing as no dictionary");
         *docProcessType = DOC_PROCESS_REPROCESS;
     } else if (newVersion){
         //set ready for processing
@@ -252,6 +277,16 @@ correctionsOnly:(BOOL)corrections
         *docProcessType = DOC_PROCESS_USE_EXSISTING;
     }
     
+        
+    NSString *docProcessForLog = nil;
+    if (*docProcessType == DOC_PROCESS_USE_EXSISTING) {
+        docProcessForLog = [NSString stringWithFormat:@"Use Exsisting"];
+    } else if (*docProcessType == DOC_PROCESS_CHECK_FOR_CORRECTIONS) {
+        docProcessForLog = [NSString stringWithFormat:@"Check for Corrections"];
+    } else {
+        docProcessForLog = [NSString stringWithFormat:@"Process or Reprocess"];
+    }
+    NSLog(@"docProcessType = %@", docProcessForLog);
     return availableDictionary;
 }
 
@@ -265,14 +300,8 @@ correctionsOnly:(BOOL)corrections
     
     BOOL returnValue = ![version isEqualToString:storedAppVersion];
     NSLog(@"in New Version: %@", returnValue ? @"YES" : @"NO");
-        
-    NSLog(@"**************************");
-    NSLog(@" REMOVE forced New Version");
-    NSLog(@"       Before Ship");
-    NSLog(@"**************************");
-    return YES; //used for testing to force correction process - comment out this line before shipping
     
-    //    return returnValue; // *********** uncomment this line for SHIP *********
+    return returnValue;
 }
 
 + (void) setProcessedDictionaryAppVersion
@@ -289,15 +318,9 @@ correctionsOnly:(BOOL)corrections
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //get reprocessed for version 2.0.5 from NSUserDefaults
     BOOL returnValue = ![defaults boolForKey:PROCESSED_DOC_SCHEMA_VERSION_205];
+    NSLog(@"Processed doc schema version %@", returnValue ? @"< 205" : @"= 205");
     
-    NSLog(@"**************************");
-    NSLog(@" REMOVE forced Dict Reprocess");
-    NSLog(@"       Before Ship");
-    NSLog(@"**************************");
-    NSLog(@"returnValue = %c", returnValue);
-    return YES; //used for testing to force dictionary reprocess - comment out this line before shipping
-    
-    //    return returnValue; // *********** uncomment this line for SHIP *********
+    return returnValue; 
 }
 
 + (void) setProcessedDictionarySchemaVersion

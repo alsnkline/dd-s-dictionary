@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GDataXMLNodeHelper.h"
 
 @class GDataXMLDocument;
 @class DictionarySetupViewController;
@@ -24,6 +25,7 @@ typedef enum DocProcessType {DOC_PROCESS_REPROCESS, DOC_PROCESS_CHECK_FOR_CORREC
 @property (strong, nonatomic) NSBundle *dictionaryBundle;        //The model for this MVC
 @property (strong, nonatomic) GDataXMLDocument *dictionaryXMLdoc;
 @property (strong, nonatomic) GDataXMLDocument *correctionsXMLdoc;
+@property (strong, nonatomic) NSMutableArray *XMLdocsForProcessing;
 @property (strong, nonatomic) UIViewController *rootViewControllerForPassingProcessedDictionaryAround;
 @property (nonatomic, weak) id <DictionarySetupViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *dictionaryName;
@@ -35,6 +37,7 @@ typedef enum DocProcessType {DOC_PROCESS_REPROCESS, DOC_PROCESS_CHECK_FOR_CORREC
 passDictionaryAround:(UIViewController *)rootViewController
  setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
 correctionsOnly:(BOOL)corrections;
+-(void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
 + (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType;
 + (BOOL) newVersion;
 + (void) setProcessedDictionaryAppVersion;

@@ -10,6 +10,8 @@
 #import "Dictionary+Create.h"
 #import "GDataXMLNode.h"
 #import "DictionarySetupViewController.h"
+#import "ErrorsHelper.h"
+#import "ActiveDictionary.h"
 
 @implementation DictionaryHelper
 
@@ -106,9 +108,9 @@
         processedDictionaryName = [dictionaryURL lastPathComponent];
     } else if ([dictionariesAvailable count] > 1) {
         NSLog(@"more than one processed dictionary");
-        processedDictionaryName = @"More than 1";
+        [ErrorsHelper showErrorTooManyDictionaries];
+        [DictionaryHelper cleanOutDictionaryDirectory];
     }
-    
     return processedDictionaryName;
 }
 
@@ -121,14 +123,15 @@
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
     NSURL *thisDictionaryUrl = [self dictionaryURLFor:dictionaryName];
     
-    UIManagedDocument *dictionaryDatabase = [[UIManagedDocument alloc] initWithFileURL:thisDictionaryUrl];
+//    UIManagedDocument *dictionaryDatabase = [[UIManagedDocument alloc] initWithFileURL:thisDictionaryUrl];
+    ActiveDictionary *dictionaryDatabase = [[ActiveDictionary alloc] initWithFileURL:thisDictionaryUrl];
     
     if (![localFileManager fileExistsAtPath:[dictionaryDatabase.fileURL path]]) {
         [dictionaryDatabase saveToURL:dictionaryDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
             if (success){
-                completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc created");
-                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc];
+                completionBlock (dictionaryDatabase); 
+                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //- was only place saving seemed to work - problem with corrections which are updates not a new dic
  //               [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc]; - didn't work because savedDictionary is also async!
                 
             } else {
@@ -138,9 +141,11 @@
     } else if (dictionaryDatabase.documentState == UIDocumentStateClosed) {
         [dictionaryDatabase openWithCompletionHandler:^(BOOL success) {
             if (success){
-                completionBlock (dictionaryDatabase); 
                 NSLog(@"Dictionary UIManagedDoc opened");
-                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //to save after processing corrections
+                completionBlock (dictionaryDatabase); 
+//                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //to save after processing corrections
+                [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc];  //test to get around correction issue - save completion block is not getting called
+                [dictionaryDatabase updateChangeCount:UIDocumentChangeDone]; //doesn't trigger dsvc to be deleted.
             } else {
                 NSLog(@"failed to open %@", [dictionaryDatabase.fileURL lastPathComponent]);
             }

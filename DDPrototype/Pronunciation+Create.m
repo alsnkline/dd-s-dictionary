@@ -102,6 +102,23 @@
     return pronunciation;
 }
 
++ (void)removeUnusedPronunciationsinManagedObjectContext:(NSManagedObjectContext *)context  //not used yet
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Pronunciation"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"unique" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *pronunciations = [context executeFetchRequest:request error:&error];
+    
+    for (Pronunciation *pronunciation in pronunciations) {
+        if ([pronunciation.spellings count] == 0) {
+            NSLog(@"deleting Pronunciation %@", pronunciation);
+            [context deleteObject:pronunciation];
+        }
+    }
+}
+
 
 
 @end

@@ -13,8 +13,11 @@
 
 @interface Word (Create)
 
-+ (Word *)wordFromString:(NSString *)string
-  inManagedObjectContext:(NSManagedObjectContext *)context;
++ (Word *)wordWithSpellingFromGDataXMLElement:(GDataXMLElement *)wordXML
+                       inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (Word *)wordWithSpelling:(NSString *)spelling
+    inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (Word *)wordFromGDataXMLElement:(GDataXMLElement *)wordXML
                    processingType:(XMLdocType)docType
@@ -23,5 +26,11 @@
 + (void) processDetailsOfWordXML:(GDataXMLElement *)wordXML
                             into:(Word *)word
           inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (void)removeWordWithSpellingFromGDataXMLElement:(GDataXMLElement *)wordXML
+                         fromManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (void)removeWordWithSpelling:(NSString *)spelling
+    fromManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

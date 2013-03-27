@@ -99,6 +99,8 @@
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
+
+// over riding in Tableview to get search to work
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
     if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext) {
@@ -148,6 +150,7 @@
                 
             case NSFetchedResultsChangeUpdate:
                 [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                
                 break;
                 
             case NSFetchedResultsChangeMove:
@@ -158,6 +161,7 @@
     }
 }
 
+// over riding in Tableview to get search to work
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     if (self.beganUpdates) [self.tableView endUpdates];

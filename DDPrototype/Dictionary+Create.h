@@ -22,4 +22,6 @@
                                   into:(Dictionary *)dictionary
                         processingType:(XMLdocType)docType
                 inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (void)removeEmptyDictionariesInManagedObjectContext:(NSManagedObjectContext *)context;
 @end

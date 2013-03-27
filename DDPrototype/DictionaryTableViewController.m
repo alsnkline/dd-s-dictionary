@@ -204,8 +204,9 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
     tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
-    
+    tableView.backgroundColor = self.customBackgroundColor;
     //ADD GA for Search page view....
+    //Add background color control for search page...
 }
 
 
@@ -249,13 +250,20 @@
 {
     //see if there are any dictionary's already processed
     
-    DocProcessType processType = DOC_PROCESS_USE_EXSISTING; //set a default that gets over riden by the whatProcessingIsNeeded method.
+    DocProcessType processType = DOC_PROCESS_USE_EXSISTING;  //set a default that gets over riden by the whatProcessingIsNeeded method.
     NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType];
+    
+    if (![self splitViewWithDisplayWordViewController]) processType = DOC_PROCESS_USE_EXSISTING; //we're in an iPhone any processing has already been completed
+   
     NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
     
     switch (processType) {
         case DOC_PROCESS_REPROCESS:
         {
+            if (availableDictionary) {
+                //clean out the dictionaries
+                [DictionaryHelper cleanOutDictionaryDirectory];
+            }
             [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:NO];
             [DictionarySetupViewController setProcessedDictionarySchemaVersion]; //set schema processed into User Defaults
             [DictionarySetupViewController setProcessedDictionaryAppVersion]; //set version of app when dictionary was processed
@@ -269,7 +277,10 @@
         }
         case DOC_PROCESS_USE_EXSISTING:
         {
-            if (!availableDictionary) NSLog(@"problem, no dictionary but want to use it"); break; //protect from crash, but this shouldn't happen.
+            if (!availableDictionary) {
+                NSLog(@"problem, no dictionary but want to use it");
+                break; //protect from crash, but this shouldn't happen.
+            }
             NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
 //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
             [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
@@ -309,15 +320,31 @@
     self.popoverController = nil;
 }
 
-- (void)DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)sender
+- (void)DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)dsvc
 {
+    if ([dsvc.XMLdocsForProcessing count] >0){
+        GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
+        if (docForProcess == dsvc.dictionaryXMLdoc) {
+            [dsvc processDoc:docForProcess type:DOC_TYPE_DICTIONARY];
+            NSLog(@"More Dictionary to process");
+        }
+        if (docForProcess == dsvc.correctionsXMLdoc) {
+            [dsvc processDoc:docForProcess type:DOC_TYPE_CORRECTIONS];
+            NSLog(@"More Corrections to process");
+        }
+    } else {
     
-    if ([self splitViewWithDisplayWordViewController]) {
-        // iPad
-        [self.popoverController dismissPopoverAnimated:YES];
+        if ([self splitViewWithDisplayWordViewController]) {
+            // iPad
+            [self.popoverController dismissPopoverAnimated:YES];
+        }
     }
 }
 
+//- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+//{
+//    [self setupFetchedResultsController];
+//}
 
 //- (NSArray *)alphabet
 //{
@@ -374,12 +401,25 @@
 
 #pragma mark -
 #pragma mark Search Bar Delegate methods
-//over riding some of those in the coreDataTableViewController parent class
+//over riding some of those in the coreDataTableViewController parent class to make search work.
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
     UITableView *tableView = controller == self.fetchedResultsController ? self.tableView : self.searchDisplayController.searchResultsTableView;
-    [tableView beginUpdates];
+//    [tableView beginUpdates];
+    
+    if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext) {
+        [tableView beginUpdates];
+        self.beganUpdates = YES;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    UITableView *tableView = controller == self.fetchedResultsController ? self.tableView : self.searchDisplayController.searchResultsTableView;
+    if (self.beganUpdates){
+        [tableView endUpdates];
+    }
 }
 
 #pragma mark - Table view data source
@@ -404,7 +444,7 @@
         id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
         numberOfRows = [sectionInfo numberOfObjects];
     }
-    
+//    NSLog(@"table section row count: %d", numberOfRows);
     return numberOfRows;
     
 }
@@ -459,6 +499,7 @@
     // your cell guts here
     Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = word.spelling;
+//    NSLog(@"cell: %@", word.spelling);
 
 }
 
