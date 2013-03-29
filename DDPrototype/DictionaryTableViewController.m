@@ -253,7 +253,10 @@
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING;  //set a default that gets over riden by the whatProcessingIsNeeded method.
     NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType];
     
-    if (![self splitViewWithDisplayWordViewController]) processType = DOC_PROCESS_USE_EXSISTING; //we're in an iPhone any processing has already been completed
+    if (![self splitViewWithDisplayWordViewController]) {
+        processType = DOC_PROCESS_USE_EXSISTING; //we're in an iPhone any processing has already been completed
+        NSLog(@"Were in an iPhone docProcessingType reset to %u", processType);
+    }
    
     NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
     
@@ -341,10 +344,6 @@
     }
 }
 
-//- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-//{
-//    [self setupFetchedResultsController];
-//}
 
 //- (NSArray *)alphabet
 //{

@@ -51,12 +51,17 @@
     //see if there are any dictionary's already processed
     
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING; //set a default that gets over riden by the whatProcessingIsNeeded method.
+    //NSString *availableDictionary =
     [DictionarySetupViewController whatProcessingIsNeeded:&processType];
     NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
     
     switch (processType) {
         case DOC_PROCESS_REPROCESS:
         {
+//            if (availableDictionary) {
+//                //clean out the dictionaries
+//                [DictionaryHelper cleanOutDictionaryDirectory];
+//            }
             [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:NO];
             [self.view insertSubview:self.setupViewController.view atIndex:0];
             [DictionarySetupViewController setProcessedDictionarySchemaVersion]; //set schema processed into User Defaults
@@ -89,7 +94,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)sender
+-(void) DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)dsvc
 {
     //processing complete add a short timer to let the saving of the Dictionary complete on all devices even slow ones :-)
     
@@ -106,7 +111,20 @@
 //    NSLog(@"mytimer = %@", mytimer);
     
     //processing complete switch to Home Tab Controller - moved to after timer completes in 2.0.4 back from 2.0.5
-    [self switchToHomeTabController];
+    
+    if ([dsvc.XMLdocsForProcessing count] >0){
+        GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
+        if (docForProcess == dsvc.dictionaryXMLdoc) {
+            [dsvc processDoc:docForProcess type:DOC_TYPE_DICTIONARY];
+            NSLog(@"More Dictionary to process");
+        }
+        if (docForProcess == dsvc.correctionsXMLdoc) {
+            [dsvc processDoc:docForProcess type:DOC_TYPE_CORRECTIONS];
+            NSLog(@"More Corrections to process");
+        }
+    } else {
+        [self switchToHomeTabController];
+    }
 }
 
 - (void) timerDone:(NSTimer *)atimer //method called when timer done used in 2.0.4 before passing the completedProcessing Delegate and dsvc into the async methods.

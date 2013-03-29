@@ -131,7 +131,7 @@
             if (success){
                 NSLog(@"Dictionary UIManagedDoc created");
                 completionBlock (dictionaryDatabase); 
-                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //- was only place saving seemed to work - problem with corrections which are updates not a new dic
+                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //- was only place saving seemed to work - I wonder if auto save would work just as well?
  //               [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc]; - didn't work because savedDictionary is also async!
                 
             } else {
@@ -143,9 +143,9 @@
             if (success){
                 NSLog(@"Dictionary UIManagedDoc opened");
                 completionBlock (dictionaryDatabase); 
-//                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //to save after processing corrections
-                [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc];  //test to get around correction issue - save completion block is not getting called
-                [dictionaryDatabase updateChangeCount:UIDocumentChangeDone]; //doesn't trigger dsvc to be deleted.
+                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //to save after processing corrections have to use a full save as in iPhone the fetchResultsController is not set up and will miss the changes.
+//                [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc];  //needed to clean up processing dsvc view if you use auto save rather than explicit save (see commented out line above) - works for iPad but not iPhone
+//                [dictionaryDatabase updateChangeCount:UIDocumentChangeDone]; //doesn't trigger dsvc to be removed, but triggers autosave in background thread works for iPad as FRC is already watching.
             } else {
                 NSLog(@"failed to open %@", [dictionaryDatabase.fileURL lastPathComponent]);
             }

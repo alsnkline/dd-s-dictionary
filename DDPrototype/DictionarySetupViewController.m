@@ -257,13 +257,13 @@ correctionsOnly:(BOOL)corrections
     BOOL newVersion = [DictionarySetupViewController newVersion];
     
     
-//    NSLog(@"********************************");
-//    NSLog(@" REMOVE Reprocess");
-//    //NSLog(@" REMOVE Correction Check");
-//    NSLog(@"       Before Ship");
-//    NSLog(@"*********************************");
+    NSLog(@"********************************");
+    NSLog(@" REMOVE Reprocess");
+    //NSLog(@" REMOVE Correction Check");
+    NSLog(@"       Before Ship");
+    NSLog(@"*********************************");
     //forceReprocess = YES; //used for testing to force dictionary reprocess - comment out this line before shipping
-    //newVersion = YES; //used for testing to force dictionary correction check - comment out this line before shipping
+    newVersion = YES; //used for testing to force dictionary correction check - comment out this line before shipping
     
     
     if ( forceReprocess || !availableDictionary) {
