@@ -17,6 +17,7 @@
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
+@property (nonatomic) BOOL settingUpDictionary;
 @property (nonatomic, strong) UIColor *customBackgroundColor;
 @property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover in iPad
 @property (nonatomic, strong) DictionarySetupViewController *dsvc; //used to track the start up vc in iPhone as there is no popover
@@ -28,6 +29,7 @@
 @implementation DictionaryTableViewController
 @synthesize activeDictionary = _activeDictionary;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
+@synthesize settingUpDictionary = _settingUpDictionary;
 @synthesize customBackgroundColor = _backgroundColor;
 @synthesize popoverController;
 @synthesize dsvc = _dsvc;
@@ -68,31 +70,11 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     
-//    NSMutableArray *predicateArray = [NSMutableArray array];
-//    if(searchString.length)
-//    {
-//        // your search predicate(s) are added to this array
-//        [predicateArray addObject:[NSPredicate predicateWithFormat:@"SELF CONTAINS[cd] %@", searchString]];
-//        // finally add the filter predicate for this view
-//        if(filterPredicate)
-//        {
-//            filterPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:filterPredicate, [NSCompoundPredicate orPredicateWithSubpredicates:predicateArray], nil]];
-//        }
-//        else
-//        {
-//            filterPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:predicateArray];
-//        }
-//    }
-//    [fetchRequest setPredicate:filterPredicate];
-    
     filterPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];
     
 //    NSLog(@"searchString for Predicate: %@", searchString),
     NSLog(@"Predicate: %@", filterPredicate);
     [fetchRequest setPredicate:filterPredicate];
-//    
-//    // Set the batch size to a suitable number.
-//    [fetchRequest setFetchBatchSize:20];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     /*
@@ -146,6 +128,7 @@
         
         [self setupFetchedResultsController];
         self.title = [DictionaryHelper dictionaryDisplayNameFrom:activeDictionary];
+        self.settingUpDictionary = NO;
         
         if (self.isViewLoaded && self.view.window) {
             //viewController is visible track with GA allowing iPad stats to show which dict got loaded.
@@ -205,8 +188,11 @@
 {
     tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
     tableView.backgroundColor = self.customBackgroundColor;
-    //ADD GA for Search page view....
-    //Add background color control for search page...
+
+    //track with GA manually avoid subclassing UIViewController
+    NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Search Table Shown: %@", self.title];
+    [self trackView:viewNameForGA];
+
 }
 
 
@@ -238,12 +224,26 @@
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
     
     if (!self.activeDictionary) {  //this can't be in view did load - doesn't work as activeDictionary is still nil at that time = problems!
-         [self setUpDictionary]; // used in iPad to trigger loading if necessary, in iphone it always triggers loading and passing the processed dictionary around.
+        self.settingUpDictionary = YES;
+        [self setUpDictionary]; // used in iPad to trigger loading if necessary, in iphone it always triggers loading and passing the processed dictionary around.
     }
     
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
-    NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
+    NSString *viewNameForGA = nil;
+    if (self.settingUpDictionary) {
+        viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: setting up"];
+    } else {
+        viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
+    }
     [self trackView:viewNameForGA];
+
+    //track event with GA to confirm background color for this dictionary table view
+    id tracker = [GAI sharedInstance].defaultTracker;
+    NSString *actionForGA = [NSString stringWithFormat:@"%f", [defaults floatForKey:BACKGROUND_COLOR_SATURATION]];
+    NSString *colorForGA = [NSString stringWithFormat:@"%@", self.customBackgroundColor];
+    [tracker sendEventWithCategory:@"uiTracking_BackgroundColor" withAction:actionForGA withLabel:colorForGA withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiTracking_BackgroundColor %@ %@", actionForGA, colorForGA);
+
 }
 
 -(void) setUpDictionary
@@ -255,10 +255,11 @@
     
     if (![self splitViewWithDisplayWordViewController]) {
         processType = DOC_PROCESS_USE_EXSISTING; //we're in an iPhone any processing has already been completed
-        NSLog(@"Were in an iPhone docProcessingType reset to %u", processType);
+        NSLog(@"We are in an iPhone docProcessingType reset to %@", [DictionarySetupViewController stringForLog:processType]);
     }
    
     NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
+    NSLog(@"docProcessType = %@", [DictionarySetupViewController stringForLog:processType]);
     
     switch (processType) {
         case DOC_PROCESS_REPROCESS:
@@ -366,7 +367,10 @@
     
     self.searchFetchedResultsController = [self newFetchedResultsControllerWithSearch:searchText];
     
-    //ADD GA event tracking to capture which strings are being searched for!
+    //track event with GA
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendEventWithCategory:@"uiAction_Search" withAction:self.title withLabel:searchText withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_Search %@ %@", self.title, searchText);
 }
 
 

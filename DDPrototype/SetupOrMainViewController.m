@@ -48,6 +48,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    NSLog(@"SetupOrMainViewController Did Appear");
     //see if there are any dictionary's already processed
     
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING; //set a default that gets over riden by the whatProcessingIsNeeded method.
@@ -123,6 +124,7 @@
             NSLog(@"More Corrections to process");
         }
     } else {
+        NSLog(@"Switching to mainTabController");
         [self switchToHomeTabController];
     }
 }

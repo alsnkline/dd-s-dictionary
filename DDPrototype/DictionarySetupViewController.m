@@ -257,13 +257,13 @@ correctionsOnly:(BOOL)corrections
     BOOL newVersion = [DictionarySetupViewController newVersion];
     
     
-    NSLog(@"********************************");
-    NSLog(@" REMOVE Reprocess");
-    //NSLog(@" REMOVE Correction Check");
-    NSLog(@"       Before Ship");
-    NSLog(@"*********************************");
+//    NSLog(@"********************************");
+//    NSLog(@" REMOVE Reprocess");
+//    //NSLog(@" REMOVE Correction Check");
+//    NSLog(@"       Before Ship");
+//    NSLog(@"*********************************");
     //forceReprocess = YES; //used for testing to force dictionary reprocess - comment out this line before shipping
-    newVersion = YES; //used for testing to force dictionary correction check - comment out this line before shipping
+    //newVersion = YES; //used for testing to force dictionary correction check - comment out this line before shipping
     
     
     if ( forceReprocess || !availableDictionary) {
@@ -277,17 +277,36 @@ correctionsOnly:(BOOL)corrections
         *docProcessType = DOC_PROCESS_USE_EXSISTING;
     }
     
-        
-    NSString *docProcessForLog = nil;
-    if (*docProcessType == DOC_PROCESS_USE_EXSISTING) {
-        docProcessForLog = [NSString stringWithFormat:@"Use Exsisting"];
-    } else if (*docProcessType == DOC_PROCESS_CHECK_FOR_CORRECTIONS) {
-        docProcessForLog = [NSString stringWithFormat:@"Check for Corrections"];
-    } else {
-        docProcessForLog = [NSString stringWithFormat:@"Process or Reprocess"];
-    }
-    NSLog(@"docProcessType = %@", docProcessForLog);
+//    NSLog(@"docProcessType = %@", [DictionarySetupViewController stringForLog:docProcessType]);
     return availableDictionary;
+}
+
++ (NSString *) stringForLog:(DocProcessType)docProcessType
+{
+    NSString *docProcessForLog = nil;
+    switch (docProcessType) {
+        case DOC_PROCESS_REPROCESS:
+        {
+            docProcessForLog = [NSString stringWithFormat:@"Process or Reprocess"];
+            break;
+        }
+        case DOC_PROCESS_CHECK_FOR_CORRECTIONS:
+        {
+            docProcessForLog = [NSString stringWithFormat:@"Check for Corrections"];
+            break;
+        }
+        case DOC_PROCESS_USE_EXSISTING:
+        {
+            docProcessForLog = [NSString stringWithFormat:@"Use Exsisting"];
+            break;
+        }
+        default:
+        {
+            NSLog(@"Problem detecting docProcessType");
+            break;
+        }
+    }
+    return docProcessForLog;
 }
 
 +(BOOL) newVersion

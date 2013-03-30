@@ -441,6 +441,9 @@
 		<spelling>chase</spelling>
 	</word>
 	<word>
+        <spelling>chocolate</spelling>
+    </word>
+	<word>
 		<spelling>check</spelling>
 	</word>
 	<word>
@@ -1230,6 +1233,13 @@
 		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
+		<spelling>hi</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>high</unique>
+		</pronunciation>
+	</word>
+	<word>
 		<spelling>hid</spelling>
 	</word>
 	<word>
@@ -1237,6 +1247,7 @@
 	</word>
 	<word>
 		<spelling>high</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>hill</spelling>
@@ -2111,12 +2122,20 @@
 	</word>
 	<word>
 		<spelling>pail</spelling>
+		<isHomophone>yes</isHomophone>
 	</word>
 	<word>
 		<spelling>pain</spelling>
 	</word>
 	<word>
 		<spelling>paint</spelling>
+	</word>
+	<word>
+		<spelling>pale</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>pail</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>pants</spelling>
@@ -2148,6 +2167,13 @@
 	<word>
 		<spelling>pause</spelling>
 		<isHomophone>yes</isHomophone>
+	</word>
+	<word>
+		<spelling>paw</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>poor</unique>
+		</pronunciation>
 	</word>
 	<word>
 		<spelling>paws</spelling>
@@ -2207,6 +2233,9 @@
 		<spelling>pitch</spelling>
 	</word>
 	<word>
+        <spelling>pizza</spelling>
+    </word>
+	<word>
 		<spelling>place</spelling>
 	</word>
 	<word>
@@ -2257,6 +2286,13 @@
 	<word>
 		<spelling>porcupine</spelling>
 	</word>
+<!--	<word>				in 205 apps only support 2 homophone buttons, paw, poor, pour already using these.
+		<spelling>pore</spelling>
+		<isHomophone>yes</isHomophone>
+		<pronunciation>
+			<unique>poor</unique>
+		</pronunciation>
+	</word> -->
 	<word>
 		<spelling>pound</spelling>
 	</word>
@@ -3255,6 +3291,10 @@
 	</word>
 	<word>
 		<spelling>wild</spelling>
+		<pronunciation>
+            <unique>wild</unique>
+			<fileName>wildv1</fileName>
+        </pronunciation>
 	</word>
 	<word>
 		<spelling>will</spelling>

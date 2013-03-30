@@ -39,6 +39,7 @@ passDictionaryAround:(UIViewController *)rootViewController
 correctionsOnly:(BOOL)corrections;
 -(void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
 + (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType;
++ (NSString *) stringForLog:(DocProcessType)docProcessType;
 + (BOOL) newVersion;
 + (void) setProcessedDictionaryAppVersion;
 + (BOOL) forceReprocessDictionary;
