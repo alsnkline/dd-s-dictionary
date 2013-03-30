@@ -52,17 +52,17 @@
     //see if there are any dictionary's already processed
     
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING; //set a default that gets over riden by the whatProcessingIsNeeded method.
-    //NSString *availableDictionary =
-    [DictionarySetupViewController whatProcessingIsNeeded:&processType];
+    NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType];
+    NSLog(@"docProcessType = %@", [DictionarySetupViewController stringForLog:processType]);
     NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
     
     switch (processType) {
         case DOC_PROCESS_REPROCESS:
         {
-//            if (availableDictionary) {
-//                //clean out the dictionaries
-//                [DictionaryHelper cleanOutDictionaryDirectory];
-//            }
+            if (availableDictionary) {
+                //clean out the dictionaries
+                [DictionaryHelper cleanOutDictionaryDirectory];     //needed or forced reprocess wont work
+            }
             [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:NO];
             [self.view insertSubview:self.setupViewController.view atIndex:0];
             [DictionarySetupViewController setProcessedDictionarySchemaVersion]; //set schema processed into User Defaults

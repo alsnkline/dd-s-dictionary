@@ -131,7 +131,7 @@
         self.settingUpDictionary = NO;
         
         if (self.isViewLoaded && self.view.window) {
-            //viewController is visible track with GA allowing iPad stats to show which dict got loaded.
+            //viewController is visible track with GA allowing iPad also useful on iPhone when setup takes time stats to show which dict got loaded.
             NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
             [self trackView:viewNameForGA];
         }

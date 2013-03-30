@@ -267,8 +267,9 @@ correctionsOnly:(BOOL)corrections
     
     
     if ( forceReprocess || !availableDictionary) {
-        if (forceReprocess) NSLog(@"FORCED delete and reprocessing");
         if (!availableDictionary) NSLog(@"Processing as no dictionary");
+        if (forceReprocess && availableDictionary) NSLog(@"FORCED delete and reprocessing");
+        if (!forceReprocess && !availableDictionary) NSLog(@"No Dict AND current schema processed. This state shouldn't arise");
         *docProcessType = DOC_PROCESS_REPROCESS;
     } else if (newVersion){
         //set ready for processing
@@ -276,8 +277,7 @@ correctionsOnly:(BOOL)corrections
     } else {
         *docProcessType = DOC_PROCESS_USE_EXSISTING;
     }
-    
-//    NSLog(@"docProcessType = %@", [DictionarySetupViewController stringForLog:docProcessType]);
+
     return availableDictionary;
 }
 

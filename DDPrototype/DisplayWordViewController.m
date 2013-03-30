@@ -135,7 +135,7 @@
         self.listenButton.frame = CGRectMake((self.listenButton.superview.frame.size.width/2 - self.listenButton.frame.size.width/2), self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
         
         Pronunciation *pronunciation = [[pronunciations allObjects] lastObject];
-        NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
+        NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.fileName];
         fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
                 
         [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton1 and:self.homonymButton2 UnderListenButton:self.listenButton];
@@ -147,7 +147,7 @@
         self.listenButton.frame = CGRectMake(56, self.listenButton.frame.origin.y, self.listenButton.frame.size.width, self.listenButton.frame.size.height);
         
         for (Pronunciation *pronunciation in pronunciations) {
-            NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.unique];
+            NSURL *fileURL = [DictionaryHelper fileURLForPronunciation:pronunciation.fileName];
             if ([pronunciation.unique hasSuffix:[NSString stringWithFormat:@"1"]]) {
                 fileURL? (self.listenButton.enabled = YES) : (self.listenButton.enabled = NO);
                 [self manageHomonymsOfPronunciation:pronunciation WithButtons:self.homonymButton1 and:self.homonymButton2 UnderListenButton:self.listenButton];
