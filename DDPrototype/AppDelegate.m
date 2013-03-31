@@ -29,8 +29,8 @@
     // Optional: set debug to YES for extra debugging information.
     [GAI sharedInstance].debug = YES;
     // Create tracker instance.
-    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-1"];  //use for any production releases
-//    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@""]; //use for developing so counts don't polute
+//    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-1"];  //use for any production releases
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@""]; //use for developing so counts don't polute
     
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"DD's Dictionary launched"];
