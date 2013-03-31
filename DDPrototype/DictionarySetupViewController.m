@@ -327,7 +327,7 @@ correctionsOnly:(BOOL)corrections
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    //set version in NSUserDefaults so next time this code doesn't run
+    //set version in NSUserDefaults so next time new version code doesn't run
     [defaults setObject:version forKey:APPLICATION_VERSION];
     [defaults synchronize];    
 }
