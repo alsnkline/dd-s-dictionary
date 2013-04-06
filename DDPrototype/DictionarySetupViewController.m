@@ -12,7 +12,6 @@
 #import "GAI.h"
 #import "ErrorsHelper.h"
 #import "NSUserDefaultKeys.h"
-#import "ErrorsHelper.h"
 
 @interface DictionarySetupViewController ()
 

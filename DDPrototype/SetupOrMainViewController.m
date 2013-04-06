@@ -22,7 +22,7 @@
 @synthesize setupViewController = _setupViewController;
 
 //This class is landing page for iphone, it tests for available dictionaries and processes one if needed - acting as the delegate for processing finishing.
-//once a dictionary is available it swtiches the view to the main flow.
+//once a dictionary is available it switches the view to the main flow.
 
 
 - (UIViewController *)setupViewController

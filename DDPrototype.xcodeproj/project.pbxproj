@@ -10,6 +10,7 @@
 		B103442F1692746C00589A41 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = B103442E1692746C00589A41 /* iTunesArtwork.png */; };
 		B103444F169282A700589A41 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B103444E169282A700589A41 /* Default-568h@2x.png */; };
 		B10D3E6215D8086D006407DB /* dino144-144.png in Resources */ = {isa = PBXBuildFile; fileRef = B10D3E6115D8086D006407DB /* dino144-144.png */; };
+		B12C37FC1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B12C37FB1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf */; };
 		B1310885168B9A74002E2355 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */; };
 		B1310886168B9A7B002E2355 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
 		B1310887168B9A82002E2355 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */; };
@@ -62,6 +63,7 @@
 		B103442E1692746C00589A41 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		B103444E169282A700589A41 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B10D3E6115D8086D006407DB /* dino144-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino144-144.png"; sourceTree = "<group>"; };
+		B12C37FB1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dyslexie_a_Regular_LEDU_1044_IN.ttf; sourceTree = "<group>"; };
 		B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -161,6 +163,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B12C37F91710C4E600CAAB29 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B12C37FB1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		B178605215962B3D0047D631 = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +252,7 @@
 				B18E40A516AB53E700D346A6 /* GoogleAnalytics */,
 				B177D84515B531A3002A8814 /* FirstThousandWords.bundle */,
 				B178606815962B3D0047D631 /* Supporting Files */,
+				B12C37F91710C4E600CAAB29 /* Fonts */,
 			);
 			path = DDPrototype;
 			sourceTree = "<group>";
@@ -262,9 +273,9 @@
 		B178608B159638050047D631 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
 				B18E76AD16FFBED2009788CB /* ActiveDictionary.h */,
 				B18E76AE16FFBED2009788CB /* ActiveDictionary.m */,
-				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
 				B18FE23116FBB7BA00123B63 /* Pronunciation.h */,
 				B18FE23216FBB7BA00123B63 /* Pronunciation.m */,
 				B18FE22E16FBB7BA00123B63 /* Word.h */,
@@ -362,6 +373,7 @@
 				B18E40B016AB706C00D346A6 /* Default@2x.png in Resources */,
 				B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */,
 				B18E40B416AB76D500D346A6 /* dino57-57.png in Resources */,
+				B12C37FC1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

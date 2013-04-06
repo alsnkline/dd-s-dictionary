@@ -20,7 +20,7 @@
 
 + (void) processDetailsOfDictionaryXML:(GDataXMLElement *)dictionaryXML
                                   into:(Dictionary *)dictionary
-                        processingType:(XMLdocType)docType
+                        XMLdocType:(XMLdocType)docType
                 inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (void)removeEmptyDictionariesInManagedObjectContext:(NSManagedObjectContext *)context;

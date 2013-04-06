@@ -100,7 +100,7 @@
 
 + (void) processDetailsOfDictionaryXML:(GDataXMLElement *)dictionaryXML //not used now
                             into:(Dictionary *)dictionary
-                        processingType:(XMLdocType)docType
+                        XMLdocType:(XMLdocType)docType
           inManagedObjectContext:(NSManagedObjectContext *)context
 {
     //setting the displayName for dictionary XML files.

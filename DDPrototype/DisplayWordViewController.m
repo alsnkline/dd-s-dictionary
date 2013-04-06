@@ -108,6 +108,7 @@
 
 -(void)setUpViewForWord:(Word *)word
 {
+    [UIFont fontWithName:@"Dyslexiea-Regular" size:140];
     [self manageListenButtons];
     [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^ {

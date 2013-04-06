@@ -1,2 +1,6 @@
 /* Localized versions of Info.plist keys */
 
+<key>UIAppFonts</key>
+<array>
+<string>Dyslexie_a_Regular_LEDU_1044_IN.ttf</string>
+</array>

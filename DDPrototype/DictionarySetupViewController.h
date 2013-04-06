@@ -37,7 +37,7 @@ typedef enum DocProcessType {DOC_PROCESS_REPROCESS, DOC_PROCESS_CHECK_FOR_CORREC
 passDictionaryAround:(UIViewController *)rootViewController
  setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
 correctionsOnly:(BOOL)corrections;
--(void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
+- (void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
 + (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType;
 + (NSString *) stringForLog:(DocProcessType)docProcessType;
 + (BOOL) newVersion;
