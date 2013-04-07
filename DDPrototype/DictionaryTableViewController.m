@@ -17,6 +17,7 @@
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
+@property (nonatomic) BOOL useDyslexieFont;
 @property (nonatomic) BOOL settingUpDictionary;
 @property (nonatomic, strong) UIColor *customBackgroundColor;
 @property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover in iPad
@@ -29,6 +30,7 @@
 @implementation DictionaryTableViewController
 @synthesize activeDictionary = _activeDictionary;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
+@synthesize useDyslexieFont = _useDyslexieFont;
 @synthesize settingUpDictionary = _settingUpDictionary;
 @synthesize customBackgroundColor = _backgroundColor;
 @synthesize popoverController;
@@ -180,8 +182,7 @@
     self.searchDisplayController.searchResultsDataSource = self;
     self.searchDisplayController.searchResultsDelegate = self;
     
-    
-    self.debug = YES;
+    //self.debug = YES;
 }
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
@@ -220,8 +221,13 @@
         self.view.backgroundColor = self.customBackgroundColor;
     }
     
-    //set value of playWordsOnSelection
+    //set value of playWordsOnSelection and useDyslexieFont
     self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
+    if (self.useDyslexieFont != [defaults floatForKey:USE_DYSLEXIE_FONT]) {
+        self.useDyslexieFont = [defaults floatForKey:USE_DYSLEXIE_FONT];
+        [self.tableView reloadData];
+    }
+    
     
     if (!self.activeDictionary) {  //this can't be in view did load - doesn't work as activeDictionary is still nil at that time = problems!
         self.settingUpDictionary = YES;
@@ -500,6 +506,12 @@
 - (void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     // your cell guts here
+    if (self.useDyslexieFont) {
+        cell.textLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:20];
+//        cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    } else {
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+    }
     Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = word.spelling;
 //    NSLog(@"cell: %@", word.spelling);

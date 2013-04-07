@@ -15,6 +15,7 @@
 
 @interface SettingsTableViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *playOnSelectionSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *useDyslexieFont;
 @property (weak, nonatomic) IBOutlet UISlider *backgroundHueSlider;
 @property (weak, nonatomic) IBOutlet UISlider *backgroundSaturationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLable;
@@ -28,6 +29,7 @@
 
 @implementation SettingsTableViewController
 @synthesize playOnSelectionSwitch = _playOnSelectionSwitch;
+@synthesize useDyslexieFont = _useDyslexieFont;
 @synthesize backgroundHueSlider = _backgroundHueSlider;
 @synthesize backgroundSaturationSlider = _backgroundSaturationSlider;
 @synthesize versionLable = _versionLable;
@@ -45,6 +47,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.playOnSelectionSwitch.on = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
+    self.useDyslexieFont.on = [defaults floatForKey:USE_DYSLEXIE_FONT];
     
     self.customBackgroundColorHue = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_HUE]];
     self.customBackgroundColorSaturation = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_SATURATION]];
@@ -85,6 +88,22 @@
     NSString *switchSetting = sender.on ? @"ON" : @"OFF";
     [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"playOnSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
     NSLog(@"Event sent to GA uiAction_Setting playOnSetlectionChanged %@",switchSetting);
+}
+
+- (IBAction)useDyslexieFontSwitchChanged:(UISwitch *)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:USE_DYSLEXIE_FONT];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if ([self splitViewWithDisplayWordViewController]) {
+        [self splitViewWithDisplayWordViewController].useDyslexieFont = sender.on;
+    }
+    
+    //track event with GA
+    id tracker = [GAI sharedInstance].defaultTracker;
+    NSString *switchSetting = sender.on ? @"ON" : @"OFF";
+    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"UseDyslexieFontChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_Setting UseDyslexieFontChanged %@",switchSetting);
 }
 
 - (IBAction)backgroundHueSliderChanged:(UISlider *)sender
@@ -302,10 +321,12 @@
                 // we are in an iOS 6.0 device and can use cell position to test for what was selected.
                 if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:0 inSection:2]]) {
                     switchValue = 0; //About
-                } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
+                } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:3 inSection:2]]) {
                     switchValue = 1; //Small Print
+                } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:1 inSection:2]]) {
+                    switchValue = 2; //The Dysle+ie font
                 } else {
-                    switchValue = 2;
+                    switchValue = 3;
                 }
             } else {
                 // we are in an iOS 5.0, 5.1 or 5.1.1 device
@@ -313,10 +334,11 @@
                     switchValue = 0; //About
                 } else if ([cell.textLabel.text isEqualToString:@"Small Print"]) {
                     switchValue = 1; //Small Print
+                } else if ([cell.textLabel.text isEqualToString:@"The Dysle+ie font"]) {
+                    switchValue = 2; //Small Print
                 } else {
-                    switchValue = 2;
-                }
-            }
+                    switchValue = 3;
+                }            }
             
             NSFileManager *localFileManager = [[NSFileManager alloc] init];
             switch (switchValue) {
@@ -339,6 +361,16 @@
                     }
                     break;
                 }
+                case 2: {
+                    //The Dysle+ie font selected.
+                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_dysle+ie" ofType:@"html"];
+                    
+                    if ([localFileManager fileExistsAtPath:path]) { //avoid crash if file changes and forgot to clean build :-)
+                        [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
+                    }
+                    break;
+                }
+
                 default:
                     NSLog(@"not resolved which cell was pressed on settings page");
                     break;

@@ -58,5 +58,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Dyslexie_a_Regular_LEDU_1044_IN.ttf</string>
+		<string>Dyslexie_a_Bold_LEDU_1044_IN.ttf</string>
+	</array>
 </dict>
 </plist>

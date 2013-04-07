@@ -11,6 +11,7 @@
 		B103444F169282A700589A41 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B103444E169282A700589A41 /* Default-568h@2x.png */; };
 		B10D3E6215D8086D006407DB /* dino144-144.png in Resources */ = {isa = PBXBuildFile; fileRef = B10D3E6115D8086D006407DB /* dino144-144.png */; };
 		B12C37FC1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B12C37FB1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf */; };
+		B12C38011710DD7500CAAB29 /* Dyslexie_a_Bold_LEDU_1044_IN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B12C38001710DD7500CAAB29 /* Dyslexie_a_Bold_LEDU_1044_IN.ttf */; };
 		B1310885168B9A74002E2355 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */; };
 		B1310886168B9A7B002E2355 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B815E0AD970093E71F /* Default-Portrait~ipad.png */; };
 		B1310887168B9A82002E2355 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */; };
@@ -64,6 +65,7 @@
 		B103444E169282A700589A41 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B10D3E6115D8086D006407DB /* dino144-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino144-144.png"; sourceTree = "<group>"; };
 		B12C37FB1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dyslexie_a_Regular_LEDU_1044_IN.ttf; sourceTree = "<group>"; };
+		B12C38001710DD7500CAAB29 /* Dyslexie_a_Bold_LEDU_1044_IN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dyslexie_a_Bold_LEDU_1044_IN.ttf; sourceTree = "<group>"; };
 		B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -166,6 +168,7 @@
 		B12C37F91710C4E600CAAB29 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B12C38001710DD7500CAAB29 /* Dyslexie_a_Bold_LEDU_1044_IN.ttf */,
 				B12C37FB1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf */,
 			);
 			name = Fonts;
@@ -374,6 +377,7 @@
 				B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */,
 				B18E40B416AB76D500D346A6 /* dino57-57.png in Resources */,
 				B12C37FC1710C85200CAAB29 /* Dyslexie_a_Regular_LEDU_1044_IN.ttf in Resources */,
+				B12C38011710DD7500CAAB29 /* Dyslexie_a_Bold_LEDU_1044_IN.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,6 +28,7 @@
 @implementation DisplayWordViewController
 @synthesize word = _word;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
+@synthesize useDyslexieFont = _useDyslexieFont;
 @synthesize customBackgroundColor = _customBackgroundColor;
 @synthesize delegate = _delegate;
 @synthesize spelling = _spelling;
@@ -99,6 +100,26 @@
     }
 }
 
+-(void)setUseDyslexieFont:(BOOL)useDyslexieFont
+{
+    if(_useDyslexieFont != useDyslexieFont) {
+        _useDyslexieFont = useDyslexieFont;
+        if (self.useDyslexieFont) {
+            [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
+            self.homonymButton1.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
+            self.homonymButton2.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
+            self.homonymButton3.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
+            self.homonymButton4.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
+        } else {
+            [self.spelling setFont:[UIFont systemFontOfSize:140]];
+            self.homonymButton1.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+            self.homonymButton2.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+            self.homonymButton3.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+            self.homonymButton4.titleLabel.font = [UIFont boldSystemFontOfSize:30];
+        }
+    }
+}
+
 -(void)trackView:(NSString *)viewNameForGA
 {
     id tracker = [GAI sharedInstance].defaultTracker;
@@ -108,8 +129,12 @@
 
 -(void)setUpViewForWord:(Word *)word
 {
-    [UIFont fontWithName:@"Dyslexiea-Regular" size:140];
     [self manageListenButtons];
+//    if (self.useDyslexieFont) {
+//        [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
+//    } else {
+//        [self.spelling setFont:[UIFont systemFontOfSize:140]];
+//    }
     [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^ {
                         self.spelling.text = word.spelling;
@@ -335,6 +360,12 @@
     UIColor *currentDesiredColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
     if (![self.customBackgroundColor isEqual:currentDesiredColor]) {
         self.customBackgroundColor = currentDesiredColor;
+    }
+    
+    self.useDyslexieFont = [defaults floatForKey:USE_DYSLEXIE_FONT];
+    if (self.useDyslexieFont) {
+        [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
+        //NSLog(@"Available fonts: %@", [UIFont familyNames]);
     }
     
     if (self.word) {
