@@ -92,10 +92,10 @@
         self.view.backgroundColor = self.customBackgroundColor;
         
         NSArray *myListenButtons = [NSArray arrayWithObjects:self.listenButton, self.heteronymListenButton, nil];
-        [self setColorOfButtons:myListenButtons toColor:self.customBackgroundColor];
+        [self setColorOfButtons:myListenButtons toColor:self.customBackgroundColor areHomonymButtons:NO];
         
-        NSArray *myHomonyButtons = [NSArray arrayWithObjects:self.homonymButton1, self.homonymButton2, self.homonymButton3, self.homonymButton4, nil];
-        [self setColorOfButtons:myHomonyButtons toColor:self.customBackgroundColor];
+        NSArray *myHomonymButtons = [NSArray arrayWithObjects:self.homonymButton1, self.homonymButton2, self.homonymButton3, self.homonymButton4, nil];
+        [self setColorOfButtons:myHomonymButtons toColor:self.customBackgroundColor areHomonymButtons:YES];
         
     }
 }
@@ -130,11 +130,6 @@
 -(void)setUpViewForWord:(Word *)word
 {
     [self manageListenButtons];
-//    if (self.useDyslexieFont) {
-//        [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
-//    } else {
-//        [self.spelling setFont:[UIFont systemFontOfSize:140]];
-//    }
     [UIView transitionWithView:self.wordView duration:.5 options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^ {
                         self.spelling.text = word.spelling;
@@ -206,7 +201,8 @@
             if (counter == 1) {
                 button1.hidden = NO;
                 [button1 setTitle:word.spelling forState:UIControlStateNormal];
-                [button1 sizeToFit];
+                [self sizeHomonymButton:button1];
+                //[button1 sizeToFit];
                 CGRect frame = CGRectMake(listenbutton.frame.origin.x - (button1.frame.size.width/2 - listenbutton.frame.size.width/2), button1.frame.origin.y, button1.frame.size.width, button1.frame.size.height);
                 button1.frame = frame;
                 
@@ -215,13 +211,38 @@
             if (counter == 2) {
                 button2.hidden = NO;
                 [button2 setTitle:word.spelling forState:UIControlStateNormal];
-                [button2 sizeToFit];
+                [self sizeHomonymButton:button2];
+                //[button2 sizeToFit];
                 CGRect frame = CGRectMake(listenbutton.frame.origin.x - (button2.frame.size.width/2 - listenbutton.frame.size.width/2), button2.frame.origin.y, button2.frame.size.width, button2.frame.size.height);
                 button2.frame = frame;
                 //CGRectMake((button2.superview.frame.size.width/2 - button2.frame.size.width/2), button2.frame.origin.y, button2.frame.size.width, button2.frame.size.height);
             }
         }
     }
+}
+
+-(void) sizeHomonymButton:(UIButton *)button
+{
+    // set background image of all buttons
+    CGFloat spacingBetweenImageAndText = 2;
+    CGFloat spacingToTop = 0;
+    CGFloat spacingToBottom = 0;
+    if (self.useDyslexieFont) {
+        spacingToBottom = -3;
+        spacingToTop = 3;
+    }
+    
+    [button sizeToFit];
+    CGRect buttonFrame = button.frame;
+    NSLog(@"button size from bounds = h%f w%f", button.bounds.size.height, button.bounds.size.width);
+    buttonFrame.size = CGSizeMake(button.frame.size.width, 43);
+    button.frame = buttonFrame;
+    
+    NSLog(@"titleLabel = %f, %f", button.titleLabel.bounds.size.width, button.titleLabel.bounds.size.height);
+    NSLog(@"button bounds = %f, %f", button.bounds.size.width, button.bounds.size.height);
+    NSLog(@"image bounds = %f, %f", button.imageView.bounds.size.width, button.imageView.bounds.size.height);
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacingBetweenImageAndText);
+    button.titleEdgeInsets = UIEdgeInsetsMake(spacingToTop, spacingBetweenImageAndText, spacingToBottom, 0);
 }
 
 - (void) setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
@@ -429,7 +450,7 @@
     return dwvc;
 }
 
-- (void) setColorOfButtons:(NSArray*)buttons toColor:(UIColor *)color
+- (void) setColorOfButtons:(NSArray*)buttons toColor:(UIColor *)color areHomonymButtons:(BOOL)areHomonyms
 {
     //raw idea at http://stackoverflow.com/questions/7238507/change-round-rect-button-background-color-on-statehighlighted
     //modified to take UIColor on input not a color spec
@@ -445,21 +466,28 @@
     UIColor *highlightColor = color;
     [button setTintColor:highlightColor];
     
-    float cRadius = 10;
+    float cRadius = 8;
 //    NSLog(@"button size from imageView.image = h%f w%f", button.imageView.image.size.height, button.imageView.image.size.width);
 //    NSLog(@"button size from layer.frame = h%f w%f", button.layer.frame.size.height, button.layer.frame.size.width);
 //    NSLog(@"button size from button.bounds = h%f w%f", button.bounds.size.height, button.bounds.size.width);
     UIImage *image = [self createImageOfColor:highlightColor ofSize:CGSizeMake(40, 25) withCornerRadius:cRadius];
+    NSLog(@"created image size = %f, %f", image.size.width, image.size.height);
     
-    UIImage* stretchableImage = [image resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    UIImage* stretchableImage = [image resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12) resizingMode:UIImageResizingModeStretch];
     
     // set background image of all buttons
+    
     do {
+        
         [button setBackgroundImage:stretchableImage forState:UIControlStateNormal];
         
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = cRadius;
         button.layer.needsDisplayOnBoundsChange = YES;
+        
+        if (areHomonyms) {
+            [self sizeHomonymButton:button];
+        }
         
     } while (button = (UIButton*)[buttonEnum nextObject]);
     
