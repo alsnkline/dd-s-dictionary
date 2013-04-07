@@ -596,6 +596,9 @@
         if (self.customBackgroundColor) {
             [segue.destinationViewController setCustomBackgroundColor:self.customBackgroundColor];
         }
+        if (self.useDyslexieFont) {
+            [segue.destinationViewController setUseDyslexieFont:self.useDyslexieFont];
+        }
         [segue.destinationViewController setDelegate:self];
     }
 }

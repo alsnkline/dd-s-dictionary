@@ -105,13 +105,22 @@
     if(_useDyslexieFont != useDyslexieFont) {
         _useDyslexieFont = useDyslexieFont;
         if (self.useDyslexieFont) {
-            [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
+            if ([self splitViewWithDisplayWordViewController]) { //in iPad
+                [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
+            } else { //in iphone
+                [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:55]];
+            }
+            
             self.homonymButton1.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
             self.homonymButton2.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
             self.homonymButton3.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
             self.homonymButton4.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
         } else {
-            [self.spelling setFont:[UIFont systemFontOfSize:140]];
+            if ([self splitViewWithDisplayWordViewController]) {
+                [self.spelling setFont:[UIFont systemFontOfSize:140]];
+            } else {
+                [self.spelling setFont:[UIFont systemFontOfSize:55]];
+            }
             self.homonymButton1.titleLabel.font = [UIFont boldSystemFontOfSize:30];
             self.homonymButton2.titleLabel.font = [UIFont boldSystemFontOfSize:30];
             self.homonymButton3.titleLabel.font = [UIFont boldSystemFontOfSize:30];
@@ -234,13 +243,13 @@
     
     [button sizeToFit];
     CGRect buttonFrame = button.frame;
-    NSLog(@"button size from bounds = h%f w%f", button.bounds.size.height, button.bounds.size.width);
+//    NSLog(@"button size from bounds = h%f w%f", button.bounds.size.height, button.bounds.size.width);
     buttonFrame.size = CGSizeMake(button.frame.size.width, 43);
     button.frame = buttonFrame;
     
-    NSLog(@"titleLabel = %f, %f", button.titleLabel.bounds.size.width, button.titleLabel.bounds.size.height);
-    NSLog(@"button bounds = %f, %f", button.bounds.size.width, button.bounds.size.height);
-    NSLog(@"image bounds = %f, %f", button.imageView.bounds.size.width, button.imageView.bounds.size.height);
+//    NSLog(@"titleLabel = %f, %f", button.titleLabel.bounds.size.width, button.titleLabel.bounds.size.height);
+//    NSLog(@"button bounds = %f, %f", button.bounds.size.width, button.bounds.size.height);
+//    NSLog(@"image bounds = %f, %f", button.imageView.bounds.size.width, button.imageView.bounds.size.height);
     button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacingBetweenImageAndText);
     button.titleEdgeInsets = UIEdgeInsetsMake(spacingToTop, spacingBetweenImageAndText, spacingToBottom, 0);
 }
@@ -384,10 +393,6 @@
     }
     
     self.useDyslexieFont = [defaults floatForKey:USE_DYSLEXIE_FONT];
-    if (self.useDyslexieFont) {
-        [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
-        //NSLog(@"Available fonts: %@", [UIFont familyNames]);
-    }
     
     if (self.word) {
         [self setUpViewForWord:self.word];
