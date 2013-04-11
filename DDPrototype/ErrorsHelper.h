@@ -12,7 +12,7 @@
 
 + (void) showExplanationForFrozenUI;
 + (void) showErrorTooManyDictionaries;
-+ (void) showErrorMuteOn;
++ (void) showErrorMuteOn; //not used
 + (void) showXMLParsingError:(NSError *)error;
 
 @end

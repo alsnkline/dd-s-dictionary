@@ -175,8 +175,8 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
-    tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
     tableView.backgroundColor = self.customBackgroundColor;
+    tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
 
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Search Table Shown: %@", self.title];
@@ -452,9 +452,26 @@
 
 #pragma mark - Table view data source
 
+- (BOOL) searchHasNoResults:(NSFetchedResultsController *)fetchedResultsController
+{
+    BOOL hasNoResults = NO;
+    
+    if (self.searchDisplayController.isActive) {
+        hasNoResults = [[fetchedResultsController fetchedObjects] count]? NO : YES;
+    }
+    
+    return hasNoResults;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSInteger count = [[[self fetchedResultsControllerForTableView:tableView] sections] count];
+    NSInteger count = 0;
+    
+    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+        count = 1;
+    } else {
+        count = [[[self fetchedResultsControllerForTableView:tableView] sections] count];
+    }
     NSLog(@"table section count: %d", count);
     return count;
     //    return [[self alphabet] count];
@@ -465,12 +482,17 @@
 {
 
     NSInteger numberOfRows = 0;
-    NSFetchedResultsController *fetchController = [self fetchedResultsControllerForTableView:tableView];
-    NSArray *sections = fetchController.sections;
-    if(sections.count > 0)
-    {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
-        numberOfRows = [sectionInfo numberOfObjects];
+    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+        numberOfRows = 1;
+    } else {
+    
+        NSFetchedResultsController *fetchController = [self fetchedResultsControllerForTableView:tableView];
+        NSArray *sections = fetchController.sections;
+        if(sections.count > 0)
+        {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
+            numberOfRows = [sectionInfo numberOfObjects];
+        }
     }
 //    NSLog(@"table section row count: %d", numberOfRows);
     return numberOfRows;
@@ -482,7 +504,15 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-	return [[[[self fetchedResultsControllerForTableView:tableView] sections] objectAtIndex:section] name];
+
+    NSString *titleForSection = nil;
+    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+        titleForSection = nil; // is called but nil is OK
+    } else {
+        titleForSection = [[[[self fetchedResultsControllerForTableView:tableView] sections] objectAtIndex:section] name];
+    }
+    
+    return titleForSection;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index //overiding in DictTableView to get Search to work
@@ -525,15 +555,20 @@
 - (void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     // your cell guts here
-    if (self.useDyslexieFont) {
-        cell.textLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:20];
-//        cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    
+    cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:20] : [UIFont boldSystemFontOfSize:20];
+    
+    if ([self searchHasNoResults:fetchedResultsController]) {
+        
+//        self.searchDisplayController.searchResultsTableView.rowHeight = 165.0f;
+//        [self.searchDisplayController.searchResultsTableView reloadData]; //have to unwind the rowsize afterwards and this is not really where the cell height should be changing
+        cell.textLabel.text = @"Ask to add this word.";
+        cell.textLabel.textColor = [UIColor blueColor];
     } else {
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+        Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
+        cell.textLabel.text = word.spelling;
+    //    NSLog(@"cell: %@", word.spelling);
     }
-    Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = word.spelling;
-//    NSLog(@"cell: %@", word.spelling);
 
 }
 
@@ -547,7 +582,6 @@
     }
     
         // Configure the cell...
-    //This method isn't called if there are no results in the search results - so can't insert a special cell here.
     
     [self fetchedResultsController:[self fetchedResultsControllerForTableView:tableView] configureCell:cell atIndexPath:indexPath];
 
@@ -602,7 +636,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:tableView];
+    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+        [DictionaryTableViewController showAddWordRequested:self.title and:self.searchDisplayController.searchBar.text];
+        self.searchDisplayController.searchBar.text = @"";
+        [self.searchDisplayController setActive:NO];
+    } else {
+        [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:tableView];
+    }
     
 }
 
@@ -715,6 +755,22 @@
         [ErrorsHelper showExplanationForFrozenUI];  //never called now used during development
     }
 
+}
+
++ (void) showAddWordRequested:(NSString *)dictionaryTitle and:(NSString *)requestedText     //used if no results and user requests words to be added to dictionary
+{
+    UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Word Requested"
+                                                        message:[NSString stringWithFormat:@"Thank you for asking for '%@'  to be added to '%@'.",requestedText, dictionaryTitle]
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertUser sizeToFit];
+    [alertUser show];
+    
+    
+    //track event with GA
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendEventWithCategory:@"uiAction_WordAddRequest" withAction:dictionaryTitle withLabel:requestedText withValue:[NSNumber numberWithInt:1]];
+    NSLog(@"Event sent to GA uiAction_WordAddRequest %@ %@", dictionaryTitle, requestedText);
 }
 
 
