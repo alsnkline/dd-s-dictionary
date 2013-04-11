@@ -293,7 +293,7 @@
             }
             NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
 //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
-            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
+//            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController]; FIND ME
             break;
         }
         default:
@@ -330,7 +330,7 @@
     self.popoverController = nil;
 }
 
-- (void)DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)dsvc
+- (void)dictionaryIsReady:(DictionarySetupViewController *)dsvc
 {
     if ([dsvc.XMLdocsForProcessing count] >0){
         GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];

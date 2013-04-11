@@ -116,8 +116,8 @@
 
 
 + (void)openDictionary:(NSString *)dictionaryName
-    withImDoneDelegate:(id<DictionarySetupViewControllerDelegate>)delegate
-               andDsvc:(DictionarySetupViewController *)dsvc
+    withImDoneDelegate:(id<DictionaryIsReadyViewControllerDelegate>)delegate
+               andTriggeringView:(UIViewController *)view
             usingBlock:(completion_block_t)completionBlock
 {
     NSFileManager *localFileManager = [[NSFileManager alloc] init];
@@ -131,7 +131,7 @@
             if (success){
                 NSLog(@"Dictionary UIManagedDoc created");
                 completionBlock (dictionaryDatabase); 
-                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //- was only place saving seemed to work - I wonder if auto save would work just as well?
+                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andTriggerView:view]; //- was only place saving seemed to work - I wonder if auto save would work just as well?
  //               [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc]; - didn't work because savedDictionary is also async!
                 
             } else {
@@ -143,7 +143,7 @@
             if (success){
                 NSLog(@"Dictionary UIManagedDoc opened");
                 completionBlock (dictionaryDatabase); 
-                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andDsvc:dsvc]; //to save after processing corrections have to use a full save as in iPhone the fetchResultsController is not set up and will miss the changes.
+                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:delegate andTriggerView:view]; //to save after processing corrections have to use a full save as in iPhone the fetchResultsController is not set up and will miss the changes.
 //                [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc];  //needed to clean up processing dsvc view if you use auto save rather than explicit save (see commented out line above) - works for iPad but not iPhone
 //                [dictionaryDatabase updateChangeCount:UIDocumentChangeDone]; //doesn't trigger dsvc to be removed, but triggers autosave in background thread works for iPad as FRC is already watching.
             } else {
@@ -252,13 +252,13 @@
 }
 
 + (void)saveDictionary:(UIManagedDocument *)dictionary
-    withImDoneDelegate:(id<DictionarySetupViewControllerDelegate>)delegate
-               andDsvc:(DictionarySetupViewController *)dsvc
+    withImDoneDelegate:(id<DictionaryIsReadyViewControllerDelegate>)delegate
+               andTriggerView:(UIViewController *)view
 {
     [dictionary saveToURL:dictionary.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^ (BOOL success) {
         if (success) {
             NSLog(@"Saved Dictionary URL = %@ doc state = %@", [dictionary.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionary.documentState]);
-            [delegate DictionarySetupViewDidCompleteProcessingDictionary:dsvc];
+            [delegate dictionaryIsReady:view];
         } else {
             NSLog(@"Save failed URL = %@ doc state = %@", [dictionary.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionary.documentState]);
         };

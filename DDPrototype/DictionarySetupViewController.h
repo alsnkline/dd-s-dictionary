@@ -14,9 +14,9 @@
 
 typedef enum DocProcessType {DOC_PROCESS_REPROCESS, DOC_PROCESS_CHECK_FOR_CORRECTIONS, DOC_PROCESS_USE_EXSISTING} DocProcessType;
 
-@protocol DictionarySetupViewControllerDelegate <NSObject> //added <NSObject> so we can do a respondsToSelector: on the delegate
+@protocol DictionaryIsReadyViewControllerDelegate <NSObject> //added <NSObject> so we can do a respondsToSelector: on the delegate
 @optional
--(void) DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)sender;
+-(void) dictionaryIsReady:(UIViewController *)sender;
 @end
 
 @interface DictionarySetupViewController : UIViewController
@@ -27,15 +27,18 @@ typedef enum DocProcessType {DOC_PROCESS_REPROCESS, DOC_PROCESS_CHECK_FOR_CORREC
 @property (strong, nonatomic) GDataXMLDocument *correctionsXMLdoc;
 @property (strong, nonatomic) NSMutableArray *XMLdocsForProcessing;
 @property (strong, nonatomic) UIViewController *rootViewControllerForPassingProcessedDictionaryAround;
-@property (nonatomic, weak) id <DictionarySetupViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <DictionaryIsReadyViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *dictionaryName;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
-+ (void)loadDictionarywithName:(NSString *)dictionaryName passAroundIn:(UIViewController *)rootViewController;
++ (void)loadDictionarywithName:(NSString *)dictionaryName
+                  passAroundIn:(UIViewController *)rootViewController
+            withImDoneDelegate:(id<DictionaryIsReadyViewControllerDelegate>)delegate
+                       andTriggerView:(UIViewController*)dsvc;
 + (BOOL) use:(DictionarySetupViewController *)dsvc
    toProcess:(NSBundle *)dictionary
 passDictionaryAround:(UIViewController *)rootViewController
- setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
+ setDelegate:(id <DictionaryIsReadyViewControllerDelegate>)delegate
 correctionsOnly:(BOOL)corrections;
 - (void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
 + (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType;
