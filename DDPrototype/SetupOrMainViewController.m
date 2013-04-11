@@ -12,7 +12,7 @@
 #import "ErrorsHelper.h"
 
 
-@interface SetupOrMainViewController () <DictionaryIsReadyViewControllerDelegate>
+@interface SetupOrMainViewController () <DictionarySetupViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *setupOrTable;
 @end
 
@@ -20,7 +20,6 @@
 
 @synthesize activeDictionary = _activeDictionary;
 @synthesize setupViewController = _setupViewController;
-@synthesize spinner = _spinner;
 
 //This class is landing page for iphone, it tests for available dictionaries and processes one if needed - acting as the delegate for processing finishing.
 //once a dictionary is available it switches the view to the main flow.
@@ -45,11 +44,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.spinner startAnimating];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -84,10 +78,7 @@
         }
         case DOC_PROCESS_USE_EXSISTING:
         {
-//            [self switchToHomeTabController];
-            NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
-            //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
-            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController withImDoneDelegate:self andTriggerView:self];
+            [self switchToHomeTabController];
             break;
         }
         default:
@@ -104,7 +95,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) dictionaryIsReady:(UIViewController *)sender
+-(void) DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)dsvc
 {
     //processing complete add a short timer to let the saving of the Dictionary complete on all devices even slow ones :-)
     
@@ -122,37 +113,19 @@
     
     //processing complete switch to Home Tab Controller - moved to after timer completes in 2.0.4 back from 2.0.5
     
-    if ([sender isKindOfClass:[DictionarySetupViewController class]]) {
-        
-        DictionarySetupViewController *dsvc = (DictionarySetupViewController *)sender;
-    
-        if ([dsvc.XMLdocsForProcessing count] >0){
-            GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
-            if (docForProcess == dsvc.dictionaryXMLdoc) {
-                [dsvc processDoc:docForProcess type:DOC_TYPE_DICTIONARY];
-                NSLog(@"More Dictionary to process");
-            }
-            if (docForProcess == dsvc.correctionsXMLdoc) {
-                [dsvc processDoc:docForProcess type:DOC_TYPE_CORRECTIONS];
-                NSLog(@"More Corrections to process");
-            }
-        } else {
-            NSLog(@"Switching to mainTabController");
-            [self performSegueWithIdentifier:@"Show Dictionary" sender:self];
-     //       [self switchToHomeTabController];
+    if ([dsvc.XMLdocsForProcessing count] >0){
+        GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
+        if (docForProcess == dsvc.dictionaryXMLdoc) {
+            [dsvc processDoc:docForProcess type:DOC_TYPE_DICTIONARY];
+            NSLog(@"More Dictionary to process");
         }
-    }
-    if ([sender isKindOfClass:[SetupOrMainViewController class]]) {
+        if (docForProcess == dsvc.correctionsXMLdoc) {
+            [dsvc processDoc:docForProcess type:DOC_TYPE_CORRECTIONS];
+            NSLog(@"More Corrections to process");
+        }
+    } else {
         NSLog(@"Switching to mainTabController");
-        [self performSegueWithIdentifier:@"Show Dictionary" sender:self];
-//        [self performSegueWithIdentifier:@"Show Dictionary Table View" sender:self];
-    }
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"Show Dictionary Table View"]) {
-        [segue.destinationViewController setActiveDictionary:self.activeDictionary];
+        [self switchToHomeTabController];
     }
 }
 
@@ -163,9 +136,8 @@
     [self switchToHomeTabController];
 }
 
-- (void) switchToHomeTabController  //not using any more as using segues on the view with a animated spinner
+- (void) switchToHomeTabController
 {
-    //******      SHOULDN"T BE CALLED ANYMORE      ******
     id controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Home Tab Controller"];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

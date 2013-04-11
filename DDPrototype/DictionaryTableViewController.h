@@ -11,7 +11,7 @@
 #import "DictionaryHelper.h"
 #import "DictionarySetupViewController.h"
 
-@interface DictionaryTableViewController : CoreDataTableViewController <ActiveDictionaryFollower, DictionaryIsReadyViewControllerDelegate>
+@interface DictionaryTableViewController : CoreDataTableViewController <ActiveDictionaryFollower, DictionarySetupViewControllerDelegate>
 
 //use activeDictionary for model for this MVC
 

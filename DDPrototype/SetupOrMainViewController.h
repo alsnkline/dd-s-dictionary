@@ -14,6 +14,5 @@
 @interface SetupOrMainViewController : UIViewController <ActiveDictionaryFollower>
 
 @property (strong, nonatomic) DictionarySetupViewController *setupViewController;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end

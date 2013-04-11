@@ -163,18 +163,6 @@
         //if iPhone to prevent the back button flashing
         [self.navigationItem setHidesBackButton:YES];
     }
-
-//    NSLog(@"TableView frame: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
-//    NSLog(@"TableHeaderView frame: %f, %f, %f, %f", self.tableView.tableHeaderView.frame.origin.x, self.tableView.tableHeaderView.frame.origin.y ,self.tableView.tableHeaderView.frame.size.width ,self.tableView.tableHeaderView.frame.size.height);
-    /* added when I was considering showing the search bar all the time - I've decided you definately don't want to do that on the iphone small screen!!!.
-     http://stackoverflow.com/questions/9340345/keep-uisearchbar-visible-even-if-user-is-sliding-down and
-     UISearchBar *searchBar = [[[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44.0)] autorelease];
-     searchBar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
-     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-     self.tableView.tableHeaderView = searchBar;
-     from     http://stackoverflow.com/questions/4471289/how-to-filter-nsfetchedresultscontroller-coredata-with-uisearchdisplaycontroll
-     if you ever want to revisit that idea. 
-    */
     
     
     // set up search VC delegates.
@@ -206,7 +194,38 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-
+    /* added when I was considering showing the search bar all the time.
+     http://stackoverflow.com/questions/9340345/keep-uisearchbar-visible-even-if-user-is-sliding-down and
+     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44.0)];
+     searchBar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+     self.tableView.tableHeaderView = searchBar;
+     from     http://stackoverflow.com/questions/4471289/how-to-filter-nsfetchedresultscontroller-coredata-with-uisearchdisplaycontroll
+     if you ever want to revisit that idea.
+     View Will appear is too early view changes are overridden here.
+     */
+//    NSLog(@"TableView frame 4: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+//    
+//    CGRect newFrame = CGRectMake(0, 44, self.tableView.bounds.size.width, self.tableView.bounds.size.height-44);
+//    self.tableView.frame = newFrame;
+//    
+////    CGRect newFrame2 = CGRectMake(0, 0, self.tableView.tableHeaderView.bounds.size.width, 0);
+////    self.tableView.tableHeaderView.bounds = newFrame2;
+//    
+//    NSLog(@"TableView frame 4: %f, %f, %f, %f", self.searchDisplayController.searchBar.frame.origin.x, self.searchDisplayController.searchBar.frame.origin.y, self.searchDisplayController.searchBar.frame.size.width, self.searchDisplayController.searchBar.frame.size.height);
+//    NSLog(@"TableView frame 4: %f, %f, %f, %f", self.searchDisplayController.searchResultsTableView.bounds.origin.x, self.searchDisplayController.searchResultsTableView.bounds.origin.y, self.searchDisplayController.searchResultsTableView.bounds.size.width, self.searchDisplayController.searchResultsTableView.bounds.size.height);
+//    NSLog(@"searchbar superview = %@", self.searchDisplayController.searchBar.superview);
+//    NSLog(@"tableView superview = %@", self.tableView.superview);
+//
+//    
+//    [self.searchDisplayController.searchBar removeFromSuperview];
+//    [self.tableView.superview addSubview:self.searchDisplayController.searchBar];
+//    CGRect anotherNewFrame = CGRectMake(0, 0, self.searchDisplayController.searchBar.frame.size.width, self.searchDisplayController.searchBar.frame.size.height);
+//    self.searchDisplayController.searchBar.frame = anotherNewFrame;
+//    self.searchDisplayController.searchResultsTableView.frame = anotherNewFrame;
+//    
+//    NSLog(@"TableView frame 5: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //set value of backgroundColour
@@ -293,7 +312,7 @@
             }
             NSLog(@"Opening the 1 dictionary available its name: %@", availableDictionary);
 //            NSLog(@"rootViewControler = %@", self.view.window.rootViewController);
-//            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController]; FIND ME
+            [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.view.window.rootViewController];
             break;
         }
         default:
@@ -330,7 +349,7 @@
     self.popoverController = nil;
 }
 
-- (void)dictionaryIsReady:(DictionarySetupViewController *)dsvc
+- (void)DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)dsvc
 {
     if ([dsvc.XMLdocsForProcessing count] >0){
         GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
@@ -528,8 +547,10 @@
     }
     
         // Configure the cell...
+    //This method isn't called if there are no results in the search results - so can't insert a special cell here.
     
     [self fetchedResultsController:[self fetchedResultsControllerForTableView:tableView] configureCell:cell atIndexPath:indexPath];
+
     
 
 //    Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath];

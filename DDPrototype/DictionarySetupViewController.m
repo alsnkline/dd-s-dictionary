@@ -43,7 +43,7 @@
             if (!self.correctionsXMLdoc) {
                 //no corrections file and dictionary already processed
                 NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
-                [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.rootViewControllerForPassingProcessedDictionaryAround withImDoneDelegate:self.delegate andTriggerView:self];
+                [DictionarySetupViewController loadDictionarywithName:availableDictionary passAroundIn:self.rootViewControllerForPassingProcessedDictionaryAround];
                 self.processing = NO;
             } else {
                 [self processDoc:self.correctionsXMLdoc type:DOC_TYPE_CORRECTIONS];
@@ -123,10 +123,29 @@
     // Release any retained subviews of the main view.
 }
 
++ (void)loadDictionarywithName:(NSString *)dictionaryName passAroundIn:(UIViewController *)rootViewController
+{
+//    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase)
+    [DictionaryHelper openDictionary:dictionaryName withImDoneDelegate:nil andDsvc:nil usingBlock:^ (UIManagedDocument *dictionaryDatabase)
+    {
+        
+        NSLog(@"Got dictionary %@ doc state = %@", [dictionaryDatabase.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionaryDatabase.documentState]);
+        if (dictionaryDatabase.documentState == UIDocumentStateNormal) {
+            
+            //share activeDictionary with all VC's
+            [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:rootViewController];
+            
+        } else {
+            NSLog(@"dictionary documentState NOT normal");
+        }
+    }];
+}
+
+
 + (BOOL) use:(DictionarySetupViewController *)dsvc
    toProcess:(NSBundle *)dictionary
 passDictionaryAround:(UIViewController *)rootViewController
- setDelegate:(id <DictionaryIsReadyViewControllerDelegate>)delegate
+ setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
 correctionsOnly:(BOOL)corrections
 {
     dsvc.processing = YES;
@@ -172,7 +191,7 @@ correctionsOnly:(BOOL)corrections
 - (void)loadDictionarywithName:(NSString *)dictionaryName processXML:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType
 {
     //Get UIManagedDocument for dictionary
-    [DictionaryHelper openDictionary:dictionaryName withImDoneDelegate:self.delegate andTriggeringView:self usingBlock:^ (UIManagedDocument *dictionaryDatabase)
+    [DictionaryHelper openDictionary:dictionaryName withImDoneDelegate:self.delegate andDsvc:self usingBlock:^ (UIManagedDocument *dictionaryDatabase)
     {
         
         NSLog(@"Got dictionary %@ doc state = %@", [dictionaryDatabase.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionaryDatabase.documentState]);
@@ -188,7 +207,7 @@ correctionsOnly:(BOOL)corrections
                 NSLog(@"still left to process %@" ,self.XMLdocsForProcessing);
 //                [DictionaryHelper saveDictionary:dictionaryDatabase]; saving here seems to save a blank UIManagedDocument
                 
-//                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:self.delegate andDsvc:self]; //trying to get around correction issue - issue turned out to be in the search impementation of the FRC - and their update methods.
+//                [DictionaryHelper saveDictionary:dictionaryDatabase withImDoneDelegate:self.delegate andDsvc:self]; //trying to get around correction issue
 //                [self.delegate DictionarySetupViewDidCompleteProcessingDictionary:self]; //trying to get around correction issue
                 
             }
@@ -209,28 +228,6 @@ correctionsOnly:(BOOL)corrections
         }
     }];
 }
-
-+ (void)loadDictionarywithName:(NSString *)dictionaryName
-                  passAroundIn:(UIViewController *)rootViewController
-            withImDoneDelegate:(id<DictionaryIsReadyViewControllerDelegate>)delegate
-                       andTriggerView:(UIViewController*)dsvc
-{
-    //    [DictionaryHelper openDictionary:dictionaryName usingBlock:^ (UIManagedDocument *dictionaryDatabase)
-    [DictionaryHelper openDictionary:dictionaryName withImDoneDelegate:delegate andTriggeringView:dsvc usingBlock:^ (UIManagedDocument *dictionaryDatabase)
-     {
-         
-         NSLog(@"Got dictionary %@ doc state = %@", [dictionaryDatabase.fileURL lastPathComponent], [DictionaryHelper stringForState:dictionaryDatabase.documentState]);
-         if (dictionaryDatabase.documentState == UIDocumentStateNormal) {
-             
-             //share activeDictionary with all VC's
-             [DictionaryHelper passActiveDictionary:dictionaryDatabase arroundVCsIn:rootViewController];
-             
-         } else {
-             NSLog(@"dictionary documentState NOT normal");
-         }
-     }];
-}
-
 
 
 - (void) showExplanationForFrozenUI     //used during app development superceeded by this view.
