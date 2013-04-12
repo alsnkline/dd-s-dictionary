@@ -550,6 +550,31 @@
 //    return [[self fetchedResultsControllerForTableView:tableView] sectionIndexTitles];
 }
 
+-(UIButton *)getAddWordButton
+{
+    UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [myButton addTarget:self action:@selector(addwordButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    myButton.frame = CGRectMake(28, 2, 255, 50);
+    
+    [myButton setImage:[UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"] forState:UIControlStateNormal];
+    [myButton setTitle:@"Ask DD to add this word" forState:UIControlStateNormal];
+    myButton.tintColor = [UIColor grayColor];
+    
+    UIImage *backImage = [DisplayWordViewController createImageOfColor:self.customBackgroundColor ofSize:CGSizeMake(40, 25) withCornerRadius:8];
+//    UIImage* stretchableImage = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12) resizingMode:UIImageResizingModeStretch];
+    UIImage *stretchableImage = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    [myButton setBackgroundImage:stretchableImage forState:UIControlStateNormal];
+    
+
+    myButton.clipsToBounds = YES; // need to add a masking layer to button!
+//    myButton.cornerRadius = 8;
+//    myButton.layer.needsDisplayOnBoundsChange = YES;
+    
+    //myButton.titleLabel.text = @"Ask DD to add this word";
+    //myButton.imageView.image = [UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"];
+    
+    return myButton;
+}
 
 
 - (void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -559,11 +584,17 @@
     cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:20] : [UIFont boldSystemFontOfSize:20];
     
     if ([self searchHasNoResults:fetchedResultsController]) {
-        
+        cell.textLabel.text = @"";
+        UIButton *button = [self getAddWordButton];
+        [cell.contentView addSubview:button];
 //        self.searchDisplayController.searchResultsTableView.rowHeight = 165.0f;
 //        [self.searchDisplayController.searchResultsTableView reloadData]; //have to unwind the rowsize afterwards and this is not really where the cell height should be changing
-        cell.textLabel.text = @"Ask to add this word.";
-        cell.textLabel.textColor = [UIColor blueColor];
+        
+//        cell.textLabel.text = @"Ask DD to add this word";
+//        cell.textLabel.textColor = [UIColor blueColor];
+//        cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Italic" size:40] : [UIFont fontWithName:@"Arial-BoldItalic" size:30];
+//        cell.textLabel.font = [UIFont fontWithName:@"Dyslexiea-Italic" size:40];
+//        cell.imageView.image = [UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"];
     } else {
         Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
         cell.textLabel.text = word.spelling;
@@ -637,13 +668,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
-        [DictionaryTableViewController showAddWordRequested:self.title and:self.searchDisplayController.searchBar.text];
-        self.searchDisplayController.searchBar.text = @"";
-        [self.searchDisplayController setActive:NO];
+        [self addwordButtonPressed];
     } else {
         [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:tableView];
     }
     
+}
+
+- (void) addwordButtonPressed {
+    [DictionaryTableViewController showAddWordRequested:self.title and:self.searchDisplayController.searchBar.text];
+    self.searchDisplayController.searchBar.text = @"";
+    [self.searchDisplayController setActive:NO];
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

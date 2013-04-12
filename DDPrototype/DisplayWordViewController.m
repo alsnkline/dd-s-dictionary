@@ -475,7 +475,7 @@
 //    NSLog(@"button size from imageView.image = h%f w%f", button.imageView.image.size.height, button.imageView.image.size.width);
 //    NSLog(@"button size from layer.frame = h%f w%f", button.layer.frame.size.height, button.layer.frame.size.width);
 //    NSLog(@"button size from button.bounds = h%f w%f", button.bounds.size.height, button.bounds.size.width);
-    UIImage *image = [self createImageOfColor:highlightColor ofSize:CGSizeMake(40, 25) withCornerRadius:cRadius];
+    UIImage *image = [DisplayWordViewController createImageOfColor:highlightColor ofSize:CGSizeMake(40, 25) withCornerRadius:cRadius];
 //    NSLog(@"created image size = %f, %f", image.size.width, image.size.height);
     
     UIImage* stretchableImage = [image resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12) resizingMode:UIImageResizingModeStretch];
@@ -503,7 +503,7 @@
     //    [view.layer insertSublayer:gradient atIndex:0];
 }
 
-- (UIImage *)createImageOfColor:(UIColor *)color ofSize:(CGSize)size withCornerRadius:(float)cRadius
++ (UIImage *)createImageOfColor:(UIColor *)color ofSize:(CGSize)size withCornerRadius:(float)cRadius
 {
     UIGraphicsBeginImageContext(size);
     CGContextRef context = UIGraphicsGetCurrentContext();
