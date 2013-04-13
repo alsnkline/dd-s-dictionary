@@ -13,6 +13,7 @@
 #import "NSUserDefaultKeys.h"
 #import "GAI.h"
 #import "ErrorsHelper.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
@@ -554,21 +555,31 @@
 {
     UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [myButton addTarget:self action:@selector(addwordButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    myButton.frame = CGRectMake(28, 2, 255, 50);
     
-    [myButton setImage:[UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"] forState:UIControlStateNormal];
+    CGFloat buttonWidth = 225;  //hard coded for now
+    CGFloat leftSpacing = (self.tableView.frame.size.width/2)-(buttonWidth/2);  //centralizing the button in the tableView
+    CGFloat cRadius = 8; //corner radius for button
+    CGFloat spacing = 4; // the amount of spacing to appear between image and title
+    NSLog(@"spacing = %f, buttonWidth = %f", leftSpacing, buttonWidth);
+    myButton.frame = CGRectMake(leftSpacing, 4, buttonWidth, 45);
+    
+    [myButton setImage:[UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon32x32.png"] forState:UIControlStateNormal];
     [myButton setTitle:@"Ask DD to add this word" forState:UIControlStateNormal];
     myButton.tintColor = [UIColor grayColor];
     
-    UIImage *backImage = [DisplayWordViewController createImageOfColor:self.customBackgroundColor ofSize:CGSizeMake(40, 25) withCornerRadius:8];
+    UIImage *backImage = [DisplayWordViewController createImageOfColor:self.customBackgroundColor ofSize:CGSizeMake(40, 25) withCornerRadius:cRadius];
 //    UIImage* stretchableImage = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12) resizingMode:UIImageResizingModeStretch];
     UIImage *stretchableImage = [backImage resizableImageWithCapInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
     [myButton setBackgroundImage:stretchableImage forState:UIControlStateNormal];
     
 
-    myButton.clipsToBounds = YES; // need to add a masking layer to button!
-//    myButton.cornerRadius = 8;
-//    myButton.layer.needsDisplayOnBoundsChange = YES;
+    myButton.layer.masksToBounds = YES;
+    myButton.layer.cornerRadius = cRadius;
+    myButton.layer.needsDisplayOnBoundsChange = YES;
+    
+
+    myButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+    myButton.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     
     //myButton.titleLabel.text = @"Ask DD to add this word";
     //myButton.imageView.image = [UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"];
@@ -795,7 +806,7 @@
 + (void) showAddWordRequested:(NSString *)dictionaryTitle and:(NSString *)requestedText     //used if no results and user requests words to be added to dictionary
 {
     UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Word Requested"
-                                                        message:[NSString stringWithFormat:@"Thank you for asking for '%@'  to be added to '%@'.",requestedText, dictionaryTitle]
+                                                        message:[NSString stringWithFormat:@"Thank you for asking for '%@' to be added to '%@'.\nDD with work to included it in an update soon.",requestedText, dictionaryTitle]
                                                        delegate:self cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     [alertUser sizeToFit];
