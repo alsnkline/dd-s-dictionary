@@ -42,8 +42,8 @@ correctionsOnly:(BOOL)corrections;
 + (NSString *) stringForLog:(DocProcessType)docProcessType;
 + (BOOL) newVersion;
 + (void) setProcessedDictionaryAppVersion;
-+ (BOOL) forceReprocessDictionary;
-+ (void) setProcessedDictionarySchemaVersion;
++ (BOOL) reprocessDictionaryForNewSchema;
++ (void) setProcessedDictionaryForNewSchema;
 
 
 @end

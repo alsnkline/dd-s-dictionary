@@ -11,4 +11,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "Appington.h"
+    #import "GlobalHelper.h"
+    #import "GAI.h"
 #endif

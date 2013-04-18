@@ -10,7 +10,6 @@
 #import "NSUserDefaultKeys.h"
 #import <MessageUI/MessageUI.h>
 #import "htmlPageViewController.h"
-#import "GAI.h"
 #import "DisplayWordViewController.h"
 
 @interface SettingsTableViewController () <MFMailComposeViewControllerDelegate>
@@ -60,12 +59,36 @@
     [self manageBackgroundColorLable];
     
     [super viewDidAppear:animated];
-    
+
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
     NSString *viewNameForGA = [NSString stringWithFormat:@"Settings"];
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendView:viewNameForGA];
-    NSLog(@"View sent to GA %@", viewNameForGA);
+    [GlobalHelper sendView:viewNameForGA];
+
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    //Track final customistions
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //track event with GA to confirm final background color for this dictionary table view
+    NSString *actionForGA = [NSString stringWithFormat:@"BackgoundColor %@", self.customBackgroundColorSaturation];
+    NSString *currentColorInHEX = [GlobalHelper getHexStringForColor:self.customBackgroundColor];
+    [GlobalHelper trackCustomisationWithAction:actionForGA withLabel:currentColorInHEX withValue:[NSNumber numberWithInt:1]];
+    
+    //track event with GA to confirm final font choice
+    NSString *currentFont = [defaults floatForKey:USE_DYSLEXIE_FONT] ? @"Dyslexie_Font" : @"System_Font";
+    [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentFont withValue:[NSNumber numberWithInt:1]];
+    
+    //track event with GA to confirm final font choice
+    NSString *currentPlayWordOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto-Play" : @"Manual-Play";
+    [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
+    
+    //Tell Appington that settings has been looked at
+    NSDictionary *customisations = @{
+                                    @"background": currentColorInHEX,
+                                    @"font": currentFont}; 
+    [GlobalHelper callAppingtonCustomisationTriggerWith:customisations];
 }
 
 - (void) setCellBackgroundColor
@@ -82,12 +105,11 @@
 {
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:PLAY_WORDS_ON_SELECTION];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
     NSString *switchSetting = sender.on ? @"ON" : @"OFF";
-    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"playOnSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Setting playOnSetlectionChanged %@",switchSetting);
+    [GlobalHelper trackSettingsEventWithAction:@"playOnSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
+
 }
 
 - (IBAction)useDyslexieFontSwitchChanged:(UISwitch *)sender
@@ -98,12 +120,10 @@
     if ([self splitViewWithDisplayWordViewController]) {
         [self splitViewWithDisplayWordViewController].useDyslexieFont = sender.on;
     }
-    
+
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
     NSString *switchSetting = sender.on ? @"ON" : @"OFF";
-    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"UseDyslexieFontChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Setting UseDyslexieFontChanged %@",switchSetting);
+    [GlobalHelper trackSettingsEventWithAction:@"UseDyslexieFontChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
 }
 
 - (IBAction)backgroundHueSliderChanged:(UISlider *)sender
@@ -113,12 +133,13 @@
     
     self.customBackgroundColorHue = [NSNumber numberWithFloat:sender.value];
     [self backgroundColorChanged];
-    
+
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
+    NSString *hexColor = [GlobalHelper getHexStringForColor:self.customBackgroundColor];
+    NSLog(@"hex Color #%@", hexColor);
     NSString *customBackgroundColorHueSetting = [NSString stringWithFormat:@"Color Hue Changed"];
-    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"backgroundColorChanged" withLabel:customBackgroundColorHueSetting withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Setting backgroundColorChanged %@",customBackgroundColorHueSetting);
+    [GlobalHelper trackSettingsEventWithAction:@"backgroundColorChanged" withLabel:customBackgroundColorHueSetting withValue:[NSNumber numberWithInt:1]];
+
 }
 
 - (IBAction)backgroundSaturationSliderChanged:(UISlider *)sender
@@ -136,12 +157,10 @@
     self.customBackgroundColorSaturation = [NSNumber numberWithFloat:saturation];
     [self manageBackgroundColorLable];
     [self backgroundColorChanged];
-    
+
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
     NSString *customBackgroundColorSaturationSetting = [NSString stringWithFormat:@"Color Saturation:%f", saturation];
-    [tracker sendEventWithCategory:@"uiAction_Setting" withAction:@"backgroundColorChanged" withLabel:customBackgroundColorSaturationSetting withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Setting backgroundColorChanged %@",customBackgroundColorSaturationSetting);
+    [GlobalHelper trackSettingsEventWithAction:@"backgroundColorChanged" withLabel:customBackgroundColorSaturationSetting withValue:[NSNumber numberWithInt:1]];
 }
 
 - (void) backgroundColorChanged
@@ -173,15 +192,15 @@
     }
 }
 
-- (NSString*) version {
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    return [NSString stringWithFormat:@"%@ build %@", version, build];
-}
-
-- (NSString *) deviceType {
-    return [UIDevice currentDevice].model;
-}
+//- (NSString*) version {
+//    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+//    return [NSString stringWithFormat:@"%@ build %@", version, build];
+//}
+//
+//- (NSString *) deviceType {
+//    return [UIDevice currentDevice].model;
+//}
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -196,7 +215,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.versionLable.text = [NSString stringWithFormat:@"Version: %@",[self version]];
+    self.versionLable.text = [NSString stringWithFormat:@"Version: %@",[GlobalHelper version]];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -410,12 +429,12 @@
 {
 	BOOL	bCanSendMail = [MFMailComposeViewController canSendMail];
 //    BOOL	bCanSendMail = NO; //for testing the no email alert
-    
+
+    if (0) {
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"SendEmail triggered"];
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendView:viewNameForGA];
-    NSLog(@"View sent to GA %@", viewNameForGA);
+    [GlobalHelper sendView:viewNameForGA];
+    }
     
 	if (!bCanSendMail)
 	{
@@ -434,7 +453,7 @@
         
 		[picker setToRecipients: [NSArray arrayWithObject: @"dydifeedback@gmail.com"]];
 		[picker setSubject: @"Dy-Di Feedback"];
-		[picker setMessageBody: [NSString stringWithFormat:@"What do you like about Dy-Di? \r\n\r\n What would you like to see improved? \r\n\r\n What new features would be key for you? \r\n\r\n Any other thoughts? \r\n\r\n\r\n\r\n Thank you so much for taking the time to give us your feedback.\r\n\r\n Best regards Alison.\r\n (from Version: %@ on an %@)",[self version], [self deviceType]] isHTML: NO];
+		[picker setMessageBody: [NSString stringWithFormat:@"What do you like about Dy-Di? \r\n\r\n What would you like to see improved? \r\n\r\n What new features would be key for you? \r\n\r\n Any other thoughts? \r\n\r\n\r\n\r\n Thank you so much for taking the time to give us your feedback.\r\n\r\n Best regards Alison.\r\n (from Version: %@ on an %@)",[GlobalHelper version], [GlobalHelper deviceType]] isHTML: NO];
         
 		[self presentModalViewController: picker animated: YES];
 	}

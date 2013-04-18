@@ -65,7 +65,7 @@
             }
             [DictionarySetupViewController use:self.setupViewController toProcess:dictionaryShippingWithApp passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:NO];
             [self.view insertSubview:self.setupViewController.view atIndex:0];
-            [DictionarySetupViewController setProcessedDictionarySchemaVersion]; //set schema processed into User Defaults
+            [DictionarySetupViewController setProcessedDictionaryForNewSchema]; //set schema processed into User Defaults
             [DictionarySetupViewController setProcessedDictionaryAppVersion]; //set version of app when dictionary was processed
             break;
         }

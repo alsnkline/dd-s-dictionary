@@ -9,7 +9,6 @@
 #import "DictionarySetupViewController.h"
 #import "DictionaryHelper.h"
 #import "GDataXMLNodeHelper.h"
-#import "GAI.h"
 #import "ErrorsHelper.h"
 #import "NSUserDefaultKeys.h"
 
@@ -107,12 +106,12 @@
     }
     self.dictionaryName.text = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
     [self.spinner startAnimating];
-    
+
+    if(0) {
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendView:viewNameForGA];
-    NSLog(@"View sent to GA %@", viewNameForGA);
+    [GlobalHelper sendView:viewNameForGA];
+    }
 }
 
 - (void)viewDidUnload
@@ -252,7 +251,7 @@ correctionsOnly:(BOOL)corrections
     
     //see if there are any dictionary's already processed
     NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
-    BOOL forceReprocess = [DictionarySetupViewController forceReprocessDictionary];
+    BOOL forceReprocess = [DictionarySetupViewController reprocessDictionaryForNewSchema];
     BOOL newVersion = [DictionarySetupViewController newVersion];
     
     
@@ -266,7 +265,12 @@ correctionsOnly:(BOOL)corrections
     
     
     if ( forceReprocess || !availableDictionary) {
-        if (!availableDictionary) NSLog(@"Processing as no dictionary");
+        if (!availableDictionary) {
+            NSLog(@"Processing as no dictionary");
+            //track first time user
+            [GlobalHelper trackFirstTimeUserWithAction:[GlobalHelper deviceType] withLabel:[GlobalHelper version] withValue:[NSNumber numberWithInt:1]];
+            [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"ftue" andWord:nil];
+        }
         if (forceReprocess && availableDictionary) NSLog(@"FORCED delete and reprocessing");
         if (!forceReprocess && !availableDictionary) NSLog(@"No Dict AND current schema processed. This state shouldn't arise");
         *docProcessType = DOC_PROCESS_REPROCESS;
@@ -331,17 +335,18 @@ correctionsOnly:(BOOL)corrections
     [defaults synchronize];    
 }
 
-+ (BOOL) forceReprocessDictionary
++ (BOOL) reprocessDictionaryForNewSchema
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //get reprocessed for version 2.0.5 from NSUserDefaults
+    //check to see if document was processed in version 2.0.5 from NSUserDefaults
+    // if yes then no need to reprocess.
     BOOL returnValue = ![defaults boolForKey:PROCESSED_DOC_SCHEMA_VERSION_205];
     NSLog(@"Processed doc schema version %@", returnValue ? @"< 205" : @"= 205");
     
     return returnValue; 
 }
 
-+ (void) setProcessedDictionarySchemaVersion
++ (void) setProcessedDictionaryForNewSchema
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //set version in NSUserDefaults we can tell that the activeDictionary for this verison of the app is at least at 2.0.5

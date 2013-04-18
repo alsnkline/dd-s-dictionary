@@ -11,7 +11,6 @@
 #import "Word+Create.h"
 #import "DictionarySetupViewController.h"
 #import "NSUserDefaultKeys.h"
-#import "GAI.h"
 #import "ErrorsHelper.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -136,7 +135,8 @@
         if (self.isViewLoaded && self.view.window) {
             //viewController is visible track with GA allowing iPad also useful on iPhone when setup takes time stats to show which dict got loaded.
             NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
-            [self trackView:viewNameForGA];
+            [GlobalHelper sendView:viewNameForGA];
+            [GlobalHelper callAppingtonMainTableViewShown];
         }
         
 // different ways to dismiss views - all attempts to control iPhone flow from this one class caused corruption in the Nav Controller stack
@@ -156,7 +156,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
+    DisplayWordViewController *dwvc = [self getSplitViewWithDisplayWordViewController];
     if (dwvc) {
         //iPad
         [dwvc setDelegate:self];
@@ -181,16 +181,8 @@
 
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Search Table Shown: %@", self.title];
-    [self trackView:viewNameForGA];
+    [GlobalHelper sendView:viewNameForGA];
 
-}
-
-
--(void)trackView:(NSString *)viewNameForGA
-{
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendView:viewNameForGA];
-    NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -260,15 +252,10 @@
         viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: setting up"];
     } else {
         viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
+        //Call Appington event control
+        [GlobalHelper callAppingtonMainTableViewShown];
     }
-    [self trackView:viewNameForGA];
-
-    //track event with GA to confirm background color for this dictionary table view
-    id tracker = [GAI sharedInstance].defaultTracker;
-    NSString *actionForGA = [NSString stringWithFormat:@"%f", [defaults floatForKey:BACKGROUND_COLOR_SATURATION]];
-    NSString *colorForGA = [NSString stringWithFormat:@"%@", self.customBackgroundColor];
-    [tracker sendEventWithCategory:@"uiTracking_BackgroundColor" withAction:actionForGA withLabel:colorForGA withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiTracking_BackgroundColor %@ %@", actionForGA, colorForGA);
+    [GlobalHelper sendView:viewNameForGA];
 
 }
 
@@ -279,7 +266,7 @@
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING;  //set a default that gets over riden by the whatProcessingIsNeeded method.
     NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType];
     
-    if (![self splitViewWithDisplayWordViewController]) {
+    if (![self getSplitViewWithDisplayWordViewController]) {
         processType = DOC_PROCESS_USE_EXSISTING; //we're in an iPhone any processing has already been completed
         NSLog(@"We are in an iPhone docProcessingType reset to %@", [DictionarySetupViewController stringForLog:processType]);
     }
@@ -295,7 +282,7 @@
                 [DictionaryHelper cleanOutDictionaryDirectory];
             }
             [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:NO];
-            [DictionarySetupViewController setProcessedDictionarySchemaVersion]; //set schema processed into User Defaults
+            [DictionarySetupViewController setProcessedDictionaryForNewSchema]; //set schema processed into User Defaults
             [DictionarySetupViewController setProcessedDictionaryAppVersion]; //set version of app when dictionary was processed
             break;
         }
@@ -364,7 +351,7 @@
         }
     } else {
     
-        if ([self splitViewWithDisplayWordViewController]) {
+        if ([self getSplitViewWithDisplayWordViewController]) {
             // iPad
             [self.popoverController dismissPopoverAnimated:YES];
         }
@@ -392,11 +379,13 @@
     //self.savedScopeButtonIndex = scope;
     
     self.searchFetchedResultsController = [self newFetchedResultsControllerWithSearch:searchText];
-    
+
+    if(0){
     //track event with GA
     id tracker = [GAI sharedInstance].defaultTracker;
     [tracker sendEventWithCategory:@"uiAction_Search" withAction:self.title withLabel:searchText withValue:[NSNumber numberWithInt:1]];
     NSLog(@"Event sent to GA uiAction_Search %@ %@", self.title, searchText);
+    }
 }
 
 
@@ -715,8 +704,8 @@
     
     Word *selectedWord = [[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath];
     
-    if ([self splitViewWithDisplayWordViewController]) { //iPad
-        DisplayWordViewController *dwvc = [self splitViewWithDisplayWordViewController];
+    if ([self getSplitViewWithDisplayWordViewController]) { //iPad
+        DisplayWordViewController *dwvc = [self getSplitViewWithDisplayWordViewController];
         dwvc.word = selectedWord;
         if (self.playWordsOnSelection) {
             [dwvc playAllWords:selectedWord.pronunciations];
@@ -727,7 +716,7 @@
     }
 }
 
-- (DisplayWordViewController *)splitViewWithDisplayWordViewController
+- (DisplayWordViewController *)getSplitViewWithDisplayWordViewController
 {
     id dwvc = [self.splitViewController.viewControllers lastObject];
     if (![dwvc isKindOfClass:[DisplayWordViewController class]]) {
@@ -753,7 +742,7 @@
     } else if ([matches count] == 1) {
         Word *homonymn = [matches lastObject];
         NSIndexPath *indexPathOfHomonymn = [self.fetchedResultsController indexPathForObject:homonymn];
-        if (![self splitViewWithDisplayWordViewController]) { //iPhone
+        if (![self getSplitViewWithDisplayWordViewController]) { //iPhone
             //pop old word off navigation controller
             [self.navigationController popViewControllerAnimated:NO]; //Not animated as this is just preparing the Navigation Controller stack for the new word to be pushed on.
             
@@ -775,7 +764,7 @@
     self.dsvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Processing Dictionary View"];
     BOOL processing = [DictionarySetupViewController use:self.dsvc toProcess:dictionary passDictionaryAround:self.view.window.rootViewController setDelegate:self correctionsOnly:corrections];
     
-    if ([self splitViewWithDisplayWordViewController] && processing) { //iPad show DictionarySetupViewController in popover
+    if ([self getSplitViewWithDisplayWordViewController] && processing) { //iPad show DictionarySetupViewController in popover
     
         UIPopoverController *dsPopoverC = [[UIPopoverController alloc] initWithContentViewController:self.dsvc];
         self.popoverController = dsPopoverC;
@@ -812,13 +801,21 @@
     [alertUser sizeToFit];
     [alertUser show];
     
-    
+
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendEventWithCategory:@"uiAction_WordAddRequest" withAction:dictionaryTitle withLabel:requestedText withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_WordAddRequest %@ %@", dictionaryTitle, requestedText);
+    [GlobalHelper trackEventWithCategory:@"uiAction_WordAddRequest" withAction:dictionaryTitle withLabel:requestedText withValue:[NSNumber numberWithInt:1]];
+//    id tracker = [GAI sharedInstance].defaultTracker;
+//    [tracker sendEventWithCategory:@"uiAction_WordAddRequest" withAction:dictionaryTitle withLabel:requestedText withValue:[NSNumber numberWithInt:1]];
+//    NSLog(@"Event sent to GA uiAction_WordAddRequest %@ %@", dictionaryTitle, requestedText);
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    NSDictionary *controlValues = @{
+                                    @"event": @"level_end",
+                                    @"level": @(2)};  //replace with Dictionary displayed in tableview.
+    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
+}
 
 
 @end

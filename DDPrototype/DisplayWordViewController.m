@@ -12,7 +12,6 @@
 #import <AVFoundation/AVFoundation.h> //for audioPlayer
 #import "Word.h"
 #import "Pronunciation.h"
-#import "GAI.h"
 #import "NSUserDefaultKeys.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -50,32 +49,10 @@
     [super awakeFromNib];
     self.splitViewController.delegate = self;
     
-    [self setupAudioSession];
-    [self setAudioSessionCategoryToPlayback];
-    
 }
 
--(void)setupAudioSession
-{
-    //setting up the AVAudioSession and activating it.
-    NSError *activationError = nil;
-    BOOL success = [[AVAudioSession sharedInstance] setActive: YES error: &activationError];
-    if (!success) {
-        NSLog(@"AVAudioSession not setup %@", activationError);
-    }
-}
+// setup of audioSession and audioSessionCategory moved to AppDelegate to enable Appington interation.
 
--(void)setAudioSessionCategoryToPlayback
-{
-    NSError *setCategoryError = nil;
-    BOOL success = [[AVAudioSession sharedInstance]
-                    setCategory: AVAudioSessionCategoryPlayback
-                    error: &setCategoryError];
-    
-    if (!success) {
-        NSLog(@"AVAudioSessionCategory not set %@", setCategoryError);
-    }
-}
 
 -(void)setWord:(Word *)word
 {
@@ -129,13 +106,6 @@
     }
 }
 
--(void)trackView:(NSString *)viewNameForGA
-{
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendView:viewNameForGA];
-    NSLog(@"View sent to GA %@", viewNameForGA);
-}
-
 -(void)setUpViewForWord:(Word *)word
 {
     [self manageListenButtons];
@@ -148,7 +118,7 @@
     if (self.isViewLoaded && self.view.window) {
         //viewController is visible track with GA allowing iPad stats to show which word got loaded.
         NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", self.spelling.text];
-        [self trackView:viewNameForGA];
+        [GlobalHelper sendView:viewNameForGA];
     }
 }
 
@@ -244,7 +214,7 @@
     [button sizeToFit];
     CGRect buttonFrame = button.frame;
 //    NSLog(@"button size from bounds = h%f w%f", button.bounds.size.height, button.bounds.size.width);
-    buttonFrame.size = CGSizeMake(button.frame.size.width, 43);
+    buttonFrame.size = CGSizeMake(button.frame.size.width, 43); //forcing button height as backgroud image seems to make it large
     button.frame = buttonFrame;
     
 //    NSLog(@"titleLabel = %f, %f", button.titleLabel.bounds.size.width, button.titleLabel.bounds.size.height);
@@ -304,6 +274,12 @@
     if ([pronunciations count] == 1) {
         for (Pronunciation *pronunciation in pronunciations) {
             [self playWord:pronunciation];
+            
+            //track event with GA auto sent with Value 2
+            [GlobalHelper trackWordEventWithAction:@"ListenToWord" withLabel:pronunciation.unique withValue:[NSNumber numberWithInt:2]];
+            //Tell Appington that a word has played (auto)
+            NSDictionary *controlValues = @{@"word": pronunciation.unique};
+            [GlobalHelper callAppingtonPronouncationTriggerWith:controlValues];
         };
     } else {
         NSMutableArray *pronunciationsArray = [[pronunciations allObjects] mutableCopy];
@@ -329,6 +305,8 @@
     [self.audioPlayer setDelegate:self];
     NSLog(@"started to play a word");
     [self.audioPlayer play];
+    
+    
 }
 
 - (IBAction)listenToWord:(UIButton *)sender 
@@ -340,11 +318,13 @@
         NSString *unique = pronunciation.unique;
         if (([pronunciations count] > 1 && [unique hasSuffix:[NSString stringWithFormat:@"%i",sender.tag]]) || ([pronunciations count] == 1)) {
             [self playWord:pronunciation];
+
+            //track event with GA manual sent with Value 1
+            [GlobalHelper trackWordEventWithAction:@"ListenToWord" withLabel:unique withValue:[NSNumber numberWithInt:1]];
+            //Tell Appington that a word has played (manual)
+            NSDictionary *controlValues = @{@"word": unique};
+            [GlobalHelper callAppingtonPronouncationTriggerWith:controlValues];
             
-            //track event with GA
-            id tracker = [GAI sharedInstance].defaultTracker;
-            [tracker sendEventWithCategory:@"uiAction_Word" withAction:@"listenToWord" withLabel:unique withValue:[NSNumber numberWithInt:1]];
-            NSLog(@"Event sent to GA uiAction_Word listenToWord %@",unique);
         }
     }
 }
@@ -355,7 +335,7 @@
     NSString *spelling = sender.titleLabel.text;
     //send to delegate
     [self.delegate DisplayWordViewController:self homonymSelectedWith:spelling];
-    
+
     //track event with GA
     id tracker = [GAI sharedInstance].defaultTracker;
     [tracker sendEventWithCategory:@"uiAction_Word" withAction:@"homoymnButtomPressed" withLabel:spelling withValue:[NSNumber numberWithInt:1]];
@@ -401,7 +381,13 @@
         }
     }
     NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", self.spelling.text];
-    [self trackView:viewNameForGA];
+    [GlobalHelper sendView:viewNameForGA];
+    
+//    NSNumber *forControl = self.word.isHomophone;
+//    NSDictionary *controlValues = @{
+//                                    @"event": @"life_end",
+//                                    @"level": forControl};  //replace with Dictionary displayed in tableview.
+//    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
 }
 
 - (void)viewDidLoad
