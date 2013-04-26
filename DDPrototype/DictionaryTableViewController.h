@@ -14,6 +14,7 @@
 @interface DictionaryTableViewController : CoreDataTableViewController <ActiveDictionaryFollower, DictionarySetupViewControllerDelegate>
 
 //use activeDictionary for model for this MVC
+@property (nonatomic) BOOL isFTU;
 
 
 @end

@@ -12,28 +12,27 @@
 @implementation GlobalHelper
 
 + (void) callAppingtonMainTableViewShown {
-    NSDictionary *controlValues = @{
-                                    @"event": @"level_start",
-                                    @"level": @(2)};  //replace with Dictionary displayed in tableview.
-    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
+//    NSDictionary *controlValues = @{
+//                                    @"event": @"level_start",
+//                                    @"level": @(2)};  //replace with Dictionary displayed in tableview.
+//    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
+    NSLog(@"callAppingtonMainTableViewShown called - FIX");
 }
 
-+ (void) callAppingtonTriggerWithControlValues:(NSDictionary *)controlValues
++ (void) callAppingtonWithTrigger:(NSString *)trigger andValues:(NSDictionary *)controlValues
 {
-    [Appington control:@"trigger" andValues:controlValues];
-    NSLog(@"values sent to Appington %@", controlValues);
+    [Appington control:trigger andValues:controlValues];
+    NSLog(@"values sent to Appington %@ %@", trigger, controlValues);
 }
 
 + (void) callAppingtonCustomisationTriggerWith:(NSDictionary *)controlValues
 {
-    [Appington control:@"customization" andValues:controlValues];
-    NSLog(@"values sent to Appington %@", controlValues);
+    [GlobalHelper callAppingtonWithTrigger:@"customization" andValues:controlValues];
 }
 
 + (void) callAppingtonPronouncationTriggerWith:(NSDictionary *)controlValues
 {
-    [Appington control:@"pronounce" andValues:controlValues];
-    NSLog(@"values sent to Appington %@", controlValues);
+    [GlobalHelper callAppingtonWithTrigger:@"pronounce" andValues:controlValues];
 }
 
 + (void) callAppingtonInteractionModeTriggerWithModeName:(NSString *)mode_name andWord:(NSString *)word
@@ -47,58 +46,65 @@
         controlValues = @{@"mode_name": mode_name};
     }
     
-    [Appington control:@"interaction_mode" andValues:controlValues];
-    NSLog(@"values sent to Appington %@", controlValues);
+    [GlobalHelper callAppingtonWithTrigger:@"interaction_mode" andValues:controlValues];
 }
 
 + (void) sendView:(NSString *)viewNameForGA
 {
-    if(1) {
-        id tracker = [GAI sharedInstance].defaultTracker;
-        [tracker sendView:viewNameForGA];
-        NSLog(@"View sent to GA %@", viewNameForGA);
-    }
+    id tracker = [GAI sharedInstance].defaultTracker;
+    [tracker sendView:viewNameForGA];
+    NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
 + (void) trackEventWithCategory:(NSString*)eventCategory withAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
 {
     id tracker = [GAI sharedInstance].defaultTracker;
     [tracker sendEventWithCategory:eventCategory withAction:action withLabel:label withValue:value];
-    NSLog(@"Event sent to GA %@ %@ %@", eventCategory, action, label);
-}
-
-+ (void) trackSettingsEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
-{
-    id tracker = [GAI sharedInstance].defaultTracker;
-    NSString *category = [NSString stringWithFormat:@"uiAction_Setting"];
-    [tracker sendEventWithCategory:category withAction:action withLabel:label withValue:value];
-    NSLog(@"Event sent to GA %@ %@ %@",category, action, label);
-}
-
-+ (void) trackCustomisationWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
-{
-    id tracker = [GAI sharedInstance].defaultTracker;
-    NSString *category = [NSString stringWithFormat:@"uiTracking_Customisations"];
-    [tracker sendEventWithCategory:category withAction:action withLabel:label withValue:value];
-    NSLog(@"Event sent to GA %@ %@ %@",category, action, label);
-}
-
-+ (void) trackWordEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
-{
-    id tracker = [GAI sharedInstance].defaultTracker;
-    NSString *category = [NSString stringWithFormat:@"uiAction_Word"];
-    [tracker sendEventWithCategory:category withAction:action withLabel:label withValue:value];
-    NSLog(@"Event sent to GA %@ %@ %@ %@",category ,action ,label ,value);
+    NSLog(@"Event sent to GA %@ %@ %@ %@", eventCategory, action, label, value);
 }
 
 //[NSNumber numberWithInt:1]
 
++ (void) trackSettingsEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
+{
+    NSString *category = [NSString stringWithFormat:@"uiAction_Setting"];
+    [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
+}
+
++ (void) trackCustomisationWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
+{
+    NSString *category = [NSString stringWithFormat:@"uiTracking_Customisations"];
+    [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
+}
+
++ (void) trackWordEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
+{
+    NSString *category = [NSString stringWithFormat:@"uiAction_Word"];
+    [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
+}
+
++ (void) trackSearchEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
+{
+    NSString *category = [NSString stringWithFormat:@"uiAction_Search"];
+    [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
+}
+
 + (void) trackFirstTimeUserWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
 {
-    id tracker = [GAI sharedInstance].defaultTracker;
     NSString *category = [NSString stringWithFormat:@"uiFirstTimeUser"];
-    [tracker sendEventWithCategory:category withAction:action withLabel:label withValue:value];
-    NSLog(@"Event sent to GA %@ %@ %@ %@",category ,action ,label ,value);
+    [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
+}
+
++ (void) trackAppingtonEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
+{
+    NSString *category = [NSString stringWithFormat:@"uiAction_Appington"];
+    [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
+}
+
++ (void) trackErrorEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
+{
+    NSString *category = [NSString stringWithFormat:@"uiAction_Error"];
+    [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
 }
 
 + (NSString *)getHexStringForColor:(UIColor *)color {

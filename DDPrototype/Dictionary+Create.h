@@ -16,11 +16,13 @@
 
 + (Dictionary *)dictionaryFromGDataXMLElement:(GDataXMLElement *)dictionaryXML
                                    XMLdocType:(XMLdocType)docType
+                             processVerbosely:(BOOL)processVerbosely
                        inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (void) processDetailsOfDictionaryXML:(GDataXMLElement *)dictionaryXML
                                   into:(Dictionary *)dictionary
                         XMLdocType:(XMLdocType)docType
+                      processVerbosely:(BOOL)processVerbosely
                 inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (void)removeEmptyDictionariesInManagedObjectContext:(NSManagedObjectContext *)context;

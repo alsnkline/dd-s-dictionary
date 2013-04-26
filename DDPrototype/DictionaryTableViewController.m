@@ -31,6 +31,7 @@
 @synthesize activeDictionary = _activeDictionary;
 @synthesize playWordsOnSelection = _playWordsOnSelection;
 @synthesize useDyslexieFont = _useDyslexieFont;
+@synthesize isFTU = _isFTU;
 @synthesize settingUpDictionary = _settingUpDictionary;
 @synthesize customBackgroundColor = _backgroundColor;
 @synthesize popoverController;
@@ -134,9 +135,7 @@
         
         if (self.isViewLoaded && self.view.window) {
             //viewController is visible track with GA allowing iPad also useful on iPhone when setup takes time stats to show which dict got loaded.
-            NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
-            [GlobalHelper sendView:viewNameForGA];
-            [GlobalHelper callAppingtonMainTableViewShown];
+            [self tellPartnersTableIsVisible];
         }
         
 // different ways to dismiss views - all attempts to control iPhone flow from this one class caused corruption in the Nav Controller stack
@@ -246,16 +245,7 @@
         [self setUpDictionary]; // used in iPad to trigger loading if necessary, in iphone it always triggers loading and passing the processed dictionary around.
     }
     
-    //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
-    NSString *viewNameForGA = nil;
-    if (self.settingUpDictionary) {
-        viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: setting up"];
-    } else {
-        viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
-        //Call Appington event control
-        [GlobalHelper callAppingtonMainTableViewShown];
-    }
-    [GlobalHelper sendView:viewNameForGA];
+    [self tellPartnersTableIsVisible];
 
 }
 
@@ -264,7 +254,9 @@
     //see if there are any dictionary's already processed
     
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING;  //set a default that gets over riden by the whatProcessingIsNeeded method.
-    NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType];
+    BOOL isFTU = NO; //set a default that gets over riden by the whatProcessingIsNeeded method
+    NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType isFTU:&isFTU];
+    if (isFTU) self.isFTU = isFTU;
     
     if (![self getSplitViewWithDisplayWordViewController]) {
         processType = DOC_PROCESS_USE_EXSISTING; //we're in an iPhone any processing has already been completed
@@ -318,6 +310,34 @@
     self.dsvc = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void) tellPartnersTableIsVisible
+{
+    //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
+    NSString *viewNameForGA = nil;
+    if (self.settingUpDictionary) {
+        viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: setting up"];
+    } else {
+        viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
+        
+        //Call Appington event control if self.title is not null
+        if (self.title) [self callAppingtonWithViewDetails];
+    }
+    [GlobalHelper sendView:viewNameForGA];
+}
+
+- (void) callAppingtonWithViewDetails
+{
+    if (self.isFTU) [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"ftue" andWord:nil];
+    
+    DisplayWordViewController *dwvc = [self getSplitViewWithDisplayWordViewController];
+    if (dwvc) {         // we're in an ipad
+        NSString *currentlyShowingText = dwvc.spelling.text;
+        [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"word_list_view" andWord:currentlyShowingText];
+    } else {            // we're in an iPhone
+        [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"word_list" andWord:nil];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -380,12 +400,8 @@
     
     self.searchFetchedResultsController = [self newFetchedResultsControllerWithSearch:searchText];
 
-    if(0){
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendEventWithCategory:@"uiAction_Search" withAction:self.title withLabel:searchText withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Search %@ %@", self.title, searchText);
-    }
+    [GlobalHelper trackSearchEventWithAction:self.title withLabel:searchText withValue:[NSNumber numberWithInt:1]];
 }
 
 
@@ -710,6 +726,7 @@
         if (self.playWordsOnSelection) {
             [dwvc playAllWords:selectedWord.pronunciations];
         }
+        [self callAppingtonWithViewDetails];   //all iPad appington call handled in DictionaryTableViewController class
     } else { //iPhone (passing playWordsOnSelection handled in prepare for Segue)
         self.selectedWord = selectedWord;
         [self performSegueWithIdentifier:@"Word Selected" sender:selectedWord];
@@ -804,18 +821,8 @@
 
     //track event with GA
     [GlobalHelper trackEventWithCategory:@"uiAction_WordAddRequest" withAction:dictionaryTitle withLabel:requestedText withValue:[NSNumber numberWithInt:1]];
-//    id tracker = [GAI sharedInstance].defaultTracker;
-//    [tracker sendEventWithCategory:@"uiAction_WordAddRequest" withAction:dictionaryTitle withLabel:requestedText withValue:[NSNumber numberWithInt:1]];
-//    NSLog(@"Event sent to GA uiAction_WordAddRequest %@ %@", dictionaryTitle, requestedText);
 }
 
--(void)viewDidDisappear:(BOOL)animated
-{
-    NSDictionary *controlValues = @{
-                                    @"event": @"level_end",
-                                    @"level": @(2)};  //replace with Dictionary displayed in tableview.
-    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
-}
 
 
 @end

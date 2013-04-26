@@ -15,6 +15,7 @@
 
 + (Dictionary *)dictionaryFromGDataXMLElement:(GDataXMLElement *)dictionaryXML
                                    XMLdocType:(XMLdocType)docType
+                             processVerbosely:(BOOL)processVerbosely
            inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Dictionary *dictionary = nil;
@@ -23,7 +24,7 @@
     
     NSMutableSet *words = [NSMutableSet set];       // empty set to put words for the 'dictionary' into
     
-    NSString *bundleName = [GDataXMLNodeHelper singleSubElementForName:@"bundleName" FromGDataXMLElement:dictionaryXML];
+    NSString *bundleName = [GDataXMLNodeHelper singleSubElementForName:@"bundleName" FromGDataXMLElement:dictionaryXML processVerbosely:processVerbosely];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Dictionary"];
     request.predicate = [NSPredicate predicateWithFormat:@"bundleName = %@", bundleName];
@@ -35,7 +36,7 @@
     
     //setting the displayName and processing or getting the dictionary for dictionary XML files.
     if (docType == DOC_TYPE_DICTIONARY) {
-        NSString *displayName = [GDataXMLNodeHelper singleSubElementForName:@"displayName" FromGDataXMLElement:dictionaryXML];
+        NSString *displayName = [GDataXMLNodeHelper singleSubElementForName:@"displayName" FromGDataXMLElement:dictionaryXML processVerbosely:processVerbosely];
     
         if (!matches || ([matches count] > 1)) {
             //handle error
@@ -51,7 +52,7 @@
             NSArray *XMLWords = [dictionaryXML elementsForName:@"word"];
             
             for (GDataXMLElement *word in XMLWords) {
-                Word *wordForElement = [Word wordFromGDataXMLElement:word processingType:docType inManagedObjectContext:context];
+                Word *wordForElement = [Word wordFromGDataXMLElement:word processingType:docType processVerbosely:processVerbosely inManagedObjectContext:context];
                 [words addObject:wordForElement];
                 
             };
@@ -74,7 +75,7 @@
             
             //processing the word passed in if it is a correction
             for (GDataXMLElement *word in XMLWords) {
-                Word *wordForElement = [Word wordFromGDataXMLElement:word processingType:docType inManagedObjectContext:context];
+                Word *wordForElement = [Word wordFromGDataXMLElement:word processingType:docType processVerbosely:processVerbosely inManagedObjectContext:context];
                 [words addObject:wordForElement];
                 [spellings addObject:wordForElement.spelling];
             };
@@ -86,7 +87,7 @@
                 }
             }
             
-            NSLog(@"processed details of corrections to :%@", dictionary.displayName);
+            if (processVerbosely) NSLog(@"processed details of corrections to :%@", dictionary.displayName);
         }
     }
     
@@ -101,12 +102,13 @@
 + (void) processDetailsOfDictionaryXML:(GDataXMLElement *)dictionaryXML //not used now
                             into:(Dictionary *)dictionary
                         XMLdocType:(XMLdocType)docType
+                      processVerbosely:(BOOL)processVerbosely
           inManagedObjectContext:(NSManagedObjectContext *)context
 {
     //setting the displayName for dictionary XML files.
     NSString *displayName = nil;
     if (docType == DOC_TYPE_DICTIONARY) {  //if we do this and restrict only DOC_TYPE_DICTIONARIES to haveing display name then you can't correct that either
-        displayName = [GDataXMLNodeHelper singleSubElementForName:@"displayName" FromGDataXMLElement:dictionaryXML];
+        displayName = [GDataXMLNodeHelper singleSubElementForName:@"displayName" FromGDataXMLElement:dictionaryXML processVerbosely:processVerbosely];
         dictionary.displayName = displayName;
     }
     
@@ -126,7 +128,7 @@
 //            [Word removeWordWithSpelling:wordInCurrent.spelling fromManagedObjectContext:context];
             [Word removeWordWithSpellingFromGDataXMLElement:word fromManagedObjectContext:context];
         }
-        Word *wordForElement = [Word wordFromGDataXMLElement:word processingType:docType inManagedObjectContext:context];
+        Word *wordForElement = [Word wordFromGDataXMLElement:word processingType:docType processVerbosely:processVerbosely inManagedObjectContext:context];
         [words addObject:wordForElement];
         
     };

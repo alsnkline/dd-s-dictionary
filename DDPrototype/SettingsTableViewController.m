@@ -63,6 +63,8 @@
     //track with GA manually avoid subclassing UIViewController - will get many with iPhone and few with iPad
     NSString *viewNameForGA = [NSString stringWithFormat:@"Settings"];
     [GlobalHelper sendView:viewNameForGA];
+    //call Appington
+    [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"settings" andWord:nil];
 
 }
 
@@ -72,7 +74,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //track event with GA to confirm final background color for this dictionary table view
-    NSString *actionForGA = [NSString stringWithFormat:@"BackgoundColor %@", self.customBackgroundColorSaturation];
+    NSString *actionForGA = [NSString stringWithFormat:@"BackgoundColor_%@", self.customBackgroundColorSaturation];
     NSString *currentColorInHEX = [GlobalHelper getHexStringForColor:self.customBackgroundColor];
     [GlobalHelper trackCustomisationWithAction:actionForGA withLabel:currentColorInHEX withValue:[NSNumber numberWithInt:1]];
     
@@ -430,11 +432,9 @@
 	BOOL	bCanSendMail = [MFMailComposeViewController canSendMail];
 //    BOOL	bCanSendMail = NO; //for testing the no email alert
 
-    if (0) {
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"SendEmail triggered"];
     [GlobalHelper sendView:viewNameForGA];
-    }
     
 	if (!bCanSendMail)
 	{

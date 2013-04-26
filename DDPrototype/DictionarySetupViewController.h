@@ -38,7 +38,7 @@ passDictionaryAround:(UIViewController *)rootViewController
  setDelegate:(id <DictionarySetupViewControllerDelegate>)delegate
 correctionsOnly:(BOOL)corrections;
 - (void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
-+ (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType;
++ (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType isFTU:(BOOL *)isFTU;
 + (NSString *) stringForLog:(DocProcessType)docProcessType;
 + (BOOL) newVersion;
 + (void) setProcessedDictionaryAppVersion;

@@ -19,12 +19,9 @@
     [alertUser sizeToFit];
     [alertUser show];
 
-    if(0) {
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendEventWithCategory:@"uiAction_Error" withAction:@"processing" withLabel:@"frozenUIWarning" withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Error processing frozenUIWarning");
-    }
+    [GlobalHelper trackErrorEventWithAction:@"processing" withLabel:@"frozenUIWarning" withValue:[NSNumber numberWithInt:1]];
+
 }
 
 + (void) showErrorTooManyDictionaries     //used in SetupTableSwitchViewController and DictionaryTableViewController
@@ -36,12 +33,9 @@
     [alertUser sizeToFit];
     [alertUser show];
 
-    if(0) {
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendEventWithCategory:@"uiAction_Error" withAction:@"processing" withLabel:@"tooManyDictionaries" withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Error processing tooManyDictionaries");
-    }
+    [GlobalHelper trackErrorEventWithAction:@"processing" withLabel:@"tooManyDictionaries" withValue:[NSNumber numberWithInt:1]];
+
 }
 
 
@@ -56,12 +50,8 @@
     [alertUser sizeToFit];
     [alertUser show];
 
-    if(0) {
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendEventWithCategory:@"uiAction_Error" withAction:@"listening" withLabel:@"muteOn" withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Error listening muteOn");
-    }
+    [GlobalHelper trackErrorEventWithAction:@"listening" withLabel:@"muteOn" withValue:[NSNumber numberWithInt:1]];
 
 }
 
@@ -74,12 +64,8 @@
     [alertUser sizeToFit];
     [alertUser show];
 
-    if(0) {
     //track event with GA
-    id tracker = [GAI sharedInstance].defaultTracker;
-    [tracker sendEventWithCategory:@"uiAction_Error" withAction:@"processing" withLabel:@"XMLproblem" withValue:[NSNumber numberWithInt:1]];
-    NSLog(@"Event sent to GA uiAction_Error processing XMLproblem");
-    }
+    [GlobalHelper trackErrorEventWithAction:@"processing" withLabel:@"XMLproblem" withValue:[NSNumber numberWithInt:1]];
 }
 
 

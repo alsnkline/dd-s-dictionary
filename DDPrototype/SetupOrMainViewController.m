@@ -8,18 +8,21 @@
 
 #import "SetupOrMainViewController.h"
 #import "DictionarySetupViewController.h"
+#import "DictionaryTableViewController.h"
 #import "AppDelegate.h"
 #import "ErrorsHelper.h"
 
 
 @interface SetupOrMainViewController () <DictionarySetupViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *setupOrTable;
+@property (nonatomic) BOOL isFTU;
 @end
 
 @implementation SetupOrMainViewController
 
 @synthesize activeDictionary = _activeDictionary;
 @synthesize setupViewController = _setupViewController;
+@synthesize isFTU = _isFTU;
 
 //This class is landing page for iphone, it tests for available dictionaries and processes one if needed - acting as the delegate for processing finishing.
 //once a dictionary is available it switches the view to the main flow.
@@ -52,8 +55,11 @@
     //see if there are any dictionary's already processed
     
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING; //set a default that gets over riden by the whatProcessingIsNeeded method.
-    NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType];
+    BOOL isFTU = NO; //set a default that gets over riden by the whatProcessingIsNeeded method
+    NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType isFTU:&isFTU];
     NSLog(@"docProcessType = %@", [DictionarySetupViewController stringForLog:processType]);
+    self.isFTU = isFTU;
+    
     NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
     
     switch (processType) {
@@ -139,6 +145,22 @@
 - (void) switchToHomeTabController
 {
     id controller = [self.storyboard instantiateViewControllerWithIdentifier:@"Home Tab Controller"];
+    if ([controller isKindOfClass:[UITabBarController class]]) {
+        NSLog(@"We have a TabBarController");
+        UITabBarController *tbc = (UITabBarController *)controller;
+        //cycle through view controllers setting the isFTU property of those that are DictionaryTableViewControllers
+        for (UIViewController *vc in tbc.viewControllers) {
+            if ([vc isKindOfClass:[UINavigationController class]]) {
+                NSLog(@"We have a nav controller");
+                UINavigationController *nvc = (UINavigationController *)vc;
+                if ([nvc.visibleViewController isKindOfClass:[DictionaryTableViewController class]]) {
+                    NSLog(@"We have a DictionaryTableViewController");
+                    DictionaryTableViewController *dtvc = (DictionaryTableViewController *)nvc.visibleViewController;
+                    dtvc.isFTU = self.isFTU;
+                }
+            }
+        }
+    }
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.window.rootViewController = controller;

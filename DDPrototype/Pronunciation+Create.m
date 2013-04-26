@@ -13,7 +13,8 @@
 @implementation Pronunciation (Create)
 
 + (Pronunciation *)pronunciationWithFileLocation:(NSString *)fileLocation   //never used!
-                              andUnique:(NSString *)unique 
+                                       andUnique:(NSString *)unique
+                                processVerbosely:(BOOL)processVerbosely
                  inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Pronunciation *pronunciation = nil;
@@ -39,20 +40,21 @@
     } else {
         pronunciation = [matches lastObject];
     }
-    NSLog(@"Pronunciation in dictionary %@", pronunciation);
+    if (processVerbosely) NSLog(@"Pronunciation in dictionary %@", pronunciation);
     return pronunciation;
 }
 
 + (Pronunciation *)pronunciationFromGDataXMLElement:(GDataXMLElement *)pronunciationXML 
                                             forWord:(Word *)word
+                                   processVerbosely:(BOOL)processVerbosely
            inManagedObjectContext:(NSManagedObjectContext *)context
 {
     
-    NSString *unique = [GDataXMLNodeHelper singleSubElementForName:@"unique" FromGDataXMLElement:pronunciationXML];
-    Pronunciation *pronunciation = [self pronunciationFromString:unique forWord:word inManagedObjectContext:context];
+    NSString *unique = [GDataXMLNodeHelper singleSubElementForName:@"unique" FromGDataXMLElement:pronunciationXML processVerbosely:processVerbosely];
+    Pronunciation *pronunciation = [self pronunciationFromString:unique forWord:word processVerbosely:processVerbosely inManagedObjectContext:context];
     
     //get fileName if it exsists
-    NSString *newFileName = [GDataXMLNodeHelper singleSubElementForName:@"fileName" FromGDataXMLElement:pronunciationXML];
+    NSString *newFileName = [GDataXMLNodeHelper singleSubElementForName:@"fileName" FromGDataXMLElement:pronunciationXML processVerbosely:processVerbosely];
     
     if (newFileName) {
         
@@ -61,7 +63,7 @@
         
         //override pronunciation.fileName with one from element if it exsits.
         pronunciation.fileName = newFileName;
-        NSLog(@"Pronunciateion fileName changed from %@ to %@",oldFileName, newFileName);
+        if (processVerbosely) NSLog(@"Pronunciateion fileName changed from %@ to %@",oldFileName, newFileName);
     }
     
     return pronunciation;
@@ -69,6 +71,7 @@
 
 + (Pronunciation *)pronunciationFromString:(NSString *)string 
                                    forWord:(Word *)word
+                          processVerbosely:(BOOL)processVerbosely
                     inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Pronunciation *pronunciation = nil;
@@ -97,7 +100,7 @@
         pronunciation = [matches lastObject];
         
     }
-    NSLog(@"Pronunciation in dictionary %@", pronunciation);
+    if (processVerbosely) NSLog(@"Pronunciation in dictionary %@", pronunciation);
     
     return pronunciation;
 }

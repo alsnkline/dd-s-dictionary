@@ -11,7 +11,7 @@
 @interface GlobalHelper : NSObject
 
 + (void) callAppingtonMainTableViewShown;
-+ (void) callAppingtonTriggerWithControlValues:(NSDictionary *)controlValues;
++ (void) callAppingtonWithTrigger:(NSString *)trigger andValues:(NSDictionary *)controlValues;
 + (void) callAppingtonCustomisationTriggerWith:(NSDictionary *)controlValues;
 + (void) callAppingtonPronouncationTriggerWith:(NSDictionary *)controlValues;
 + (void) callAppingtonInteractionModeTriggerWithModeName:(NSString *)mode_name andWord:(NSString *)word;
@@ -21,9 +21,13 @@
 + (void) trackSettingsEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value;
 + (void) trackCustomisationWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value;
 + (void) trackWordEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value;
++ (void) trackSearchEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value;
 + (void) trackFirstTimeUserWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value;
-+ (NSString *)getHexStringForColor:(UIColor *)color;
++ (void) trackAppingtonEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value;
++ (void) trackErrorEventWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value;
 
+
++ (NSString *)getHexStringForColor:(UIColor *)color;
 + (NSString*) version;
 + (NSString *) deviceType;
 

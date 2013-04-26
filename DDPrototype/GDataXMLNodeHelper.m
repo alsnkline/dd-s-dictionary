@@ -42,6 +42,7 @@
 }
 + (NSString *) singleSubElementForName:(NSString *)subElementName 
                    FromGDataXMLElement:(GDataXMLElement *)element
+                      processVerbosely:(BOOL)processVerbosely
 {
     NSArray *subElements = [element elementsForName:subElementName];
     if ([subElements count] == 1) {
@@ -49,7 +50,7 @@
         NSString *singleSubElement = subElementXML.stringValue;
         return singleSubElement;
     } else {
-        NSLog(@"no %@ in %@", subElementName, element);
+        if (processVerbosely) NSLog(@"no %@ in %@", subElementName, element);
         return nil;
     }
 }
@@ -79,9 +80,10 @@
                    type:(XMLdocType)docType
 intoManagedObjectContext:(NSManagedObjectContext *)context 
 {
-    NSLog(@"Processing %@ XMLdoc", docType ? @"Corrections" : @"Dictionary");
+    BOOL processVerbosely = NO;
+    NSLog(@"Processing %@ XMLdoc %@", docType ? @"Corrections" : @"Dictionary", processVerbosely ? @"Verbosely": @"Concisely");
     GDataXMLElement *dictionary = doc.rootElement;
-    [Dictionary dictionaryFromGDataXMLElement:dictionary XMLdocType:docType inManagedObjectContext:context];
+    [Dictionary dictionaryFromGDataXMLElement:dictionary XMLdocType:docType processVerbosely:processVerbosely inManagedObjectContext:context];
 }
 
 

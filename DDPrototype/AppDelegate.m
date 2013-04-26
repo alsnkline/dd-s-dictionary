@@ -22,24 +22,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    if(0) {
     // Optional: automatically send uncaught exceptions to Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = NO;
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
     // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
     [GAI sharedInstance].dispatchInterval = 20;
     // Optional: set debug to YES for extra debugging information.
-    [GAI sharedInstance].debug = YES;
+    [GAI sharedInstance].debug = NO;
 
     // Create tracker instance.
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-2"];  //use -1 for any production releases
-//    [[GAI sharedInstance] trackerWithTrackingId:@""]; //use for developing so counts don't polute
+//    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-2"];  //use -1 for any production releases
+    [[GAI sharedInstance] trackerWithTrackingId:@""]; //use for developing so counts don't polute
 
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"DD's Dictionary launched"];
     [GlobalHelper sendView:viewNameForGA];
 
     NSSetUncaughtExceptionHandler(nil);
-    }
+    
     // Setting up audioSession
     [self setupAudioSession];
     [self setAudioSessionCategoryToPlayback];
@@ -47,18 +46,10 @@
     // Setting up Appington integration
     [Appington start];
     
-//    //Register for Appington notifications
+    //Register for Appington notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onAppingtonEvent:)
                                                  name:nil object:[Appington notificationObject]];
-    
-    //Call Appington event control
-    NSDictionary *controlValues = @{
-                              @"event": @"level_start",
-                              @"level": @1};  //replace with App launched
-    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
-    NSLog(@"values sent to Appington %@", controlValues);
-
     return YES;
 }
 
@@ -118,33 +109,24 @@
     NSLog(@"%@",notification);
     if ([[notification name] isEqualToString:@"audio_end"])
     {
-        if(0) {
         //track event with GA
-        id tracker = [GAI sharedInstance].defaultTracker;
         NSString *descriptionForNotificationObject = [[notification object] description];
-        [tracker sendEventWithCategory:@"uiAction_Appington" withAction:@"audio_end" withLabel:descriptionForNotificationObject withValue:[NSNumber numberWithInt:1]];
-        NSLog(@"Event sent to GA uiAction_Appington audio_end %@",descriptionForNotificationObject);
-        }
+        [GlobalHelper trackAppingtonEventWithAction:@"audio_end"  withLabel:descriptionForNotificationObject withValue:[NSNumber numberWithInt:1]];
+
     }
     if ([[notification name] isEqualToString:@"audio_start"])
     {
-        if(0) {
         //track event with GA
-        id tracker = [GAI sharedInstance].defaultTracker;
         NSString *descriptionForNotificationObject = [[notification object] description];
-        [tracker sendEventWithCategory:@"uiAction_Appington" withAction:@"audio_start" withLabel:descriptionForNotificationObject withValue:[NSNumber numberWithInt:1]];
-        NSLog(@"Event sent to GA uiAction_Appington audio_start %@",descriptionForNotificationObject);
-        }
+        [GlobalHelper trackAppingtonEventWithAction:@"audio_start" withLabel:descriptionForNotificationObject withValue:[NSNumber numberWithInt:1]];
     }
     if ([[notification name] isEqualToString:@"in_app_purchase"])
     {
-        if(0) {
         NSDictionary *values=[notification object];
         NSLog(@"values coming with the notification %@", values);
         NSString *valueForItem = [values objectForKey:@"item"];
         NSLog(@"value for 'item' in notification object %@", valueForItem);
         //        [MyController start_iap_with_item:[values objectForKey:@"item"]];
-        }
     }
 }
 

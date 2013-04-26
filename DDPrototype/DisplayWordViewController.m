@@ -82,7 +82,7 @@
     if(_useDyslexieFont != useDyslexieFont) {
         _useDyslexieFont = useDyslexieFont;
         if (self.useDyslexieFont) {
-            if ([self splitViewWithDisplayWordViewController]) { //in iPad
+            if ([self getSplitViewWithDisplayWordViewController]) { //in iPad
                 [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:140]];
             } else { //in iphone
                 [self.spelling setFont:[UIFont fontWithName:@"Dyslexiea-Regular" size:55]];
@@ -93,7 +93,7 @@
             self.homonymButton3.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
             self.homonymButton4.titleLabel.font = [UIFont fontWithName:@"Dyslexiea-Regular" size:30];
         } else {
-            if ([self splitViewWithDisplayWordViewController]) {
+            if ([self getSplitViewWithDisplayWordViewController]) {
                 [self.spelling setFont:[UIFont systemFontOfSize:140]];
             } else {
                 [self.spelling setFont:[UIFont systemFontOfSize:55]];
@@ -116,7 +116,7 @@
                     completion:nil];
     
     if (self.isViewLoaded && self.view.window) {
-        //viewController is visible track with GA allowing iPad stats to show which word got loaded.
+        //viewController is visible track with GA allowing iPad stats to show which word got loaded. Appington calls already handled in DictionaryTableViewController class.
         NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", self.spelling.text];
         [GlobalHelper sendView:viewNameForGA];
     }
@@ -380,14 +380,16 @@
             [self playAllWords:self.word.pronunciations];
         }
     }
+    
     NSString *viewNameForGA = [NSString stringWithFormat:@"Viewed Word :%@", self.spelling.text];
     [GlobalHelper sendView:viewNameForGA];
     
 //    NSNumber *forControl = self.word.isHomophone;
-//    NSDictionary *controlValues = @{
-//                                    @"event": @"life_end",
-//                                    @"level": forControl};  //replace with Dictionary displayed in tableview.
-//    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
+    //call Appington if in iphone (ipad calls handled in DictionaryTableViewContorller
+    if (![self getSplitViewWithDisplayWordViewController]) {
+        [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"word_view" andWord:self.spelling.text];
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -432,7 +434,7 @@
 }
 
 
-- (DisplayWordViewController *)splitViewWithDisplayWordViewController
+- (DisplayWordViewController *)getSplitViewWithDisplayWordViewController
 {
     id dwvc = [self.splitViewController.viewControllers lastObject];
     if (![dwvc isKindOfClass:[DisplayWordViewController class]]) {

@@ -17,6 +17,9 @@
 		B1310887168B9A82002E2355 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */; };
 		B1310888168B9A89002E2355 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
+		B159CB52172A2B29006AC874 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CB51172A2B29006AC874 /* libGoogleAnalytics.a */; };
+		B159CB54172A2B47006AC874 /* libAppington_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CB53172A2B47006AC874 /* libAppington_debug.a */; };
+		B159CB56172A2BC3006AC874 /* appington in Resources */ = {isa = PBXBuildFile; fileRef = B159CB55172A2BC3006AC874 /* appington */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
 		B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83F15B51B98002A8814 /* Dictionary+Create.m */; };
 		B177D84615B531A4002A8814 /* FirstThousandWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B177D84515B531A3002A8814 /* FirstThousandWords.bundle */; };
@@ -62,8 +65,6 @@
 		B1EFAB19171B7ABC00249138 /* legal_agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = B1EFAB18171B7ABC00249138 /* legal_agreement.html */; };
 		B1EFAB22171B8C3D00249138 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EFAB21171B8C3C00249138 /* CoreTelephony.framework */; };
 		B1EFAB24171B8C4900249138 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EFAB23171B8C4900249138 /* libsqlite3.dylib */; };
-		B1EFAB26171B9FA800249138 /* libAppington_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EFAB25171B9FA800249138 /* libAppington_debug.a */; };
-		B1EFAB28171BA94F00249138 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EFAB27171BA94F00249138 /* libGoogleAnalytics_debug.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,10 @@
 		B131087F168B93B5002E2355 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B159CB51172A2B29006AC874 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		B159CB53172A2B47006AC874 /* libAppington_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington_debug.a; sourceTree = "<group>"; };
+		B159CB55172A2BC3006AC874 /* appington */ = {isa = PBXFileReference; lastKnownFileType = folder; path = appington; sourceTree = SOURCE_ROOT; };
+		B1673C75172A3D2C0076A8ED /* ReleaseCheckList.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReleaseCheckList.txt; sourceTree = "<group>"; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
 		B177D83E15B51B98002A8814 /* Dictionary+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dictionary+Create.h"; sourceTree = "<group>"; };
 		B177D83F15B51B98002A8814 /* Dictionary+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dictionary+Create.m"; sourceTree = "<group>"; };
@@ -154,8 +159,6 @@
 		B1EFAB18171B7ABC00249138 /* legal_agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = legal_agreement.html; sourceTree = "<group>"; };
 		B1EFAB21171B8C3C00249138 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B1EFAB23171B8C4900249138 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		B1EFAB25171B9FA800249138 /* libAppington_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppington_debug.a; path = "../../../../../Volumes/My Book/Documents/Appington/appington-ios-sdk-0.8.31-f5f2f75/libAppington_debug.a"; sourceTree = "<group>"; };
-		B1EFAB27171BA94F00249138 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,8 +177,8 @@
 				B178606215962B3D0047D631 /* UIKit.framework in Frameworks */,
 				B178606415962B3D0047D631 /* Foundation.framework in Frameworks */,
 				B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */,
-				B1EFAB26171B9FA800249138 /* libAppington_debug.a in Frameworks */,
-				B1EFAB28171BA94F00249138 /* libGoogleAnalytics_debug.a in Frameworks */,
+				B159CB52172A2B29006AC874 /* libGoogleAnalytics.a in Frameworks */,
+				B159CB54172A2B47006AC874 /* libAppington_debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +277,7 @@
 				B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */,
 				B185FE86171BB60800844CD4 /* GlobalHelper.h */,
 				B185FE87171BB60800844CD4 /* GlobalHelper.m */,
+				B1673C75172A3D2C0076A8ED /* ReleaseCheckList.txt */,
 				B1EFAB17171B7AA400249138 /* Appington */,
 				B18E40A516AB53E700D346A6 /* GoogleAnalytics */,
 				B177D84515B531A3002A8814 /* FirstThousandWords.bundle */,
@@ -292,6 +296,7 @@
 				B178606A15962B3D0047D631 /* InfoPlist.strings */,
 				B178606D15962B3D0047D631 /* main.m */,
 				B178606F15962B3D0047D631 /* DDPrototype-Prefix.pch */,
+				B159CB55172A2BC3006AC874 /* appington */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -321,7 +326,7 @@
 		B18E40A516AB53E700D346A6 /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				B1EFAB27171BA94F00249138 /* libGoogleAnalytics_debug.a */,
+				B159CB51172A2B29006AC874 /* libGoogleAnalytics.a */,
 				B18E40A616AB542200D346A6 /* GAI.h */,
 				B18E40A716AB542200D346A6 /* GAITrackedViewController.h */,
 				B18E40A816AB542200D346A6 /* GAITracker.h */,
@@ -334,8 +339,8 @@
 		B1EFAB17171B7AA400249138 /* Appington */ = {
 			isa = PBXGroup;
 			children = (
+				B159CB53172A2B47006AC874 /* libAppington_debug.a */,
 				B1EFAB16171B7A9E00249138 /* Appington.h */,
-				B1EFAB25171B9FA800249138 /* libAppington_debug.a */,
 				B1EFAB18171B7ABC00249138 /* legal_agreement.html */,
 			);
 			name = Appington;
@@ -413,6 +418,7 @@
 				B12C38011710DD7500CAAB29 /* Dyslexie_a_Bold_LEDU_1044_IN.ttf in Resources */,
 				B18CEFE217178FE1006FF74E /* Dyslexie_a_Italic_LEDU_1044_IN.ttf in Resources */,
 				B1EFAB19171B7ABC00249138 /* legal_agreement.html in Resources */,
+				B159CB56172A2BC3006AC874 /* appington in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
