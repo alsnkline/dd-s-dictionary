@@ -173,17 +173,19 @@
     //self.debug = YES;
 }
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    tableView.backgroundColor = self.customBackgroundColor;
-    tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
-
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Search Table Shown: %@", self.title];
     [GlobalHelper sendView:viewNameForGA];
     //call Appington
     [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"search" andWord:nil];
+}
 
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    tableView.backgroundColor = self.customBackgroundColor;
+    tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -402,8 +404,23 @@
     
     self.searchFetchedResultsController = [self newFetchedResultsControllerWithSearch:searchText];
 
+    NSString *stringForGA = nil;
+    if (self.title.length == 1) {
+        stringForGA = @"single";
+    } else {
+        stringForGA = searchText;
+    }
     //track event with GA
-    [GlobalHelper trackSearchEventWithAction:self.title withLabel:searchText withValue:[NSNumber numberWithInt:1]];
+    [GlobalHelper trackSearchEventWithAction:self.title withLabel:stringForGA withValue:[NSNumber numberWithInt:1]];
+    
+    NSArray *testValues = [NSArray arrayWithObjects:@"ight",@"ould",@"tion",nil];
+    
+    if ([testValues containsObject:searchText])
+    {
+        //call Appington
+        [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"search" andWord:searchText];
+    }
+    
 }
 
 
