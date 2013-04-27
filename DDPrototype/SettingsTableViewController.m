@@ -98,7 +98,7 @@
         
         //track event with GA to confirm final font choice
         NSString *currentPlayWordOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto-Play" : @"Manual-Play";
-        [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
+        [GlobalHelper trackCustomisationWithAction:@"PlayOnSelection" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
         
         //Tell Appington that settings has been looked at
         NSDictionary *customisations = @{
@@ -140,7 +140,7 @@
 
     //track event with GA
     NSString *switchSetting = sender.on ? @"ON" : @"OFF";
-    [GlobalHelper trackSettingsEventWithAction:@"UseDyslexieFontChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
+    [GlobalHelper trackSettingsEventWithAction:@"useDyslexieFontChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
 }
 
 - (IBAction)backgroundHueSliderChanged:(UISlider *)sender

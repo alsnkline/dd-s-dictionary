@@ -91,7 +91,7 @@
 
 + (void) trackFirstTimeUserWithAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
 {
-    NSString *category = [NSString stringWithFormat:@"uiFirstTimeUser"];
+    NSString *category = [NSString stringWithFormat:@"uiTracking_FirstTimeUser"];
     [GlobalHelper trackEventWithCategory:category withAction:action withLabel:label withValue:value];
 }
 
