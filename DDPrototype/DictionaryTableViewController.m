@@ -453,27 +453,29 @@
 
 #pragma mark - Table view data source
 
-- (BOOL) searchHasNoResults:(NSFetchedResultsController *)fetchedResultsController
+- (BOOL) DictionaryIsStillLoadingOrsearchHasNoResults:(NSFetchedResultsController *)fetchedResultsController
 {
-    BOOL hasNoResults = NO;
-    
-    if (self.searchDisplayController.isActive) {
-        hasNoResults = [[fetchedResultsController fetchedObjects] count]? NO : YES;
-    }
-    
-    return hasNoResults;
+//    BOOL hasNoResults = NO;
+//    
+//    if (self.searchDisplayController.isActive) {
+//        hasNoResults = [[fetchedResultsController fetchedObjects] count]? NO : YES;
+//    }
+//    
+//    return hasNoResults;
+    return [[fetchedResultsController fetchedObjects] count]? NO : YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSInteger count = 0;
     
-    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+    if ([self DictionaryIsStillLoadingOrsearchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
         count = 1;
     } else {
         count = [[[self fetchedResultsControllerForTableView:tableView] sections] count];
     }
     NSLog(@"table section count: %d", count);
+    
     return count;
     //    return [[self alphabet] count];
 }
@@ -483,7 +485,7 @@
 {
 
     NSInteger numberOfRows = 0;
-    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+    if ([self DictionaryIsStillLoadingOrsearchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
         numberOfRows = 1;
     } else {
     
@@ -503,11 +505,11 @@
 
 //overiding section managment to get Search to work
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 
     NSString *titleForSection = nil;
-    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+    if ([self DictionaryIsStillLoadingOrsearchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
         titleForSection = nil; // is called but nil is OK
     } else {
         titleForSection = [[[[self fetchedResultsControllerForTableView:tableView] sections] objectAtIndex:section] name];
@@ -551,6 +553,17 @@
 //    return [[self fetchedResultsControllerForTableView:tableView] sectionIndexTitles];
 }
 
+- (UIActivityIndicatorView *) getSpinnerView
+{
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.frame = CGRectMake((self.tableView.frame.size.width/2 - 12), (55+55/2-12), 24, 24);
+    spinner.hidesWhenStopped = YES;
+    [spinner startAnimating];
+    
+    return spinner;
+
+}
+
 -(UIButton *)getAddWordButton
 {
     UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -588,24 +601,31 @@
 }
 
 
-- (void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController isSearch:(BOOL)isSearch configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     // your cell guts here
     
     cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:20] : [UIFont boldSystemFontOfSize:20];
     
-    if ([self searchHasNoResults:fetchedResultsController]) {
-        cell.textLabel.text = @"";
-        UIButton *button = [self getAddWordButton];
-        [cell.contentView addSubview:button];
-//        self.searchDisplayController.searchResultsTableView.rowHeight = 165.0f;
-//        [self.searchDisplayController.searchResultsTableView reloadData]; //have to unwind the rowsize afterwards and this is not really where the cell height should be changing
-        
-//        cell.textLabel.text = @"Ask DD to add this word";
-//        cell.textLabel.textColor = [UIColor blueColor];
-//        cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Italic" size:40] : [UIFont fontWithName:@"Arial-BoldItalic" size:30];
-//        cell.textLabel.font = [UIFont fontWithName:@"Dyslexiea-Italic" size:40];
-//        cell.imageView.image = [UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"];
+    if ([self DictionaryIsStillLoadingOrsearchHasNoResults:fetchedResultsController]) {
+        if (isSearch) { //Search has no results
+            cell.textLabel.text = @"";
+            UIButton *button = [self getAddWordButton];
+            [cell.contentView addSubview:button];
+            //        self.searchDisplayController.searchResultsTableView.rowHeight = 165.0f;
+            //        [self.searchDisplayController.searchResultsTableView reloadData]; //have to unwind the rowsize afterwards and this is not really where the cell height should be changing
+            
+            //        cell.textLabel.text = @"Ask DD to add this word";
+            //        cell.textLabel.textColor = [UIColor blueColor];
+            //        cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Italic" size:40] : [UIFont fontWithName:@"Arial-BoldItalic" size:30];
+            //        cell.textLabel.font = [UIFont fontWithName:@"Dyslexiea-Italic" size:40];
+            //        cell.imageView.image = [UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"];
+        } else {   //Dictionary Is Still Loading/Opening
+            cell.textLabel.text = @"";
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            UIActivityIndicatorView *spinner = [self getSpinnerView];
+            [cell.contentView addSubview:spinner];
+        }
     } else {
         Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
         cell.textLabel.text = word.spelling;
@@ -625,7 +645,7 @@
     
         // Configure the cell...
     
-    [self fetchedResultsController:[self fetchedResultsControllerForTableView:tableView] configureCell:cell atIndexPath:indexPath];
+    [self fetchedResultsController:[self fetchedResultsControllerForTableView:tableView] isSearch:!(tableView == self.tableView)  configureCell:cell atIndexPath:indexPath];
 
     
 
@@ -678,7 +698,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self searchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
+    if ([self DictionaryIsStillLoadingOrsearchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
         [self addwordButtonPressed];
     } else {
         [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:tableView];
