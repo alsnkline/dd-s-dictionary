@@ -68,29 +68,44 @@
 
 }
 
+
 - (void)viewDidDisappear:(BOOL)animated
 {
-    //Track final customistions
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSLog(@"VDD viewController stack = %@", self.navigationController.viewControllers);
+   
+    //could be in viewWillDisappear, viewController stack seems the same.
+    NSArray *viewControllers = self.navigationController.viewControllers;
+//    NSLog(@"index of self on viewControllers %ld", (unsigned long)[viewControllers indexOfObject:self]); //strange this wasn't logging what I expected, always showed 0 as the settings view was first in list, but code seemed to work. http://stackoverflow.com/questions/1816614/viewwilldisappear-determine-whether-view-controller-is-being-popped-or-is-showi
     
-    //track event with GA to confirm final background color for this dictionary table view
-    NSString *actionForGA = [NSString stringWithFormat:@"BackgoundColor_%@", self.customBackgroundColorSaturation];
-    NSString *currentColorInHEX = [GlobalHelper getHexStringForColor:self.customBackgroundColor];
-    [GlobalHelper trackCustomisationWithAction:actionForGA withLabel:currentColorInHEX withValue:[NSNumber numberWithInt:1]];
-    
-    //track event with GA to confirm final font choice
-    NSString *currentFont = [defaults floatForKey:USE_DYSLEXIE_FONT] ? @"Dyslexie_Font" : @"System_Font";
-    [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentFont withValue:[NSNumber numberWithInt:1]];
-    
-    //track event with GA to confirm final font choice
-    NSString *currentPlayWordOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto-Play" : @"Manual-Play";
-    [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
-    
-    //Tell Appington that settings has been looked at
-    NSDictionary *customisations = @{
-                                    @"background": currentColorInHEX,
-                                    @"font": currentFont}; 
-    [GlobalHelper callAppingtonCustomisationTriggerWith:customisations];
+    if (viewControllers.count > 1 && [viewControllers objectAtIndex:viewControllers.count-2] == self) {
+        // View is disappearing because a new view controller was pushed onto the stack
+        NSLog(@"New view controller was pushed");
+    } else if ([viewControllers indexOfObject:self] == 0) {
+        // View is disappearing because it was popped from the stack
+        NSLog(@"View controller was popped");
+        
+        //Track final customistions
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        //track event with GA to confirm final background color for this dictionary table view
+        NSString *actionForGA = [NSString stringWithFormat:@"BackgoundColor_%@", self.customBackgroundColorSaturation];
+        NSString *currentColorInHEX = [GlobalHelper getHexStringForColor:self.customBackgroundColor];
+        [GlobalHelper trackCustomisationWithAction:actionForGA withLabel:currentColorInHEX withValue:[NSNumber numberWithInt:1]];
+        
+        //track event with GA to confirm final font choice
+        NSString *currentFont = [defaults floatForKey:USE_DYSLEXIE_FONT] ? @"Dyslexie_Font" : @"System_Font";
+        [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentFont withValue:[NSNumber numberWithInt:1]];
+        
+        //track event with GA to confirm final font choice
+        NSString *currentPlayWordOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto-Play" : @"Manual-Play";
+        [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
+        
+        //Tell Appington that settings has been looked at
+        NSDictionary *customisations = @{
+                                         @"background": currentColorInHEX,
+                                         @"font": currentFont};
+        [GlobalHelper callAppingtonCustomisationTriggerWith:customisations];
+    }
 }
 
 - (void) setCellBackgroundColor
@@ -435,6 +450,8 @@
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"SendEmail triggered"];
     [GlobalHelper sendView:viewNameForGA];
+    //call Appington
+    [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"send_email" andWord:nil];
     
 	if (!bCanSendMail)
 	{

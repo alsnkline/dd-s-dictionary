@@ -50,8 +50,11 @@
 //    NSLog(@"zoomScale = %f", self.webView.scrollView.zoomScale);
 //    NSLog(@"max zoomScale, min zoomscale = %f, %f", self.webView.scrollView.maximumZoomScale, self.webView.scrollView.minimumZoomScale);
     
+    //track with GA automatically this class uses subclassing of UIViewController
     self.trackedViewName = self.stringForTitle;
     NSLog(@"View sent to GA %@", self.stringForTitle);
+    //call Appington
+    [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:self.stringForTitle andWord:nil];
 }
 
 -(void)viewDidUnload

@@ -181,6 +181,8 @@
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"Dict Search Table Shown: %@", self.title];
     [GlobalHelper sendView:viewNameForGA];
+    //call Appington
+    [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"search" andWord:nil];
 
 }
 
