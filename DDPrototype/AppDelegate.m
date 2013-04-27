@@ -30,8 +30,8 @@
     [GAI sharedInstance].debug = NO;
 
     // Create tracker instance.
-//    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-2"];  //use -1 for any production releases
-    [[GAI sharedInstance] trackerWithTrackingId:@""]; //use for developing so counts don't polute
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-2"];  //use -1 for any production releases
+//    [[GAI sharedInstance] trackerWithTrackingId:@""]; //use for developing so counts don't polute
 
     //track with GA manually avoid subclassing UIViewController
     NSString *viewNameForGA = [NSString stringWithFormat:@"DD's Dictionary launched"];

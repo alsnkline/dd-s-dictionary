@@ -404,23 +404,11 @@
     
     self.searchFetchedResultsController = [self newFetchedResultsControllerWithSearch:searchText];
 
-    NSString *stringForGA = nil;
-    if (self.title.length == 1) {
-        stringForGA = @"single";
-    } else {
-        stringForGA = searchText;
-    }
     //track event with GA
-    [GlobalHelper trackSearchEventWithAction:self.title withLabel:stringForGA withValue:[NSNumber numberWithInt:1]];
-    
-    NSArray *testValues = [NSArray arrayWithObjects:@"ight",@"ould",@"tion",nil];
-    
-    if ([testValues containsObject:searchText])
-    {
-        //call Appington
-        [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"search" andWord:searchText];
-    }
-    
+    [GlobalHelper trackSearchEventWithAction:self.title withLabel:searchText withValue:[NSNumber numberWithInt:1]];
+
+    //call Appington
+    [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"search" andWord:searchText];
 }
 
 
