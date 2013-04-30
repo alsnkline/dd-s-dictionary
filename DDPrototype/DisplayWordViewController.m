@@ -276,7 +276,7 @@
             [self playWord:pronunciation];
             
             //track event with GA auto sent with Value 2
-            [GlobalHelper trackWordEventWithAction:@"ListenToWord" withLabel:pronunciation.unique withValue:[NSNumber numberWithInt:2]];
+            [GlobalHelper trackWordEventWithAction:@"listenToWord" withLabel:pronunciation.unique withValue:[NSNumber numberWithInt:2]];
             //Tell Appington that a word has played (auto)
             NSDictionary *controlValues = @{@"word": pronunciation.unique};
             [GlobalHelper callAppingtonPronouncationTriggerWith:controlValues];
@@ -320,7 +320,7 @@
             [self playWord:pronunciation];
 
             //track event with GA manual sent with Value 1
-            [GlobalHelper trackWordEventWithAction:@"ListenToWord" withLabel:unique withValue:[NSNumber numberWithInt:1]];
+            [GlobalHelper trackWordEventWithAction:@"listenToWord" withLabel:unique withValue:[NSNumber numberWithInt:1]];
             //Tell Appington that a word has played (manual)
             NSDictionary *controlValues = @{@"word": unique};
             [GlobalHelper callAppingtonPronouncationTriggerWith:controlValues];

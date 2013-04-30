@@ -641,6 +641,7 @@
     } else {
         Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
         cell.textLabel.text = word.spelling;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     //    NSLog(@"cell: %@", word.spelling);
     }
 

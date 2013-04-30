@@ -97,7 +97,7 @@
         [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentFont withValue:[NSNumber numberWithInt:1]];
         
         //track event with GA to confirm final font choice
-        NSString *currentPlayWordOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto-Play" : @"Manual-Play";
+        NSString *currentPlayWordOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto_Play" : @"Manual_Play";
         [GlobalHelper trackCustomisationWithAction:@"PlayOnSelection" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
         
         //Tell Appington that settings has been looked at

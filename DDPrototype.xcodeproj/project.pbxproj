@@ -18,7 +18,6 @@
 		B1310888168B9A89002E2355 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B18248B615E0AD6E0093E71F /* Default-Landscape~ipad.png */; };
 		B150AEB4159A6771007A1129 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B150AEB3159A6771007A1129 /* AudioToolbox.framework */; };
 		B159CB52172A2B29006AC874 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CB51172A2B29006AC874 /* libGoogleAnalytics.a */; };
-		B159CB54172A2B47006AC874 /* libAppington_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B159CB53172A2B47006AC874 /* libAppington_debug.a */; };
 		B159CB56172A2BC3006AC874 /* appington in Resources */ = {isa = PBXBuildFile; fileRef = B159CB55172A2BC3006AC874 /* appington */; };
 		B1741FE315A23F5400DE3350 /* DictionaryXMLReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */; };
 		B177D84015B51B98002A8814 /* Dictionary+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = B177D83F15B51B98002A8814 /* Dictionary+Create.m */; };
@@ -62,6 +61,7 @@
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
 		B1D367C1159E4D1500BBAA89 /* GDataXMLNode.Copying.txt in Resources */ = {isa = PBXBuildFile; fileRef = B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */; };
+		B1EE238E17300C4E007F02E4 /* libAppington_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EE238D17300C4E007F02E4 /* libAppington_debug.a */; };
 		B1EFAB19171B7ABC00249138 /* legal_agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = B1EFAB18171B7ABC00249138 /* legal_agreement.html */; };
 		B1EFAB22171B8C3D00249138 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EFAB21171B8C3C00249138 /* CoreTelephony.framework */; };
 		B1EFAB24171B8C4900249138 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EFAB23171B8C4900249138 /* libsqlite3.dylib */; };
@@ -77,7 +77,6 @@
 		B1310882168B93C8002E2355 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		B150AEB3159A6771007A1129 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B159CB51172A2B29006AC874 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
-		B159CB53172A2B47006AC874 /* libAppington_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington_debug.a; sourceTree = "<group>"; };
 		B159CB55172A2BC3006AC874 /* appington */ = {isa = PBXFileReference; lastKnownFileType = folder; path = appington; sourceTree = SOURCE_ROOT; };
 		B1673C75172A3D2C0076A8ED /* ReleaseCheckList.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReleaseCheckList.txt; sourceTree = "<group>"; };
 		B1741FE215A23F5400DE3350 /* DictionaryXMLReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = DictionaryXMLReadMe.rtf; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 		B1D367C0159E4D1500BBAA89 /* GDataXMLNode.Copying.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GDataXMLNode.Copying.txt; sourceTree = "<group>"; };
 		B1DDD40A159FD3DE004CD0FB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		B1DDD40D159FD4D1004CD0FB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B1EE238D17300C4E007F02E4 /* libAppington_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington_debug.a; sourceTree = "<group>"; };
 		B1EFAB16171B7A9E00249138 /* Appington.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appington.h; sourceTree = "<group>"; };
 		B1EFAB18171B7ABC00249138 /* legal_agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = legal_agreement.html; sourceTree = "<group>"; };
 		B1EFAB21171B8C3C00249138 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -178,7 +178,7 @@
 				B178606415962B3D0047D631 /* Foundation.framework in Frameworks */,
 				B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */,
 				B159CB52172A2B29006AC874 /* libGoogleAnalytics.a in Frameworks */,
-				B159CB54172A2B47006AC874 /* libAppington_debug.a in Frameworks */,
+				B1EE238E17300C4E007F02E4 /* libAppington_debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,8 +339,8 @@
 		B1EFAB17171B7AA400249138 /* Appington */ = {
 			isa = PBXGroup;
 			children = (
-				B159CB53172A2B47006AC874 /* libAppington_debug.a */,
 				B1EFAB16171B7A9E00249138 /* Appington.h */,
+				B1EE238D17300C4E007F02E4 /* libAppington_debug.a */,
 				B1EFAB18171B7ABC00249138 /* legal_agreement.html */,
 			);
 			name = Appington;
