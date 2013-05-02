@@ -419,6 +419,11 @@
     // search is done so get rid of the search FRC and reclaim memory
     self.searchFetchedResultsController.delegate = nil;
     self.searchFetchedResultsController = nil;
+    
+    if ([[self fetchedResultsControllerForTableView:self.tableView].fetchedObjects containsObject:self.selectedWord]) {
+        NSIndexPath *indexPathOfSelectedWord = [self.fetchedResultsController indexPathForObject:self.selectedWord];
+        [self.tableView selectRowAtIndexPath:indexPathOfSelectedWord animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -628,8 +633,6 @@
                 UIButton *button = [self getAddWordButton];
                 button.tag = ADD_WORD_BUTTON_TAG;
                 [cell.contentView addSubview:button];
-                //        self.searchDisplayController.searchResultsTableView.rowHeight = 165.0f;
-                //        [self.searchDisplayController.searchResultsTableView reloadData]; //have to unwind the rowsize afterwards and this is not really where the cell height should be changing
                 
                 //        cell.textLabel.text = @"Ask DD to add this word";
                 //        cell.textLabel.textColor = [UIColor blueColor];
@@ -728,11 +731,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self DictionaryIsStillLoadingOrsearchHasNoResults:[self fetchedResultsControllerForTableView:tableView]]) {
-        [self addwordButtonPressed];
+        if (self.searchDisplayController.isActive) [self addwordButtonPressed];
     } else {
         [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:tableView];
     }
-    
 }
 
 - (void) addwordButtonPressed {
@@ -767,6 +769,7 @@
     if ([self getSplitViewWithDisplayWordViewController]) { //iPad
         DisplayWordViewController *dwvc = [self getSplitViewWithDisplayWordViewController];
         dwvc.word = selectedWord;
+        self.selectedWord = selectedWord;
         if (self.playWordsOnSelection) {
             [dwvc playAllWords:selectedWord.pronunciations];
         }
@@ -788,7 +791,7 @@
 
 - (void) DisplayWordViewController:(DisplayWordViewController *)sender homonymSelectedWith:(NSString *)spelling
 {
-    NSLog(@"homonymSelected with spelling = %@",spelling);      //need to cancel search when this happens TODO 
+    NSLog(@"homonymSelected with spelling = %@",spelling);      //need to cancel search when this happens TODO maybe - or at least scroll to it if in view
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     request.predicate = [NSPredicate predicateWithFormat:@"spelling = %@",spelling];
@@ -806,12 +809,18 @@
         if (![self getSplitViewWithDisplayWordViewController]) { //iPhone
             //pop old word off navigation controller
             [self.navigationController popViewControllerAnimated:NO]; //Not animated as this is just preparing the Navigation Controller stack for the new word to be pushed on.
-            
         }
-        
-        if (self.searchDisplayController.isActive) { //could enhance this further to check and see if the selected word is in the table and scroll if present not otherwise.
-            NSIndexPath *selectedCell = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:selectedCell animated:NO];
+    
+        if (self.searchDisplayController.isActive) {
+            
+            if ([self.searchFetchedResultsController.fetchedObjects containsObject:homonymn]) {
+                NSIndexPath *indexPathOfSelectedWord = [self.searchFetchedResultsController indexPathForObject:homonymn];
+                [self.searchDisplayController.searchResultsTableView selectRowAtIndexPath:indexPathOfSelectedWord animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+            } else {
+                NSIndexPath *selectedCell = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+                [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:selectedCell animated:NO];
+            }
+            
         } else {
             [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
         }
