@@ -612,6 +612,8 @@
     return myButton;
 }
 
+#define ADD_WORD_BUTTON_TAG 1111
+#define SPINNER_TAG 2222
 
 - (void)fetchedResultsController:(NSFetchedResultsController *)fetchedResultsController isSearch:(BOOL)isSearch configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -621,27 +623,41 @@
     
     if ([self DictionaryIsStillLoadingOrsearchHasNoResults:fetchedResultsController]) {
         if (isSearch) { //Search has no results
-            cell.textLabel.text = @"";
-            UIButton *button = [self getAddWordButton];
-            [cell.contentView addSubview:button];
-            //        self.searchDisplayController.searchResultsTableView.rowHeight = 165.0f;
-            //        [self.searchDisplayController.searchResultsTableView reloadData]; //have to unwind the rowsize afterwards and this is not really where the cell height should be changing
+            if (![cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG]) { //button isn't already present
+                cell.textLabel.text = @"";
+                UIButton *button = [self getAddWordButton];
+                button.tag = ADD_WORD_BUTTON_TAG;
+                [cell.contentView addSubview:button];
+                //        self.searchDisplayController.searchResultsTableView.rowHeight = 165.0f;
+                //        [self.searchDisplayController.searchResultsTableView reloadData]; //have to unwind the rowsize afterwards and this is not really where the cell height should be changing
+                
+                //        cell.textLabel.text = @"Ask DD to add this word";
+                //        cell.textLabel.textColor = [UIColor blueColor];
+                //        cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Italic" size:40] : [UIFont fontWithName:@"Arial-BoldItalic" size:30];
+                //        cell.textLabel.font = [UIFont fontWithName:@"Dyslexiea-Italic" size:40];
+                //        cell.imageView.image = [UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"];
+            }
             
-            //        cell.textLabel.text = @"Ask DD to add this word";
-            //        cell.textLabel.textColor = [UIColor blueColor];
-            //        cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Italic" size:40] : [UIFont fontWithName:@"Arial-BoldItalic" size:30];
-            //        cell.textLabel.font = [UIFont fontWithName:@"Dyslexiea-Italic" size:40];
-            //        cell.imageView.image = [UIImage imageNamed:@"resources.bundle/Images/dinoOnlyIcon.png"];
         } else {   //Dictionary Is Still Loading/Opening
-            cell.textLabel.text = @"";
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            UIActivityIndicatorView *spinner = [self getSpinnerView];
-            [cell.contentView addSubview:spinner];
+            if (![cell.contentView viewWithTag:SPINNER_TAG]) {
+                cell.textLabel.text = @"";
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                UIActivityIndicatorView *spinner = [self getSpinnerView];
+                spinner.tag = SPINNER_TAG;
+                [cell.contentView addSubview:spinner];
+            }
         }
     } else {
         Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
+        NSLog(@"Before reconfigure Cell content view %@", cell.contentView.subviews);
+        //clean out UIButton and UIActivityIndicator views if cell is being reused
+        if ([cell.contentView viewWithTag:SPINNER_TAG]) [[cell.contentView viewWithTag:SPINNER_TAG] removeFromSuperview];
+        if ([cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG]) [[cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG] removeFromSuperview];
+        if ([cell.contentView.subviews count] == 0 ) [cell.contentView addSubview:cell.textLabel]; //don't really need this but seems right and is needed for the log messages to look correct.
+        
         cell.textLabel.text = word.spelling;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        NSLog(@"After reconfigure Cell content view %@", cell.contentView.subviews);
     //    NSLog(@"cell: %@", word.spelling);
     }
 
