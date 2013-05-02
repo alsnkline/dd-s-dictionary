@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+#define PROCESS_VERBOSELY NO
+
+//    NSLog(@"********************************");
+//    NSLog(@" set OVERRIDE_PROCESSING to NO");
+//    NSLog(@"       Before Ship");
+//    NSLog(@"*********************************");
+
+//****** set to NO before ship *******
+#define OVERRIDE_PROCESSING NO      // must be NO for ship
+#define FORCE_REPROCESS NO          //used for testing to force dictionary reprocess
+#define FAKE_NEW_VERSION YES        //used for testing to force dictionary correction check
+
+
+
 @interface GlobalHelper : NSObject
 
 + (void) callAppingtonMainTableViewShown;

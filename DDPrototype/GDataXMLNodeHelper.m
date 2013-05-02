@@ -80,10 +80,9 @@
                    type:(XMLdocType)docType
 intoManagedObjectContext:(NSManagedObjectContext *)context 
 {
-    BOOL processVerbosely = NO;
-    NSLog(@"Processing %@ XMLdoc %@", docType ? @"Corrections" : @"Dictionary", processVerbosely ? @"Verbosely": @"Concisely");
+    NSLog(@"Processing %@ XMLdoc %@", docType ? @"Corrections" : @"Dictionary", PROCESS_VERBOSELY ? @"Verbosely": @"Concisely");
     GDataXMLElement *dictionary = doc.rootElement;
-    [Dictionary dictionaryFromGDataXMLElement:dictionary XMLdocType:docType processVerbosely:processVerbosely inManagedObjectContext:context];
+    [Dictionary dictionaryFromGDataXMLElement:dictionary XMLdocType:docType processVerbosely:PROCESS_VERBOSELY inManagedObjectContext:context];
 }
 
 

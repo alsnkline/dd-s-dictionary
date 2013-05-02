@@ -254,14 +254,10 @@ correctionsOnly:(BOOL)corrections
     BOOL forceReprocess = [DictionarySetupViewController reprocessDictionaryForNewSchema];
     BOOL newVersion = [DictionarySetupViewController newVersion];
     
-    
-//    NSLog(@"********************************");
-//    NSLog(@" REMOVE Reprocess");
-//    //NSLog(@" REMOVE Correction Check");
-//    NSLog(@"       Before Ship");
-//    NSLog(@"*********************************");
-    //forceReprocess = YES; //used for testing to force dictionary reprocess - comment out this line before shipping
-    //newVersion = YES; //used for testing to force dictionary correction check - comment out this line before shipping
+    if (OVERRIDE_PROCESSING) {
+        forceReprocess = FORCE_REPROCESS;
+        newVersion = FAKE_NEW_VERSION;
+    }
     
     
     if ( forceReprocess || !availableDictionary) {
