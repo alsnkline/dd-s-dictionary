@@ -649,7 +649,7 @@
         }
     } else {
         Word *word = [fetchedResultsController objectAtIndexPath:indexPath];
-        NSLog(@"Before reconfigure Cell content view %@", cell.contentView.subviews);
+//        NSLog(@"Before reconfigure Cell content view %@", cell.contentView.subviews);
         //clean out UIButton and UIActivityIndicator views if cell is being reused
         if ([cell.contentView viewWithTag:SPINNER_TAG]) [[cell.contentView viewWithTag:SPINNER_TAG] removeFromSuperview];
         if ([cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG]) [[cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG] removeFromSuperview];
@@ -657,7 +657,7 @@
         
         cell.textLabel.text = word.spelling;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        NSLog(@"After reconfigure Cell content view %@", cell.contentView.subviews);
+//        NSLog(@"After reconfigure Cell content view %@", cell.contentView.subviews);
     //    NSLog(@"cell: %@", word.spelling);
     }
 
