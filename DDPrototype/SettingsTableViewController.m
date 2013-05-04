@@ -50,12 +50,12 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    self.playOnSelectionSwitch.on = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
-    float useVoiceHints = ![defaults floatForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
+    self.playOnSelectionSwitch.on = [defaults boolForKey:PLAY_WORDS_ON_SELECTION];
+    bool useVoiceHints = ![defaults boolForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
     //NSLog(@"NOT_USE_VOICE_HINTS %f", [defaults floatForKey:NOT_USE_VOICE_HINTS]);
     //NSLog(@"useVoiceHints = %f", useVoiceHints);
     self.useVoiceHints.on = useVoiceHints;
-    self.useDyslexieFont.on = [defaults floatForKey:USE_DYSLEXIE_FONT];
+    self.useDyslexieFont.on = [defaults boolForKey:USE_DYSLEXIE_FONT];
     
     self.customBackgroundColorHue = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_HUE]];
     self.customBackgroundColorSaturation = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_SATURATION]];
@@ -118,11 +118,11 @@
         id appingtonCurrentColorInHEX = [NSNull null];
         if (![currentColorInHEX isEqualToString:@"ffffff"]) appingtonCurrentColorInHEX = currentColorInHEX;
 
-        NSString *appingtonPlayOnSelected = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"TRUE" : @"FALSE";
+        NSLog (@"Bool value for defaults %i", [defaults boolForKey:PLAY_WORDS_ON_SELECTION]);
         NSDictionary *customisations = @{
                                          @"background": appingtonCurrentColorInHEX,
                                          @"font": appingtonCurrentFont,
-                                         @"play_on_selected": appingtonPlayOnSelected};
+                                         @"play_on_selected": [NSNumber numberWithBool:[defaults boolForKey:PLAY_WORDS_ON_SELECTION]]};
         [GlobalHelper callAppingtonCustomisationTriggerWith:customisations];
     }
 }
@@ -162,7 +162,7 @@
     [GlobalHelper trackSettingsEventWithAction:@"voiceHintsSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
     //call Appington
     NSDictionary *prompts = @{
-                                     @"enabled": sender.on ? @"TRUE" : @"FALSE"};
+                                     @"enabled": [NSNumber numberWithBool:sender.on]};
     [GlobalHelper callAppingtonPromptsTriggerWith:prompts];
     
 }

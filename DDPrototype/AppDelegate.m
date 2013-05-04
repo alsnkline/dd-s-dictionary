@@ -123,22 +123,19 @@
     }
     if ([[notification name] isEqualToString:@"prompts"])
     {
-        NSDictionary *values=[notification object];
+        NSDictionary *values=notification.userInfo;
         NSLog(@"values coming with the notification %@", values);
 
-        BOOL vForC = NO;
-        if ([[values objectForKey:@"changable"] isEqualToString:@"TRUE"]) vForC = YES;
-        
-        [[NSUserDefaults standardUserDefaults] setBool:vForC forKey:VOICE_HINT_AVAILABLE];
+        BOOL vForChangeable = [[values objectForKey:@"changeable"] boolValue];
+        NSLog(@"value for 'changeable' in notification object %@", [values objectForKey:@"changeable"]);
+        [[NSUserDefaults standardUserDefaults] setBool:vForChangeable forKey:VOICE_HINT_AVAILABLE];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        NSLog(@"value for 'changeable' in notification object %@", [values objectForKey:@"changable"]);
-        
-        NSString *valueForEnabled = [values objectForKey:@"enabled"];
-        NSLog(@"value for 'enable' in notification object %@", valueForEnabled);
+        BOOL vForEnabled = [[values objectForKey:@"enabled"] boolValue];
+        NSLog(@"value for 'enable' in notification object %@", [values objectForKey:@"enabled"]);
         float useVoiceHints = ![[NSUserDefaults standardUserDefaults] floatForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
-        if ([valueForEnabled isEqualToString:@"TRUE"] && !useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be ON, UserDefaults does not");
-        if ([valueForEnabled isEqualToString:@"FALSE"] && useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be OFF, UserDefaults does not");
+        if (vForEnabled && !useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be ON, UserDefaults does not");
+        if (!vForEnabled && useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be OFF, UserDefaults does not");
     }
 }
 
