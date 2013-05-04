@@ -372,7 +372,7 @@
         self.customBackgroundColor = currentDesiredColor;
     }
     
-    self.useDyslexieFont = [defaults floatForKey:USE_DYSLEXIE_FONT];
+    self.useDyslexieFont = [defaults boolForKey:USE_DYSLEXIE_FONT];
     
     if (self.word) {
         [self setUpViewForWord:self.word];

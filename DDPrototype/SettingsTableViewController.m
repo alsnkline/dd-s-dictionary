@@ -52,7 +52,7 @@
     
     self.playOnSelectionSwitch.on = [defaults boolForKey:PLAY_WORDS_ON_SELECTION];
     bool useVoiceHints = ![defaults boolForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
-    //NSLog(@"NOT_USE_VOICE_HINTS %f", [defaults floatForKey:NOT_USE_VOICE_HINTS]);
+    //NSLog(@"NOT_USE_VOICE_HINTS %f", [defaults boolForKey:NOT_USE_VOICE_HINTS]);
     //NSLog(@"useVoiceHints = %f", useVoiceHints);
     self.useVoiceHints.on = useVoiceHints;
     self.useDyslexieFont.on = [defaults boolForKey:USE_DYSLEXIE_FONT];
@@ -103,11 +103,11 @@
         [GlobalHelper trackCustomisationWithAction:actionForGA withLabel:currentColorInHEX withValue:[NSNumber numberWithInt:1]];
         
         //track event with GA to confirm final font choice
-        NSString *currentFont = [defaults floatForKey:USE_DYSLEXIE_FONT] ? @"Dyslexie_Font" : @"System_Font";
+        NSString *currentFont = [defaults boolForKey:USE_DYSLEXIE_FONT] ? @"Dyslexie_Font" : @"System_Font";
         [GlobalHelper trackCustomisationWithAction:@"Font" withLabel:currentFont withValue:[NSNumber numberWithInt:1]];
         
         //track event with GA to confirm final font choice
-        NSString *currentPlayWordOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto_Play" : @"Manual_Play";
+        NSString *currentPlayWordOnSelection = [defaults boolForKey:PLAY_WORDS_ON_SELECTION] ? @"Auto_Play" : @"Manual_Play";
         [GlobalHelper trackCustomisationWithAction:@"PlayOnSelection" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
         
         //Tell Appington that settings has been looked at
@@ -274,7 +274,7 @@
     self.versionLable.text = [NSString stringWithFormat:@"Version: %@",[GlobalHelper version]];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.voiceHintsAvailable = [defaults floatForKey:VOICE_HINT_AVAILABLE];
+    self.voiceHintsAvailable = [defaults boolForKey:VOICE_HINT_AVAILABLE];
     
     if (FORCE_APPINGTON_ON) self.voiceHintsAvailable = YES; //for testing APPINGTON, set in GlobalHelper.h
     

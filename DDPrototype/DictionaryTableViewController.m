@@ -237,9 +237,9 @@
     }
     
     //set value of playWordsOnSelection and useDyslexieFont
-    self.playWordsOnSelection = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
-    if (self.useDyslexieFont != [defaults floatForKey:USE_DYSLEXIE_FONT]) {
-        self.useDyslexieFont = [defaults floatForKey:USE_DYSLEXIE_FONT];
+    self.playWordsOnSelection = [defaults boolForKey:PLAY_WORDS_ON_SELECTION];
+    if (self.useDyslexieFont != [defaults boolForKey:USE_DYSLEXIE_FONT]) {
+        self.useDyslexieFont = [defaults boolForKey:USE_DYSLEXIE_FONT];
         [self.tableView reloadData];
     }
     

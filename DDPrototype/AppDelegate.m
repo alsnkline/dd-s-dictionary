@@ -133,7 +133,7 @@
         
         BOOL vForEnabled = [[values objectForKey:@"enabled"] boolValue]; //could be used to control switch setting, currently just testing for similarity.
         NSLog(@"value for 'enable' in notification object %@", [values objectForKey:@"enabled"]);
-        float useVoiceHints = ![[NSUserDefaults standardUserDefaults] floatForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
+        BOOL useVoiceHints = ![[NSUserDefaults standardUserDefaults] boolForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
         if (vForEnabled && !useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be ON, UserDefaults does not");
         if (!vForEnabled && useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be OFF, UserDefaults does not");
     }
