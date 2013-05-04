@@ -50,12 +50,11 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    //self.voiceHintsAvailable = [defaults floatForKey:VOICE_HINT_AVAILABLE];
-    //self.voiceHintsAvailable =YES; //too late in view did appear table already loaded.
-    //self.voiceHintsTableCell.hidden = NO;
-    
     self.playOnSelectionSwitch.on = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
-    self.useVoiceHints.on = [defaults floatForKey:USE_VOICE_HINTS];
+    float useVoiceHints = ![defaults floatForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
+    //NSLog(@"NOT_USE_VOICE_HINTS %f", [defaults floatForKey:NOT_USE_VOICE_HINTS]);
+    //NSLog(@"useVoiceHints = %f", useVoiceHints);
+    self.useVoiceHints.on = useVoiceHints;
     self.useDyslexieFont.on = [defaults floatForKey:USE_DYSLEXIE_FONT];
     
     self.customBackgroundColorHue = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_HUE]];
@@ -151,8 +150,12 @@
 
 - (IBAction)voiceHintsSwitchChanged:(UISwitch *)sender
 {
-    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:USE_VOICE_HINTS];
+    BOOL useVoiceHints = sender.on;  //inverting switch logic to get default behavior to be ON
+    //NSLog(@"useVoiceHints = %i", useVoiceHints);
+    //NSLog(@"NOT_USE_VOICE_HINTS = %i", !useVoiceHints);
+    [[NSUserDefaults standardUserDefaults] setBool:!useVoiceHints forKey:NOT_USE_VOICE_HINTS];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     
     //track event with GA
     NSString *switchSetting = sender.on ? @"ON" : @"OFF";
