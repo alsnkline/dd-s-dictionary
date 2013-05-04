@@ -12,6 +12,7 @@
 #import "GDataXMLNode.h"
 #import "Word+Create.h"
 #import "DictionarySetupViewController.h"
+#import "NSUserDefaultKeys.h"
 #import <AudioToolbox/AudioToolbox.h>  //for system sounds
 #import <AVFoundation/AVFoundation.h> //for audioPlayer
 
@@ -120,12 +121,20 @@
         NSString *descriptionForNotificationObject = [[notification object] description];
         [GlobalHelper trackAppingtonEventWithAction:@"audio_start" withLabel:descriptionForNotificationObject withValue:[NSNumber numberWithInt:1]];
     }
-    if ([[notification name] isEqualToString:@"in_app_purchase"])
+    if ([[notification name] isEqualToString:@"prompts"])
     {
         NSDictionary *values=[notification object];
         NSLog(@"values coming with the notification %@", values);
-        NSString *valueForItem = [values objectForKey:@"item"];
-        NSLog(@"value for 'item' in notification object %@", valueForItem);
+        NSString *valueForChangable = [values objectForKey:@"changable"];
+        BOOL vForC = NO;
+        if ([valueForChangable isEqualToString:@"TRUE"]) vForC = YES;
+        
+        [[NSUserDefaults standardUserDefaults] setBool:vForC forKey:VOICE_HINT_AVAILABLE];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        NSLog(@"value for 'changeable' in notification object %@", valueForChangable);
+        NSString *valueForEnabled = [values objectForKey:@"enabled"];
+        NSLog(@"value for 'enable' in notification object %@", valueForEnabled);
         //        [MyController start_iap_with_item:[values objectForKey:@"item"]];
     }
 }

@@ -13,12 +13,16 @@
 #import "DisplayWordViewController.h"
 
 @interface SettingsTableViewController () <MFMailComposeViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UISwitch *playOnSelectionSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *useVoiceHints;
 @property (weak, nonatomic) IBOutlet UISwitch *useDyslexieFont;
 @property (weak, nonatomic) IBOutlet UISlider *backgroundHueSlider;
 @property (weak, nonatomic) IBOutlet UISlider *backgroundSaturationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *versionLable;
 @property (weak, nonatomic) IBOutlet UILabel *customBackgroundColorLable;
+@property (weak, nonatomic) IBOutlet UITableViewCell *voiceHintsTableCell;
+@property (nonatomic) BOOL voiceHintsAvailable;
 @property (nonatomic, strong) NSIndexPath *selectedCellIndexPath;
 @property (nonatomic, strong) NSNumber *customBackgroundColorHue;
 @property (nonatomic, strong) NSNumber *customBackgroundColorSaturation;
@@ -28,6 +32,7 @@
 
 @implementation SettingsTableViewController
 @synthesize playOnSelectionSwitch = _playOnSelectionSwitch;
+@synthesize useVoiceHints =_useVoiceHints;
 @synthesize useDyslexieFont = _useDyslexieFont;
 @synthesize backgroundHueSlider = _backgroundHueSlider;
 @synthesize backgroundSaturationSlider = _backgroundSaturationSlider;
@@ -45,7 +50,12 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    //self.voiceHintsAvailable = [defaults floatForKey:VOICE_HINT_AVAILABLE];
+    //self.voiceHintsAvailable =YES; //too late in view did appear table already loaded.
+    //self.voiceHintsTableCell.hidden = NO;
+    
     self.playOnSelectionSwitch.on = [defaults floatForKey:PLAY_WORDS_ON_SELECTION];
+    self.useVoiceHints.on = [defaults floatForKey:USE_VOICE_HINTS];
     self.useDyslexieFont.on = [defaults floatForKey:USE_DYSLEXIE_FONT];
     
     self.customBackgroundColorHue = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_HUE]];
@@ -73,6 +83,7 @@
 {
 //    NSLog(@"VDD viewController stack = %@", self.navigationController.viewControllers);
    
+    //reporting to partners only when exiting settings back to dictionary (as opposed to into small print, about, or other.
     //could be in viewWillDisappear, viewController stack seems the same.
     NSArray *viewControllers = self.navigationController.viewControllers;
 //    NSLog(@"index of self on viewControllers %ld", (unsigned long)[viewControllers indexOfObject:self]); //strange this wasn't logging what I expected, always showed 0 as the settings view was first in list, but code seemed to work. http://stackoverflow.com/questions/1816614/viewwilldisappear-determine-whether-view-controller-is-being-popped-or-is-showi
@@ -101,9 +112,18 @@
         [GlobalHelper trackCustomisationWithAction:@"PlayOnSelection" withLabel:currentPlayWordOnSelection withValue:[NSNumber numberWithInt:1]];
         
         //Tell Appington that settings has been looked at
+        //set values to NSNull if they are at default
+        id appingtonCurrentFont = [NSNull null];
+        if (![currentFont isEqualToString:@"System_Font"]) appingtonCurrentFont = currentFont;
+        
+        id appingtonCurrentColorInHEX = [NSNull null];
+        if (![currentColorInHEX isEqualToString:@"ffffff"]) appingtonCurrentColorInHEX = currentColorInHEX;
+
+        NSString *appingtonPlayOnSelected = [defaults floatForKey:PLAY_WORDS_ON_SELECTION] ? @"TRUE" : @"FALSE";
         NSDictionary *customisations = @{
-                                         @"background": currentColorInHEX,
-                                         @"font": currentFont};
+                                         @"background": appingtonCurrentColorInHEX,
+                                         @"font": appingtonCurrentFont,
+                                         @"play_on_selected": appingtonPlayOnSelected};
         [GlobalHelper callAppingtonCustomisationTriggerWith:customisations];
     }
 }
@@ -128,6 +148,22 @@
     [GlobalHelper trackSettingsEventWithAction:@"playOnSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
 
 }
+
+- (IBAction)voiceHintsSwitchChanged:(UISwitch *)sender
+{
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:USE_VOICE_HINTS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //track event with GA
+    NSString *switchSetting = sender.on ? @"ON" : @"OFF";
+    [GlobalHelper trackSettingsEventWithAction:@"voiceHintsSelectionChanged" withLabel:switchSetting withValue:[NSNumber numberWithInt:1]];
+    //call Appington
+    NSDictionary *prompts = @{
+                                     @"enabled": sender.on ? @"TRUE" : @"FALSE"};
+    [GlobalHelper callAppingtonPromptsTriggerWith:prompts];
+    
+}
+
 
 - (IBAction)useDyslexieFontSwitchChanged:(UISwitch *)sender
 {
@@ -233,6 +269,17 @@
 {
     [super viewDidLoad];
     self.versionLable.text = [NSString stringWithFormat:@"Version: %@",[GlobalHelper version]];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.voiceHintsAvailable = [defaults floatForKey:VOICE_HINT_AVAILABLE];
+    
+    if (FORCE_APPINGTON_ON) self.voiceHintsAvailable = YES; //for testing APPINGTON, set in GlobalHelper.h
+    
+    if (self.voiceHintsAvailable) {
+        self.voiceHintsTableCell.hidden = NO;
+    } else {
+        self.voiceHintsTableCell.hidden = YES;
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -245,6 +292,8 @@
 {
     [self setPlayOnSelectionSwitch:nil];
     [self setVersionLable:nil];
+    [self setVoiceHintsTableCell:nil];
+    [self setUseVoiceHints:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -322,6 +371,15 @@
 
 #pragma mark - Table view delegate
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath isEqual:[NSIndexPath indexPathForItem:1 inSection:0]] && !self.voiceHintsAvailable) {
+        return 0;
+    } else {
+        return 45;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = self.customBackgroundColor;
@@ -390,7 +448,7 @@
                 }
                 case 1: {
                     //small print selected.
-                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
+                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrintv2" ofType:@"html"];
                     
                     if ([localFileManager fileExistsAtPath:path]) { //avoid crash if file changes and forgot to clean build :-)
                         [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];

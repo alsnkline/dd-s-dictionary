@@ -20,6 +20,8 @@
 #define FORCE_REPROCESS NO          //used for testing to force dictionary reprocess
 #define FAKE_NEW_VERSION YES        //used for testing to force dictionary correction check
 
+#define FORCE_APPINGTON_ON NO      // must be NO for ship
+
 
 
 @interface GlobalHelper : NSObject
@@ -28,6 +30,7 @@
 + (void) callAppingtonWithTrigger:(NSString *)trigger andValues:(NSDictionary *)controlValues;
 + (void) callAppingtonCustomisationTriggerWith:(NSDictionary *)controlValues;
 + (void) callAppingtonPronouncationTriggerWith:(NSDictionary *)controlValues;
++ (void) callAppingtonPromptsTriggerWith:(NSDictionary *)controlValues;
 + (void) callAppingtonInteractionModeTriggerWithModeName:(NSString *)mode_name andWord:(NSString *)word;
 
 + (void) sendView:(NSString *)viewNameForGA;

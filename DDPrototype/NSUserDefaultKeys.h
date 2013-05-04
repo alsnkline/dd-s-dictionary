@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define PLAY_WORDS_ON_SELECTION @"DDPrototype.PlayWordsOnSelection"
+#define VOICE_HINT_AVAILABLE @"DDPrototype.voiceHintsAvailable"
+#define USE_VOICE_HINTS @"DDPrototype.UseVoiceHints"
 #define USE_DYSLEXIE_FONT @"DDPrototype.UseDyslexieFont"
 #define BACKGROUND_COLOR_HUE @"DDPrototype.BackgroundColorHue"
 #define BACKGROUND_COLOR_SATURATION @"DDPrototype.BackgroundColorSaturation"

@@ -35,6 +35,11 @@
     [GlobalHelper callAppingtonWithTrigger:@"pronounce" andValues:controlValues];
 }
 
++ (void) callAppingtonPromptsTriggerWith:(NSDictionary *)controlValues
+{
+    [GlobalHelper callAppingtonWithTrigger:@"prompts" andValues:controlValues];
+}
+
 + (void) callAppingtonInteractionModeTriggerWithModeName:(NSString *)mode_name andWord:(NSString *)word
 {
     NSDictionary *controlValues;
