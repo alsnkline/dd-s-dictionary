@@ -124,7 +124,7 @@
     if ([[notification name] isEqualToString:@"prompts"])
     {
         NSDictionary *values=notification.userInfo;
-        NSLog(@"values coming with the notification %@", values);
+        //NSLog(@"values coming with the notification %@", values);
 
         BOOL vForChangeable = [[values objectForKey:@"changeable"] boolValue];
         NSLog(@"value for 'changeable' in notification object %@", [values objectForKey:@"changeable"]);
