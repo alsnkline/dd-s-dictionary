@@ -20,7 +20,7 @@
 #define FORCE_REPROCESS NO          //used for testing to force dictionary reprocess
 #define FAKE_NEW_VERSION NO        //used for testing to force dictionary correction check
 
-#define FORCE_APPINGTON_ON NO       // must be NO for ship
+#define TEST_APPINGTON_ON NO       // must be NO for ship
 
 
 
