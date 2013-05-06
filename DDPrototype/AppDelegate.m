@@ -125,17 +125,19 @@
     {
         NSDictionary *values=notification.userInfo;
         //NSLog(@"values coming with the notification %@", values);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
         BOOL vForChangeable = [[values objectForKey:@"changeable"] boolValue];
         NSLog(@"value for 'changeable' in notification object %@", [values objectForKey:@"changeable"]);
-        [[NSUserDefaults standardUserDefaults] setBool:vForChangeable forKey:VOICE_HINT_AVAILABLE];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [defaults setBool:vForChangeable forKey:VOICE_HINT_AVAILABLE];
+        
         
         BOOL vForEnabled = [[values objectForKey:@"enabled"] boolValue]; //could be used to control switch setting, currently just testing for similarity.
         NSLog(@"value for 'enable' in notification object %@", [values objectForKey:@"enabled"]);
-        BOOL useVoiceHints = ![[NSUserDefaults standardUserDefaults] boolForKey:NOT_USE_VOICE_HINTS]; //inverting switch logic to get default behavior to be ON
-        if (vForEnabled && !useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be ON, UserDefaults does not");
-        if (!vForEnabled && useVoiceHints) NSLog(@"Appington thinks Voice Hints switch should be OFF, UserDefaults does not");
+        [defaults setBool:!vForEnabled forKey:NOT_USE_VOICE_HINTS];
+        //inverting switch logic to get default behavior to be ON (although appington is controlling that, so I don't have to tell them about a default setting. Could revert to USE_VOICE_HINTS !
+
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 

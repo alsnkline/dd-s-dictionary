@@ -11,14 +11,6 @@
 
 @implementation GlobalHelper
 
-+ (void) callAppingtonMainTableViewShown {
-//    NSDictionary *controlValues = @{
-//                                    @"event": @"level_start",
-//                                    @"level": @(2)};  //replace with Dictionary displayed in tableview.
-//    [GlobalHelper callAppingtonTriggerWithControlValues:controlValues];
-    NSLog(@"callAppingtonMainTableViewShown called - FIX");
-}
-
 + (void) callAppingtonWithTrigger:(NSString *)trigger andValues:(NSDictionary *)controlValues
 {
     [Appington control:trigger andValues:controlValues];

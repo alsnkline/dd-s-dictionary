@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define PLAY_WORDS_ON_SELECTION @"DDPrototype.PlayWordsOnSelection"
-#define VOICE_HINT_AVAILABLE @"DDPrototype.VoiceHintsAvailable"
+#define VOICE_HINT_AVAILABLE @"DDPrototype.VoiceHintsAvailable"  //appington uses changeable
 #define NOT_USE_VOICE_HINTS @"DDPrototype.NotUseVoiceHints"
 #define USE_DYSLEXIE_FONT @"DDPrototype.UseDyslexieFont"
 #define BACKGROUND_COLOR_HUE @"DDPrototype.BackgroundColorHue"

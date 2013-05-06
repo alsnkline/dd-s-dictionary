@@ -26,7 +26,6 @@
 
 @interface GlobalHelper : NSObject
 
-+ (void) callAppingtonMainTableViewShown;
 + (void) callAppingtonWithTrigger:(NSString *)trigger andValues:(NSDictionary *)controlValues;
 + (void) callAppingtonCustomisationTriggerWith:(NSDictionary *)controlValues;
 + (void) callAppingtonPronouncationTriggerWith:(NSDictionary *)controlValues;

@@ -333,6 +333,7 @@
 
 - (void) callAppingtonWithViewDetails
 {
+    [Appington start];
     if (self.isFTU) [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"ftue" andWord:nil];
     
     DisplayWordViewController *dwvc = [self getSplitViewWithDisplayWordViewController];

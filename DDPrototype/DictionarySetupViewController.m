@@ -111,6 +111,7 @@
     NSString *viewNameForGA = [NSString stringWithFormat:@"Processing: %@",dictionaryDisplayName];
     [GlobalHelper sendView:viewNameForGA];
     //call Appington
+    [Appington start];
     [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"processing_dictionary" andWord:nil];
 }
 
@@ -265,9 +266,8 @@ correctionsOnly:(BOOL)corrections
             NSLog(@"Processing as no dictionary AKA First Time User");
             //track first time user
             [GlobalHelper trackFirstTimeUserWithAction:[GlobalHelper deviceType] withLabel:[GlobalHelper version] withValue:[NSNumber numberWithInt:1]];
-            // Need to pass this back so can trigger Appington ftue after campaign files have finished downloading.
+            // Need to pass this back so can trigger Appington ftue after table view has been loaded.
             *isFTU = YES;
-//            [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"ftue" andWord:nil];
         }
         if (forceReprocess && availableDictionary) NSLog(@"FORCED delete and reprocessing");
         if (!forceReprocess && !availableDictionary) NSLog(@"No Dict AND current schema processed. This state shouldn't arise");
