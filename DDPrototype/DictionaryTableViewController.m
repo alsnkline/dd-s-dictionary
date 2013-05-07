@@ -325,8 +325,8 @@
     } else {
         viewNameForGA = [NSString stringWithFormat:@"Dict Table Shown: %@", self.title];
         
-        //Call Appington event control if self.title is not null
-        if (self.title) [self callAppingtonWithViewDetails];
+        //Call Appington event control
+        [self callAppingtonWithViewDetails];
     }
     [GlobalHelper sendView:viewNameForGA];
 }
@@ -340,8 +340,10 @@
     if (dwvc) {         // we're in an ipad
         NSString *currentlyShowingText = dwvc.spelling.text;
         [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"word_list_view" andWord:currentlyShowingText];
+        if (!self.title) [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"word_list_view" andWord:@"no_dictionary"];
     } else {            // we're in an iPhone
         [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"word_list" andWord:nil];
+        if (!self.title) [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"word_list" andWord:@"no_dictionary"];
     }
 }
 
