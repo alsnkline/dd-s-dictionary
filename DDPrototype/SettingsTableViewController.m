@@ -395,6 +395,7 @@
     self.selectedCellIndexPath = indexPath;
     NSLog(@"selectedCell Tag = %d", selectedCell.tag);
     if (selectedCell.tag  == 3) {
+       // http://stackoverflow.com/questions/3124080/app-store-link-for-rate-review-this-app - extend to encourage app store reviews
         [self sendEmail:selectedCell];
     } else if (selectedCell.tag == 1) {
         [self performSegueWithIdentifier:@"display WebView" sender:selectedCell];

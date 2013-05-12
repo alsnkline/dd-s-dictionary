@@ -45,7 +45,6 @@
 		B18248BB15E0B7EC0093E71F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18248BA15E0B7EC0093E71F /* MessageUI.framework */; };
 		B185FE88171BB60800844CD4 /* GlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B185FE87171BB60800844CD4 /* GlobalHelper.m */; };
 		B18C7B3D16C8043600FCF6D0 /* ErrorsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B18C7B3C16C8043600FCF6D0 /* ErrorsHelper.m */; };
-		B18CD6B417373E290088C8B2 /* libAppington_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18CD6B317373E290088C8B2 /* libAppington_debug.a */; };
 		B18CEFE217178FE1006FF74E /* Dyslexie_a_Italic_LEDU_1044_IN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B18CEFE117178FE1006FF74E /* Dyslexie_a_Italic_LEDU_1044_IN.ttf */; };
 		B18E40A416AB35D200D346A6 /* htmlPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E40A316AB35D200D346A6 /* htmlPageViewController.m */; };
 		B18E40AE16AB547A00D346A6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18E40AD16AB547A00D346A6 /* SystemConfiguration.framework */; };
@@ -57,6 +56,7 @@
 		B18FE22D16FBB7BA00123B63 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22C16FBB7BA00123B63 /* Dictionary.m */; };
 		B18FE23016FBB7BA00123B63 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22F16FBB7BA00123B63 /* Word.m */; };
 		B18FE23316FBB7BA00123B63 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE23216FBB7BA00123B63 /* Pronunciation.m */; };
+		B190CA83173F33FE00275784 /* libAppington.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B190CA82173F33FE00275784 /* libAppington.a */; };
 		B191B62516D01E57008BDDD5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B191B62416D01E57008BDDD5 /* QuartzCore.framework */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
@@ -124,7 +124,6 @@
 		B185FE87171BB60800844CD4 /* GlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalHelper.m; sourceTree = "<group>"; };
 		B18C7B3B16C8043600FCF6D0 /* ErrorsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorsHelper.h; sourceTree = "<group>"; };
 		B18C7B3C16C8043600FCF6D0 /* ErrorsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorsHelper.m; sourceTree = "<group>"; };
-		B18CD6B317373E290088C8B2 /* libAppington_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington_debug.a; sourceTree = "<group>"; };
 		B18CEFE117178FE1006FF74E /* Dyslexie_a_Italic_LEDU_1044_IN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dyslexie_a_Italic_LEDU_1044_IN.ttf; sourceTree = "<group>"; };
 		B18E40A216AB35D200D346A6 /* htmlPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = htmlPageViewController.h; sourceTree = "<group>"; };
 		B18E40A316AB35D200D346A6 /* htmlPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = htmlPageViewController.m; sourceTree = "<group>"; };
@@ -147,6 +146,7 @@
 		B18FE22F16FBB7BA00123B63 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B18FE23116FBB7BA00123B63 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
 		B18FE23216FBB7BA00123B63 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
+		B190CA82173F33FE00275784 /* libAppington.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington.a; sourceTree = "<group>"; };
 		B191B62416D01E57008BDDD5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 				B178606415962B3D0047D631 /* Foundation.framework in Frameworks */,
 				B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */,
 				B159CB52172A2B29006AC874 /* libGoogleAnalytics.a in Frameworks */,
-				B18CD6B417373E290088C8B2 /* libAppington_debug.a in Frameworks */,
+				B190CA83173F33FE00275784 /* libAppington.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				B1EFAB16171B7A9E00249138 /* Appington.h */,
-				B18CD6B317373E290088C8B2 /* libAppington_debug.a */,
+				B190CA82173F33FE00275784 /* libAppington.a */,
 				B1EFAB18171B7ABC00249138 /* legal_agreement.html */,
 			);
 			name = Appington;

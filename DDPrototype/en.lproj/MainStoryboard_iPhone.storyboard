@@ -20,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHx-TB-VgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6" y="157"/>
+            <point key="canvasLocation" x="-3" y="819"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1el-0p-N3J">
@@ -36,6 +36,7 @@
                     <connections>
                         <segue destination="gsi-cp-sMY" kind="relationship" relationship="viewControllers" id="4wp-hP-rHN"/>
                         <segue destination="aG5-J6-usw" kind="relationship" relationship="viewControllers" id="YcI-PC-m6b"/>
+                        <segue destination="Ka7-c1-9Dl" kind="relationship" relationship="viewControllers" id="Vxw-z1-Rhk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZb-eo-Qdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -310,7 +311,7 @@ All rights reserved.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkP-Nj-Lmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="489" y="157"/>
+            <point key="canvasLocation" x="492" y="819"/>
         </scene>
         <!--Html Page View Controller - About-->
         <scene sceneID="QsL-P1-oeT">
@@ -335,7 +336,7 @@ All rights reserved.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rC-ww-4aR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960" y="157"/>
+            <point key="canvasLocation" x="963" y="819"/>
         </scene>
         <!--Dictionary Table View Controller-->
         <scene sceneID="nlg-oJ-eEV">
@@ -381,6 +382,7 @@ All rights reserved.</string>
                     <navigationItem key="navigationItem" id="ySC-MO-Ce6"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="searchBar" destination="JWK-kH-DtA" id="jUI-mW-lHk"/>
                         <outlet property="searchDisplayController" destination="G5U-tc-t5m" id="AHw-zn-4q4"/>
                         <segue destination="lg5-ZE-Q8V" kind="push" identifier="Word Selected" id="TRg-pe-YPE"/>
                     </connections>
@@ -397,6 +399,137 @@ All rights reserved.</string>
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="480" y="-489"/>
+        </scene>
+        <!--Table View Controller - Fun With Words-->
+        <scene sceneID="apV-wH-GHa">
+            <objects>
+                <tableViewController id="YZI-5v-P8c" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bqM-al-SOY">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Word Types" id="Itb-fD-QPH">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="AYk-kD-Ael" style="IBUITableViewCellStyleDefault" id="Fn8-PQ-A8K">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Homophones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AYk-kD-Ael">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="cAt-Js-Tab" style="IBUITableViewCellStyleDefault" id="6wT-Y5-fkE">
+                                        <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Heteronyms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cAt-Js-Tab">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Word groups" id="9Y6-91-MLs">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="ysc-Yk-lfL" style="IBUITableViewCellStyleDefault" id="Hto-kB-CfU">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="'tion'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ysc-Yk-lfL">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="n9c-2C-pZt" style="IBUITableViewCellStyleDefault" id="LLe-it-jfT">
+                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="'ould'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9c-2C-pZt">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Cyt-Qd-E2i" style="IBUITableViewCellStyleDefault" id="InQ-pF-Yom">
+                                        <rect key="frame" x="0.0" y="220" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="'ight'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cyt-Qd-E2i">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Fun With Words" id="0Rl-dJ-czg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZ7-bL-egn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480" y="140"/>
+        </scene>
+        <!--Navigation Controller - Fun-->
+        <scene sceneID="fdR-20-RlL">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Ka7-c1-9Dl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Fun" id="fHi-3l-3h5"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FMx-Lb-uYg">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="YZI-5v-P8c" kind="relationship" relationship="rootViewController" id="zpQ-SZ-kro"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wKX-na-sid" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3" y="140"/>
         </scene>
         <!--Setup Or Main View Controller-->
         <scene sceneID="YKd-BM-Piy">
@@ -622,6 +755,68 @@ All rights reserved.</string>
         <image name="resources.bundle/Images/DyDiListen72-72.png" width="16" height="16"/>
         <image name="resources.bundle/Images/DyDiWrite32-32.png" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="DictionarySetupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionarySetupViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dictionaryName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
+            </relationships>
+        </class>
+        <class className="DictionaryTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DictionaryTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="DisplayWordViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DisplayWordViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="homoymnButtonPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="listenToWord:"/>
+                <relationship kind="outlet" name="heteronymListenButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton1" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton2" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton3" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homonymButton4" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="spelling" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="wordView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="GAITrackedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GAITrackedViewController.h"/>
+        </class>
+        <class className="SettingsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundHueSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="backgroundSaturationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="customBackgroundColorLable" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playOnSelectionSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="useDyslexieFont" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="useVoiceHints" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="versionLable" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="voiceHintsTableCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="SetupOrMainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetupOrMainViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="setupOrTable" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="htmlPageViewController" superclassName="GAITrackedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/htmlPageViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

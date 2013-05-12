@@ -19,6 +19,9 @@
 @property (nonatomic) BOOL playWordsOnSelection;
 @property (nonatomic) BOOL useDyslexieFont;
 @property (nonatomic) BOOL settingUpDictionary;
+@property (nonatomic) BOOL tableViewFromStoryBoardHasBeenSetup;
+@property (nonatomic) BOOL searchTableViewFromStoryBoardHasBeenSetup;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) UIColor *customBackgroundColor;
 @property (nonatomic, strong) UIPopoverController *popoverController;  //used to track the start up popover in iPad
 @property (nonatomic, strong) DictionarySetupViewController *dsvc; //used to track the start up vc in iPhone as there is no popover
@@ -33,6 +36,9 @@
 @synthesize useDyslexieFont = _useDyslexieFont;
 @synthesize isFTU = _isFTU;
 @synthesize settingUpDictionary = _settingUpDictionary;
+@synthesize tableViewFromStoryBoardHasBeenSetup = _tableViewFromStoryBoardHasBeenSetup;
+@synthesize searchTableViewFromStoryBoardHasBeenSetup = _searchTableViewFromStoryBoardHasBeenSetup;
+@synthesize searchBar = _searchBar;
 @synthesize customBackgroundColor = _backgroundColor;
 @synthesize popoverController;
 @synthesize dsvc = _dsvc;
@@ -184,11 +190,12 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
 {
+//    [self setupSearchBarAboveTableView]; //add back in to get somewhat close to a search bar stuck to the top of the table
     tableView.backgroundColor = self.customBackgroundColor;
     tableView.rowHeight = 55.0f; // setting row height on the search results table to match the main table.
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)setupSearchBarAboveTableView
 {
     /* added when I was considering showing the search bar all the time.
      http://stackoverflow.com/questions/9340345/keep-uisearchbar-visible-even-if-user-is-sliding-down and
@@ -200,27 +207,81 @@
      if you ever want to revisit that idea.
      View Will appear is too early view changes are overridden here.
      */
-//    NSLog(@"TableView frame 4: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
-//    
-//    CGRect newFrame = CGRectMake(0, 44, self.tableView.bounds.size.width, self.tableView.bounds.size.height-44);
-//    self.tableView.frame = newFrame;
-//    
-////    CGRect newFrame2 = CGRectMake(0, 0, self.tableView.tableHeaderView.bounds.size.width, 0);
-////    self.tableView.tableHeaderView.bounds = newFrame2;
-//    
-//    NSLog(@"TableView frame 4: %f, %f, %f, %f", self.searchDisplayController.searchBar.frame.origin.x, self.searchDisplayController.searchBar.frame.origin.y, self.searchDisplayController.searchBar.frame.size.width, self.searchDisplayController.searchBar.frame.size.height);
-//    NSLog(@"TableView frame 4: %f, %f, %f, %f", self.searchDisplayController.searchResultsTableView.bounds.origin.x, self.searchDisplayController.searchResultsTableView.bounds.origin.y, self.searchDisplayController.searchResultsTableView.bounds.size.width, self.searchDisplayController.searchResultsTableView.bounds.size.height);
-//    NSLog(@"searchbar superview = %@", self.searchDisplayController.searchBar.superview);
-//    NSLog(@"tableView superview = %@", self.tableView.superview);
+    if (!self.searchDisplayController.isActive)
+    {
+        //regular view
+        if (!self.tableViewFromStoryBoardHasBeenSetup)
+        {
+            CGRect newFrame = CGRectMake(0, 44, self.tableView.bounds.size.width, self.tableView.bounds.size.height-44);
+            self.tableView.frame = newFrame;
+            self.tableView.tableHeaderView = nil;
+
+            CGRect searchBarFrame = CGRectMake(0, 0, self.tableView.bounds.size.width, 44);
+            self.searchBar.frame = searchBarFrame;
+            [self.tableView.superview addSubview:self.searchBar];
+            
+            self.tableViewFromStoryBoardHasBeenSetup = YES;
+        }
+    } else {
+        //search view
+        if (!self.searchTableViewFromStoryBoardHasBeenSetup)
+        {
+            CGRect searchBarFrame = CGRectMake(0, 44, self.tableView.bounds.size.width, 44);
+            self.searchBar.frame = searchBarFrame;
+            
+            CGRect newFrame = CGRectMake(0, 0, self.navigationController.view.bounds.size.width, self.navigationController.view.bounds.size.height);
+            self.searchDisplayController.searchResultsTableView.frame = newFrame;
+            
+            
+//            [self.searchBar removeFromSuperview];
+            [self.navigationController.view addSubview:self.searchBar];
+            
+            self.searchTableViewFromStoryBoardHasBeenSetup = YES;
+        }
+        
+    }
+//    if (!self.reworkedSelfTableViewFromStoryBoard) {
+//        //First time setup view is called only
+//        NSLog(@"TableView frame 4: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+//        
+//        CGRect newFrame = CGRectMake(0, 1, self.tableView.bounds.size.width, self.tableView.bounds.size.height);
+//        self.tableView.frame = newFrame;
+//        
+//        //    CGRect newFrame2 = CGRectMake(0, 0, self.tableView.tableHeaderView.bounds.size.width, 0);
+//        //    self.tableView.tableHeaderView.bounds = newFrame2;
+//        
+//        NSLog(@"TableView Search Bar frame 4: %f, %f, %f, %f", self.searchDisplayController.searchBar.frame.origin.x, self.searchDisplayController.searchBar.frame.origin.y, self.searchDisplayController.searchBar.frame.size.width, self.searchDisplayController.searchBar.frame.size.height);
+//        NSLog(@"TableView Search TableView frame 8: %f, %f, %f, %f", self.searchDisplayController.searchResultsTableView.bounds.origin.x, self.searchDisplayController.searchResultsTableView.bounds.origin.y, self.searchDisplayController.searchResultsTableView.bounds.size.width, self.searchDisplayController.searchResultsTableView.bounds.size.height);
+//        NSLog(@"searchbar superview = %@", self.searchDisplayController.searchBar.superview);
+//        NSLog(@"tableView superview = %@", self.tableView.superview);
+//        
+//        
+//        [self.searchDisplayController.searchBar removeFromSuperview];
+//        [self.tableView.superview addSubview:self.searchDisplayController.searchBar];
+//        CGRect anotherNewFrame = CGRectMake(0, 0, self.searchDisplayController.searchBar.frame.size.width, self.searchDisplayController.searchBar.frame.size.height);
+//        self.searchDisplayController.searchBar.frame = anotherNewFrame;
+//        CGRect yetAnotherNewFrame = CGRectMake(0,self.searchDisplayController.searchBar.bounds.size.height, self.searchDisplayController.searchResultsTableView.frame.size.width, self.searchDisplayController.searchResultsTableView.frame.size.height-self.searchDisplayController.searchBar.bounds.size.height);
+//        self.searchDisplayController.searchResultsTableView.frame = yetAnotherNewFrame;
+//        
+//        NSLog(@"TableView frame 5: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+//        self.reworkedSelfTableViewFromStoryBoard = YES;
 //
-//    
-//    [self.searchDisplayController.searchBar removeFromSuperview];
-//    [self.tableView.superview addSubview:self.searchDisplayController.searchBar];
-//    CGRect anotherNewFrame = CGRectMake(0, 0, self.searchDisplayController.searchBar.frame.size.width, self.searchDisplayController.searchBar.frame.size.height);
-//    self.searchDisplayController.searchBar.frame = anotherNewFrame;
-//    self.searchDisplayController.searchResultsTableView.frame = anotherNewFrame;
-//    
-//    NSLog(@"TableView frame 5: %f, %f, %f, %f", self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height);
+//        [self.searchDisplayController.searchResultsTableView removeFromSuperview];
+//        [self.tableView.superview addSubview:self.searchDisplayController.searchResultsTableView];
+//    }
+    
+}
+
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    self.tableViewFromStoryBoardHasBeenSetup = NO;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+
+//    [self setupSearchBarAboveTableView]; //add back in to get somewhat close to a search bar stuck to the top of the table
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -309,6 +370,7 @@
 
 - (void)viewDidUnload
 {
+    [self setSearchBar:nil];
     [super viewDidUnload];
     self.popoverController = nil;
     self.dsvc = nil;
@@ -422,6 +484,7 @@
     // search is done so get rid of the search FRC and reclaim memory
     self.searchFetchedResultsController.delegate = nil;
     self.searchFetchedResultsController = nil;
+    self.searchTableViewFromStoryBoardHasBeenSetup = NO;
     
     if ([[self fetchedResultsControllerForTableView:self.tableView].fetchedObjects containsObject:self.selectedWord]) {
         NSIndexPath *indexPathOfSelectedWord = [self.fetchedResultsController indexPathForObject:self.selectedWord];
