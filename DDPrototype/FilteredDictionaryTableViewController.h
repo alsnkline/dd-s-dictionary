@@ -12,5 +12,6 @@
 @interface FilteredDictionaryTableViewController : CoreDataTableViewController <ActiveDictionaryFollower>
 
 @property (nonatomic, strong) NSPredicate *filterPredicate;
+@property (nonatomic, strong) NSString *stringForTitle;
 
 @end

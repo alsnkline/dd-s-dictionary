@@ -11,7 +11,7 @@
 #import "Word+Create.h"
 #import "DisplayWordViewController.h"
 
-@interface FilteredDictionaryTableViewController ()
+@interface FilteredDictionaryTableViewController () <DisplayWordViewControllerDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
 @property (nonatomic) BOOL useDyslexieFont;
 @property (nonatomic, strong) UIColor *customBackgroundColor;
@@ -27,6 +27,7 @@
 @synthesize customBackgroundColor = _customBackgroundColor;
 @synthesize selectedWord = _selectedWord;
 @synthesize filterPredicate = _filterPredicate;
+@synthesize stringForTitle = _stringForTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,13 +51,6 @@
                                                                                    cacheName:nil];
 }
 
--(void)setFilterPredicate:(NSPredicate *)filterPredicate
-{
-    if (_filterPredicate != filterPredicate) {
-        _filterPredicate = filterPredicate;
-        
-    }
-}
 
 - (void)setActiveDictionary:(UIManagedDocument *)activeDictionary
 {
@@ -101,6 +95,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Uncomment the following line to preserve selection between presentations.
+    self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.title = self.stringForTitle;
+    
 }
 
 - (void) tellPartnersTableIsVisible
@@ -172,20 +175,14 @@
     [self wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:tableView];
 }
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(Word *)sender
 {
     //used for iphone only
     if ([segue.identifier isEqualToString:@"Fun Word Selected"]) {
         [segue.destinationViewController setWord:self.selectedWord];
-        if (self.playWordsOnSelection) {
-            [segue.destinationViewController setPlayWordsOnSelection:self.playWordsOnSelection];
-        }
-        if (self.customBackgroundColor) {
-            [segue.destinationViewController setCustomBackgroundColor:self.customBackgroundColor];
-        }
-        if (self.useDyslexieFont) {
-            [segue.destinationViewController setUseDyslexieFont:self.useDyslexieFont];
-        }
+        if (self.playWordsOnSelection) [segue.destinationViewController setPlayWordsOnSelection:self.playWordsOnSelection];
+        if (self.customBackgroundColor) [segue.destinationViewController setCustomBackgroundColor:self.customBackgroundColor];
+        if (self.useDyslexieFont) [segue.destinationViewController setUseDyslexieFont:self.useDyslexieFont];
         [segue.destinationViewController setDelegate:self];
     }
 }

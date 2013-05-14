@@ -51,7 +51,7 @@
     //set useDyslexieFont if necessary
     if (self.useDyslexieFont != [defaults boolForKey:USE_DYSLEXIE_FONT]) {
         self.useDyslexieFont = [defaults boolForKey:USE_DYSLEXIE_FONT];
-        [self setCellTextLabelFont];
+        [self setVisibleCellsCellTextLabelFont];
     }
 
 }
@@ -77,14 +77,19 @@
     
 }
 
-- (void) setCellTextLabelFont
+- (void) setVisibleCellsCellTextLabelFont
 {
     NSArray *tableCells = self.tableView.visibleCells;
     for (UITableViewCell *cell in tableCells)
     {
-        cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:18] : [UIFont boldSystemFontOfSize:20];
+        [self setTextLabelFontForCell:cell];
     }
     
+}
+
+- (void) setTextLabelFontForCell:(UITableViewCell *)cell
+{
+    cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:18] : [UIFont boldSystemFontOfSize:20];
 }
 
 
@@ -164,21 +169,22 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = self.customBackgroundColor;
+    [self setTextLabelFontForCell:cell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //need to implement push segue called "Fun Word Selected"
+    //need to implement push segue called "Fun Group Selected"
     
     NSLog(@"Indexpath of Selected Cell = %@", indexPath);
     UITableViewCell *selectedCell = [self.tableView cellForRowAtIndexPath:indexPath];
     
-    [self performSegueWithIdentifier:@"Fun Word Selected" sender:selectedCell];
+    [self performSegueWithIdentifier:@"Fun Group Selected" sender:selectedCell];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Fun Word Selected"]) {
+    if ([segue.identifier isEqualToString:@"Fun Group Selected"]) {
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             UITableViewCell *cell = (UITableViewCell *)sender;
             NSLog(@"Cell Label = %@", cell.textLabel.text);
@@ -193,21 +199,24 @@
             } else if ([cell.textLabel.text isEqualToString:@"heteronyms"]) {
                 switchValue = 1;
                 selectionPredicate = [NSPredicate predicateWithFormat:@"pronunciations.@count > 1"];
-            } else if ([cell.textLabel.text isEqualToString:@"'tion'"]) {
-                switchValue = 2;
-                stringForPredicate = @"tion";
-            } else if ([cell.textLabel.text isEqualToString:@"'ould'"]) {
-                switchValue = 3;
-                stringForPredicate = @"ould";
-            } else if ([cell.textLabel.text isEqualToString:@"'ight'"]) {
-                switchValue = 4;
-                stringForPredicate = @"ight";
+//            } else if ([cell.textLabel.text isEqualToString:@"'tion'"]) {
+//                switchValue = 2;
+//                stringForPredicate = @"tion";
+//            } else if ([cell.textLabel.text isEqualToString:@"'ould'"]) {
+//                switchValue = 3;
+//                stringForPredicate = @"ould";
+//            } else if ([cell.textLabel.text isEqualToString:@"'ight'"]) {
+//                switchValue = 4;
+//                stringForPredicate = @"ight";
             } else {
                 switchValue = 5;
+                NSCharacterSet *charactersToRemove = [NSCharacterSet characterSetWithCharactersInString:@"'"];
+                stringForPredicate = [cell.textLabel.text stringByTrimmingCharactersInSet:charactersToRemove];
             }
             
             if (![stringForPredicate isEqualToString:@""]) selectionPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", stringForPredicate];
             NSLog(@"predicate = %@", selectionPredicate);
+            [segue.destinationViewController setStringForTitle:cell.textLabel.text];
             [segue.destinationViewController setFilterPredicate:selectionPredicate];
             [segue.destinationViewController setActiveDictionary:self.activeDictionary];
             [segue.destinationViewController setCustomBackgroundColor:self.customBackgroundColor];
