@@ -39,7 +39,7 @@
 @synthesize tableViewFromStoryBoardHasBeenSetup = _tableViewFromStoryBoardHasBeenSetup;
 @synthesize searchTableViewFromStoryBoardHasBeenSetup = _searchTableViewFromStoryBoardHasBeenSetup;
 @synthesize searchBar = _searchBar;
-@synthesize customBackgroundColor = _backgroundColor;
+@synthesize customBackgroundColor = _customBackgroundColor;
 @synthesize popoverController;
 @synthesize dsvc = _dsvc;
 @synthesize selectedWord = _selectedWord;
@@ -285,7 +285,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    //set value of backgroundColour
+    //set value of backgroundColor
     self.customBackgroundColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
     if ([self.tableView indexPathForSelectedRow]) {
         // we have to deselect change color and reselect or we get the old color showing up when the selection is changed.
@@ -830,19 +830,17 @@
 - (void) wordSelectedAtIndexPath:(NSIndexPath *)indexPath fromTableView:(UITableView *)tableView
 {
     
-    Word *selectedWord = [[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath];
+    self.selectedWord = [[self fetchedResultsControllerForTableView:tableView] objectAtIndexPath:indexPath];
     
     if ([self getSplitViewWithDisplayWordViewController]) { //iPad
         DisplayWordViewController *dwvc = [self getSplitViewWithDisplayWordViewController];
-        dwvc.word = selectedWord;
-        self.selectedWord = selectedWord;
+        dwvc.word = self.selectedWord;
         if (self.playWordsOnSelection) {
-            [dwvc playAllWords:selectedWord.pronunciations];
+            [dwvc playAllWords:self.selectedWord.pronunciations];
         }
         [self callAppingtonWithViewDetails];   //all iPad appington call handled in DictionaryTableViewController class
     } else { //iPhone (passing playWordsOnSelection handled in prepare for Segue)
-        self.selectedWord = selectedWord;
-        [self performSegueWithIdentifier:@"Word Selected" sender:selectedWord];
+        [self performSegueWithIdentifier:@"Word Selected" sender:self.selectedWord];
     }
 }
 

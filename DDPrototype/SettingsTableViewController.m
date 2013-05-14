@@ -56,6 +56,7 @@
     //NSLog(@"useVoiceHints = %f", useVoiceHints);
     self.useVoiceHints.on = useVoiceHints;
     self.useDyslexieFont.on = [defaults boolForKey:USE_DYSLEXIE_FONT];
+//    [self setCellTextLabelFont]; //doesn't get the label for the controls - seems large
     
     self.customBackgroundColorHue = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_HUE]];
     self.customBackgroundColorSaturation = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_SATURATION]];
@@ -137,6 +138,16 @@
 
 }
 
+- (void) setCellTextLabelFont
+{
+    NSArray *tableCells = self.tableView.visibleCells;
+    for (UITableViewCell *cell in tableCells)
+    {
+        cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:18] : [UIFont boldSystemFontOfSize:20];
+    }
+    
+}
+
 - (IBAction)playOnSelectionSwitchChanged:(UISwitch *)sender 
 {
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:PLAY_WORDS_ON_SELECTION];
@@ -173,8 +184,8 @@
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:USE_DYSLEXIE_FONT];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if ([self splitViewWithDisplayWordViewController]) {
-        [self splitViewWithDisplayWordViewController].useDyslexieFont = sender.on;
+    if ([self getSplitViewWithDisplayWordViewController]) {
+        [self getSplitViewWithDisplayWordViewController].useDyslexieFont = sender.on;
     }
 
     //track event with GA
@@ -224,8 +235,8 @@
     self.customBackgroundColor = [UIColor colorWithHue:[self.customBackgroundColorHue floatValue]  saturation:[self.customBackgroundColorSaturation floatValue] brightness:1 alpha:1];
     [self setCellBackgroundColor];
     
-    if ([self splitViewWithDisplayWordViewController]) {
-        [self splitViewWithDisplayWordViewController].customBackgroundColor = self.customBackgroundColor;
+    if ([self getSplitViewWithDisplayWordViewController]) {
+        [self getSplitViewWithDisplayWordViewController].customBackgroundColor = self.customBackgroundColor;
     }
         
 //    self.view.backgroundColor = [UIColor colorWithHue:sender.value saturation:.20 brightness:1 alpha:1]; //this changes main table view that is obscured by the gray and the cells backgrounds!
@@ -436,7 +447,8 @@
                     switchValue = 2; //Small Print
                 } else {
                     switchValue = 3;
-                }            }
+                }
+            }
             
             NSFileManager *localFileManager = [[NSFileManager alloc] init];
             switch (switchValue) {
@@ -493,7 +505,7 @@
     }
 }
 
-- (DisplayWordViewController *)splitViewWithDisplayWordViewController
+- (DisplayWordViewController *)getSplitViewWithDisplayWordViewController
 {
     id dwvc = [self.splitViewController.viewControllers lastObject];
     if (![dwvc isKindOfClass:[DisplayWordViewController class]]) {

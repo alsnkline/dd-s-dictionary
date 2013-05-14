@@ -52,6 +52,8 @@
 		B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B116AB71A800D346A6 /* dino114-114.png */; };
 		B18E40B416AB76D500D346A6 /* dino57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B316AB76D500D346A6 /* dino57-57.png */; };
 		B18E76AF16FFBED3009788CB /* ActiveDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E76AE16FFBED2009788CB /* ActiveDictionary.m */; };
+		B18F4AFD17418E94009E386F /* FunWithWordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F4AFC17418E94009E386F /* FunWithWordsTableViewController.m */; };
+		B18F4B00174198FF009E386F /* FilteredDictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F4AFF174198FF009E386F /* FilteredDictionaryTableViewController.m */; };
 		B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F833716C6AF440082D687 /* SetupOrMainViewController.m */; };
 		B18FE22D16FBB7BA00123B63 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22C16FBB7BA00123B63 /* Dictionary.m */; };
 		B18FE23016FBB7BA00123B63 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22F16FBB7BA00123B63 /* Word.m */; };
@@ -138,6 +140,10 @@
 		B18E40B316AB76D500D346A6 /* dino57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino57-57.png"; sourceTree = "<group>"; };
 		B18E76AD16FFBED2009788CB /* ActiveDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveDictionary.h; sourceTree = "<group>"; };
 		B18E76AE16FFBED2009788CB /* ActiveDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveDictionary.m; sourceTree = "<group>"; };
+		B18F4AFB17418E94009E386F /* FunWithWordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunWithWordsTableViewController.h; sourceTree = "<group>"; };
+		B18F4AFC17418E94009E386F /* FunWithWordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunWithWordsTableViewController.m; sourceTree = "<group>"; };
+		B18F4AFE174198FF009E386F /* FilteredDictionaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredDictionaryTableViewController.h; sourceTree = "<group>"; };
+		B18F4AFF174198FF009E386F /* FilteredDictionaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredDictionaryTableViewController.m; sourceTree = "<group>"; };
 		B18F833616C6AF440082D687 /* SetupOrMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupOrMainViewController.h; sourceTree = "<group>"; };
 		B18F833716C6AF440082D687 /* SetupOrMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupOrMainViewController.m; sourceTree = "<group>"; };
 		B18FE22B16FBB7BA00123B63 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
@@ -262,8 +268,12 @@
 				B17CE6BD15980349005A12D3 /* CoreDataTableViewController.m */,
 				B17AAB791596B87F009A5C1D /* DictionaryTableViewController.h */,
 				B17AAB7A1596B87F009A5C1D /* DictionaryTableViewController.m */,
+				B18F4AFE174198FF009E386F /* FilteredDictionaryTableViewController.h */,
+				B18F4AFF174198FF009E386F /* FilteredDictionaryTableViewController.m */,
 				B182489A15E04C7A0093E71F /* SettingsTableViewController.h */,
 				B182489B15E04C7B0093E71F /* SettingsTableViewController.m */,
+				B18F4AFB17418E94009E386F /* FunWithWordsTableViewController.h */,
+				B18F4AFC17418E94009E386F /* FunWithWordsTableViewController.m */,
 				B18E40A216AB35D200D346A6 /* htmlPageViewController.h */,
 				B18E40A316AB35D200D346A6 /* htmlPageViewController.m */,
 				B17CE6BE15980481005A12D3 /* DictionaryHelper.h */,
@@ -451,6 +461,8 @@
 				B18FE23316FBB7BA00123B63 /* Pronunciation.m in Sources */,
 				B18E76AF16FFBED3009788CB /* ActiveDictionary.m in Sources */,
 				B185FE88171BB60800844CD4 /* GlobalHelper.m in Sources */,
+				B18F4AFD17418E94009E386F /* FunWithWordsTableViewController.m in Sources */,
+				B18F4B00174198FF009E386F /* FilteredDictionaryTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
