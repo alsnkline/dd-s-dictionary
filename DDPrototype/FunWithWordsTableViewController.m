@@ -192,7 +192,7 @@
                 selectionPredicate = [NSPredicate predicateWithFormat:@"isHomophone = YES"];
             } else if ([cell.textLabel.text isEqualToString:@"heteronyms"]) {
                 switchValue = 1;
-                selectionPredicate = [NSPredicate predicateWithFormat:@"pronunciations > 1"];
+                selectionPredicate = [NSPredicate predicateWithFormat:@"pronunciations.@count > 1"];
             } else if ([cell.textLabel.text isEqualToString:@"'tion'"]) {
                 switchValue = 2;
                 stringForPredicate = @"tion";
