@@ -80,7 +80,9 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     
-    filterPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];
+//    filterPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];  //for straight contains search
+    NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:searchString];
+    filterPredicate = [NSPredicate predicateWithFormat:@"SELF.doubleMetaphoneCode contains[cd] %@", [doubleMetaphoneCodes objectAtIndex:0]];
     
 //    NSLog(@"searchString for Predicate: %@", searchString),
     NSLog(@"Predicate: %@", filterPredicate);
@@ -725,13 +727,9 @@
         if ([cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG]) [[cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG] removeFromSuperview];
         if ([cell.contentView.subviews count] == 0 ) [cell.contentView addSubview:cell.textLabel]; //don't really need this but seems right and is needed for the log messages to look correct.
         
-        char *primarycode;
-        char *secondarycode;
-        NSString *wordForMetaphone = word.spelling;
-        DoubleMetaphone([wordForMetaphone UTF8String], &primarycode, &secondarycode);
-        NSLog(@"doubleMetaphone code = %s, %s", primarycode, secondarycode);
+        NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:word.spelling];
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%s)", word.spelling, primarycode];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", word.spelling, [doubleMetaphoneCodes lastObject]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        NSLog(@"After reconfigure Cell content view %@", cell.contentView.subviews);
     //    NSLog(@"cell: %@", word.spelling);

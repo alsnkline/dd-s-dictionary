@@ -1,3 +1,11 @@
+/*
+ C implementation of double_metaphone found at http://aspell.net/metaphone/
+ various tweeks:
+ rename classes http://stackoverflow.com/questions/525609/use-c-with-cocoa-instead-of-objective-c
+ moved to single variables between C and objective C http://stackoverflow.com/questions/16552961/bad-exception-after-using-a-c-class-in-ios
+ changed the char * into const char * as per http://stackoverflow.com/questions/1524356/c-deprecated-conversion-from-string-constant-to-char?lq=1
+*/
+
 #ifndef DOUBLE_METAPHONE__H
 #define DOUBLE_METAPHONE__H
 

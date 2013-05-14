@@ -2,7 +2,7 @@
 //  Word.h
 //  DDPrototype
 //
-//  Created by Alison KLINE on 3/21/13.
+//  Created by Alison KLINE on 5/14/13.
 //
 //
 
@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * fetchedResultsSection;
 @property (nonatomic, retain) NSNumber * isHomophone;
 @property (nonatomic, retain) NSString * spelling;
+@property (nonatomic, retain) NSString * doubleMetaphoneCode;
 @property (nonatomic, retain) Dictionary *inDictionary;
 @property (nonatomic, retain) NSSet *pronunciations;
 @end

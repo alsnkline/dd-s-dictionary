@@ -52,12 +52,12 @@
 		B18E40B216AB71A800D346A6 /* dino114-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B116AB71A800D346A6 /* dino114-114.png */; };
 		B18E40B416AB76D500D346A6 /* dino57-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B18E40B316AB76D500D346A6 /* dino57-57.png */; };
 		B18E4A3A1742CB6300F6623E /* double_metaphone.mm in Sources */ = {isa = PBXBuildFile; fileRef = B18E4A381742BB4000F6623E /* double_metaphone.mm */; };
+		B18E4A401742FEB300F6623E /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E4A3F1742FEB300F6623E /* Word.m */; };
 		B18E76AF16FFBED3009788CB /* ActiveDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B18E76AE16FFBED2009788CB /* ActiveDictionary.m */; };
 		B18F4AFD17418E94009E386F /* FunWithWordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F4AFC17418E94009E386F /* FunWithWordsTableViewController.m */; };
 		B18F4B00174198FF009E386F /* FilteredDictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F4AFF174198FF009E386F /* FilteredDictionaryTableViewController.m */; };
 		B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F833716C6AF440082D687 /* SetupOrMainViewController.m */; };
 		B18FE22D16FBB7BA00123B63 /* Dictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22C16FBB7BA00123B63 /* Dictionary.m */; };
-		B18FE23016FBB7BA00123B63 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE22F16FBB7BA00123B63 /* Word.m */; };
 		B18FE23316FBB7BA00123B63 /* Pronunciation.m in Sources */ = {isa = PBXBuildFile; fileRef = B18FE23216FBB7BA00123B63 /* Pronunciation.m */; };
 		B190CA83173F33FE00275784 /* libAppington.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B190CA82173F33FE00275784 /* libAppington.a */; };
 		B191B62516D01E57008BDDD5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B191B62416D01E57008BDDD5 /* QuartzCore.framework */; };
@@ -141,6 +141,8 @@
 		B18E40B316AB76D500D346A6 /* dino57-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dino57-57.png"; sourceTree = "<group>"; };
 		B18E4A361742B9C400F6623E /* double_metaphone.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = double_metaphone.h; sourceTree = "<group>"; };
 		B18E4A381742BB4000F6623E /* double_metaphone.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = double_metaphone.mm; sourceTree = "<group>"; };
+		B18E4A3E1742FEB300F6623E /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		B18E4A3F1742FEB300F6623E /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B18E76AD16FFBED2009788CB /* ActiveDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveDictionary.h; sourceTree = "<group>"; };
 		B18E76AE16FFBED2009788CB /* ActiveDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveDictionary.m; sourceTree = "<group>"; };
 		B18F4AFB17418E94009E386F /* FunWithWordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunWithWordsTableViewController.h; sourceTree = "<group>"; };
@@ -151,8 +153,6 @@
 		B18F833716C6AF440082D687 /* SetupOrMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupOrMainViewController.m; sourceTree = "<group>"; };
 		B18FE22B16FBB7BA00123B63 /* Dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionary.h; sourceTree = "<group>"; };
 		B18FE22C16FBB7BA00123B63 /* Dictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionary.m; sourceTree = "<group>"; };
-		B18FE22E16FBB7BA00123B63 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		B18FE22F16FBB7BA00123B63 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		B18FE23116FBB7BA00123B63 /* Pronunciation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pronunciation.h; sourceTree = "<group>"; };
 		B18FE23216FBB7BA00123B63 /* Pronunciation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pronunciation.m; sourceTree = "<group>"; };
 		B190CA82173F33FE00275784 /* libAppington.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington.a; sourceTree = "<group>"; };
@@ -319,13 +319,13 @@
 		B178608B159638050047D631 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				B18E4A3E1742FEB300F6623E /* Word.h */,
+				B18E4A3F1742FEB300F6623E /* Word.m */,
 				B1786092159638990047D631 /* Dictionary.xcdatamodeld */,
 				B18E76AD16FFBED2009788CB /* ActiveDictionary.h */,
 				B18E76AE16FFBED2009788CB /* ActiveDictionary.m */,
 				B18FE23116FBB7BA00123B63 /* Pronunciation.h */,
 				B18FE23216FBB7BA00123B63 /* Pronunciation.m */,
-				B18FE22E16FBB7BA00123B63 /* Word.h */,
-				B18FE22F16FBB7BA00123B63 /* Word.m */,
 				B18FE22B16FBB7BA00123B63 /* Dictionary.h */,
 				B18FE22C16FBB7BA00123B63 /* Dictionary.m */,
 				B177D83E15B51B98002A8814 /* Dictionary+Create.h */,
@@ -463,12 +463,12 @@
 				B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */,
 				B18C7B3D16C8043600FCF6D0 /* ErrorsHelper.m in Sources */,
 				B18FE22D16FBB7BA00123B63 /* Dictionary.m in Sources */,
-				B18FE23016FBB7BA00123B63 /* Word.m in Sources */,
 				B18FE23316FBB7BA00123B63 /* Pronunciation.m in Sources */,
 				B18E76AF16FFBED3009788CB /* ActiveDictionary.m in Sources */,
 				B185FE88171BB60800844CD4 /* GlobalHelper.m in Sources */,
 				B18F4AFD17418E94009E386F /* FunWithWordsTableViewController.m in Sources */,
 				B18F4B00174198FF009E386F /* FilteredDictionaryTableViewController.m in Sources */,
+				B18E4A401742FEB300F6623E /* Word.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

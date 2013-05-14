@@ -165,14 +165,10 @@
     
     Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    char *primarycode;
-    char *secondarycode;
-    NSString *wordForMetaphone = word.spelling;
-    DoubleMetaphone([wordForMetaphone UTF8String], &primarycode, &secondarycode);
-    NSLog(@"doubleMetaphone code = %s, %s", primarycode, secondarycode);
+    NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:word.spelling];
     
     cell.textLabel.text = word.spelling;
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%s)", word.spelling, primarycode];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", word.spelling, [doubleMetaphoneCodes lastObject]];
     
     return cell;
 }

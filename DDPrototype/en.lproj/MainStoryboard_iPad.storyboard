@@ -873,7 +873,7 @@ All rights reserved.</string>
                     <navigationItem key="navigationItem" title="Fun With Words" id="RaG-Nt-Ryp"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
-                        <segue destination="aMg-a5-dhz" kind="push" identifier="Fun Word Selected" id="Heg-fL-q4m"/>
+                        <segue destination="aMg-a5-dhz" kind="push" identifier="Fun Group Selected" id="Heg-fL-q4m"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SNS-PA-caD" userLabel="First Responder" sceneMemberID="firstResponder"/>

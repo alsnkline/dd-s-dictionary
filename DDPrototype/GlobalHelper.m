@@ -7,6 +7,7 @@
 //
 
 #import "GlobalHelper.h"
+#import "double_metaphone.h"
 
 
 @implementation GlobalHelper
@@ -129,6 +130,23 @@
 
 + (NSString *) deviceType {
     return [UIDevice currentDevice].model;
+}
+
++ (NSArray *)doubleMetaphoneCodesFor:(NSString *)spelling
+{
+    char *primarycode;
+    char *secondarycode;
+    DoubleMetaphone([spelling UTF8String], &primarycode, &secondarycode);
+//    NSLog(@"doubleMetaphone code = %s, %s", primarycode, secondarycode);
+    
+    NSArray *doubleMetaphoneCodes = [NSArray arrayWithObjects:[NSString stringWithUTF8String:primarycode], [NSString stringWithUTF8String:secondarycode], nil];
+    
+    if(![[doubleMetaphoneCodes objectAtIndex:0] isEqualToString:[doubleMetaphoneCodes objectAtIndex:1]])
+    {
+//        NSLog(@"doubleMetaphoneCodes ARE different %@",doubleMetaphoneCodes);
+    }
+    
+    return doubleMetaphoneCodes;
 }
 
 

@@ -10,6 +10,7 @@
 #import "GDataXMLNode.h"
 #import "GDataXMLNodeHelper.h"
 #import "Pronunciation+Create.h"
+#import "GlobalHelper.h"
 
 @implementation Word (Create)
 
@@ -75,6 +76,12 @@
         word = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:context];
         //                [word setValue:string forKey:@"Word"]; //only if you don't use the subclass
         word.spelling = spelling;
+        NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:spelling];
+        word.doubleMetaphoneCode = [doubleMetaphoneCodes objectAtIndex:0];
+        if(![[doubleMetaphoneCodes objectAtIndex:0] isEqualToString:[doubleMetaphoneCodes objectAtIndex:1]])
+        {
+//            NSLog(@"doubleMetaphoneCodes ARE different %@",doubleMetaphoneCodes);
+        }
         word.fetchedResultsSection = [[spelling substringWithRange:NSRangeFromString(@"0 1")] uppercaseString];
         
 //        [Word processDetailsOfWordXML:wordXML into:word inManagedObjectContext:context];

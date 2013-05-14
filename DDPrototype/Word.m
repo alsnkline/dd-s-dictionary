@@ -2,7 +2,7 @@
 //  Word.m
 //  DDPrototype
 //
-//  Created by Alison KLINE on 3/21/13.
+//  Created by Alison KLINE on 5/14/13.
 //
 //
 
@@ -16,6 +16,7 @@
 @dynamic fetchedResultsSection;
 @dynamic isHomophone;
 @dynamic spelling;
+@dynamic doubleMetaphoneCode;
 @dynamic inDictionary;
 @dynamic pronunciations;
 

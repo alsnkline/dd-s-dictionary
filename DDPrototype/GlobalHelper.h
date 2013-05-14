@@ -47,5 +47,7 @@
 + (NSString*) version;
 + (NSString *) deviceType;
 
++ (NSArray *)doubleMetaphoneCodesFor:(NSString *)spelling;
+
 
 @end
