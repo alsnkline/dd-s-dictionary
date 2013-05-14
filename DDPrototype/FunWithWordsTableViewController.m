@@ -199,6 +199,7 @@
             } else if ([cell.textLabel.text isEqualToString:@"heteronyms"]) {
                 switchValue = 1;
                 selectionPredicate = [NSPredicate predicateWithFormat:@"pronunciations.@count > 1"];
+                // from http://www.raywenderlich.com/14742/core-data-on-ios-5-tutorial-how-to-work-with-relations-and-predicates
 //            } else if ([cell.textLabel.text isEqualToString:@"'tion'"]) {
 //                switchValue = 2;
 //                stringForPredicate = @"tion";

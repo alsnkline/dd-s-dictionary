@@ -10,6 +10,7 @@
 #import "NSUserDefaultKeys.h"
 #import "Word+Create.h"
 #import "DisplayWordViewController.h"
+#import "double_metaphone.h"
 
 @interface FilteredDictionaryTableViewController () <DisplayWordViewControllerDelegate>
 @property (nonatomic) BOOL playWordsOnSelection;
@@ -163,7 +164,15 @@
     cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:20] : [UIFont boldSystemFontOfSize:20];
     
     Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = word.spelling; //moved to get Search to work.
+    
+    char *primarycode;
+    char *secondarycode;
+    NSString *wordForMetaphone = word.spelling;
+    DoubleMetaphone([wordForMetaphone UTF8String], &primarycode, &secondarycode);
+    NSLog(@"doubleMetaphone code = %s, %s", primarycode, secondarycode);
+    
+    cell.textLabel.text = word.spelling;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ (%s)", word.spelling, primarycode];
     
     return cell;
 }

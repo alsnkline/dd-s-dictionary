@@ -13,6 +13,7 @@
 #import "NSUserDefaultKeys.h"
 #import "ErrorsHelper.h"
 #import <QuartzCore/QuartzCore.h>
+#import "double_metaphone.h"
 
 
 @interface DictionaryTableViewController () <DisplayWordViewControllerDelegate, UIPopoverControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
@@ -724,7 +725,13 @@
         if ([cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG]) [[cell.contentView viewWithTag:ADD_WORD_BUTTON_TAG] removeFromSuperview];
         if ([cell.contentView.subviews count] == 0 ) [cell.contentView addSubview:cell.textLabel]; //don't really need this but seems right and is needed for the log messages to look correct.
         
-        cell.textLabel.text = word.spelling;
+        char *primarycode;
+        char *secondarycode;
+        NSString *wordForMetaphone = word.spelling;
+        DoubleMetaphone([wordForMetaphone UTF8String], &primarycode, &secondarycode);
+        NSLog(@"doubleMetaphone code = %s, %s", primarycode, secondarycode);
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%s)", word.spelling, primarycode];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        NSLog(@"After reconfigure Cell content view %@", cell.contentView.subviews);
     //    NSLog(@"cell: %@", word.spelling);
@@ -747,7 +754,7 @@
 
     
 
-//    Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath]; //moved to get search to work.
 //    cell.textLabel.text = word.spelling; //moved to get Search to work.
     
     return cell;
