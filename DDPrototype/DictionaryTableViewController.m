@@ -80,25 +80,43 @@
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     
-//    filterPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];  //for straight contains search
-    NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:searchString];
-    filterPredicate = [NSPredicate predicateWithFormat:@"SELF.doubleMetaphoneCode contains[cd] %@", [doubleMetaphoneCodes objectAtIndex:0]];
+    //contains search on the spelling field (often too precise)
+    NSPredicate *spellingPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", searchString];  //for straight contains search
+    if (LOG_PREDICATE_RESULTS) [GlobalHelper testWordPredicate:spellingPredicate inContext:self.activeDictionary.managedObjectContext];
+    
+    //contains search on doubleMetaphoneCodes both codes (often not precise enough)
+    NSArray *doubleMetaphoneCodesForSearchString = [GlobalHelper doubleMetaphoneCodesFor:searchString];
+    NSMutableArray *parr = [NSMutableArray arrayWithCapacity:4];
+    
+    for (NSString * string in doubleMetaphoneCodesForSearchString) {
+        if ([string length]) {
+            NSPredicate *dMPrimaryCodePredicate = [NSPredicate predicateWithFormat:@"SELF.doubleMetaphonePrimaryCode beginswith[cd] %@", string];
+            [parr addObject:dMPrimaryCodePredicate];
+            if (LOG_PREDICATE_RESULTS) [GlobalHelper testWordPredicate:dMPrimaryCodePredicate inContext:self.activeDictionary.managedObjectContext];
+        
+            NSPredicate *dMSecondaryPredicate = [NSPredicate predicateWithFormat:@"SELF.doubleMetaphoneSecondaryCode beginswith[cd] %@", string];
+            [parr addObject:dMSecondaryPredicate];
+            if (LOG_PREDICATE_RESULTS) [GlobalHelper testWordPredicate:dMSecondaryPredicate inContext:self.activeDictionary.managedObjectContext];
+        }
+    }
+    
+    NSPredicate *compoundDMFilterPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:parr];
+    if (LOG_PREDICATE_RESULTS) [GlobalHelper testWordPredicate:compoundDMFilterPredicate inContext:self.activeDictionary.managedObjectContext];
+
+    
+    //if contains search on spelling doesn't give results switch to the compoundDM search
+    if ([GlobalHelper testWordPredicate:spellingPredicate inContext:self.activeDictionary.managedObjectContext] > 0){
+        filterPredicate = spellingPredicate;
+    } else {
+        filterPredicate = compoundDMFilterPredicate;  //compoundDMFilterPredicate was way too fuzzy, too many hits to be useful
+//        filterPredicate = [NSPredicate predicateWithFormat:@"SELF.doubleMetaphonePrimaryCode contains[cd] %@", [doubleMetaphoneCodesForSearchString lastObject]];
+    }
     
 //    NSLog(@"searchString for Predicate: %@", searchString),
     NSLog(@"Predicate: %@", filterPredicate);
     [fetchRequest setPredicate:filterPredicate];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
-    /*
-     code used to test predicate during search development
-     */
-//    NSError *error = nil;
-//    NSArray *matches = [self.activeDictionary.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//    NSLog(@"number of matches = %d", [matches count]);
-//    for (Word *word in matches) {
-//        NSLog(@"found: %@", word.spelling);
-//    }
-    //NSLog(@"matches for fetchRequest = %@", matches);
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
@@ -729,7 +747,7 @@
         
         NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:word.spelling];
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", word.spelling, [doubleMetaphoneCodes lastObject]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", word.spelling, [GlobalHelper stringForDoubleMetaphoneCodesArray:doubleMetaphoneCodes]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        NSLog(@"After reconfigure Cell content view %@", cell.contentView.subviews);
     //    NSLog(@"cell: %@", word.spelling);

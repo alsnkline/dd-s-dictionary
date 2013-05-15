@@ -1,5 +1,5 @@
 //
-//  Dictionary.h
+//  Group.h
 //  DDPrototype
 //
 //  Created by Alison KLINE on 5/15/13.
@@ -11,14 +11,13 @@
 
 @class Word;
 
-@interface Dictionary : NSManagedObject
+@interface Group : NSManagedObject
 
-@property (nonatomic, retain) NSString * bundleName;
 @property (nonatomic, retain) NSString * displayName;
 @property (nonatomic, retain) NSSet *words;
 @end
 
-@interface Dictionary (CoreDataGeneratedAccessors)
+@interface Group (CoreDataGeneratedAccessors)
 
 - (void)addWordsObject:(Word *)value;
 - (void)removeWordsObject:(Word *)value;

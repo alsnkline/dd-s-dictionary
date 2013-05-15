@@ -5,22 +5,30 @@
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="inDictionary" inverseEntity="Word" syncable="YES"/>
     </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="inGroups" inverseEntity="Word" syncable="YES"/>
+    </entity>
     <entity name="Pronunciation" representedClassName="Pronunciation" syncable="YES">
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="spellings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="pronunciations" inverseEntity="Word" syncable="YES"/>
     </entity>
     <entity name="Word" representedClassName="Word" syncable="YES">
-        <attribute name="doubleMetaphoneCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doubleMetaphonePrimaryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doubleMetaphoneSecondaryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fetchedResultsSection" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isHomophone" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="spelling" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spellingUK" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="inDictionary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dictionary" inverseName="words" inverseEntity="Dictionary" syncable="YES"/>
+        <relationship name="inGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="words" inverseEntity="Group" syncable="YES"/>
         <relationship name="pronunciations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pronunciation" inverseName="spellings" inverseEntity="Pronunciation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Dictionary" positionX="-45" positionY="270" width="128" height="88"/>
-        <element name="Pronunciation" positionX="333" positionY="285" width="128" height="88"/>
-        <element name="Word" positionX="160" positionY="192" width="128" height="133"/>
+        <element name="Dictionary" positionX="-29" positionY="144" width="128" height="88"/>
+        <element name="Pronunciation" positionX="349" positionY="308" width="128" height="88"/>
+        <element name="Word" positionX="160" positionY="192" width="128" height="178"/>
+        <element name="Group" positionX="-56" positionY="333" width="128" height="73"/>
     </elements>
 </model>

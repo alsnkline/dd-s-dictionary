@@ -77,10 +77,9 @@
         //                [word setValue:string forKey:@"Word"]; //only if you don't use the subclass
         word.spelling = spelling;
         NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:spelling];
-        word.doubleMetaphoneCode = [doubleMetaphoneCodes objectAtIndex:0];
-        if(![[doubleMetaphoneCodes objectAtIndex:0] isEqualToString:[doubleMetaphoneCodes objectAtIndex:1]])
-        {
-//            NSLog(@"doubleMetaphoneCodes ARE different %@",doubleMetaphoneCodes);
+        word.doubleMetaphonePrimaryCode = [doubleMetaphoneCodes objectAtIndex:0];
+        if(![[doubleMetaphoneCodes objectAtIndex:0] isEqualToString:[doubleMetaphoneCodes objectAtIndex:1]]) {
+            word.doubleMetaphoneSecondaryCode = [doubleMetaphoneCodes objectAtIndex:1];
         }
         word.fetchedResultsSection = [[spelling substringWithRange:NSRangeFromString(@"0 1")] uppercaseString];
         

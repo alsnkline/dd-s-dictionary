@@ -25,7 +25,7 @@ extern "C" {
 #endif
 
 void
-DoubleMetaphone(const char *str,
+    DoubleMetaphone(const char *str,
                 char **primarycode, char **secondarycode);
 
 #ifdef __cplusplus

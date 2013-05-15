@@ -8,6 +8,7 @@
 
 #import "GlobalHelper.h"
 #import "double_metaphone.h"
+#import "Word+Create.h"
 
 
 @implementation GlobalHelper
@@ -137,16 +138,49 @@
     char *primarycode;
     char *secondarycode;
     DoubleMetaphone([spelling UTF8String], &primarycode, &secondarycode);
-//    NSLog(@"doubleMetaphone code = %s, %s", primarycode, secondarycode);
+    if (PROCESS_VERBOSELY) NSLog(@"doubleMetaphone code = %s, %s", primarycode, secondarycode);
     
-    NSArray *doubleMetaphoneCodes = [NSArray arrayWithObjects:[NSString stringWithUTF8String:primarycode], [NSString stringWithUTF8String:secondarycode], nil];
+    NSMutableArray *doubleMetaphoneCodes = [NSMutableArray arrayWithCapacity:2];
+ 
+    [doubleMetaphoneCodes addObject:[NSString stringWithUTF8String:primarycode]];
     
-    if(![[doubleMetaphoneCodes objectAtIndex:0] isEqualToString:[doubleMetaphoneCodes objectAtIndex:1]])
+    if(![[NSString stringWithUTF8String:primarycode] isEqualToString:[NSString stringWithUTF8String:secondarycode]])
     {
-//        NSLog(@"doubleMetaphoneCodes ARE different %@",doubleMetaphoneCodes);
+        if (PROCESS_VERBOSELY) NSLog(@"doubleMetaphoneCodes ARE different %@",doubleMetaphoneCodes);
+        [doubleMetaphoneCodes addObject:[NSString stringWithUTF8String:secondarycode]];
     }
     
     return doubleMetaphoneCodes;
+}
+
++ (NSString *)stringForDoubleMetaphoneCodesArray:(NSArray *)doubleMetaphoneCodes
+{
+    NSString *rtnString;
+    if ([doubleMetaphoneCodes count] >1) {
+        rtnString = [NSString stringWithFormat:@"%@, %@", [doubleMetaphoneCodes objectAtIndex:0],[doubleMetaphoneCodes objectAtIndex:1]];
+    } else {
+        rtnString = [NSString stringWithFormat:@"%@", [doubleMetaphoneCodes objectAtIndex:0]];
+    }
+    return rtnString;
+}
+
++ (NSUInteger) testWordPredicate:(NSPredicate *)predicate inContext:(NSManagedObjectContext *)context
+{
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:fetchRequest error:&error];
+    if (LOG_PREDICATE_RESULTS) {
+        NSLog(@"number of matches = %d", [matches count]);
+        for (Word *word in matches) {
+            NSLog(@"found: %@", word.spelling);
+        }
+    }
+    return [matches count];
+    
 }
 
 

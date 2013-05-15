@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define PROCESS_VERBOSELY NO
+#define LOG_PREDICATE_RESULTS YES  // must be NO for ship
 
 //    NSLog(@"********************************");
 //    NSLog(@" set OVERRIDE_PROCESSING to NO");
@@ -48,6 +49,8 @@
 + (NSString *) deviceType;
 
 + (NSArray *)doubleMetaphoneCodesFor:(NSString *)spelling;
++ (NSString *)stringForDoubleMetaphoneCodesArray:(NSArray *)doubleMetaphoneCodes;
++ (NSUInteger) testWordPredicate:(NSPredicate *)predicate inContext:(NSManagedObjectContext *)context;
 
 
 @end

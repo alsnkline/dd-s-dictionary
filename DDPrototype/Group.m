@@ -1,18 +1,17 @@
 //
-//  Dictionary.m
+//  Group.m
 //  DDPrototype
 //
 //  Created by Alison KLINE on 5/15/13.
 //
 //
 
-#import "Dictionary.h"
+#import "Group.h"
 #import "Word.h"
 
 
-@implementation Dictionary
+@implementation Group
 
-@dynamic bundleName;
 @dynamic displayName;
 @dynamic words;
 
