@@ -11,6 +11,7 @@
 #import "GDataXMLNodeHelper.h"
 #import "ErrorsHelper.h"
 #import "NSUserDefaultKeys.h"
+#import "GroupHelper.h"
 
 @interface DictionarySetupViewController ()
 
@@ -268,8 +269,12 @@ correctionsOnly:(BOOL)corrections
             [GlobalHelper trackFirstTimeUserWithAction:[GlobalHelper deviceType] withLabel:[GlobalHelper version] withValue:[NSNumber numberWithInt:1]];
             // Need to pass this back so can trigger Appington ftue after table view has been loaded.
             *isFTU = YES;
+            [GroupHelper setProcessedGroupsJSONFileVersionIsReset:YES];
         }
-        if (forceReprocess && availableDictionary) NSLog(@"FORCED delete and reprocessing");
+        if (forceReprocess && availableDictionary) {
+            NSLog(@"FORCED delete and reprocessing");
+            [GroupHelper setProcessedGroupsJSONFileVersionIsReset:YES];
+        }
         if (!forceReprocess && !availableDictionary) NSLog(@"No Dict AND current schema processed. This state shouldn't arise");
         *docProcessType = DOC_PROCESS_REPROCESS;
     } else if (newVersion){

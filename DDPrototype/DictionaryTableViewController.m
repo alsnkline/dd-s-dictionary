@@ -198,6 +198,7 @@
     self.searchDisplayController.searchResultsDelegate = self;
     
     //self.debug = YES;
+    
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -299,7 +300,7 @@
     self.tableViewFromStoryBoardHasBeenSetup = NO;
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated  //most of this could/should be in viewWillAppear! not tellPartners
 {
 
 //    [self setupSearchBarAboveTableView]; //add back in to get somewhat close to a search bar stuck to the top of the table
@@ -324,7 +325,6 @@
         self.useDyslexieFont = [defaults boolForKey:USE_DYSLEXIE_FONT];
         [self.tableView reloadData];
     }
-    
     
     if (!self.activeDictionary) {  //this can't be in view did load - doesn't work as activeDictionary is still nil at that time = problems!
         self.settingUpDictionary = YES;

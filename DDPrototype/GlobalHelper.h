@@ -17,9 +17,9 @@
 //    NSLog(@"*********************************");
 
 //****** set to NO before ship *******
-#define OVERRIDE_PROCESSING NO      // must be NO for ship
-#define FORCE_REPROCESS NO          //used for testing to force dictionary reprocess
-#define FAKE_NEW_VERSION NO        //used for testing to force dictionary correction check
+#define OVERRIDE_PROCESSING NO      // must be NO for ship - this is the master switch for override processing
+#define FORCE_REPROCESS YES          //used for testing to force dictionary reprocess - only effective if OVERRIDE_PROCESSING = YES 
+#define FAKE_NEW_VERSION NO        //used for testing to force dictionary correction check - only effective if OVERRIDE_PROCESSING = YES 
 
 #define TEST_APPINGTON_ON NO       // must be NO for ship
 

@@ -67,29 +67,9 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    //set value of backgroundColour
-    self.customBackgroundColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
-    if ([self.tableView indexPathForSelectedRow]) {
-        // we have to deselect change color and reselect or we get the old color showing up when the selection is changed.
-        NSIndexPath *selectedCell = [self.tableView indexPathForSelectedRow];
-        [self.tableView deselectRowAtIndexPath:selectedCell animated:NO];
-        self.view.backgroundColor = self.customBackgroundColor;
-        [self.tableView selectRowAtIndexPath:selectedCell animated:NO scrollPosition:UITableViewScrollPositionNone];
-    } else {
-        self.view.backgroundColor = self.customBackgroundColor;
-    }
-    
-    //set value of playWordsOnSelection and useDyslexieFont
-    self.playWordsOnSelection = [defaults boolForKey:PLAY_WORDS_ON_SELECTION];
-    if (self.useDyslexieFont != [defaults boolForKey:USE_DYSLEXIE_FONT]) {
-        self.useDyslexieFont = [defaults boolForKey:USE_DYSLEXIE_FONT];
-        [self.tableView reloadData];
-    }
-
+    [self makeViewRespectDefaults]; //needed in case defaults have changed since last shown
 }
 
 - (void)viewDidLoad
@@ -104,7 +84,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.title = self.stringForTitle;
-    
+   
+    [self makeViewRespectDefaults]; // needed here to prevent white 'flashing' not sure why setting background color and font in cellForRowAtIndex didn't fix the problem.
 }
 
 - (void) tellPartnersTableIsVisible
@@ -162,6 +143,7 @@
 //    [self fetchedResultsController:[self fetchedResultsControllerForTableView:tableView] isSearch:!(tableView == self.tableView)  configureCell:cell atIndexPath:indexPath];
     
     cell.textLabel.font = self.useDyslexieFont ? [UIFont fontWithName:@"Dyslexiea-Regular" size:20] : [UIFont boldSystemFontOfSize:20];
+    cell.backgroundColor = self.customBackgroundColor;
     
     Word *word = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -222,6 +204,37 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)makeViewRespectDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //set and use value of backgroundColour
+    if (self.view.backgroundColor != self.customBackgroundColor) {
+        self.customBackgroundColor = [UIColor colorWithHue:[defaults floatForKey:BACKGROUND_COLOR_HUE] saturation:[defaults floatForKey:BACKGROUND_COLOR_SATURATION] brightness:1 alpha:1];
+        if ([self.tableView indexPathForSelectedRow]) {
+            // we have to deselect change color and reselect or we get the old color showing up when the selection is changed.
+            NSIndexPath *selectedCell = [self.tableView indexPathForSelectedRow];
+            [self.tableView deselectRowAtIndexPath:selectedCell animated:NO];
+            self.view.backgroundColor = self.customBackgroundColor;
+            [self.tableView selectRowAtIndexPath:selectedCell animated:NO scrollPosition:UITableViewScrollPositionNone];
+        } else {
+            self.view.backgroundColor = self.customBackgroundColor;
+        }
+    }
+    
+    //set and use value of playWordsOnSelection and useDyslexieFont
+    if (self.playWordsOnSelection != [defaults boolForKey:PLAY_WORDS_ON_SELECTION]) {
+        self.playWordsOnSelection = [defaults boolForKey:PLAY_WORDS_ON_SELECTION];
+    }
+    
+    //set and use value of useDyslexieFont
+    if (self.useDyslexieFont != [defaults boolForKey:USE_DYSLEXIE_FONT]) {
+        self.useDyslexieFont = [defaults boolForKey:USE_DYSLEXIE_FONT];
+        [self.tableView reloadData];
+    }
+
 }
 
 @end

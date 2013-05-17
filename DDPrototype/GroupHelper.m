@@ -7,6 +7,7 @@
 //
 
 #import "GroupHelper.h"
+#import "NSUserDefaultKeys.h"
 
 @implementation GroupHelper
 
@@ -90,6 +91,32 @@
         
         return json;
     }
+}
+
+// candidate for refactoring as these two methods are very similar to 2 other pairs used to manage APPLICATION_VERSION and PROCESSED_DOC_SCHEMA_VERSION_205
++ (BOOL) isNewGroupsJSONFileVersion
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //get version from NSUserDefaults and the current code
+    NSString *version = [GroupHelper latestGroupsJSONfileVersionNumber];
+    NSString *storedVersion = [defaults stringForKey:GROUPS_JSON_DOC_PROCESSED_VERSION];
+    NSLog(@"This version %@, stored version %@", version, storedVersion);
+    
+    BOOL returnValue = ![version isEqualToString:storedVersion];
+    NSLog(@"in New Groups JSON File Version: %@", returnValue ? @"YES" : @"NO");
+    
+    return returnValue;
+}
+
++ (void) setProcessedGroupsJSONFileVersionIsReset:(BOOL)isReset
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *version = [GroupHelper latestGroupsJSONfileVersionNumber];
+    if (isReset) version = nil; //over ride to force reprocess if isReset flag is sent.
+    
+    //set version in NSUserDefaults so next time new version code doesn't run
+    [defaults setObject:version forKey:GROUPS_JSON_DOC_PROCESSED_VERSION];
+    [defaults synchronize];
 }
 
 

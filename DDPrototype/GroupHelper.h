@@ -13,5 +13,7 @@
 + (NSURL *)groupJSONFileDirectory;
 + (NSString *)latestGroupsJSONfileVersionNumber;
 + (NSArray *)contentsOfLatestJSONGroupsFile;
++ (BOOL) isNewGroupsJSONFileVersion;
++ (void) setProcessedGroupsJSONFileVersionIsReset:(BOOL)isReset;
 
 @end

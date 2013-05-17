@@ -63,7 +63,7 @@
     return groups;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -72,20 +72,23 @@
     NSNumber *customBackgroundColorSaturation = [NSNumber numberWithFloat:[defaults floatForKey:BACKGROUND_COLOR_SATURATION]];
     
     self.customBackgroundColor = [UIColor colorWithHue:[customBackgroundColorHue floatValue]  saturation:[customBackgroundColorSaturation floatValue] brightness:1 alpha:1];
-    if ([self.tableView indexPathForSelectedRow]) {
+    
+    NSIndexPath *selectedCell = [self.tableView indexPathForSelectedRow];
+    if (selectedCell) {
         // we have to deselect
-        NSIndexPath *selectedCell = [self.tableView indexPathForSelectedRow];
-        [self.tableView deselectRowAtIndexPath:selectedCell animated:NO];
+        [self.tableView deselectRowAtIndexPath:selectedCell animated:NO]; //not animated so it takes effect immediately
     }
     [self setCellBackgroundColor];
+    if (selectedCell) {
+        [self.tableView selectRowAtIndexPath:selectedCell animated:NO scrollPosition:UITableViewScrollPositionNone]; //not animated so it takes effect immediately
+        [self.tableView deselectRowAtIndexPath:selectedCell animated:YES]; //animated so the user sees it deselect gracefully.
+    }
     
     //set useDyslexieFont if necessary
     if (self.useDyslexieFont != [defaults boolForKey:USE_DYSLEXIE_FONT]) {
         self.useDyslexieFont = [defaults boolForKey:USE_DYSLEXIE_FONT];
         [self setVisibleCellsCellTextLabelFont];
     }
-
-    
 }
 
 - (void)viewDidLoad
@@ -93,7 +96,7 @@
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO; //taking control manually so that the background color change can be done after this.
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -137,30 +140,50 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    NSInteger sectionNumber = 1;
+    if ([self.wordGroups count] > 0) sectionNumber = 2;
+    return sectionNumber;
+}
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section //tweeked when I thought I could mix static and dynamic tables
-//{
-//    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
-//    if (section == 1) count = [self.wordGroups count];
-//    return count;
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger rowCount = 2;
+    if (section == 1) rowCount = [self.wordGroups count];
+    return rowCount;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *titleForSection = nil;
+    if (section == 0) {
+        titleForSection = [NSString stringWithFormat:@"Word types:"];
+    } else if (section == 1) {
+        titleForSection = [NSString stringWithFormat:@"Word groups:"];
+    }
+    return titleForSection;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+
+//    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath]; //used for updating a static cell programatically
     
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"Fun With Words Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    if (cell ==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
     
+    if (section == 0) {
+        if (row == 0) cell.textLabel.text = [NSString stringWithFormat:@"homophones"];
+        if (row == 1) cell.textLabel.text = [NSString stringWithFormat:@"heteronyms"];
+    }
     if (section == 1) {
         Group *groupForCell = [self.wordGroups objectAtIndex:row];
         cell.textLabel.text = groupForCell.displayName;
@@ -262,8 +285,7 @@
             }
             
             if (![stringForPredicate isEqualToString:@""]) selectionPredicate = [NSPredicate predicateWithFormat:@"%@ IN SELF.inGroups.displayName", cell.textLabel.text];
-                //selectionPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", stringForPredicate];
-            
+            //selectionPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", stringForPredicate];
             //selectionPredicate = [NSPredicate predicateWithFormat:@"inGroups.@count > 0"]; //worked
             //selectionPredicate = [NSPredicate predicateWithFormat:@"%@ IN SLEF.inGroups.displayName", cell.textLabel.text];
 
@@ -271,11 +293,12 @@
             NSLog(@"predicate = %@", selectionPredicate);
             if (LOG_PREDICATE_RESULTS) [GlobalHelper testWordPredicate:selectionPredicate inContext:self.activeDictionary.managedObjectContext];
             
+            [segue.destinationViewController setCustomBackgroundColor:self.customBackgroundColor];
+            [segue.destinationViewController setUseDyslexieFont:self.useDyslexieFont];
             [segue.destinationViewController setStringForTitle:cell.textLabel.text];
             [segue.destinationViewController setFilterPredicate:selectionPredicate];
             [segue.destinationViewController setActiveDictionary:self.activeDictionary];
-            [segue.destinationViewController setCustomBackgroundColor:self.customBackgroundColor];
-            [segue.destinationViewController setUseDyslexieFont:self.useDyslexieFont];
+            
             
         }
     }
@@ -283,36 +306,14 @@
 
 - (void)processGroupsFile
 {
-    if ([self isNewGroupsJSONFileVersion]) {
+    if ([GroupHelper isNewGroupsJSONFileVersion]) {
         NSArray *json = [GroupHelper contentsOfLatestJSONGroupsFile];
         [Group processGroupsFile:json inManagedObjectContext:self.activeDictionary.managedObjectContext];
-        [self setProcessedGroupsJSONFileVersion];
+        [GroupHelper setProcessedGroupsJSONFileVersionIsReset:NO];
+        [DictionaryHelper saveDictionary:self.activeDictionary withImDoneDelegate:nil andDsvc:nil];
     }
 }
 
-// candidate for refactoring as these two methods are very similar to 2 other pairs used to manage APPLICATION_VERSION and PROCESSED_DOC_SCHEMA_VERSION_205
-- (BOOL) isNewGroupsJSONFileVersion
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //get version from NSUserDefaults and the current code
-    NSString *version = [GroupHelper latestGroupsJSONfileVersionNumber];
-    NSString *storedVersion = [defaults stringForKey:GROUPS_JSON_DOC_PROCESSED_VERSION];
-    NSLog(@"This version %@, stored version %@", version, storedVersion);
-    
-    BOOL returnValue = ![version isEqualToString:storedVersion];
-    NSLog(@"in New Groups JSON File Version: %@", returnValue ? @"YES" : @"NO");
-    
-    return returnValue;
-}
-
-- (void) setProcessedGroupsJSONFileVersion
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *version = [GroupHelper latestGroupsJSONfileVersionNumber];
-    //set version in NSUserDefaults so next time new version code doesn't run
-    [defaults setObject:version forKey:GROUPS_JSON_DOC_PROCESSED_VERSION];
-    [defaults synchronize];
-}
 
 
 
