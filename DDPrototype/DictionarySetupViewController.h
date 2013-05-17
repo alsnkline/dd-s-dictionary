@@ -20,7 +20,7 @@ typedef enum DocProcessType {DOC_PROCESS_REPROCESS, DOC_PROCESS_CHECK_FOR_CORREC
 @end
 
 @interface DictionarySetupViewController : UIViewController
-@property (nonatomic) BOOL processing;
+@property (nonatomic) BOOL processing;  //flag used in iPad to control whether to display dsvc, not needed if no corrections file.
 @property (nonatomic) BOOL correctionsOnly;
 @property (strong, nonatomic) NSBundle *dictionaryBundle;        //The model for this MVC
 @property (strong, nonatomic) GDataXMLDocument *dictionaryXMLdoc;
@@ -39,6 +39,9 @@ passDictionaryAround:(UIViewController *)rootViewController
 correctionsOnly:(BOOL)corrections;
 - (void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
 + (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType isFTU:(BOOL *)isFTU;
++ (BOOL)isProcessingFinishedInDsvc:(DictionarySetupViewController *)dsvc;
++ (void)keepProcessingWithDsvc:(DictionarySetupViewController *)dsvc;
++ (BOOL) wasProcessingCompleted;
 + (NSString *) stringForLog:(DocProcessType)docProcessType;
 + (BOOL) isNewAppVersion;
 + (void) setProcessedDictionaryAppVersion;

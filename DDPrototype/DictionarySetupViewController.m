@@ -255,6 +255,7 @@ correctionsOnly:(BOOL)corrections
     NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
     BOOL forceReprocess = [DictionarySetupViewController reprocessDictionaryForNewSchema];
     BOOL newVersion = [DictionarySetupViewController isNewAppVersion];
+    BOOL wasProcessingCompleted = [DictionarySetupViewController wasProcessingCompleted];
     
     if (OVERRIDE_PROCESSING) {
         forceReprocess = FORCE_REPROCESS;
@@ -262,20 +263,23 @@ correctionsOnly:(BOOL)corrections
     }
     
     
-    if ( forceReprocess || !availableDictionary) {
+    if ( forceReprocess || !availableDictionary || !wasProcessingCompleted) {
         if (!availableDictionary) {
             NSLog(@"Processing as no dictionary AKA First Time User");
             //track first time user
             [GlobalHelper trackFirstTimeUserWithAction:[GlobalHelper deviceType] withLabel:[GlobalHelper version] withValue:[NSNumber numberWithInt:1]];
             // Need to pass this back so can trigger Appington ftue after table view has been loaded.
             *isFTU = YES;
-            [GroupHelper setProcessedGroupsJSONFileVersionIsReset:YES];
         }
         if (forceReprocess && availableDictionary) {
             NSLog(@"FORCED delete and reprocessing");
-            [GroupHelper setProcessedGroupsJSONFileVersionIsReset:YES];
+        }
+        if (!wasProcessingCompleted) {
+            NSLog(@"processing was INCOMPLETE, reprocessing, have availableDictionary %@", availableDictionary ? @"YES" : @"NO");
         }
         if (!forceReprocess && !availableDictionary) NSLog(@"No Dict AND current schema processed. This state shouldn't arise");
+        
+        [GroupHelper setProcessedGroupsJSONFileVersionIsReset:YES];
         *docProcessType = DOC_PROCESS_REPROCESS;
     } else if (newVersion){
         //set ready for processing
@@ -286,6 +290,44 @@ correctionsOnly:(BOOL)corrections
 
     return availableDictionary;
 }
+
++ (BOOL)isProcessingFinishedInDsvc:(DictionarySetupViewController *)dsvc
+{
+    if ([dsvc.XMLdocsForProcessing count] > 0){
+        return NO;
+    } else {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //set flag to show processing completed
+        [defaults setBool:YES forKey:DICTIONARY_PROCESSING_COMPLETED];
+        NSLog(@"------ PROCESSING COMPLETE -------");
+        return YES;
+    }
+    
+}
+
++ (void)keepProcessingWithDsvc:(DictionarySetupViewController *)dsvc
+{
+    GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
+    if (docForProcess == dsvc.dictionaryXMLdoc) {
+        [dsvc processDoc:docForProcess type:DOC_TYPE_DICTIONARY];
+        NSLog(@"More Dictionary to process");
+    }
+    if (docForProcess == dsvc.correctionsXMLdoc) {
+        [dsvc processDoc:docForProcess type:DOC_TYPE_CORRECTIONS];
+        NSLog(@"More Corrections to process");
+    }
+}
+
++ (BOOL) wasProcessingCompleted
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //check to see if document processing was completed
+    BOOL returnValue = [defaults boolForKey:DICTIONARY_PROCESSING_COMPLETED];
+    NSLog(@"Document processing %@", returnValue ? @"had been completed" : @"had NOT completed");
+    
+    return returnValue;
+}
+
 
 + (NSString *) stringForLog:(DocProcessType)docProcessType
 {

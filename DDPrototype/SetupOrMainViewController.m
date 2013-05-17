@@ -61,6 +61,7 @@
     self.isFTU = isFTU;
     
     NSBundle *dictionaryShippingWithApp = [DictionaryHelper defaultDictionaryBundle];
+    NSLog(@"docProcessType = %@", [DictionarySetupViewController stringForLog:processType]);
     
     switch (processType) {
         case DOC_PROCESS_REPROCESS:
@@ -119,16 +120,8 @@
     
     //processing complete switch to Home Tab Controller - moved to after timer completes in 2.0.4 back from 2.0.5
     
-    if ([dsvc.XMLdocsForProcessing count] >0){
-        GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
-        if (docForProcess == dsvc.dictionaryXMLdoc) {
-            [dsvc processDoc:docForProcess type:DOC_TYPE_DICTIONARY];
-            NSLog(@"More Dictionary to process");
-        }
-        if (docForProcess == dsvc.correctionsXMLdoc) {
-            [dsvc processDoc:docForProcess type:DOC_TYPE_CORRECTIONS];
-            NSLog(@"More Corrections to process");
-        }
+    if (![DictionarySetupViewController isProcessingFinishedInDsvc:dsvc]){
+        [DictionarySetupViewController keepProcessingWithDsvc:dsvc];
     } else {
         NSLog(@"Switching to mainTabController");
         [self switchToHomeTabController];

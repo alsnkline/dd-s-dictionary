@@ -357,7 +357,7 @@
         {
             if (availableDictionary) {
                 //clean out the dictionaries
-                [DictionaryHelper cleanOutDictionaryDirectory];
+                [DictionaryHelper cleanOutDictionaryDirectory];   //needed or forced reprocess wont work
             }
             [self displayViewWhileProcessing:dictionaryShippingWithApp correctionsOnly:NO];
             [DictionarySetupViewController setProcessedDictionaryForNewSchema]; //set schema processed into User Defaults
@@ -449,18 +449,10 @@
 
 - (void)DictionarySetupViewDidCompleteProcessingDictionary:(DictionarySetupViewController *)dsvc
 {
-    if ([dsvc.XMLdocsForProcessing count] >0){
-        GDataXMLDocument *docForProcess = [dsvc.XMLdocsForProcessing lastObject];
-        if (docForProcess == dsvc.dictionaryXMLdoc) {
-            [dsvc processDoc:docForProcess type:DOC_TYPE_DICTIONARY];
-            NSLog(@"More Dictionary to process");
-        }
-        if (docForProcess == dsvc.correctionsXMLdoc) {
-            [dsvc processDoc:docForProcess type:DOC_TYPE_CORRECTIONS];
-            NSLog(@"More Corrections to process");
-        }
+    if (![DictionarySetupViewController isProcessingFinishedInDsvc:dsvc]){
+        [DictionarySetupViewController keepProcessingWithDsvc:dsvc];
     } else {
-    
+        // successfully completed dictionary processing
         if ([self getSplitViewWithDisplayWordViewController]) {
             // iPad
             [self.popoverController dismissPopoverAnimated:YES];
@@ -941,7 +933,7 @@
         }
         
         [dsPopoverC setDelegate:self];
-    } else if (processing) { //iPhone different ways to show UI... replaced with extra UI Nav Controller class
+    } else if (processing) { //iPhone different ways to show UI... replaced with its own UI Nav Controller class SetupOrMainViewController
  //       [self.navigationController pushViewController:self.dsvc animated:YES];
  //       [self presentViewController:self.dsvc animated:YES completion:nil];
         [ErrorsHelper showExplanationForFrozenUI];  //never called now used during development
