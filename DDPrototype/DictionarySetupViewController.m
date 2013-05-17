@@ -253,7 +253,7 @@ correctionsOnly:(BOOL)corrections
     //see if there are any dictionary's already processed
     NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
     BOOL forceReprocess = [DictionarySetupViewController reprocessDictionaryForNewSchema];
-    BOOL newVersion = [DictionarySetupViewController newVersion];
+    BOOL newVersion = [DictionarySetupViewController isNewAppVersion];
     
     if (OVERRIDE_PROCESSING) {
         forceReprocess = FORCE_REPROCESS;
@@ -310,7 +310,7 @@ correctionsOnly:(BOOL)corrections
     return docProcessForLog;
 }
 
-+(BOOL) newVersion
++(BOOL) isNewAppVersion
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //get application version from NSUserDefaults and the current code

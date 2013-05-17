@@ -15,16 +15,14 @@
 @implementation Word (Create)
 
 + (Word *)wordWithSpellingFromGDataXMLElement:(GDataXMLElement *)wordXML
-                             processVerbosely:(BOOL)processVerbosely
                        inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML processVerbosely:processVerbosely];
-    return [Word wordWithSpelling:spelling processVerbosely:processVerbosely inManagedObjectContext:context];
+    NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML];
+    return [Word wordWithSpelling:spelling inManagedObjectContext:context];
 }
 
 + (Word *)wordWithSpelling:(NSString *)spelling
-          processVerbosely:(BOOL)processVerbosely
-  inManagedObjectContext:(NSManagedObjectContext *)context   //method used for checking if word exsists needed during delete
+  inManagedObjectContext:(NSManagedObjectContext *)context   //method used for checking if word exsists needed during delete and group creation
 {
     Word *word = nil;
     
@@ -44,21 +42,20 @@
         word = nil;
     } else {
         word = [matches lastObject];
-        NSLog(@"Word exsisted %@", word.spelling);
+        if (PROCESS_VERBOSELY) NSLog(@"Word existed %@", word.spelling);
     }
-    NSLog(@"Word in dictionary %@", word);
+    if (PROCESS_VERBOSELY) NSLog(@"Word in dictionary %@", word);
     return word;
 }
 
 + (Word *)wordFromGDataXMLElement:(GDataXMLElement *)wordXML
                    processingType:(XMLdocType)docType
-                 processVerbosely:(BOOL)processVerbosely
         inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Word *word = nil;
 //    NSLog(@"GDataXMLElement = %@", wordXML);
 
-    NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML processVerbosely:processVerbosely];
+    NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML];
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
     request.predicate = [NSPredicate predicateWithFormat:@"spelling = %@",spelling];
@@ -78,7 +75,7 @@
         word.spelling = spelling;
         NSArray *doubleMetaphoneCodes = [GlobalHelper doubleMetaphoneCodesFor:spelling];
         word.doubleMetaphonePrimaryCode = [doubleMetaphoneCodes objectAtIndex:0];
-        if(![[doubleMetaphoneCodes objectAtIndex:0] isEqualToString:[doubleMetaphoneCodes objectAtIndex:1]]) {
+        if([doubleMetaphoneCodes count] > 1) {
             word.doubleMetaphoneSecondaryCode = [doubleMetaphoneCodes objectAtIndex:1];
         }
         word.fetchedResultsSection = [[spelling substringWithRange:NSRangeFromString(@"0 1")] uppercaseString];
@@ -87,8 +84,8 @@
 //        NSLog(@"processed word:%@",word.spelling);
         
         
-        [Word processDetailsOfWordXML:wordXML into:word processVerbosely:processVerbosely inManagedObjectContext:context];
-        if (processVerbosely) NSLog(@"processed details of new word:%@",word.spelling);
+        [Word processDetailsOfWordXML:wordXML into:word inManagedObjectContext:context];
+        if (PROCESS_VERBOSELY) NSLog(@"processed details of new word:%@",word.spelling);
         processedNewWord = YES;
 
         
@@ -98,40 +95,39 @@
     
     //reprocessing the word passed in if it is a correction
     if (docType == DOC_TYPE_CORRECTIONS && !processedNewWord) {
-        [Word processDetailsOfWordXML:wordXML into:word processVerbosely:processVerbosely inManagedObjectContext:context];
-        if (processVerbosely) NSLog(@"processed details of corrected word:%@",word.spelling);
+        [Word processDetailsOfWordXML:wordXML into:word inManagedObjectContext:context];
+        if (PROCESS_VERBOSELY) NSLog(@"processed details of corrected word:%@",word.spelling);
     }
     
-    if (processVerbosely) NSLog(@"Word in dictionary %@", word);
+    if (PROCESS_VERBOSELY) NSLog(@"Word in dictionary %@", word);
     
     return word;
 }
 
 + (void) processDetailsOfWordXML:(GDataXMLElement *)wordXML
                             into:(Word *)word
-                processVerbosely:(BOOL)processVerbosely
           inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSString *isHomophone = [GDataXMLNodeHelper singleSubElementForName:@"isHomophone" FromGDataXMLElement:wordXML processVerbosely:processVerbosely];
+    NSString *isHomophone = [GDataXMLNodeHelper singleSubElementForName:@"isHomophone" FromGDataXMLElement:wordXML ];
     word.isHomophone = [isHomophone isEqualToString:@"yes"]? [NSNumber numberWithBool:YES]:[NSNumber numberWithBool:NO];
     
     // set all pronunciations in the word.
     NSArray *XMLPronunciations = [wordXML elementsForName:@"pronunciation"];
     int pronunciationCount = [XMLPronunciations count];
     if (pronunciationCount>1) {
-        if (processVerbosely) NSLog(@"more than 1 pronunciation in XML");
+        if (PROCESS_VERBOSELY) NSLog(@"more than 1 pronunciation in XML");
     }
     
     //        pronunciationCount < 1? pronunciationCount = 1 : pronunciationCount;
     
     NSMutableSet *pronunciations = [NSMutableSet set];
     for (GDataXMLElement *pronunciation in XMLPronunciations) {
-        Pronunciation *pronunciationForElement = [Pronunciation pronunciationFromGDataXMLElement:pronunciation forWord:word processVerbosely:processVerbosely inManagedObjectContext:context];
+        Pronunciation *pronunciationForElement = [Pronunciation pronunciationFromGDataXMLElement:pronunciation forWord:word  inManagedObjectContext:context];
         [pronunciations addObject:pronunciationForElement];
     };
     if ([XMLPronunciations count] == 0) {
         //create pronunciation with unique = spelling
-        Pronunciation *pronunciationForElement = [Pronunciation pronunciationFromString:word.spelling forWord:word processVerbosely:processVerbosely inManagedObjectContext:context];
+        Pronunciation *pronunciationForElement = [Pronunciation pronunciationFromString:word.spelling forWord:word inManagedObjectContext:context];
         [pronunciations addObject:pronunciationForElement];
     }
     word.pronunciations = pronunciations;
@@ -139,14 +135,14 @@
 
 + (void)removeWordWithSpellingFromGDataXMLElement:(GDataXMLElement *)wordXML fromManagedObjectContext:(NSManagedObjectContext *)context
 { //problems with deleting - caused errors during UI doc manage save
-    NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML processVerbosely:YES];
+    NSString *spelling = [GDataXMLNodeHelper singleSubElementForName:@"spelling" FromGDataXMLElement:wordXML];
     [Word removeWordWithSpelling:spelling fromManagedObjectContext:context];
 }
 
 + (void)removeWordWithSpelling:(NSString *)spelling
      fromManagedObjectContext:(NSManagedObjectContext *)context
 {
-    Word *word = [Word wordWithSpelling:spelling processVerbosely:YES inManagedObjectContext:context];
+    Word *word = [Word wordWithSpelling:spelling inManagedObjectContext:context];
     if (word) {
         word.inDictionary = nil;
         word.pronunciations = nil;

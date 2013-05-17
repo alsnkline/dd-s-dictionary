@@ -40,7 +40,7 @@ correctionsOnly:(BOOL)corrections;
 - (void)processDoc:(GDataXMLDocument *)XMLdoc type:(XMLdocType)docType;
 + (NSString *) whatProcessingIsNeeded:(DocProcessType *)docProcessType isFTU:(BOOL *)isFTU;
 + (NSString *) stringForLog:(DocProcessType)docProcessType;
-+ (BOOL) newVersion;
++ (BOOL) isNewAppVersion;
 + (void) setProcessedDictionaryAppVersion;
 + (BOOL) reprocessDictionaryForNewSchema;
 + (void) setProcessedDictionaryForNewSchema;

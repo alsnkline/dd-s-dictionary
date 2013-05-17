@@ -15,17 +15,14 @@
 
 + (Pronunciation *)pronunciationWithFileLocation:(NSString *)fileLocation 
                                        andUnique:(NSString *)unique
-                                processVerbosely:(BOOL)processVerbosely
                           inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (Pronunciation *)pronunciationFromGDataXMLElement:(GDataXMLElement *)pronunciationXML 
                                             forWord:(Word *)word
-                                   processVerbosely:(BOOL)processVerbosely
                              inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (Pronunciation *)pronunciationFromString:(NSString *)string
                                    forWord:(Word *)word
-                          processVerbosely:(BOOL)processVerbosely
                     inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

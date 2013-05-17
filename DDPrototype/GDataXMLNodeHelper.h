@@ -27,8 +27,7 @@ typedef enum XMLdocType {DOC_TYPE_DICTIONARY, DOC_TYPE_CORRECTIONS} XMLdocType;
                       FromXMLDoc:(GDataXMLDocument *)doc;
 
 + (NSString *) singleSubElementForName:(NSString *)subElementName
-                   FromGDataXMLElement:(GDataXMLElement *)element
-                      processVerbosely:(BOOL)processVerbosely;
+                   FromGDataXMLElement:(GDataXMLElement *)element;
 
 + (void) processXMLfile:(GDataXMLDocument *)doc
                    type:(XMLdocType)docType

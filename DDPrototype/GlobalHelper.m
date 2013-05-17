@@ -146,8 +146,8 @@
     
     if(![[NSString stringWithUTF8String:primarycode] isEqualToString:[NSString stringWithUTF8String:secondarycode]])
     {
-        if (PROCESS_VERBOSELY) NSLog(@"doubleMetaphoneCodes ARE different %@",doubleMetaphoneCodes);
         [doubleMetaphoneCodes addObject:[NSString stringWithUTF8String:secondarycode]];
+        if (PROCESS_VERBOSELY) NSLog(@"doubleMetaphoneCodes ARE different");
     }
     
     return doubleMetaphoneCodes;

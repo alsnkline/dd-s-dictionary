@@ -9,11 +9,14 @@
 #import "FunWithWordsTableViewController.h"
 #import "NSUserDefaultKeys.h"
 #import "FilteredDictionaryTableViewController.h"
+#import "Group+Create.h"
+#import "GroupHelper.h"
 
 @interface FunWithWordsTableViewController ()
 
 @property (nonatomic, strong) UIColor *customBackgroundColor;
 @property (nonatomic) BOOL useDyslexieFont;
+@property (nonatomic, strong) NSArray *wordGroups;
 
 @end
 
@@ -22,6 +25,7 @@
 @synthesize activeDictionary = _activeDictionary;
 @synthesize customBackgroundColor = _customBackgroundColor;
 @synthesize useDyslexieFont = _useDyslexieFont;
+@synthesize wordGroups = _wordGroups;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,6 +34,33 @@
         // Custom initialization
     }
     return self;
+}
+
+- (NSArray *)wordGroups
+{
+    NSArray *groups = _wordGroups;
+    
+    if (_wordGroups == nil) {
+        //setup query of Groups in core Data
+        
+        NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Group"];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"LIKE *"];
+//        
+//        [fetchRequest setPredicate:predicate];
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        
+        NSError *error = nil;
+        groups = [self.activeDictionary.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if (LOG_PREDICATE_RESULTS) {
+            NSLog(@"number of matches = %d", [groups count]);
+            for (Group *group in groups) {
+                NSLog(@"found: %@", group.displayName);
+            }
+        }
+        _wordGroups = groups;
+    }
+    return groups;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -54,6 +85,7 @@
         [self setVisibleCellsCellTextLabelFont];
     }
 
+    
 }
 
 - (void)viewDidLoad
@@ -65,6 +97,10 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    // see if Groups have been processed and process if they have not been
+    [self processGroupsFile];
+    
 }
 
 - (void) setCellBackgroundColor
@@ -108,22 +144,32 @@
 //    return 0;
 //}
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section //tweeked when I thought I could mix static and dynamic tables
 //{
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
+//    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+//    if (section == 1) count = [self.wordGroups count];
+//    return count;
 //}
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
 //    static NSString *CellIdentifier = @"Cell";
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-//}
+    
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
+    
+    if (section == 1) {
+        Group *groupForCell = [self.wordGroups objectAtIndex:row];
+        cell.textLabel.text = groupForCell.displayName;
+    }
+    
+    // Configure the cell...
+    
+    return cell;
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -189,7 +235,7 @@
             UITableViewCell *cell = (UITableViewCell *)sender;
             NSLog(@"Cell Label = %@", cell.textLabel.text);
             
-            NSInteger switchValue;
+            NSInteger switchValue;  //not really used yet, set up incase options got out of control
             NSString *stringForPredicate = @"";
             NSPredicate *selectionPredicate;
             
@@ -215,8 +261,16 @@
                 stringForPredicate = [cell.textLabel.text stringByTrimmingCharactersInSet:charactersToRemove];
             }
             
-            if (![stringForPredicate isEqualToString:@""]) selectionPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", stringForPredicate];
+            if (![stringForPredicate isEqualToString:@""]) selectionPredicate = [NSPredicate predicateWithFormat:@"%@ IN SELF.inGroups.displayName", cell.textLabel.text];
+                //selectionPredicate = [NSPredicate predicateWithFormat:@"SELF.spelling contains[cd] %@", stringForPredicate];
+            
+            //selectionPredicate = [NSPredicate predicateWithFormat:@"inGroups.@count > 0"]; //worked
+            //selectionPredicate = [NSPredicate predicateWithFormat:@"%@ IN SLEF.inGroups.displayName", cell.textLabel.text];
+
+            
             NSLog(@"predicate = %@", selectionPredicate);
+            if (LOG_PREDICATE_RESULTS) [GlobalHelper testWordPredicate:selectionPredicate inContext:self.activeDictionary.managedObjectContext];
+            
             [segue.destinationViewController setStringForTitle:cell.textLabel.text];
             [segue.destinationViewController setFilterPredicate:selectionPredicate];
             [segue.destinationViewController setActiveDictionary:self.activeDictionary];
@@ -226,5 +280,42 @@
         }
     }
 }
+
+- (void)processGroupsFile
+{
+    if ([self isNewGroupsJSONFileVersion]) {
+        NSArray *json = [GroupHelper contentsOfLatestJSONGroupsFile];
+        [Group processGroupsFile:json inManagedObjectContext:self.activeDictionary.managedObjectContext];
+        [self setProcessedGroupsJSONFileVersion];
+    }
+}
+
+// candidate for refactoring as these two methods are very similar to 2 other pairs used to manage APPLICATION_VERSION and PROCESSED_DOC_SCHEMA_VERSION_205
+- (BOOL) isNewGroupsJSONFileVersion
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //get version from NSUserDefaults and the current code
+    NSString *version = [GroupHelper latestGroupsJSONfileVersionNumber];
+    NSString *storedVersion = [defaults stringForKey:GROUPS_JSON_DOC_PROCESSED_VERSION];
+    NSLog(@"This version %@, stored version %@", version, storedVersion);
+    
+    BOOL returnValue = ![version isEqualToString:storedVersion];
+    NSLog(@"in New Groups JSON File Version: %@", returnValue ? @"YES" : @"NO");
+    
+    return returnValue;
+}
+
+- (void) setProcessedGroupsJSONFileVersion
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *version = [GroupHelper latestGroupsJSONfileVersionNumber];
+    //set version in NSUserDefaults so next time new version code doesn't run
+    [defaults setObject:version forKey:GROUPS_JSON_DOC_PROCESSED_VERSION];
+    [defaults synchronize];
+}
+
+
+
+
 
 @end

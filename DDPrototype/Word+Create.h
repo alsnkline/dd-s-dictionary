@@ -14,21 +14,17 @@
 @interface Word (Create)
 
 + (Word *)wordWithSpellingFromGDataXMLElement:(GDataXMLElement *)wordXML
-                             processVerbosely:(BOOL)processVerbosely
                        inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (Word *)wordWithSpelling:(NSString *)spelling
-          processVerbosely:(BOOL)processVerbosely
     inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (Word *)wordFromGDataXMLElement:(GDataXMLElement *)wordXML
                    processingType:(XMLdocType)docType
-                 processVerbosely:(BOOL)processVerbosely
            inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (void) processDetailsOfWordXML:(GDataXMLElement *)wordXML
                             into:(Word *)word
-                processVerbosely:(BOOL)processVerbosely
           inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (void)removeWordWithSpellingFromGDataXMLElement:(GDataXMLElement *)wordXML

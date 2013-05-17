@@ -455,7 +455,7 @@
                 case 0: {
                     //set up about page
                     [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
-                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
+                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/html/settings_about" ofType:@"html"];
                     
                     if ([localFileManager fileExistsAtPath:path]) { //avoid crash if file changes and forgot to clean build :-)
                         [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
@@ -464,7 +464,7 @@
                 }
                 case 1: {
                     //small print selected.
-                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrintv2" ofType:@"html"];
+                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/html/settings_smallPrintv2" ofType:@"html"];
                     
                     if ([localFileManager fileExistsAtPath:path]) { //avoid crash if file changes and forgot to clean build :-)
                         [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
@@ -473,7 +473,7 @@
                 }
                 case 2: {
                     //The Dysle+ie font selected.
-                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_dysle+ie" ofType:@"html"];
+                    NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/html/settings_dysle+ie" ofType:@"html"];
                     
                     if ([localFileManager fileExistsAtPath:path]) { //avoid crash if file changes and forgot to clean build :-)
                         [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
@@ -491,14 +491,14 @@
 //            if ([cell.textLabel.text isEqualToString:@"About Dy-Di"]) {
 //            //about needed
 //            [segue.destinationViewController setStringForTitle:@"About"]; //overriding cell label for cleaner UI
-//            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_about" ofType:@"html"];
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/html/settings_about" ofType:@"html"];
 //            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
 //            
 //            
 ////        } else if ([self.selectedCellIndexPath isEqual:[NSIndexPath indexPathForItem:2 inSection:2]]) {
 //            } else if ([cell.textLabel.text isEqualToString:@"Small Print"]) {
 //            //small print selected.
-//            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/Images/settings_smallPrint" ofType:@"html"];
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"resources.bundle/html/settings_smallPrint" ofType:@"html"];
 //            [segue.destinationViewController setUrlToDisplay:[NSURL fileURLWithPath:path]];
 //            }
         }

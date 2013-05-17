@@ -16,6 +16,7 @@
 #define BACKGROUND_COLOR_SATURATION @"DDPrototype.BackgroundColorSaturation"
 #define APPLICATION_VERSION @"DDPrototype.ApplicationVersion"
 #define PROCESSED_DOC_SCHEMA_VERSION_205 @"DDPrototype.MigratedToVersion205"
+#define GROUPS_JSON_DOC_PROCESSED_VERSION @"DDPrototype.GroupsJSONVersion"
 
 @protocol NSUserDefaultKeys <NSObject>
 
