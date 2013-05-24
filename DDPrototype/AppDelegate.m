@@ -29,7 +29,7 @@
     [GAI sharedInstance].dispatchInterval = 20;
     // Optional: set debug to YES for extra debugging information.
     [GAI sharedInstance].debug = NO;
-
+    
     // Create tracker instance.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-37793922-2"];  //use -1 for any production releases
 //    [[GAI sharedInstance] trackerWithTrackingId:@""]; //use for developing so counts don't polute

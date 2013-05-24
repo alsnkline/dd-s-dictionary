@@ -255,7 +255,7 @@ correctionsOnly:(BOOL)corrections
     NSString *availableDictionary = [DictionaryHelper dictionaryAlreadyProcessed];
     BOOL forceReprocess = [DictionarySetupViewController reprocessDictionaryForNewSchema];
     BOOL newVersion = [DictionarySetupViewController isNewAppVersion];
-    BOOL wasProcessingCompleted = [DictionarySetupViewController wasProcessingCompleted];
+    BOOL processingCompleted = [DictionarySetupViewController wasProcessingCompleted];
     
     if (OVERRIDE_PROCESSING) {
         forceReprocess = FORCE_REPROCESS;
@@ -263,7 +263,7 @@ correctionsOnly:(BOOL)corrections
     }
     
     
-    if ( forceReprocess || !availableDictionary || !wasProcessingCompleted) {
+    if ( forceReprocess || !availableDictionary || !processingCompleted) {
         if (!availableDictionary) {
             NSLog(@"Processing as no dictionary AKA First Time User");
             //track first time user
@@ -274,7 +274,7 @@ correctionsOnly:(BOOL)corrections
         if (forceReprocess && availableDictionary) {
             NSLog(@"FORCED delete and reprocessing");
         }
-        if (!wasProcessingCompleted) {
+        if (!processingCompleted) {
             NSLog(@"processing was INCOMPLETE, reprocessing, have availableDictionary %@", availableDictionary ? @"YES" : @"NO");
         }
         if (!forceReprocess && !availableDictionary) NSLog(@"No Dict AND current schema processed. This state shouldn't arise");

@@ -45,7 +45,7 @@
         
         NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES selector:@selector(caseInsensitiveCompare:)]];
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Group"];
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"LIKE *"];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"LIKE *"]; //no predicate as we are getting all groups
 //        
 //        [fetchRequest setPredicate:predicate];
         [fetchRequest setSortDescriptors:sortDescriptors];
@@ -75,7 +75,7 @@
     
     NSIndexPath *selectedCell = [self.tableView indexPathForSelectedRow];
     if (selectedCell) {
-        // we have to deselect
+        // we have to deselect to manage background color changes
         [self.tableView deselectRowAtIndexPath:selectedCell animated:NO]; //not animated so it takes effect immediately
     }
     [self setCellBackgroundColor];

@@ -342,7 +342,7 @@
     DocProcessType processType = DOC_PROCESS_USE_EXSISTING;  //set a default that gets over riden by the whatProcessingIsNeeded method.
     BOOL isFTU = NO; //set a default that gets over riden by the whatProcessingIsNeeded method
     NSString *availableDictionary = [DictionarySetupViewController whatProcessingIsNeeded:&processType isFTU:&isFTU];
-    if (isFTU) self.isFTU = isFTU;
+    if (isFTU) self.isFTU = isFTU;  //condition required to stop isFTU over riding self.isFTU in iPhone (it was set before view was called)
     
     if (![self getSplitViewWithDisplayWordViewController]) {
         processType = DOC_PROCESS_USE_EXSISTING; //we're in an iPhone any processing has already been completed

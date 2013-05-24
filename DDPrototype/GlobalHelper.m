@@ -9,6 +9,7 @@
 #import "GlobalHelper.h"
 #import "double_metaphone.h"
 #import "Word+Create.h"
+#import "GAITracker.h"
 
 
 @implementation GlobalHelper
@@ -50,16 +51,23 @@
 
 + (void) sendView:(NSString *)viewNameForGA
 {
-    id tracker = [GAI sharedInstance].defaultTracker;
+    id<GAITracker> tracker = [GlobalHelper getGoogleTracker];
     [tracker sendView:viewNameForGA];
     NSLog(@"View sent to GA %@", viewNameForGA);
 }
 
 + (void) trackEventWithCategory:(NSString*)eventCategory withAction:(NSString *)action withLabel:(NSString *)label withValue:(NSNumber *)value
 {
-    id tracker = [GAI sharedInstance].defaultTracker;
+    id<GAITracker> tracker = [GlobalHelper getGoogleTracker];
     [tracker sendEventWithCategory:eventCategory withAction:action withLabel:label withValue:value];
     NSLog(@"Event sent to GA %@ %@ %@ %@", eventCategory, action, label, value);
+}
+
++ (id<GAITracker>) getGoogleTracker
+{
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    if (tracker.sessionTimeout != GOOGLE_SESSION_TIMEOUT)[tracker setSessionTimeout:GOOGLE_SESSION_TIMEOUT];  //making Google only start a new session after 10 mins of inactivity
+    return tracker;
 }
 
 //[NSNumber numberWithInt:1]

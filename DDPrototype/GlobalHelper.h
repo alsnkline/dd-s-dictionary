@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define PROCESS_VERBOSELY NO
-#define LOG_PREDICATE_RESULTS YES  // must be NO for ship
+#define LOG_PREDICATE_RESULTS YES       // must be NO for ship
+#define GOOGLE_SESSION_TIMEOUT 60*10    //default is 30secs this sets it to 10 mins. This is the inactivity time before GA starts a new session
 
 //    NSLog(@"********************************");
 //    NSLog(@" set OVERRIDE_PROCESSING to NO");
@@ -17,11 +18,11 @@
 //    NSLog(@"*********************************");
 
 //****** set to NO before ship *******
-#define OVERRIDE_PROCESSING NO      // must be NO for ship - this is the master switch for override processing
-#define FORCE_REPROCESS YES          //used for testing to force dictionary reprocess - only effective if OVERRIDE_PROCESSING = YES 
-#define FAKE_NEW_VERSION NO        //used for testing to force dictionary correction check - only effective if OVERRIDE_PROCESSING = YES 
+#define OVERRIDE_PROCESSING NO          // must be NO for ship - this is the master switch for override processing
+#define FORCE_REPROCESS YES             //used for testing to force dictionary reprocess - only effective if OVERRIDE_PROCESSING = YES 
+#define FAKE_NEW_VERSION NO             //used for testing to force dictionary correction check - only effective if OVERRIDE_PROCESSING = YES 
 
-#define TEST_APPINGTON_ON NO       // must be NO for ship
+#define TEST_APPINGTON_ON NO            // must be NO for ship
 
 
 
