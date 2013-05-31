@@ -276,6 +276,7 @@ correctionsOnly:(BOOL)corrections
         }
         if (!processingCompleted) {
             NSLog(@"processing was INCOMPLETE, reprocessing, have availableDictionary %@", availableDictionary ? @"YES" : @"NO");
+            *isFTU = YES;            //incomplete processing would mean they haven't heard the Appington FTUE messages yet and we want them too.
         }
         if (!forceReprocess && !availableDictionary) NSLog(@"No Dict AND current schema processed. This state shouldn't arise");
         
