@@ -417,7 +417,10 @@
 - (void) callAppingtonWithViewDetails
 {
     [Appington start];
-    if (self.isFTU) [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"ftue" andWord:nil];
+    if (self.isFTU) {
+        [GlobalHelper callAppingtonInteractionModeTriggerWithModeName:@"ftue" andWord:nil];
+        self.isFTU = NO;
+    }
     
     DisplayWordViewController *dwvc = [self getSplitViewWithDisplayWordViewController];
     if (dwvc) {         // we're in an ipad
