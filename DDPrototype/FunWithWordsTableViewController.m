@@ -269,15 +269,6 @@
                 switchValue = 1;
                 selectionPredicate = [NSPredicate predicateWithFormat:@"pronunciations.@count > 1"];
                 // from http://www.raywenderlich.com/14742/core-data-on-ios-5-tutorial-how-to-work-with-relations-and-predicates
-//            } else if ([cell.textLabel.text isEqualToString:@"'tion'"]) {
-//                switchValue = 2;
-//                stringForPredicate = @"tion";
-//            } else if ([cell.textLabel.text isEqualToString:@"'ould'"]) {
-//                switchValue = 3;
-//                stringForPredicate = @"ould";
-//            } else if ([cell.textLabel.text isEqualToString:@"'ight'"]) {
-//                switchValue = 4;
-//                stringForPredicate = @"ight";
             } else {
                 switchValue = 5;
                 NSCharacterSet *charactersToRemove = [NSCharacterSet characterSetWithCharactersInString:@"'"];
@@ -298,8 +289,7 @@
             [segue.destinationViewController setStringForTitle:cell.textLabel.text];
             [segue.destinationViewController setFilterPredicate:selectionPredicate];
             [segue.destinationViewController setActiveDictionary:self.activeDictionary];
-            
-            
+
         }
     }
 }
@@ -313,8 +303,6 @@
         [DictionaryHelper saveDictionary:self.activeDictionary withImDoneDelegate:nil andDsvc:nil];
     }
 }
-
-
 
 
 

@@ -43,14 +43,18 @@
     }
     NSInteger currentFileVersion = 0;
     NSString *rtnValue;
+    NSRange rangeOfFileIdentifier = NSMakeRange(0, 13);
     for (NSURL *fileURL in currentDirectoryContents) {
         NSString *fileName = [fileURL lastPathComponent];
-        NSRange rangeOfVersionNumber = NSMakeRange([fileName length]-7, 2);
-        NSString *versionOfFile = [fileName substringWithRange:rangeOfVersionNumber];
-        NSLog(@"Version # of file : %@", versionOfFile);
-        if (currentFileVersion < [versionOfFile integerValue]) {
-            currentFileVersion = [versionOfFile integerValue];
-            rtnValue = versionOfFile;
+        if ([[fileName substringWithRange:rangeOfFileIdentifier] isEqualToString:@"FunWordGroups"])
+        {
+            NSRange rangeOfVersionNumber = NSMakeRange([fileName length]-7, 2);
+            NSString *versionOfFile = [fileName substringWithRange:rangeOfVersionNumber];
+            NSLog(@"Version # of file : %@", versionOfFile);
+            if (currentFileVersion < [versionOfFile integerValue]) {
+                currentFileVersion = [versionOfFile integerValue];
+                rtnValue = versionOfFile;
+            }
         }
     }
     return rtnValue;

@@ -237,4 +237,30 @@
 
 }
 
+- (void) DisplayWordViewController:(DisplayWordViewController *)sender homonymSelectedWith:(NSString *)spelling
+{
+    NSLog(@"homophone button selected with spelling, %@", spelling);      //need to cancel search when this happens TODO maybe - or at least scroll to it if in view
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Word"];
+    request.predicate = [NSPredicate predicateWithFormat:@"spelling = %@",spelling];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"spelling" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *matches = [self.activeDictionary.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (!matches || ([matches count] != 1)) {
+        //handle error
+    } else if ([matches count] == 1) {
+        Word *homonymn = [matches lastObject];
+        NSIndexPath *indexPathOfHomonymn = [self.fetchedResultsController indexPathForObject:homonymn];
+        if (![self getSplitViewWithDisplayWordViewController]) { //iPhone
+            //pop old word off navigation controller
+            [self.navigationController popViewControllerAnimated:NO]; //Not animated as this is just preparing the Navigation Controller stack for the new word to be pushed on.
+        }
+        [self.tableView selectRowAtIndexPath:indexPathOfHomonymn animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [self wordSelectedAtIndexPath:indexPathOfHomonymn fromTableView:self.tableView];
+    }
+
+}
 @end
