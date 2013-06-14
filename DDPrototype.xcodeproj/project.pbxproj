@@ -62,8 +62,8 @@
 		B18F4AFD17418E94009E386F /* FunWithWordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F4AFC17418E94009E386F /* FunWithWordsTableViewController.m */; };
 		B18F4B00174198FF009E386F /* FilteredDictionaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F4AFF174198FF009E386F /* FilteredDictionaryTableViewController.m */; };
 		B18F833816C6AF440082D687 /* SetupOrMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F833716C6AF440082D687 /* SetupOrMainViewController.m */; };
-		B190CA83173F33FE00275784 /* libAppington.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B190CA82173F33FE00275784 /* libAppington.a */; };
 		B191B62516D01E57008BDDD5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B191B62416D01E57008BDDD5 /* QuartzCore.framework */; };
+		B19206B1176ADDFC0098F0A7 /* libAppington_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B19206B0176ADDFC0098F0A7 /* libAppington_debug.a */; };
 		B1B6DA121596BE7A001781C9 /* DisplayWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */; };
 		B1B6DA181596C6A8001781C9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1B6DA171596C6A8001781C9 /* CoreData.framework */; };
 		B1C114A7159FC81100D60CB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C114A6159FC81100D60CB4 /* AVFoundation.framework */; };
@@ -164,8 +164,8 @@
 		B18F4AFF174198FF009E386F /* FilteredDictionaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredDictionaryTableViewController.m; sourceTree = "<group>"; };
 		B18F833616C6AF440082D687 /* SetupOrMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupOrMainViewController.h; sourceTree = "<group>"; };
 		B18F833716C6AF440082D687 /* SetupOrMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupOrMainViewController.m; sourceTree = "<group>"; };
-		B190CA82173F33FE00275784 /* libAppington.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington.a; sourceTree = "<group>"; };
 		B191B62416D01E57008BDDD5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B19206B0176ADDFC0098F0A7 /* libAppington_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppington_debug.a; sourceTree = "<group>"; };
 		B1B6DA101596BE7A001781C9 /* DisplayWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayWordViewController.h; sourceTree = "<group>"; };
 		B1B6DA111596BE7A001781C9 /* DisplayWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayWordViewController.m; sourceTree = "<group>"; };
 		B1B6DA171596C6A8001781C9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -196,7 +196,7 @@
 				B178606415962B3D0047D631 /* Foundation.framework in Frameworks */,
 				B178606615962B3D0047D631 /* CoreGraphics.framework in Frameworks */,
 				B159CB52172A2B29006AC874 /* libGoogleAnalytics.a in Frameworks */,
-				B190CA83173F33FE00275784 /* libAppington.a in Frameworks */,
+				B19206B1176ADDFC0098F0A7 /* libAppington_debug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				B1EFAB16171B7A9E00249138 /* Appington.h */,
-				B190CA82173F33FE00275784 /* libAppington.a */,
+				B19206B0176ADDFC0098F0A7 /* libAppington_debug.a */,
 				B1EFAB18171B7ABC00249138 /* legal_agreement.html */,
 			);
 			name = Appington;
