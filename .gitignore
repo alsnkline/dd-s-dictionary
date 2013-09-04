@@ -1,2 +1,6 @@
 *~
 *.pyc
+
+appington/config.json
+
+appington/playback.jmp
