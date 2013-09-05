@@ -24,7 +24,7 @@
 
 }
 
-+ (void) showErrorTooManyDictionaries     //used in SetupTableSwitchViewController and DictionaryTableViewController
++ (void) showErrorTooManyDictionaries     //used in DictionaryTableViewController
 {
     UIAlertView *alertUser = [[UIAlertView alloc] initWithTitle:@"Dictionary processing problem"
                                                         message:[NSString stringWithFormat:@"Sorry, you have too many dictionaries processed."]
