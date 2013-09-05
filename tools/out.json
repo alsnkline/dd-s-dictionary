@@ -1,0 +1,346 @@
+{
+    "words": [
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": [
+                {
+                    "uk": "colour"
+                }, 
+                {
+                    "us": "color"
+                }
+            ]
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "pronunciations": [
+                "close1", 
+                "close2"
+            ], 
+            "word": "close"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "wild"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                "read1"
+            ], 
+            "pronunciations": [
+                "read1"
+            ], 
+            "word": "red"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                {
+                    "read1": "red"
+                }, 
+                {
+                    "read2": "reed"
+                }
+            ], 
+            "word": "read"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                "read2"
+            ], 
+            "pronunciations": [
+                "read2"
+            ], 
+            "word": "reed"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "already"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                {
+                    "uk": "bean"
+                }
+            ], 
+            "word": "been"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                {
+                    "uk": "been"
+                }, 
+                {
+                    "us": "bin"
+                }
+            ], 
+            "pronunciations": [
+                "uk-bean", 
+                "us-bean"
+            ], 
+            "word": "bean"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                {
+                    "us": "bean"
+                }
+            ], 
+            "word": "bin"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "bicycle"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "pronunciations": [
+                "arent"
+            ], 
+            "word": "aren't"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "ill"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                "isle", 
+                "aisle"
+            ], 
+            "pronunciations": [
+                "illx"
+            ], 
+            "word": "i'll"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "pronunciations": [
+                "Mr"
+            ], 
+            "word": "Mr."
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "built"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "business"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "cartoon"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "captain"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "wander"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "wonder"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "color"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "flood"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "grill"
+        }, 
+        {
+            "collections": [
+                "first_words", 
+                "fun"
+            ], 
+            "homophones": [
+                "pour", 
+                "pore", 
+                "paw"
+            ], 
+            "word": "poor"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "plough"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "accountant"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "add"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "altered"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "author"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "banana"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "ban"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "band"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "late"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "tags": [
+                "ate"
+            ], 
+            "word": "mate"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                "lite"
+            ], 
+            "tags": [
+                "ight"
+            ], 
+            "word": "light"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "homophones": [
+                "mite"
+            ], 
+            "tags": [
+                "ight"
+            ], 
+            "word": "might"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "tags": [
+                "ight"
+            ], 
+            "word": "night"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "bland"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "block"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "beautiful"
+        }, 
+        {
+            "collections": [
+                "first_words"
+            ], 
+            "word": "check"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+[
+{ "displayName":"'ight'","words":["bright","fight","fright","frighten","knight","light","might","night","right"]},
+{ "displayName": "'ate'", "words": ["ate","plate","late","mate"]},
+{ "displayName": "'ight (ate)'", "words": ["eight","eighteen","weight","eighty","freight"]},
+{ "displayName": "'tion'", "words": ["action", "assertion", "caption", "caution", "emotion", "fraction", "invitation","mention", "nation", "question", "vacation"]},
+{ "displayName": "'ould'", "words": ["would", "could", "should", "couldn't", "shouldn't", "wouldn't"]},
+{ "displayName": "'ite'", "words": ["bite", "invite", "kite", "lite", "liter", "quite", "white", "write"]},
+{ "displayName": "'ught'", "words": ["bought", "brought", "caught", "thought"]},
+{ "displayName": "'aw'", "words": ["dawn", "draw", "hawk", "law", "paw", "paws", "saw", "yawn"]},
+{ "displayName": "'the'", "words": ["the", "their", "them", "then", "there", "these", "they", "they're", "those"]},
+{ "displayName": "'ther'", "words": ["father", "grandfather", "mother", "grandmother", "another", "other", "brother", "rather", "whether", "weather", "together"]},
+{ "displayName": "'ore'", "words": ["before", "more", "store"]}
+]
